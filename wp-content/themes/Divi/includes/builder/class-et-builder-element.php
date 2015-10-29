@@ -20,6 +20,7 @@ class ET_Builder_Element {
 	public $post_types = array();
 	public $main_tabs = array();
 	public $used_tabs = array();
+	public $custom_css_tab;
 
 	// number of times shortcode_callback function has been executed
 	private $_shortcode_callback_num;
@@ -64,6 +65,8 @@ class ET_Builder_Element {
 		}
 
 		$this->main_tabs = $this->get_main_tabs();
+
+		$this->custom_css_tab = isset( $this->custom_css_tab ) ? $this->custom_css_tab : true;
 
 		$this->post_types = et_builder_get_builder_post_types();
 
@@ -184,9 +187,10 @@ class ET_Builder_Element {
 		}
 
 		$shortcode_attributes = array();
+		$font_icon_options = array( 'font_icon', 'button_icon', 'button_one_icon', 'button_two_icon' );
 
 		foreach ( $this->shortcode_atts as $attribute_key => $attribute_value ) {
-			$shortcode_attributes[ $attribute_key ] = 'font_icon' === $attribute_key ? $attribute_value : str_replace( '%22', '"', $attribute_value );
+			$shortcode_attributes[ $attribute_key ] = in_array( $attribute_key, $font_icon_options ) ? $attribute_value : str_replace( '%22', '"', $attribute_value );
 		}
 
 		$this->shortcode_atts = $shortcode_attributes;
@@ -887,7 +891,7 @@ class ET_Builder_Element {
 	}
 
 	private function _add_custom_css_fields() {
-		if ( isset( $this->type ) && 'child' === $this->type ) {
+		if ( isset( $this->custom_css_tab ) && ! $this->custom_css_tab ) {
 			return;
 		}
 
@@ -1147,6 +1151,10 @@ class ET_Builder_Element {
 				$this->validation_in_use = true;
 				$classes[] = $rule;
 			}
+		}
+
+		if ( isset( $field['validate_unit'] ) && $field['validate_unit'] ) {
+			$classes[] = 'et-pb-validate-unit';
 		}
 
 		if ( ! empty( $field['class'] ) ) {
@@ -1529,7 +1537,7 @@ class ET_Builder_Element {
 
 		$output = sprintf(
 			'%6$s
-				<select name="%1$s"%2$s%3$s%4$s>%5$s</select>
+				<select name="%1$s"%2$s%3$s%4$s%8$s>%5$s</select>
 			%7$s',
 			esc_attr( $name ),
 			( ! empty( $id ) ? sprintf(' id="%s"', esc_attr( $id ) ) : '' ),
@@ -1547,7 +1555,8 @@ class ET_Builder_Element {
 					esc_html( $options['off'] ),
 					( ! empty( $button_options['button_type'] ) && 'equal' === $button_options['button_type'] ? ' et_pb_button_equal_sides' : '' )
 				) : '',
-			'yes_no_button' === $field_type ? '</div>' : ''
+			'yes_no_button' === $field_type ? '</div>' : '',
+			( 'et_pb_transparent_background' === $name ? '<%- typeof( ' . esc_html( $name ) . ' ) === \'undefined\' ?  \' data-default=default\' : \'\' %>' : '' )
 		);
 		return $output;
 	}
@@ -2027,7 +2036,7 @@ class ET_Builder_Element {
 
 					$style .= sprintf(
 						'line-height: %1$s%2$s; ',
-						esc_html( et_builder_process_range_value( $font_options[ $line_height_option_name ] ) ),
+						esc_html( et_builder_process_range_value( $font_options[ $line_height_option_name ], 'line_height' ) ),
 						esc_html( $important )
 					);
 
@@ -2036,7 +2045,7 @@ class ET_Builder_Element {
 							'selector'    => $option_settings['css']['line_height'],
 							'declaration' => sprintf(
 								'line-height: %1$s%2$s;',
-								esc_html( et_builder_process_range_value( $font_options[ $line_height_option_name ] ) ),
+								esc_html( et_builder_process_range_value( $font_options[ $line_height_option_name ], 'line_height' ) ),
 								esc_html( $important )
 							),
 							'priority'    => $this->_style_priority,
@@ -2235,6 +2244,11 @@ class ET_Builder_Element {
 				$button_text_size = '' !== $button_text_size && false === strpos( $button_text_size, 'px' ) ? $button_text_size . 'px' : $button_text_size;
 
 				$css_element = ! empty( $option_settings['css']['main'] ) ? $option_settings['css']['main'] : $this->main_css_element . ' .et_pb_button';
+				$css_element_processed = et_is_builder_plugin_active() ? $css_element : 'body #page-container ' . $css_element;
+
+				if ( '' !== $button_bg_color && et_is_builder_plugin_active() ) {
+					$button_bg_color .= ' !important';
+				}
 
 				$main_element_styles = sprintf(
 					'%1$s
@@ -2246,7 +2260,7 @@ class ET_Builder_Element {
 					%7$s
 					%8$s
 					%9$s',
-					'' !== $button_text_color ? sprintf( 'color:%1$s;', $button_text_color ) : '',
+					'' !== $button_text_color ? sprintf( 'color:%1$s !important;', $button_text_color ) : '',
 					'' !== $button_bg_color ? sprintf( 'background:%1$s;', $button_bg_color ) : '',
 					'' !== $button_border_width && 'px' !== $button_border_width ? sprintf( 'border-width:%1$s !important;', et_builder_process_range_value( $button_border_width ) ) : '',
 					'' !== $button_border_color ? sprintf( 'border-color:%1$s;', $button_border_color ) : '',
@@ -2263,7 +2277,7 @@ class ET_Builder_Element {
 				);
 
 				self::set_style( $function_name, array(
-					'selector'    => 'body #page-container ' . $css_element,
+					'selector'    => $css_element_processed,
 					'declaration' => rtrim( $main_element_styles ),
 				) );
 
@@ -2289,7 +2303,7 @@ class ET_Builder_Element {
 				);
 
 				self::set_style( $function_name, array(
-					'selector'    => 'body #page-container ' . $css_element . ':hover',
+					'selector'    => $css_element_processed . ':hover',
 					'declaration' => rtrim( $main_element_styles_hover ),
 				) );
 
@@ -2298,7 +2312,7 @@ class ET_Builder_Element {
 					$no_icon_styles = 'padding: 0.3em 1em !important;';
 
 					self::set_style( $function_name, array(
-						'selector'    => 'body #page-container ' . $css_element . ',' . $css_element . ':hover',
+						'selector'    => $css_element_processed . ',' . $css_element_processed . ':hover',
 						'declaration' => rtrim( $no_icon_styles ),
 					) );
 				} else {
@@ -2356,7 +2370,7 @@ class ET_Builder_Element {
 					);
 
 					self::set_style( $function_name, array(
-						'selector'    => 'body #page-container ' . $css_element . ':hover:after',
+						'selector'    => $css_element_processed . ':hover:after',
 						'declaration' => rtrim( $hover_after_styles ),
 					) );
 
@@ -2365,7 +2379,7 @@ class ET_Builder_Element {
 						$custom_icon_size = $button_text_size;
 
 						self::set_style( $function_name, array(
-							'selector'    => 'body #page-container ' . $css_element . ':after',
+							'selector'    => $css_element_processed . ':after',
 							'declaration' => sprintf( 'font-size:%1$s;', $default_icons_size ),
 						) );
 
@@ -2377,7 +2391,7 @@ class ET_Builder_Element {
 				}
 
 				self::set_style( $function_name, array(
-					'selector'    => 'body #page-container ' . $css_element . ':after',
+					'selector'    => $css_element_processed . ':after',
 					'declaration' => rtrim( $main_element_styles_after ),
 				) );
 			}
@@ -2595,6 +2609,11 @@ class ET_Builder_Element {
 		$selector    = str_replace( '%%order_class%%', ".{$order_class_name}", $style['selector'] );
 		$selector    = str_replace( '%order_class%', ".{$order_class_name}", $selector );
 
+		// Prepend .et_divi_builder class before all CSS rules in the Divi Builder plugin
+		if ( et_is_builder_plugin_active() ) {
+			$selector = ".et_divi_builder #et_builder_outer_content $selector";
+		}
+
 		$declaration = $style['declaration'];
 		// New lines are saved as || in CSS Custom settings, remove them
 		$declaration = preg_replace( '/(\|\|)/i', '', $declaration );
@@ -2669,6 +2688,21 @@ class ET_Builder_Element {
 			'&',
 		);
 
+		if ( 'fr_FR' === get_locale() ) {
+			$french_smart_quotes = array(
+				'&nbsp;&raquo;',
+				'&Prime;&gt;',
+			);
+
+			$french_replacements = array(
+				'&quot;',
+				'&quot;&gt;',
+			);
+
+			$smart_quotes = array_merge( $smart_quotes, $french_smart_quotes );
+			$replacements = array_merge( $replacements, $french_replacements );
+		}
+
 		$text = str_replace( $smart_quotes, $replacements, $text );
 
 		return $text;
@@ -2723,6 +2757,8 @@ class ET_Builder_Structure_Element extends ET_Builder_Element {
 						current_value_pb = typeof( et_pb_padding_bottom_1 ) !== 'undefined' ? et_pb_padding_bottom_1 : '',
 						current_value_pl = typeof( et_pb_padding_left_1 ) !== 'undefined' ? et_pb_padding_left_1 : '',
 						current_value_bg_img = typeof( et_pb_bg_img_1 ) !== 'undefined' ? et_pb_bg_img_1 : '';
+						current_value_parallax = typeof( et_pb_parallax_1 ) !== 'undefined' && 'on' === et_pb_parallax_1 ? ' selected=\"selected\"' : '';
+						current_value_parallax_method = typeof( et_pb_parallax_method_1 ) !== 'undefined' && 'on' === et_pb_parallax_method_1 ? ' selected=\"selected\"' : '';
 					switch ( counter ) {
 						case 2 :
 							current_value_bg = typeof( et_pb_background_color_2 ) !== 'undefined' ? et_pb_background_color_2 : '';
@@ -2731,6 +2767,8 @@ class ET_Builder_Structure_Element extends ET_Builder_Element {
 							current_value_pb = typeof( et_pb_padding_bottom_2 ) !== 'undefined' ? et_pb_padding_bottom_2 : '';
 							current_value_pl = typeof( et_pb_padding_left_2 ) !== 'undefined' ? et_pb_padding_left_2 : '';
 							current_value_bg_img = typeof( et_pb_bg_img_2 ) !== 'undefined' ? et_pb_bg_img_2 : '';
+							current_value_parallax = typeof( et_pb_parallax_2 ) !== 'undefined' && 'on' === et_pb_parallax_2 ? ' selected=\"selected\"' : '';
+							current_value_parallax_method = typeof( et_pb_parallax_method_2 ) !== 'undefined' && 'on' === et_pb_parallax_method_2 ? ' selected=\"selected\"' : '';
 							break;
 						case 3 :
 							current_value_bg = typeof( et_pb_background_color_3 ) !== 'undefined' ? et_pb_background_color_3 : '';
@@ -2739,6 +2777,8 @@ class ET_Builder_Structure_Element extends ET_Builder_Element {
 							current_value_pb = typeof( et_pb_padding_bottom_3 ) !== 'undefined' ? et_pb_padding_bottom_3 : '';
 							current_value_pl = typeof( et_pb_padding_left_3 ) !== 'undefined' ? et_pb_padding_left_3 : '';
 							current_value_bg_img = typeof( et_pb_bg_img_3 ) !== 'undefined' ? et_pb_bg_img_3 : '';
+							current_value_parallax = typeof( et_pb_parallax_3 ) !== 'undefined' && 'on' === et_pb_parallax_3 ? ' selected=\"selected\"' : '';
+							current_value_parallax_method = typeof( et_pb_parallax_method_3 ) !== 'undefined' && 'on' === et_pb_parallax_method_3 ? ' selected=\"selected\"' : '';
 							break;
 						case 4 :
 							current_value_bg = typeof( et_pb_background_color_4 ) !== 'undefined' ? et_pb_background_color_4 : '';
@@ -2747,6 +2787,8 @@ class ET_Builder_Structure_Element extends ET_Builder_Element {
 							current_value_pb = typeof( et_pb_padding_bottom_4 ) !== 'undefined' ? et_pb_padding_bottom_4 : '';
 							current_value_pl = typeof( et_pb_padding_left_4 ) !== 'undefined' ? et_pb_padding_left_4 : '';
 							current_value_bg_img = typeof( et_pb_bg_img_4 ) !== 'undefined' ? et_pb_bg_img_4 : '';
+							current_value_parallax = typeof( et_pb_parallax_4 ) !== 'undefined' && 'on' === et_pb_parallax_4 ? ' selected=\"selected\"' : '';
+							current_value_parallax_method = typeof( et_pb_parallax_method_4 ) !== 'undefined' && 'on' === et_pb_parallax_method_4 ? ' selected=\"selected\"' : '';
 							break;
 					}
 			%>";
@@ -2768,6 +2810,47 @@ class ET_Builder_Structure_Element extends ET_Builder_Element {
 			</div> <!-- .et-pb-option -->
 
 			<div class="et-pb-option">
+				<label for="et_pb_parallax_<%%= counter %%>">
+					%1$s
+					<%% if ( "4_4" !== column_type ) { %%>
+						<%%= counter + " " %%>
+					<%% } %%>
+					%13$s:
+				</label>
+
+				<div class="et-pb-option-container">
+					<div class="et_pb_yes_no_button_wrapper ">
+						<div class="et_pb_yes_no_button et_pb_off_state">
+							<span class="et_pb_value_text et_pb_on_value">%14$s</span>
+							<span class="et_pb_button_slider"></span>
+							<span class="et_pb_value_text et_pb_off_value">%15$s</span>
+						</div>
+						<select name="et_pb_parallax_<%%= counter %%>" id="et_pb_parallax_<%%= counter %%>" class="et-pb-main-setting regular-text et-pb-affects" data-affects="#et_pb_parallax_method_<%%= counter %%>">
+							<option value="off">%15$s</option>
+							<option value="on" <%%= current_value_parallax %%>>%14$s</option>
+						</select>
+					</div>
+				</div> <!-- .et-pb-option-container -->
+			</div>
+
+			<div class="et-pb-option et-pb-depends" data-depends_show_if="on">
+				<label for="et_pb_parallax_method_<%%= counter %%>">
+					%1$s
+					<%% if ( "4_4" !== column_type ) { %%>
+						<%%= counter + " " %%>
+					<%% } %%>
+					%16$s:
+				</label>
+
+				<div class="et-pb-option-container">
+					<select name="et_pb_parallax_method_<%%= counter %%>" id="et_pb_parallax_method_<%%= counter %%>" class="et-pb-main-setting">
+						<option value="off">%17$s</option>
+						<option value="on" <%%= current_value_parallax_method %%>>%18$s</option>
+					</select>
+				</div> <!-- .et-pb-option-container -->
+			</div>
+
+			<div class="et-pb-option">
 				<label for="et_pb_background_color_<%%= counter %%>">
 					%1$s
 					<%% if ( "4_4" !== column_type ) { %%>
@@ -2776,7 +2859,7 @@ class ET_Builder_Structure_Element extends ET_Builder_Element {
 					%6$s:
 				</label>
 				<div class="et-pb-option-container">
-					<input id="et_pb_background_color_<%%= counter %%>" class="et-pb-color-picker-hex et-pb-color-picker-hex-alpha et-pb-main-setting" type="text" maxlength="7" data-alpha="true" data-default-color="rgba(0,0,0,0)" placeholder="%7$s" value="<%%= current_value_bg %%>" />
+					<input id="et_pb_background_color_<%%= counter %%>" class="et-pb-color-picker-hex et-pb-color-picker-hex-alpha wp-color-picker" type="text" data-alpha="true" placeholder="%7$s" value="<%%= current_value_bg %%>" />
 							<span class="et-pb-reset-setting" style="display: none;"></span>
 				</div> <!-- .et-pb-option-container -->
 			</div> <!-- .et-pb-option -->
@@ -2793,19 +2876,19 @@ class ET_Builder_Structure_Element extends ET_Builder_Element {
 					<div class="et_custom_margin_padding">
 						<label>
 							%9$s
-							<input type="text" class="medium-text et_custom_margin_top" id="et_pb_padding_top_<%%= counter %%>" name="et_pb_padding_top_<%%= counter %%>" value="<%%= current_value_pt %%>"></label>
+							<input type="text" class="medium-text et_custom_margin_top et-pb-validate-unit" id="et_pb_padding_top_<%%= counter %%>" name="et_pb_padding_top_<%%= counter %%>" value="<%%= current_value_pt %%>"></label>
 						<label>
 						<label>
 							%10$s
-							<input type="text" class="medium-text et_custom_margin_right" id="et_pb_padding_right_<%%= counter %%>" name="et_pb_padding_right_<%%= counter %%>" value="<%%= current_value_pr %%>"></label>
+							<input type="text" class="medium-text et_custom_margin_right et-pb-validate-unit" id="et_pb_padding_right_<%%= counter %%>" name="et_pb_padding_right_<%%= counter %%>" value="<%%= current_value_pr %%>"></label>
 						<label>
 						<label>
 							%11$s
-							<input type="text" class="medium-text et_custom_margin_bottom" id="et_pb_padding_bottom_<%%= counter %%>" name="et_pb_padding_bottom_<%%= counter %%>" value="<%%= current_value_pb %%>"></label>
+							<input type="text" class="medium-text et_custom_margin_bottom et-pb-validate-unit" id="et_pb_padding_bottom_<%%= counter %%>" name="et_pb_padding_bottom_<%%= counter %%>" value="<%%= current_value_pb %%>"></label>
 						<label>
 						<label>
 							%12$s
-							<input type="text" class="medium-text et_custom_margin_left" id="et_pb_padding_left_<%%= counter %%>" name="et_pb_padding_left_<%%= counter %%>" value="<%%= current_value_pl %%>"></label>
+							<input type="text" class="medium-text et_custom_margin_left et-pb-validate-unit" id="et_pb_padding_left_<%%= counter %%>" name="et_pb_padding_left_<%%= counter %%>" value="<%%= current_value_pl %%>"></label>
 						<label>
 					</div> <!-- .et_custom_margin_padding -->
 					<span class="et-pb-reset-setting" style="display: none;"></span>
@@ -2818,14 +2901,20 @@ class ET_Builder_Structure_Element extends ET_Builder_Element {
 			esc_html__( 'Background Image', 'et_builder' ),
 			esc_html__( 'Upload an image', 'et_builder' ),
 			esc_html__( 'Choose a Background Image', 'et_builder' ),
-			esc_html__( 'Set As Background', 'et_builder' ),
+			esc_html__( 'Set As Background', 'et_builder' ), // #5
 			esc_html__( 'Background Color', 'et_builder' ),
 			esc_html__( 'Hex Value', 'et_builder' ),
 			esc_html__( 'Padding', 'et_builder' ),
 			esc_html__( 'Top', 'et_builder' ),
-			esc_html__( 'Right', 'et_builder' ),
+			esc_html__( 'Right', 'et_builder' ), // #10
 			esc_html__( 'Bottom', 'et_builder' ),
-			esc_html__( 'Left', 'et_builder' )
+			esc_html__( 'Left', 'et_builder' ),
+			esc_html__( 'Parallax Effect', 'et_builder' ),
+			esc_html__( 'Yes', 'et_builder' ),
+			esc_html__( 'No', 'et_builder' ), // #15
+			esc_html__( 'Parallax Method', 'et_builder' ),
+			esc_html__( 'CSS', 'et_builder' ),
+			esc_html__( 'True Parallax', 'et_builder' )
 		);
 
 		return $output;

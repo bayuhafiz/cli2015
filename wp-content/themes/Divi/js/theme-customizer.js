@@ -47,7 +47,7 @@
 	function et_fix_logo_height() {
 		var header_style       = typeof wp.customize.value( 'et_divi[header_style]' )() === 'undefined' ? 'left' : wp.customize.value( 'et_divi[header_style]' )(),
 			menu_height        = typeof wp.customize.value( 'et_divi[menu_height]' )() === 'undefined' ? 66 : parseInt( wp.customize.value( 'et_divi[menu_height]' )() ),
-			fixed_menu_height  = typeof wp.customize.value( 'et_divi[minimized_menu_height]' )() === 'undefined' ? 40 : parseInt( wp.customize.value( 'et_divi[minimized_menu_height]' )() ),
+			fixed_menu_height  = ! $('#fixed_menu_height').length || typeof wp.customize.value( 'et_divi[minimized_menu_height]' )() === 'undefined' ? 40 : parseInt( wp.customize.value( 'et_divi[minimized_menu_height]' )() ),
 			logo_height        = typeof wp.customize.value( 'et_divi[logo_height]' )() === 'undefined' ? 54 : parseInt( wp.customize.value( 'et_divi[logo_height]' )() ),
 			$body              = $('body'),
 			is_rtl             = $body.hasClass( 'rtl' ),
@@ -1208,7 +1208,7 @@
 			$( 'head style#phone_row_height' ).remove(),
 			custom_style = "<style id='phone_row_height'>\
 								@media only screen and ( max-width: 767px ) {\
-									.et_pb_row, .et_pb_column .et_pb_row_inner { padding: " + to + "px 0; }\
+									.et_pb_row, .et_pb_column .et_pb_row_inner { padding: " + to + "px 0 !important; }\
 								}\
 							</style>",
 			$( 'head' ).append( custom_style );
@@ -1220,7 +1220,7 @@
 			$( 'head style#tablet_row_height' ).remove(),
 			custom_style = "<style id='tablet_row_height'>\
 								@media only screen and ( max-width: 980px ) {\
-									.et_pb_row, .et_pb_column .et_pb_row_inner { padding: " + to + "px 0; }\
+									.et_pb_row, .et_pb_column .et_pb_row_inner { padding: " + to + "px 0 !important; }\
 								}\
 							</style>",
 			$( 'head' ).append( custom_style );
@@ -1257,9 +1257,11 @@
 			$( 'h1' ).css( 'font-size', to + 'px' );
 			$( 'h2, .product .related h2, .et_pb_column_1_2 .et_quote_content blockquote p' ).css( 'font-size', to * 0.86 + 'px' );
 			$( 'h3' ).css( 'font-size', to * 0.73 + 'px' );
+			$( 'h5' ).css( 'font-size', to * 0.53 + 'px' );
+			$( 'h6' ).css( 'font-size', to * 0.47 + 'px' );
 			$( '.woocommerce ul.products li.product h3, .woocommerce-page ul.products li.product h3, .et_pb_gallery_grid .et_pb_gallery_item h3, .et_pb_portfolio_grid .et_pb_portfolio_item h2, .et_pb_filterable_portfolio_grid .et_pb_portfolio_item h2, .et_pb_column_1_4 .et_pb_audio_module_content h2 ' ).css( 'font-size', to * 0.53 + 'px' );
 			$( '#main-content h4, .et_pb_column_1_3 .et_pb_post h2, .et_pb_column_1_4 .et_pb_post h2, .et_pb_blog_grid h2, .et_pb_column_1_3 .et_quote_content blockquote p, .et_pb_column_3_8 .et_quote_content blockquote p, .et_pb_column_1_4 .et_quote_content blockquote p, .et_pb_blog_grid .et_quote_content blockquote p, .et_pb_column_1_3 .et_link_content h2, .et_pb_column_3_8 .et_link_content h2, .et_pb_column_1_4 .et_link_content h2, .et_pb_blog_grid .et_link_content h2, .et_pb_column_1_3 .et_audio_content h2, .et_pb_column_3_8 .et_audio_content h2, .et_pb_column_1_4 .et_audio_content h2, .et_pb_blog_grid .et_audio_content h2, .et_pb_column_3_8 .et_pb_audio_module_content h2, .et_pb_column_1_3 .et_pb_audio_module_content h2, .et_pb_gallery_grid .et_pb_gallery_item h3, .et_pb_portfolio_grid .et_pb_portfolio_item h2, .et_pb_filterable_portfolio_grid .et_pb_portfolio_item h2, .et_pb_circle_counter h3, .et_pb_number_counter h3' ).css( 'font-size', to * 0.6 + 'px' );
-			$( '.et_pb_slide_description h2' ).css( 'font-size', to * 1.53 + 'px' );
+			$( '.et_pb_slide_description .et_pb_slide_title' ).css( 'font-size', to * 1.53 + 'px' );
 			if ( to == widget ) {
 				$( '.footer-widget h4' ).css( 'font-size', to * 0.6 + 'px' );
 			}
@@ -1270,7 +1272,7 @@
 		value.bind( function( to ) {
 			$( 'head style#body_header_height' ).remove(),
 			custom_style = "<style id='body_header_height'>\
-									h1, h2, h3, h4, h5, h6, .et_quote_content blockquote p, .et_pb_slide_description h2 { line-height: " + to + "em; }\
+									h1, h2, h3, h4, h5, h6, .et_quote_content blockquote p, .et_pb_slide_description .et_pb_slide_title { line-height: " + to + "em; }\
 							</style>",
 			$( 'head' ).append( custom_style );
 		} );
@@ -1290,7 +1292,7 @@
 		value.bind( function( to ) {
 			$( 'head style#body_header_spacing' ).remove(),
 			custom_style = "<style id='body_header_spacing'>\
-									h1, h2, h3, h4, h5, h6, .et_quote_content blockquote p, .et_pb_slide_description h2 { letter-spacing: " + to + "px; }\
+									h1, h2, h3, h4, h5, h6, .et_quote_content blockquote p, .et_pb_slide_description .et_pb_slide_title { letter-spacing: " + to + "px; }\
 							</style>",
 			$( 'head' ).append( custom_style );
 		} );
@@ -1341,7 +1343,7 @@
 									h3 { font-size: " + to * 0.73 + "px !important; }\
 									.woocommerce ul.products li.product h3, .woocommerce-page ul.products li.product h3, .et_pb_gallery_grid .et_pb_gallery_item h3, .et_pb_portfolio_grid .et_pb_portfolio_item h2, .et_pb_filterable_portfolio_grid .et_pb_portfolio_item h2, .et_pb_column_1_4 .et_pb_audio_module_content h2 { font-size: " + to * 0.53 + "px !important; }\
 									#main-content h4, .et_pb_column_1_3 .et_pb_post h2, .et_pb_column_1_4 .et_pb_post h2, .et_pb_blog_grid h2, .et_pb_column_1_3 .et_quote_content blockquote p, .et_pb_column_3_8 .et_quote_content blockquote p, .et_pb_column_1_4 .et_quote_content blockquote p, .et_pb_blog_grid .et_quote_content blockquote p, .et_pb_column_1_3 .et_link_content h2, .et_pb_column_3_8 .et_link_content h2, .et_pb_column_1_4 .et_link_content h2, .et_pb_blog_grid .et_link_content h2, .et_pb_column_1_3 .et_audio_content h2, .et_pb_column_3_8 .et_audio_content h2, .et_pb_column_1_4 .et_audio_content h2, .et_pb_blog_grid .et_audio_content h2, .et_pb_column_3_8 .et_pb_audio_module_content h2, .et_pb_column_1_3 .et_pb_audio_module_content h2, .et_pb_gallery_grid .et_pb_gallery_item h3, .et_pb_portfolio_grid .et_pb_portfolio_item h2, .et_pb_filterable_portfolio_grid .et_pb_portfolio_item h2, .et_pb_circle_counter h3, .et_pb_number_counter h3 { font-size: " + to * 0.6 + "px !important; }\
-									.et_pb_slide_description h2 { font-size: " + to * 1.53 + "px !important; }\
+									.et_pb_slide_description .et_pb_slide_title { font-size: " + to * 1.53 + "px !important; }\
 									.footer-widget h4 { font-size: " + to * 0.6 + "px !important; }\
 								}\
 							</style>",
@@ -1359,7 +1361,7 @@
 									h3 { font-size: " + to * 0.73 + "px !important; }\
 									.woocommerce ul.products li.product h3, .woocommerce-page ul.products li.product h3, .et_pb_gallery_grid .et_pb_gallery_item h3, .et_pb_portfolio_grid .et_pb_portfolio_item h2, .et_pb_filterable_portfolio_grid .et_pb_portfolio_item h2, .et_pb_column_1_4 .et_pb_audio_module_content h2 { font-size: " + to * 0.53 + "px !important; }\
 									#main-content h4, .et_pb_column_1_3 .et_pb_post h2, .et_pb_column_1_4 .et_pb_post h2, .et_pb_blog_grid h2, .et_pb_column_1_3 .et_quote_content blockquote p, .et_pb_column_3_8 .et_quote_content blockquote p, .et_pb_column_1_4 .et_quote_content blockquote p, .et_pb_blog_grid .et_quote_content blockquote p, .et_pb_column_1_3 .et_link_content h2, .et_pb_column_3_8 .et_link_content h2, .et_pb_column_1_4 .et_link_content h2, .et_pb_blog_grid .et_link_content h2, .et_pb_column_1_3 .et_audio_content h2, .et_pb_column_3_8 .et_audio_content h2, .et_pb_column_1_4 .et_audio_content h2, .et_pb_blog_grid .et_audio_content h2, .et_pb_column_3_8 .et_pb_audio_module_content h2, .et_pb_column_1_3 .et_pb_audio_module_content h2, .et_pb_gallery_grid .et_pb_gallery_item h3, .et_pb_portfolio_grid .et_pb_portfolio_item h2, .et_pb_filterable_portfolio_grid .et_pb_portfolio_item h2, .et_pb_circle_counter h3, .et_pb_number_counter h3 { font-size: " + to * 0.6 + "px !important; }\
-									.et_pb_slide_description h2 { font-size: " + to * 1.53 + "px !important; }\
+									.et_pb_slide_description .et_pb_slide_title { font-size: " + to * 1.53 + "px !important; }\
 									.footer-widget h4 { font-size: " + to * 0.6 + "px !important; }\
 								}\
 							</style>",
@@ -1531,7 +1533,7 @@
 
 	wp.customize( 'et_divi[fixed_secondary_menu_link]', function( value ) {
 		value.bind( function( to ) {
-			var	$style = "<style id='fixed_secondary_menu_link'>.et-fixed-header#top-header a { color: " + to + "; }\
+			var	$style = "<style id='fixed_secondary_menu_link'>.et-fixed-header#top-header, .et-fixed-header#top-header a { color: " + to + " !important; }\
 						  </style>",
 				style_id = 'style#fixed_secondary_menu_link';
 
@@ -1727,7 +1729,8 @@
 				'et_divi[bottom_bar_font_size]',
 				'font-size',
 				'#footer-info',
-				to
+				to,
+				true
 			);
 		} );
 	} );
@@ -1907,12 +1910,12 @@
 
 	wp.customize( 'et_divi[show_search_icon]', function( value ) {
 		value.bind( function( to ) {
-			var $search = $('#et_top_search');
+			var $body = $('body');
 
 			if ( to ) {
-				$search.show();
+				$body.removeClass( 'et_hide_search_icon' );
 			} else {
-				$search.hide();
+				$body.addClass( 'et_hide_search_icon' );
 			}
 		} );
 	} );
@@ -1996,7 +1999,7 @@
 			}
 
 			if ( to !== '' ) {
-				$phone_number.show().text( to );
+				$phone_number.show().html( to );
 			} else {
 				$phone_number.hide();
 				et_maybe_remove_secondary_nav();
@@ -2438,7 +2441,7 @@
 					et_print_module_styles_css(
 						'et_divi[et_pb_slider-header_font_size]',
 						'font-size',
-						'.et_pb_slider_fullwidth_off .et_pb_slide_description h2',
+						'.et_pb_slider_fullwidth_off .et_pb_slide_description .et_pb_slide_title',
 						to
 					);
 				} );
@@ -2449,7 +2452,7 @@
 					et_print_module_styles_css(
 						'et_divi[et_pb_slider-header_font_style]',
 						'font-styles',
-						'.et_pb_slider_fullwidth_off .et_pb_slide_description h2',
+						'.et_pb_slider_fullwidth_off .et_pb_slide_description .et_pb_slide_title',
 						to
 					);
 				} );
@@ -3629,7 +3632,7 @@
 					et_print_module_styles_css(
 						'et_divi[et_pb_fullwidth_slider-header_font_size]',
 						'font-size',
-						'.et_pb_fullwidth_section .et_pb_slide_description h2',
+						'.et_pb_fullwidth_section .et_pb_slide_description .et_pb_slide_title',
 						to
 					);
 
@@ -3642,7 +3645,7 @@
 					et_print_module_styles_css(
 						'et_divi[et_pb_fullwidth_slider-header_font_style]',
 						'font-styles',
-						'.et_pb_fullwidth_section .et_pb_slide_description h2',
+						'.et_pb_fullwidth_section .et_pb_slide_description .et_pb_slide_title',
 						to
 					);
 				} );
@@ -3893,7 +3896,7 @@
 	wp.customize( 'et_divi[body_header_style]', function( value ) {
 		value.bind( function( to ) {
 			var styles = et_set_font_styles( to, '' ),
-				$button_style = '<style id="body_header_style"> h1, h2, h3, h4, h5, h6, .et_quote_content blockquote p, .et_pb_slide_description h2 {' + styles + '}</style>',
+				$button_style = '<style id="body_header_style"> h1, h2, h3, h4, h5, h6, .et_quote_content blockquote p, .et_pb_slide_description .et_pb_slide_title {' + styles + '}</style>',
 				style_id = 'style#body_header_style';
 
 			et_customizer_update_styles( style_id, $button_style );

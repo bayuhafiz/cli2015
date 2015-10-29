@@ -14,6 +14,10 @@ function et_setup_theme() {
 
 	require_once( $template_directory . '/epanel/custom_functions.php' );
 
+	require_once( $template_directory . '/includes/functions/choices.php' );
+
+	require_once( $template_directory . '/includes/functions/sanitization.php' );
+
 	require_once( $template_directory . '/includes/functions/comments.php' );
 
 	require_once( $template_directory . '/includes/functions/sidebars.php' );
@@ -39,6 +43,9 @@ function et_setup_theme() {
 
 	add_action( 'wp_enqueue_scripts', 'et_add_responsive_shortcodes_css', 11 );
 
+	// Declare theme supports
+	add_theme_support( 'title-tag' );
+
 	add_theme_support( 'post-formats', array(
 		'video', 'audio', 'quote', 'gallery', 'link'
 	) );
@@ -59,6 +66,9 @@ function et_setup_theme() {
 	remove_action( 'init', 'et_activate_features' );
 
 	remove_action('admin_menu', 'et_add_epanel');
+
+	// Load editor styling
+	add_editor_style( 'css/editor-style.css' );
 }
 add_action( 'after_setup_theme', 'et_setup_theme' );
 
@@ -189,6 +199,22 @@ function et_add_mobile_navigation(){
 }
 add_action( 'et_header_top', 'et_add_mobile_navigation' );
 
+/**
+ * Manually add <title> tag in head for WordPress 4.1 below for backward compatibility
+ * Title tag is automatically added for WordPress 4.1 above via theme support
+ * @return void
+ */
+function et_add_title_tag_back_compat() {
+	global $wp_version;
+
+	if ( version_compare( $wp_version, '4.1', '<' ) ) {
+		?>
+		<title><?php wp_title(); ?></title>
+		<?php
+	}
+}
+add_action( 'wp_head', 'et_add_title_tag_back_compat' );
+
 function et_add_viewport_meta(){
 	echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />';
 }
@@ -254,7 +280,7 @@ function et_single_settings_meta_box( $post ) {
 
 	$side_nav = get_post_meta( $post_id, '_et_pb_side_nav', true );
 
-	$post_hide_nav = get_post_meta( $post_id, '_et_pb_post_hide_nav', true );
+	$post_hide_nav = get_post_meta( $post_id, '_et_pb_post_hide_nav', true ) && 'off' === get_post_meta( $post_id, '_et_pb_post_hide_nav', true ) ? 'default' : get_post_meta( $post_id, '_et_pb_post_hide_nav', true );
 
 	$show_title = get_post_meta( $post_id, '_et_pb_show_title', true );
 
@@ -304,7 +330,8 @@ function et_single_settings_meta_box( $post ) {
 		<label for="et_pb_post_hide_nav" style="display: block; font-weight: bold; margin-bottom: 5px;"><?php esc_html_e( 'Hide Nav Before Scroll', 'Divi' ); ?>: </label>
 
 		<select id="et_pb_post_hide_nav" name="et_pb_post_hide_nav">
-			<option value="off" <?php selected( 'off', $post_hide_nav ); ?>><?php esc_html_e( 'Off', 'Divi' ); ?></option>
+			<option value="default" <?php selected( 'default', $post_hide_nav ); ?>><?php esc_html_e( 'Default', 'Divi' ); ?></option>
+			<option value="no" <?php selected( 'no', $post_hide_nav ); ?>><?php esc_html_e( 'Off', 'Divi' ); ?></option>
 			<option value="on" <?php selected( 'on', $post_hide_nav ); ?>><?php esc_html_e( 'On', 'Divi' ); ?></option>
 		</select>
 	</p>
@@ -660,6 +687,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';
@@ -682,6 +710,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'et_sanitize_float_number',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[post_meta_height]', array(
@@ -700,6 +729,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[post_meta_spacing]', array(
@@ -718,18 +748,14 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'et_sanitize_font_style',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[post_meta_style]', array(
 		'label'	      => __( 'Meta Font Style', 'Divi' ),
 		'section'     => 'et_divi_blog_post',
 		'type'        => 'font_style',
-		'choices'     => array(
-			'bold'       => __( 'Bold', 'Divi' ),
-			'italic'     => __( 'Italic', 'Divi' ),
-			'uppercase'  => __( 'Uppercase', 'Divi' ),
-			'underline'  => __( 'Underline', 'Divi' ),
-		),
+		'choices'     => et_divi_font_style_choices(),
 	) ) );
 
 	$wp_customize->add_setting( 'et_divi[post_header_font_size]', array(
@@ -737,6 +763,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[post_header_font_size]', array(
@@ -755,6 +782,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'et_sanitize_float_number',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[post_header_height]', array(
@@ -773,6 +801,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[post_header_spacing]', array(
@@ -791,24 +820,21 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'et_sanitize_font_style',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[post_header_style]', array(
 		'label'	      => __( 'Header Font Style', 'Divi' ),
 		'section'     => 'et_divi_blog_post',
 		'type'        => 'font_style',
-		'choices'     => array(
-			'bold'       => __( 'Bold', 'Divi' ),
-			'italic'     => __( 'Italic', 'Divi' ),
-			'uppercase'  => __( 'Uppercase', 'Divi' ),
-			'underline'  => __( 'Underline', 'Divi' ),
-		),
+		'choices'     => et_divi_font_style_choices(),
 	) ) );
 
 	$wp_customize->add_setting( 'et_divi[boxed_layout]', array(
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'wp_validate_boolean',
 	) );
 
 	$wp_customize->add_control( 'et_divi[boxed_layout]', array(
@@ -822,6 +848,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[content_width]', array(
@@ -840,6 +867,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[gutter_width]', array(
@@ -857,6 +885,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'wp_validate_boolean',
 	) );
 
 	$wp_customize->add_control( 'et_divi[use_sidebar_width]', array(
@@ -870,6 +899,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[sidebar_width]', array(
@@ -888,6 +918,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[section_padding]', array(
@@ -906,6 +937,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[phone_section_height]', array(
@@ -924,6 +956,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[tablet_section_height]', array(
@@ -942,6 +975,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[row_padding]', array(
@@ -960,6 +994,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[phone_row_height]', array(
@@ -978,6 +1013,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[tablet_row_height]', array(
@@ -996,6 +1032,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'wp_validate_boolean',
 	) );
 
 	$wp_customize->add_control( 'et_divi[cover_background]', array(
@@ -1056,6 +1093,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[body_font_size]', array(
@@ -1074,6 +1112,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'et_sanitize_float_number',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[body_font_height]', array(
@@ -1092,6 +1131,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[phone_body_font_size]', array(
@@ -1110,6 +1150,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[tablet_body_font_size]', array(
@@ -1128,6 +1169,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[body_header_size]', array(
@@ -1146,6 +1188,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'et_sanitize_int_number',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[body_header_spacing]', array(
@@ -1164,6 +1207,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'et_sanitize_float_number',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[body_header_height]', array(
@@ -1182,18 +1226,14 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'et_sanitize_font_style',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[body_header_style]', array(
 		'label'	      => __( 'Header Font Style', 'Divi' ),
 		'section'     => 'et_divi_general_typography',
 		'type'        => 'font_style',
-		'choices'     => array(
-			'bold'       => __( 'Bold', 'Divi' ),
-			'italic'     => __( 'Italic', 'Divi' ),
-			'uppercase'  => __( 'Uppercase', 'Divi' ),
-			'underline'  => __( 'Underline', 'Divi' ),
-		),
+		'choices'     => et_divi_font_style_choices(),
 	) ) );
 
 	$wp_customize->add_setting( 'et_divi[phone_header_font_size]', array(
@@ -1201,6 +1241,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[phone_header_font_size]', array(
@@ -1219,6 +1260,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[tablet_header_font_size]', array(
@@ -1237,7 +1279,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 			'default'		=> 'none',
 			'type'			=> 'option',
 			'capability'	=> 'edit_theme_options',
-			'transport'		=> 'postMessage'
+			'transport'		=> 'postMessage',
+			'sanitize_callback' => 'et_sanitize_font_choices',
 		) );
 
 		$wp_customize->add_control( new ET_Divi_Select_Option ( $wp_customize, 'et_divi[heading_font]', array(
@@ -1245,14 +1288,15 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 			'section'	=> 'et_divi_general_typography',
 			'settings'	=> 'et_divi[heading_font]',
 			'type'		=> 'select',
-			'choices'	=> $font_choices
+			'choices'	=> $font_choices,
 		) ) );
 
 		$wp_customize->add_setting( 'et_divi[body_font]', array(
 			'default'		=> 'none',
 			'type'			=> 'option',
 			'capability'	=> 'edit_theme_options',
-			'transport'		=> 'postMessage'
+			'transport'		=> 'postMessage',
+			'sanitize_callback' => 'et_sanitize_font_choices',
 		) );
 
 		$wp_customize->add_control( new ET_Divi_Select_Option ( $wp_customize, 'et_divi[body_font]', array(
@@ -1268,7 +1312,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'default'	=> et_get_option( 'accent_color', '#2ea3f2' ),
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'et_divi[link_color]', array(
@@ -1281,7 +1326,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'default'		=> '#666666',
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'et_divi[font_color]', array(
@@ -1294,7 +1340,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'default'		=> '#666666',
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'et_divi[header_color]', array(
@@ -1307,7 +1354,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'default'		=> '#2ea3f2',
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'et_divi[accent_color]', array(
@@ -1320,7 +1368,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'default'		=> 'none',
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_color_scheme',
 	) );
 
 	$wp_customize->add_control( 'et_divi[color_schemes]', array(
@@ -1328,13 +1377,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'section'	=> 'et_color_schemes',
 		'settings'	=> 'et_divi[color_schemes]',
 		'type'		=> 'select',
-		'choices'	=> array(
-			'none'   => __( 'Default', 'Divi' ),
-			'green'  => __( 'Green', 'Divi' ),
-			'orange' => __( 'Orange', 'Divi' ),
-			'pink'   => __( 'Pink', 'Divi' ),
-			'red'    => __( 'Red', 'Divi' ),
-		),
+		'choices'	=> et_divi_color_scheme_choices(),
 	) );
 
 	$wp_customize->add_setting( 'et_divi[header_style]', array(
@@ -1342,23 +1385,21 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_header_style',
 	) );
 
 	$wp_customize->add_control( 'et_divi[header_style]', array(
 		'label'		=> __( 'Header Style', 'Divi' ),
 		'section'	=> 'et_divi_header_layout',
 		'type'      => 'select',
-		'choices'	=> array(
-			'left'     => __( 'Default', 'Divi' ),
-			'centered' => __( 'Centered', 'Divi' ),
-			'split'	   => __( 'Centered Inline Logo', 'Divi' )
-		),
+		'choices'	=> et_divi_header_style_choices(),
 	) );
 
 	$wp_customize->add_setting( 'et_divi[vertical_nav]', array(
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'wp_validate_boolean',
 	) );
 
 	$wp_customize->add_control( 'et_divi[vertical_nav]', array(
@@ -1373,6 +1414,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 			'type'			=> 'option',
 			'capability'	=> 'edit_theme_options',
 			'transport'		=> 'postMessage',
+			'sanitize_callback' => 'wp_validate_boolean',
 		) );
 
 		$wp_customize->add_control( 'et_divi[hide_nav]', array(
@@ -1387,6 +1429,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'wp_validate_boolean',
 	) );
 
 	$wp_customize->add_control( 'et_divi[show_header_social_icons]', array(
@@ -1400,6 +1443,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'wp_validate_boolean',
 	) );
 
 	$wp_customize->add_control( 'et_divi[show_search_icon]', array(
@@ -1412,6 +1456,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'wp_validate_boolean',
 	) );
 
 	$wp_customize->add_control( 'et_divi[nav_fullwidth]', array(
@@ -1424,6 +1469,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'wp_validate_boolean',
 	) );
 
 	$wp_customize->add_control( 'et_divi[hide_primary_logo]', array(
@@ -1437,6 +1483,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[menu_height]', array(
@@ -1455,6 +1502,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[logo_height]', array(
@@ -1473,6 +1521,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[primary_nav_font_size]', array(
@@ -1491,6 +1540,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'et_sanitize_int_number',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[primary_nav_font_spacing]', array(
@@ -1509,7 +1559,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 			'default'		=> 'none',
 			'type'			=> 'option',
 			'capability'	=> 'edit_theme_options',
-			'transport'		=> 'postMessage'
+			'transport'		=> 'postMessage',
+			'sanitize_callback' => 'et_sanitize_font_choices',
 		) );
 
 		$wp_customize->add_control( new ET_Divi_Select_Option ( $wp_customize, 'et_divi[primary_nav_font]', array(
@@ -1526,18 +1577,14 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'et_sanitize_font_style',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[primary_nav_font_style]', array(
 		'label'	      => __( 'Font Style', 'Divi' ),
 		'section'     => 'et_divi_header_primary',
 		'type'        => 'font_style',
-		'choices'     => array(
-			'bold'       => __( 'Bold', 'Divi' ),
-			'italic'     => __( 'Italic', 'Divi' ),
-			'uppercase'  => __( 'Uppercase', 'Divi' ),
-			'underline'  => __( 'Underline', 'Divi' ),
-		),
+		'choices'     => et_divi_font_style_choices(),
 	) ) );
 
 	$wp_customize->add_setting( 'et_divi[secondary_nav_font_size]', array(
@@ -1545,12 +1592,14 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_setting( 'et_divi[secondary_nav_fullwidth]', array(
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'wp_validate_boolean',
 	) );
 
 	$wp_customize->add_control( 'et_divi[secondary_nav_fullwidth]', array(
@@ -1575,6 +1624,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'et_sanitize_int_number',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[secondary_nav_font_spacing]', array(
@@ -1593,7 +1643,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 			'default'		=> 'none',
 			'type'			=> 'option',
 			'capability'	=> 'edit_theme_options',
-			'transport'		=> 'postMessage'
+			'transport'		=> 'postMessage',
+			'sanitize_callback' => 'et_sanitize_font_choices',
 		) );
 
 		$wp_customize->add_control( new ET_Divi_Select_Option ( $wp_customize, 'et_divi[secondary_nav_font]', array(
@@ -1610,25 +1661,22 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'et_sanitize_font_style',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[secondary_nav_font_style]', array(
 		'label'	      => __( 'Font Style', 'Divi' ),
 		'section'     => 'et_divi_header_secondary',
 		'type'        => 'font_style',
-		'choices'     => array(
-			'bold'       => __( 'Bold', 'Divi' ),
-			'italic'     => __( 'Italic', 'Divi' ),
-			'uppercase'  => __( 'Uppercase', 'Divi' ),
-			'underline'  => __( 'Underline', 'Divi' ),
-		),
+		'choices'     => et_divi_font_style_choices(),
 	) ) );
 
 	$wp_customize->add_setting( 'et_divi[menu_link]', array(
 		'default'		=> 'rgba(0,0,0,0.6)',
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[menu_link]', array(
@@ -1641,6 +1689,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'wp_validate_boolean',
 	) );
 
 	$wp_customize->add_control( 'et_divi[hide_mobile_logo]', array(
@@ -1653,7 +1702,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'default'		=> et_get_option( 'menu_link', 'rgba(0,0,0,0.6)' ),
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[mobile_menu_link]', array(
@@ -1666,7 +1716,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'default'		=> et_get_option( 'accent_color', '#2ea3f2' ),
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[menu_link_active]', array(
@@ -1679,7 +1730,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'default'		=> '#ffffff',
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[primary_nav_bg]', array(
@@ -1692,7 +1744,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'default'		=> et_get_option( 'primary_nav_bg', '#ffffff' ),
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[primary_nav_dropdown_bg]', array(
@@ -1705,7 +1758,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'default'		=> et_get_option( 'accent_color', '#2ea3f2' ),
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[primary_nav_dropdown_line_color]', array(
@@ -1718,7 +1772,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'default'		=> et_get_option( 'menu_link', 'rgba(0,0,0,0.7)' ),
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[primary_nav_dropdown_link_color]', array(
@@ -1732,25 +1787,22 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_dropdown_animation',
 	) );
 
 	$wp_customize->add_control( 'et_divi[primary_nav_dropdown_animation]', array(
 		'label'		=> __( 'Dropdown Menu Animation', 'Divi' ),
 		'section'	=> 'et_divi_header_primary',
 		'type'      => 'select',
-		'choices'	=> array(
-			'fade'     => __( 'Fade', 'Divi' ),
-			'expand' => __( 'Expand', 'Divi' ),
-			'slide'	   => __( 'Slide', 'Divi' ),
-			'flip'	   => __( 'Flip', 'Divi' )
-		),
+		'choices'	=> et_divi_dropdown_animation_choices(),
 	) );
 
 	$wp_customize->add_setting( 'et_divi[mobile_primary_nav_bg]', array(
 		'default'		=> et_get_option( 'primary_nav_bg', '#ffffff' ),
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[mobile_primary_nav_bg]', array(
@@ -1763,7 +1815,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'default'		=> et_get_option( 'accent_color', '#2ea3f2' ),
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[secondary_nav_bg]', array(
@@ -1776,7 +1829,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'default'		=> '#ffffff',
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[secondary_nav_text_color_new]', array(
@@ -1789,7 +1843,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'default'		=> et_get_option( 'secondary_nav_bg', et_get_option( 'accent_color', '#2ea3f2' ) ),
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[secondary_nav_dropdown_bg]', array(
@@ -1802,7 +1857,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'default'		=> et_get_option( 'secondary_nav_text_color_new', '#ffffff' ),
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[secondary_nav_dropdown_link_color]', array(
@@ -1816,18 +1872,14 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_dropdown_animation',
 	) );
 
 	$wp_customize->add_control( 'et_divi[secondary_nav_dropdown_animation]', array(
 		'label'		=> __( 'Dropdown Menu Animation', 'Divi' ),
 		'section'	=> 'et_divi_header_secondary',
 		'type'      => 'select',
-		'choices'	=> array(
-			'fade'     => __( 'Fade', 'Divi' ),
-			'expand' => __( 'Expand', 'Divi' ),
-			'slide'	   => __( 'Slide', 'Divi' ),
-			'flip'	   => __( 'Flip', 'Divi' )
-		),
+		'choices'	=> et_divi_dropdown_animation_choices(),
 	) );
 
 	// Setting with no control kept for backwards compatbility
@@ -1836,6 +1888,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 
 	// Setting with no control kept for backwards compatbility
@@ -1844,6 +1897,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 
 	if ( 'on' === et_get_option( 'divi_fixed_nav', 'on' ) ) {
@@ -1851,6 +1905,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 			'type'			=> 'option',
 			'capability'	=> 'edit_theme_options',
 			'transport'		=> 'postMessage',
+			'sanitize_callback' => 'wp_validate_boolean',
 		) );
 
 		$wp_customize->add_control( 'et_divi[hide_fixed_logo]', array(
@@ -1864,6 +1919,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 			'type'          => 'option',
 			'capability'    => 'edit_theme_options',
 			'transport'     => 'postMessage',
+			'sanitize_callback' => 'absint',
 		) );
 
 		$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[minimized_menu_height]', array(
@@ -1882,6 +1938,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 			'type'          => 'option',
 			'capability'    => 'edit_theme_options',
 			'transport'     => 'postMessage',
+			'sanitize_callback' => 'absint',
 		) );
 
 		$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[fixed_primary_nav_font_size]', array(
@@ -1899,7 +1956,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 			'default'		=> et_get_option( 'primary_nav_bg', '#ffffff' ),
 			'type'			=> 'option',
 			'capability'	=> 'edit_theme_options',
-			'transport'		=> 'postMessage'
+			'transport'		=> 'postMessage',
+			'sanitize_callback' => 'et_sanitize_alpha_color',
 		) );
 
 		$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[fixed_primary_nav_bg]', array(
@@ -1912,7 +1970,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 			'default'		=> et_get_option( 'secondary_nav_bg', '#2ea3f2' ),
 			'type'			=> 'option',
 			'capability'	=> 'edit_theme_options',
-			'transport'		=> 'postMessage'
+			'transport'		=> 'postMessage',
+			'sanitize_callback' => 'et_sanitize_alpha_color',
 		) );
 
 		$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[fixed_secondary_nav_bg]', array(
@@ -1925,7 +1984,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 			'default'       => et_get_option( 'menu_link', 'rgba(0,0,0,0.6)' ),
 			'type'			=> 'option',
 			'capability'	=> 'edit_theme_options',
-			'transport'		=> 'postMessage'
+			'transport'		=> 'postMessage',
+			'sanitize_callback' => 'et_sanitize_alpha_color',
 		) );
 
 		$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[fixed_menu_link]', array(
@@ -1951,7 +2011,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 			'default'       => et_get_option( 'menu_link_active', '#2ea3f2' ),
 			'type'			=> 'option',
 			'capability'	=> 'edit_theme_options',
-			'transport'		=> 'postMessage'
+			'transport'		=> 'postMessage',
+			'sanitize_callback' => 'et_sanitize_alpha_color',
 		) );
 
 		$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[fixed_menu_link_active]', array(
@@ -1965,6 +2026,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_html_input_text',
 	) );
 
 	$wp_customize->add_control( 'et_divi[phone_number]', array(
@@ -1977,6 +2039,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'sanitize_email',
 	) );
 
 	$wp_customize->add_control( 'et_divi[header_email]', array(
@@ -1990,6 +2053,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'wp_validate_boolean',
 	) );
 
 	$wp_customize->add_control( 'et_divi[show_footer_social_icons]', array(
@@ -2003,6 +2067,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'et_sanitize_footer_column',
 	) );
 
 	$wp_customize->add_control( 'et_divi[footer_columns]', array(
@@ -2010,18 +2075,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'section'	=> 'et_divi_footer_layout',
 		'settings'	=> 'et_divi[footer_columns]',
 		'type'		=> 'select',
-		'choices'	=> array(
-			'4'			=> sprintf( __( '%1$s Columns', 'Divi' ), esc_html( '4' ) ),
-			'3' 		=> sprintf( __( '%1$s Columns', 'Divi' ), esc_html( '3' ) ),
-			'2' 		=> sprintf( __( '%1$s Columns', 'Divi' ), esc_html( '2' ) ),
-			'1'  		=> __( '1 Column', 'Divi' ),
-			'_1_4__3_4' => sprintf( __( '%1$s Columns', 'Divi' ), esc_html( '1/4 + 3/4' ) ),
-			'_3_4__1_4' => sprintf( __( '%1$s Columns', 'Divi' ), esc_html( '3/4 + 1/4' ) ),
-			'_1_3__2_3' => sprintf( __( '%1$s Columns', 'Divi' ), esc_html( '1/3 + 2/3' ) ),
-			'_2_3__1_3' => sprintf( __( '%1$s Columns', 'Divi' ), esc_html( '2/3 + 1/3' ) ),
-			'_1_4__1_2' => sprintf( __( '%1$s Columns', 'Divi' ), esc_html( '1/4 + 1/4 + 1/2' ) ),
-			'_1_2__1_4' => sprintf( __( '%1$s Columns', 'Divi' ), esc_html( '1/2 + 1/4 + 1/4' ) ),
-		),
+		'choices'	=> et_divi_footer_column_choices(),
 	) );
 
 	$wp_customize->add_setting( 'et_divi[footer_bg]', array(
@@ -2029,6 +2083,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'et_divi[footer_bg]', array(
@@ -2042,6 +2097,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[widget_header_font_size]', array(
@@ -2060,18 +2116,14 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'et_sanitize_font_style',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[widget_header_font_style]', array(
 		'label'	      => __( 'Header Font Style', 'Divi' ),
 		'section'     => 'et_divi_footer_widgets',
 		'type'        => 'font_style',
-		'choices'     => array(
-			'bold'    => __( 'Bold', 'Divi' ),
-			'italic'  => __( 'Italic', 'Divi' ),
-			'uppercase'  => __( 'Uppercase', 'Divi' ),
-			'underline'  => __( 'Underline', 'Divi' ),
-		),
+		'choices'     => et_divi_font_style_choices(),
 	) ) );
 
 	$wp_customize->add_setting( 'et_divi[widget_body_font_size]', array(
@@ -2079,6 +2131,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[widget_body_font_size]', array(
@@ -2097,6 +2150,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'et_sanitize_float_number',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[widget_body_line_height]', array(
@@ -2115,18 +2169,14 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'et_sanitize_font_style',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[widget_body_font_style]', array(
 		'label'	      => __( 'Body Font Style', 'Divi' ),
 		'section'     => 'et_divi_footer_widgets',
 		'type'        => 'font_style',
-		'choices'     => array(
-			'bold'    => __( 'Bold', 'Divi' ),
-			'italic'  => __( 'Italic', 'Divi' ),
-			'uppercase'  => __( 'Uppercase', 'Divi' ),
-			'underline'  => __( 'Underline', 'Divi' ),
-		),
+		'choices'     => et_divi_font_style_choices(),
 	) ) );
 
 	$wp_customize->add_setting( 'et_divi[footer_widget_text_color]', array(
@@ -2134,6 +2184,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'et_divi[footer_widget_text_color]', array(
@@ -2147,6 +2198,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'et_divi[footer_widget_link_color]', array(
@@ -2160,6 +2212,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'et_divi[footer_widget_header_color]', array(
@@ -2173,6 +2226,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'et_divi[footer_widget_bullet_color]', array(
@@ -2187,6 +2241,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[footer_menu_background_color]', array(
@@ -2200,6 +2255,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[footer_menu_text_color]', array(
@@ -2213,6 +2269,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[footer_menu_active_link_color]', array(
@@ -2226,6 +2283,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[footer_menu_letter_spacing]', array(
@@ -2244,18 +2302,14 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'et_sanitize_font_style',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[footer_menu_font_style]', array(
 		'label'	      => __( 'Font Style', 'Divi' ),
 		'section'     => 'et_divi_footer_menu',
 		'type'        => 'font_style',
-		'choices'     => array(
-			'bold'    => __( 'Bold', 'Divi' ),
-			'italic'  => __( 'Italic', 'Divi' ),
-			'uppercase'  => __( 'Uppercase', 'Divi' ),
-			'underline'  => __( 'Underline', 'Divi' ),
-		),
+		'choices'     => et_divi_font_style_choices(),
 	) ) );
 
 	$wp_customize->add_setting( 'et_divi[footer_menu_font_size]', array(
@@ -2263,6 +2317,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[footer_menu_font_size]', array(
@@ -2282,6 +2337,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[bottom_bar_background_color]', array(
@@ -2295,6 +2351,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[bottom_bar_text_color]', array(
@@ -2308,18 +2365,14 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'et_sanitize_font_style',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[bottom_bar_font_style]', array(
 		'label'	      => __( 'Font Style', 'Divi' ),
 		'section'     => 'et_divi_bottom_bar',
 		'type'        => 'font_style',
-		'choices'     => array(
-			'bold'    => __( 'Bold', 'Divi' ),
-			'italic'  => __( 'Italic', 'Divi' ),
-			'uppercase'  => __( 'Uppercase', 'Divi' ),
-			'underline'  => __( 'Underline', 'Divi' ),
-		),
+		'choices'     => et_divi_font_style_choices(),
 	) ) );
 
 	$wp_customize->add_setting( 'et_divi[bottom_bar_font_size]', array(
@@ -2327,6 +2380,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[bottom_bar_font_size]', array(
@@ -2345,6 +2399,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[bottom_bar_social_icon_size]', array(
@@ -2363,6 +2418,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[bottom_bar_social_icon_color]', array(
@@ -2376,6 +2432,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[all_buttons_font_size]', array(
@@ -2393,7 +2450,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'default'		=> '#ffffff',
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[all_buttons_text_color]', array(
@@ -2406,7 +2464,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'default'		=> 'rgba(0,0,0,0)',
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[all_buttons_bg_color]', array(
@@ -2420,6 +2479,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[all_buttons_border_width]', array(
@@ -2437,7 +2497,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'default'		=> '#ffffff',
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[all_buttons_border_color]', array(
@@ -2451,6 +2512,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[all_buttons_border_radius]', array(
@@ -2469,6 +2531,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'et_sanitize_int_number',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[all_buttons_spacing]', array(
@@ -2487,18 +2550,14 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'et_sanitize_font_style',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[all_buttons_font_style]', array(
 		'label'	      => __( 'Button Font Style', 'Divi' ),
 		'section'     => 'et_divi_buttons',
 		'type'        => 'font_style',
-		'choices'     => array(
-			'bold'       => __( 'Bold', 'Divi' ),
-			'italic'     => __( 'Italic', 'Divi' ),
-			'uppercase'  => __( 'Uppercase', 'Divi' ),
-			'underline'  => __( 'Underline', 'Divi' ),
-		),
+		'choices'     => et_divi_font_style_choices(),
 	) ) );
 
 	if ( ! isset( $et_one_font_languages[$site_domain] ) ) {
@@ -2506,7 +2565,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 			'default'		=> 'none',
 			'type'			=> 'option',
 			'capability'	=> 'edit_theme_options',
-			'transport'		=> 'postMessage'
+			'transport'		=> 'postMessage',
+			'sanitize_callback' => 'et_sanitize_font_choices',
 		) );
 
 		$wp_customize->add_control( new ET_Divi_Select_Option ( $wp_customize, 'et_divi[all_buttons_font]', array(
@@ -2523,16 +2583,14 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_yes_no',
 	) );
 
 	$wp_customize->add_control( 'et_divi[all_buttons_icon]', array(
 		'label'		=> __( 'Add Button Icon', 'Divi' ),
 		'section'	=> 'et_divi_buttons',
 		'type'      => 'select',
-		'choices'	=> array(
-			'yes'  => __( 'Yes', 'Divi' ),
-			'no'   => __( 'No', 'Divi' )
-		),
+		'choices'	=> et_divi_yes_no_choices(),
 	) );
 
 	$wp_customize->add_setting( 'et_divi[all_buttons_selected_icon]', array(
@@ -2540,6 +2598,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'et_sanitize_font_icon',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Icon_Picker_Option ( $wp_customize, 'et_divi[all_buttons_selected_icon]', array(
@@ -2552,7 +2611,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'default'		=> '#ffffff',
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[all_buttons_icon_color]', array(
@@ -2566,16 +2626,14 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_left_right',
 	) );
 
 	$wp_customize->add_control( 'et_divi[all_buttons_icon_placement]', array(
 		'label'		=> __( 'Icon Placement', 'Divi' ),
 		'section'	=> 'et_divi_buttons',
 		'type'      => 'select',
-		'choices'	=> array(
-			'right'  => __( 'Right', 'Divi' ),
-			'left'   => __( 'Left', 'Divi' )
-		),
+		'choices'	=> et_divi_left_right_choices(),
 	) );
 
 	$wp_customize->add_setting( 'et_divi[all_buttons_icon_hover]', array(
@@ -2583,23 +2641,22 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
 		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_yes_no',
 	) );
 
 	$wp_customize->add_control( 'et_divi[all_buttons_icon_hover]', array(
 		'label'		=> __( 'Only Show Icon on Hover', 'Divi' ),
 		'section'	=> 'et_divi_buttons',
 		'type'      => 'select',
-		'choices'	=> array(
-			'yes'  => __( 'Yes', 'Divi' ),
-			'no'   => __( 'No', 'Divi' )
-		),
+		'choices'	=> et_divi_yes_no_choices(),
 	) );
 
 	$wp_customize->add_setting( 'et_divi[all_buttons_text_color_hover]', array(
 		'default'		=> '#ffffff',
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[all_buttons_text_color_hover]', array(
@@ -2612,7 +2669,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'default'		=> 'rgba(255,255,255,0.2)',
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[all_buttons_bg_color_hover]', array(
@@ -2625,7 +2683,8 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'default'		=> 'rgba(0,0,0,0)',
 		'type'			=> 'option',
 		'capability'	=> 'edit_theme_options',
-		'transport'		=> 'postMessage'
+		'transport'		=> 'postMessage',
+		'sanitize_callback' => 'et_sanitize_alpha_color',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[all_buttons_border_color_hover]', array(
@@ -2639,6 +2698,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint'
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[all_buttons_border_radius_hover]', array(
@@ -2657,6 +2717,7 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 		'type'          => 'option',
 		'capability'    => 'edit_theme_options',
 		'transport'     => 'postMessage',
+		'sanitize_callback' => 'et_sanitize_int_number',
 	) );
 
 	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[all_buttons_spacing_hover]', array(
@@ -2674,15 +2735,6 @@ endif;
 
 if ( ! function_exists( 'et_divi_customizer_module_settings' ) ) :
 function et_divi_customizer_module_settings( $wp_customize ) {
-	$animation_choices = array(
-		'left' 		=> __( 'Left to Right', 'Divi' ),
-		'right' 	=> __( 'Right to Left', 'Divi' ),
-		'top' 		=> __( 'Top to Bottom', 'Divi' ),
-		'bottom' 	=> __( 'Bottom to Top', 'Divi' ),
-		'fade_in'	=> __( 'Fade In', 'Divi' ),
-		'off' 		=> __( 'No Animation', 'Divi' ),
-	);
-
 		/* Section: Image */
 		$wp_customize->add_section( 'et_pagebuilder_image', array(
 		    'priority'       => 10,
@@ -2695,6 +2747,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'			=> 'option',
 				'capability'	=> 'edit_theme_options',
 				'transport'		=> 'postMessage',
+				'sanitize_callback' => 'et_sanitize_image_animation',
 			) );
 
 			$wp_customize->add_control( 'et_divi[et_pb_image-animation]', array(
@@ -2702,7 +2755,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'description' => __( 'This controls default direction of the lazy-loading animation.', 'Divi' ),
 				'section'	=> 'et_pagebuilder_image',
 				'type'      => 'select',
-				'choices'	=> $animation_choices,
+				'choices'	=> et_divi_image_animation_choices(),
 			) );
 
 		/* Section: Gallery */
@@ -2719,6 +2772,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'			=> 'option',
 				'capability'	=> 'edit_theme_options',
 				'transport'		=> 'postMessage',
+				'sanitize_callback' => 'sanitize_hex_color',
 			) );
 
 			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'et_divi[et_pb_gallery-zoom_icon_color]', array(
@@ -2733,6 +2787,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'			=> 'option',
 				'capability'	=> 'edit_theme_options',
 				'transport'		=> 'postMessage',
+				'sanitize_callback' => 'et_sanitize_alpha_color',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[et_pb_gallery-hover_overlay_color]', array(
@@ -2747,6 +2802,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_gallery-title_font_size]', array(
@@ -2766,18 +2822,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_gallery-title_font_style]', array(
 				'label'	      => __( 'Title Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_gallery',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// caption font size Range 10px - 32px
@@ -2786,6 +2838,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_gallery-caption_font_size]', array(
@@ -2805,18 +2858,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_gallery-caption_font_style]', array(
 				'label'	      => __( 'Caption Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_gallery',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 		/* Section: Blurb */
@@ -2833,6 +2882,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_blurb-header_font_size]', array(
@@ -2860,6 +2910,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_tabs-title_font_size]', array(
@@ -2879,18 +2930,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_tabs-title_font_style]', array(
 				'label'	      => __( 'Title Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_tabs',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Padding: Range 0 - 50px
@@ -2900,6 +2947,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_tabs-padding]', array(
@@ -2927,6 +2975,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_slider-padding]', array(
@@ -2946,6 +2995,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_slider-header_font_size]', array(
@@ -2965,18 +3015,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_slider-header_font_style]', array(
 				'label'	      => __( 'Header Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_slider',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Content Font size: Range 10px - 32px
@@ -2985,6 +3031,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_slider-body_font_size]', array(
@@ -3004,18 +3051,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_slider-body_font_style]', array(
 				'label'	      => __( 'Content Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_slider',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 		/* Section: Testimonial */
@@ -3032,18 +3075,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_testimonial-author_name_font_style]', array(
 				'label'	      => __( 'Name Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_testimonial',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Author Details Font Style: B / I / TT / U
@@ -3052,18 +3091,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_testimonial-author_details_font_style]', array(
 				'label'	      => __( 'Details Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_testimonial',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Portrait Border Radius
@@ -3072,6 +3107,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_testimonial-portrait_border_radius]', array(
@@ -3091,6 +3127,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_testimonial-portrait_width]', array(
@@ -3110,6 +3147,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_testimonial-portrait_height]', array(
@@ -3137,6 +3175,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_pricing_tables-header_font_size]', array(
@@ -3156,18 +3195,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_pricing_tables-header_font_style]', array(
 				'label'	      => __( 'Header Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_pricing_table',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Subhead Font size: Range 10px - 32px
@@ -3176,6 +3211,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_pricing_tables-subheader_font_size]', array(
@@ -3195,18 +3231,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_pricing_tables-subheader_font_style]', array(
 				'label'	      => __( 'Subheader Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_pricing_table',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Price font size: Range 10px - 32px
@@ -3215,6 +3247,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_pricing_tables-price_font_size]', array(
@@ -3234,18 +3267,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_pricing_tables-price_font_style]', array(
 				'label'	      => __( 'Pricing Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_pricing_table',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 		/* Section: Call To Action */
@@ -3262,6 +3291,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_cta-header_font_size]', array(
@@ -3281,18 +3311,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_cta-header_font_style]', array(
 				'label'	      => __( 'Header Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_call_to_action',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Padding: Range 0px - 200px
@@ -3301,6 +3327,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_cta-custom_padding]', array(
@@ -3328,6 +3355,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_audio-title_font_size]', array(
@@ -3347,18 +3375,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_audio-title_font_style]', array(
 				'label'	      => __( 'Header Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_audio',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Subhead Font size: Range 10px - 32px
@@ -3367,6 +3391,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_audio-caption_font_size]', array(
@@ -3386,18 +3411,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_audio-caption_font_style]', array(
 				'label'	      => __( 'Subheader Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_audio',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 		/* Section: Email Optin */
@@ -3414,6 +3435,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_signup-header_font_size]', array(
@@ -3433,18 +3455,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_signup-header_font_style]', array(
 				'label'	      => __( 'Header Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_subscribe',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Padding: Range 0px - 200px
@@ -3453,6 +3471,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_signup-padding]', array(
@@ -3480,6 +3499,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_login-header_font_size]', array(
@@ -3499,18 +3519,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_login-header_font_style]', array(
 				'label'	      => __( 'Header Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_login',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Padding: Range 0px - 200px
@@ -3519,6 +3535,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_login-custom_padding]', array(
@@ -3546,6 +3563,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'			=> 'option',
 				'capability'	=> 'edit_theme_options',
 				'transport'		=> 'postMessage',
+				'sanitize_callback' => 'sanitize_hex_color',
 			) );
 
 			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'et_divi[et_pb_portfolio-zoom_icon_color]', array(
@@ -3560,6 +3578,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'			=> 'option',
 				'capability'	=> 'edit_theme_options',
 				'transport'		=> 'postMessage',
+				'sanitize_callback' => 'et_sanitize_alpha_color',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[et_pb_portfolio-hover_overlay_color]', array(
@@ -3574,6 +3593,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_portfolio-title_font_size]', array(
@@ -3593,18 +3613,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_portfolio-title_font_style]', array(
 				'label'	      => __( 'Title Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_portfolio',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Category font size Range 10px - 32px
@@ -3613,6 +3629,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_portfolio-caption_font_size]', array(
@@ -3632,18 +3649,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_portfolio-caption_font_style]', array(
 				'label'	      => __( 'Caption Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_portfolio',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 		/* Section: Filterable Portfolio */
@@ -3660,6 +3673,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'			=> 'option',
 				'capability'	=> 'edit_theme_options',
 				'transport'		=> 'postMessage',
+				'sanitize_callback' => 'sanitize_hex_color',
 			) );
 
 			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'et_divi[et_pb_filterable_portfolio-zoom_icon_color]', array(
@@ -3674,6 +3688,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'			=> 'option',
 				'capability'	=> 'edit_theme_options',
 				'transport'		=> 'postMessage',
+				'sanitize_callback' => 'et_sanitize_alpha_color',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Customize_Color_Alpha_Control( $wp_customize, 'et_divi[et_pb_filterable_portfolio-hover_overlay_color]', array(
@@ -3688,6 +3703,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_filterable_portfolio-title_font_size]', array(
@@ -3707,18 +3723,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_filterable_portfolio-title_font_style]', array(
 				'label'	      => __( 'Title Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_filterable_portfolio',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Category font size Range 10px - 32px
@@ -3727,6 +3739,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_filterable_portfolio-caption_font_size]', array(
@@ -3746,18 +3759,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_filterable_portfolio-caption_font_style]', array(
 				'label'	      => __( 'Caption Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_filterable_portfolio',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Filters Font size: Range 10px - 32px
@@ -3766,6 +3775,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_filterable_portfolio-filter_font_size]', array(
@@ -3785,18 +3795,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_filterable_portfolio-filter_font_style]', array(
 				'label'	      => __( 'Filters Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_filterable_portfolio',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 		/* Section: Bar Counter */
@@ -3813,6 +3819,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_counters-title_font_size]', array(
@@ -3832,18 +3839,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_counters-title_font_style]', array(
 				'label'	      => __( 'Label Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_bar_counter',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Percent Font Size: Range 10px - 32px
@@ -3852,6 +3855,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_counters-percent_font_size]', array(
@@ -3871,18 +3875,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_counters-percent_font_style]', array(
 				'label'	      => __( 'Percent Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_bar_counter',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Bar Padding: Range 0px - 30px (top and bottom padding only)
@@ -3891,6 +3891,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_counters-padding]', array(
@@ -3910,6 +3911,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_counters-border_radius]', array(
@@ -3936,6 +3938,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_circle_counter-number_font_size]', array(
@@ -3955,18 +3958,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_circle_counter-number_font_style]', array(
 				'label'	      => __( 'Number Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_circle_counter',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Title Font Size: Range 10px - 72px
@@ -3975,6 +3974,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_circle_counter-title_font_size]', array(
@@ -3994,18 +3994,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_circle_counter-title_font_style]', array(
 				'label'	      => __( 'Title Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_circle_counter',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 		/* Section: Number Counter */
@@ -4022,6 +4018,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_number_counter-number_font_size]', array(
@@ -4041,18 +4038,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_number_counter-number_font_style]', array(
 				'label'	      => __( 'Number Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_number_counter',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Title Font Size: Range 10px - 72px
@@ -4061,6 +4054,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_number_counter-title_font_size]', array(
@@ -4080,18 +4074,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_number_counter-title_font_style]', array(
 				'label'	      => __( 'Title Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_number_counter',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 		/* Section: Accordion */
@@ -4107,6 +4097,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_accordion-toggle_font_size]', array(
@@ -4126,18 +4117,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_accordion-toggle_font_style]', array(
 				'label'	      => __( 'Opened Title Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_accordion',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Inactive Accordion Title Font Style: B / I / TT / U
@@ -4146,18 +4133,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_accordion-inactive_toggle_font_style]', array(
 				'label'	      => __( 'Closed Title Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_accordion',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Toggle Accordion Icon Font Size
@@ -4166,6 +4149,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_accordion-toggle_icon_size]', array(
@@ -4186,6 +4170,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_accordion-custom_padding]', array(
@@ -4213,6 +4198,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_toggle-title_font_size]', array(
@@ -4232,18 +4218,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_toggle-title_font_style]', array(
 				'label'	      => __( 'Opened Title Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_toggle',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Inactive Toggle Title Font Style: B / I / TT / U
@@ -4252,18 +4234,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_toggle-inactive_title_font_style]', array(
 				'label'	      => __( 'Closed Title Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_toggle',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Open& Close Icon Font Size
@@ -4272,6 +4250,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_toggle-toggle_icon_size]', array(
@@ -4291,6 +4270,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_toggle-custom_padding]', array(
@@ -4318,6 +4298,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_contact_form-title_font_size]', array(
@@ -4337,18 +4318,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_contact_form-title_font_style]', array(
 				'label'	      => __( 'Header Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_contact_form',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Input Field Font size: Range 10px - 32px
@@ -4357,6 +4334,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_contact_form-form_field_font_size]', array(
@@ -4376,18 +4354,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_contact_form-form_field_font_style]', array(
 				'label'	      => __( 'Input Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_contact_form',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Input Field Padding: Range 0 - 50px
@@ -4396,6 +4370,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_contact_form-padding]', array(
@@ -4415,6 +4390,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_contact_form-captcha_font_size]', array(
@@ -4434,18 +4410,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_contact_form-captcha_font_style]', array(
 				'label'	      => __( 'Captcha Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_contact_form',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 		/* Section: Sidebar */
@@ -4462,6 +4434,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_sidebar-header_font_size]', array(
@@ -4481,18 +4454,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_sidebar-header_font_style]', array(
 				'label'	      => __( 'Widget Header Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_sidebar',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Show/hide Vertical Divider
@@ -4501,6 +4470,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'			=> 'option',
 				'capability'	=> 'edit_theme_options',
 				'transport'		=> 'postMessage',
+				'sanitize_callback' => 'wp_validate_boolean',
 			) );
 
 			$wp_customize->add_control( 'et_divi[et_pb_sidebar-remove_border]', array(
@@ -4522,6 +4492,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'			=> 'option',
 				'capability'	=> 'edit_theme_options',
 				'transport'		=> 'postMessage',
+				'sanitize_callback' => 'wp_validate_boolean',
 			) );
 
 			$wp_customize->add_control( 'et_divi[et_pb_divider-show_divider]', array(
@@ -4535,7 +4506,8 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'default'		=> ET_Global_Settings::get_value( 'et_pb_divider-divider_style', 'default' ),
 				'type'			=> 'option',
 				'capability'	=> 'edit_theme_options',
-				'transport'		=> 'postMessage'
+				'transport'		=> 'postMessage',
+				'sanitize_callback' => 'et_sanitize_divider_style',
 			) );
 
 			$wp_customize->add_control( 'et_divi[et_pb_divider-divider_style]', array(
@@ -4543,16 +4515,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'section'	=> 'et_pagebuilder_divider',
 				'settings'	=> 'et_divi[et_pb_divider-divider_style]',
 				'type'		=> 'select',
-				'choices'	=> array(
-					'solid'		=> __( 'Solid', 'Divi' ),
-					'dotted'	=> __( 'Dotted', 'Divi' ),
-					'dashed'	=> __( 'Dashed', 'Divi' ),
-					'double'	=> __( 'Double', 'Divi' ),
-					'groove'	=> __( 'Groove', 'Divi' ),
-					'ridge'		=> __( 'Ridge', 'Divi' ),
-					'inset'		=> __( 'Inset', 'Divi' ),
-					'outset'	=> __( 'Outset', 'Divi' ),
-				),
+				'choices'	=> et_divi_divider_style_choices(),
 			) );
 
 			// Divider Weight
@@ -4561,6 +4524,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_divider-divider_weight]', array(
@@ -4580,6 +4544,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_divider-height]', array(
@@ -4598,7 +4563,8 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'default'		=> ET_Global_Settings::get_value( 'et_pb_divider-divider_position', 'default' ),
 				'type'			=> 'option',
 				'capability'	=> 'edit_theme_options',
-				'transport'		=> 'postMessage'
+				'transport'		=> 'postMessage',
+				'sanitize_callback' => 'et_sanitize_divider_position',
 			) );
 
 			$wp_customize->add_control( 'et_divi[et_pb_divider-divider_position]', array(
@@ -4606,11 +4572,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'section'	=> 'et_pagebuilder_divider',
 				'settings'	=> 'et_divi[et_pb_divider-divider_position]',
 				'type'		=> 'select',
-				'choices'	=> array(
-					'top'		=> __( 'Top', 'Divi' ),
-					'center'	=> __( 'Vertically Centered', 'Divi' ),
-					'bottom'	=> __( 'Bottom', 'Divi' ),
-				),
+				'choices'	=> et_divi_divider_position_choices(),
 			) );
 
 		/* Section: Person */
@@ -4627,6 +4589,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_team_member-header_font_size]', array(
@@ -4646,18 +4609,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_team_member-header_font_style]', array(
 				'label'	      => __( 'Name Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_person',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Subhead Font size: Range 10px - 32px
@@ -4666,6 +4625,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_team_member-subheader_font_size]', array(
@@ -4685,18 +4645,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_team_member-subheader_font_style]', array(
 				'label'	      => __( 'Subheader Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_person',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Network Icons size: Range 16px - 32px
@@ -4705,6 +4661,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_team_member-social_network_icon_size]', array(
@@ -4732,6 +4689,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_blog-header_font_size]', array(
@@ -4751,18 +4709,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_blog-header_font_style]', array(
 				'label'	      => __( 'Title Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_blog',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Meta Font size: Range 10px - 32px
@@ -4771,6 +4725,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_blog-meta_font_size]', array(
@@ -4790,18 +4745,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_blog-meta_font_style]', array(
 				'label'	      => __( 'Meta Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_blog',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 		/* Section: Blog Grid */
@@ -4818,6 +4769,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_blog_masonry-header_font_size]', array(
@@ -4837,18 +4789,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_blog_masonry-header_font_style]', array(
 				'label'	      => __( 'Title Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_masonry_blog',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Meta Font size: Range 10px - 32px
@@ -4857,6 +4805,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_blog_masonry-meta_font_size]', array(
@@ -4876,18 +4825,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_blog_masonry-meta_font_style]', array(
 				'label'	      => __( 'Meta Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_masonry_blog',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 		/* Section: Shop */
@@ -4904,6 +4849,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_shop-title_font_size]', array(
@@ -4923,18 +4869,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_shop-title_font_style]', array(
 				'label'	      => __( 'Product Name Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_shop',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Sale Badge Font size: Range 10px - 32px
@@ -4943,6 +4885,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_shop-sale_badge_font_size]', array(
@@ -4962,18 +4905,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_shop-sale_badge_font_style]', array(
 				'label'	      => __( 'Sale Badge Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_shop',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Price Font size: Range 10px - 32px
@@ -4982,6 +4921,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_shop-price_font_size]', array(
@@ -5001,18 +4941,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_shop-price_font_style]', array(
 				'label'	      => __( 'Price Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_shop',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Sale Price Font size: Range 10px - 32px
@@ -5021,6 +4957,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_shop-sale_price_font_size]', array(
@@ -5040,18 +4977,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_shop-sale_price_font_style]', array(
 				'label'	      => __( 'Sale Price Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_shop',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 		/* Section: Countdown */
@@ -5068,6 +5001,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_countdown_timer-header_font_size]', array(
@@ -5087,18 +5021,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_countdown_timer-header_font_style]', array(
 				'label'	      => __( 'Header Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_countdown',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 		/* Section: Social Follow */
@@ -5115,6 +5045,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_social_media_follow-icon_size]', array(
@@ -5134,18 +5065,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_social_media_follow-button_font_style]', array(
 				'label'	      => __( 'Button Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_social_follow',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 		/* Section: Fullwidth Slider */
@@ -5162,6 +5089,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_fullwidth_slider-padding]', array(
@@ -5181,6 +5109,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_fullwidth_slider-header_font_size]', array(
@@ -5200,18 +5129,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_fullwidth_slider-header_font_style]', array(
 				'label'	      => __( 'Header Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_fullwidth_slider',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 
 			// Content Font size: Range 10px - 32px
@@ -5220,6 +5145,7 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'absint',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[et_pb_fullwidth_slider-body_font_size]', array(
@@ -5239,18 +5165,14 @@ function et_divi_customizer_module_settings( $wp_customize ) {
 				'type'          => 'option',
 				'capability'    => 'edit_theme_options',
 				'transport'     => 'postMessage',
+				'sanitize_callback' => 'et_sanitize_font_style',
 			) );
 
 			$wp_customize->add_control( new ET_Divi_Font_Style_Option ( $wp_customize, 'et_divi[et_pb_fullwidth_slider-body_font_style]', array(
 				'label'	      => __( 'Content Font Style', 'Divi' ),
 				'section'     => 'et_pagebuilder_fullwidth_slider',
 				'type'        => 'font_style',
-				'choices'     => array(
-					'bold'    => __( 'Bold', 'Divi' ),
-					'italic'  => __( 'Italic', 'Divi' ),
-					'uppercase'  => __( 'Uppercase', 'Divi' ),
-					'underline'  => __( 'Underline', 'Divi' ),
-				),
+				'choices'     => et_divi_font_style_choices(),
 			) ) );
 }
 endif;
@@ -5366,6 +5288,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 				<span class="description customize-control-description"><?php echo $this->description; ?></span>
 			<?php endif; ?>
 			<input type="<?php echo esc_attr( $this->type ); ?>" <?php $this->input_attrs(); ?> value="<?php echo esc_attr( $this->value() ); ?>" <?php $this->link(); ?> data-reset_value="<?php echo esc_attr( $this->setting->default ); ?>" />
+			<input type="number" <?php $this->input_attrs(); ?> class="et-pb-range-input" value="<?php echo esc_attr( $this->value() ); ?>" />
 			<span class="et_divi_reset_slider"></span>
 		</label>
 		<?php
@@ -5869,7 +5792,7 @@ function et_divi_add_customizer_css(){ ?>
 			.woocommerce.et_pb_button_helper_class a.button.alt, .woocommerce-page.et_pb_button_helper_class a.button.alt, .woocommerce.et_pb_button_helper_class button.button.alt, .woocommerce-page.et_pb_button_helper_class button.button.alt, .woocommerce.et_pb_button_helper_class input.button.alt, .woocommerce-page.et_pb_button_helper_class input.button.alt, .woocommerce.et_pb_button_helper_class #respond input#submit.alt, .woocommerce-page.et_pb_button_helper_class #respond input#submit.alt, .woocommerce.et_pb_button_helper_class #content input.button.alt, .woocommerce-page.et_pb_button_helper_class #content input.button.alt,
 			.woocommerce.et_pb_button_helper_class a.button, .woocommerce-page.et_pb_button_helper_class a.button, .woocommerce.et_pb_button_helper_class button.button, .woocommerce-page.et_pb_button_helper_class button.button, .woocommerce.et_pb_button_helper_class input.button, .woocommerce-page.et_pb_button_helper_class input.button, .woocommerce.et_pb_button_helper_class #respond input#submit, .woocommerce-page.et_pb_button_helper_class #respond input#submit, .woocommerce.et_pb_button_helper_class #content input.button, .woocommerce-page.et_pb_button_helper_class #content input.button {
 				<?php if ( '#ffffff' !== $button_text_color ) { ?>
-					color: <?php echo esc_html( $button_text_color ); ?>;
+					color: <?php echo esc_html( $button_text_color ); ?> !important;
 				<?php } ?>
 			}
 		<?php } ?>
@@ -5917,7 +5840,7 @@ function et_divi_add_customizer_css(){ ?>
 		<?php } ?>
 
 		<?php if ( '' !== $body_header_style || '0' !== $body_header_spacing || '1' !== $body_header_height) { ?>
-				h1, h2, h3, h4, h5, h6, .et_quote_content blockquote p, .et_pb_slide_description h2 {
+				h1, h2, h3, h4, h5, h6, .et_quote_content blockquote p, .et_pb_slide_description .et_pb_slide_title {
 					<?php if ( $body_header_style !== '' ) { ?>
 						<?php echo esc_html( et_pb_print_font_style( $body_header_style ) ); ?>
 					<?php } ?>
@@ -5995,7 +5918,9 @@ function et_divi_add_customizer_css(){ ?>
 				h2, .product .related h2, .et_pb_column_1_2 .et_quote_content blockquote p { font-size: <?php echo esc_html( intval( $body_header_size * .86 ) ) ; ?>px; }
 				h3 { font-size: <?php echo esc_html( intval( $body_header_size * .73 ) ); ?>px; }
 				h4, .et_pb_circle_counter h3, .et_pb_number_counter h3, .et_pb_column_1_3 .et_pb_post h2, .et_pb_column_1_4 .et_pb_post h2, .et_pb_blog_grid h2, .et_pb_column_1_3 .et_quote_content blockquote p, .et_pb_column_3_8 .et_quote_content blockquote p, .et_pb_column_1_4 .et_quote_content blockquote p, .et_pb_blog_grid .et_quote_content blockquote p, .et_pb_column_1_3 .et_link_content h2, .et_pb_column_3_8 .et_link_content h2, .et_pb_column_1_4 .et_link_content h2, .et_pb_blog_grid .et_link_content h2, .et_pb_column_1_3 .et_audio_content h2, .et_pb_column_3_8 .et_audio_content h2, .et_pb_column_1_4 .et_audio_content h2, .et_pb_blog_grid .et_audio_content h2, .et_pb_column_3_8 .et_pb_audio_module_content h2, .et_pb_column_1_3 .et_pb_audio_module_content h2, .et_pb_gallery_grid .et_pb_gallery_item h3, .et_pb_portfolio_grid .et_pb_portfolio_item h2, .et_pb_filterable_portfolio_grid .et_pb_portfolio_item h2 { font-size: <?php echo esc_html( intval( $body_header_size * .6 ) ); ?>px; }
-				.et_pb_slide_description h2 { font-size: <?php echo esc_html( intval( $body_header_size * 1.53 ) ); ?>px; }
+				h5 { font-size: <?php echo esc_html( intval( $body_header_size * .53 ) ); ?>px; }
+				h6 { font-size: <?php echo esc_html( intval( $body_header_size * .47 ) ); ?>px; }
+				.et_pb_slide_description .et_pb_slide_title { font-size: <?php echo esc_html( intval( $body_header_size * 1.53 ) ); ?>px; }
 				.woocommerce ul.products li.product h3, .woocommerce-page ul.products li.product h3, .et_pb_gallery_grid .et_pb_gallery_item h3, .et_pb_portfolio_grid .et_pb_portfolio_item h2, .et_pb_filterable_portfolio_grid .et_pb_portfolio_item h2, .et_pb_column_1_4 .et_pb_audio_module_content h2 { font-size: <?php echo esc_html( intval( $body_header_size * .53 ) ); ?>px; }
 			<?php } ?>
 			<?php if ( intval( $body_header_size * .6 ) !== $widget_header_font_size ) { ?>
@@ -6111,7 +6036,7 @@ function et_divi_add_customizer_css(){ ?>
 				h2, .product .related h2, .et_pb_column_1_2 .et_quote_content blockquote p { font-size: <?php echo esc_html( intval( $tablet_header_font_size * .86 ) ) ; ?>px; }
 				h3 { font-size: <?php echo esc_html( intval( $tablet_header_font_size * .73 ) ); ?>px; }
 				h4, .et_pb_circle_counter h3, .et_pb_number_counter h3, .et_pb_column_1_3 .et_pb_post h2, .et_pb_column_1_4 .et_pb_post h2, .et_pb_blog_grid h2, .et_pb_column_1_3 .et_quote_content blockquote p, .et_pb_column_3_8 .et_quote_content blockquote p, .et_pb_column_1_4 .et_quote_content blockquote p, .et_pb_blog_grid .et_quote_content blockquote p, .et_pb_column_1_3 .et_link_content h2, .et_pb_column_3_8 .et_link_content h2, .et_pb_column_1_4 .et_link_content h2, .et_pb_blog_grid .et_link_content h2, .et_pb_column_1_3 .et_audio_content h2, .et_pb_column_3_8 .et_audio_content h2, .et_pb_column_1_4 .et_audio_content h2, .et_pb_blog_grid .et_audio_content h2, .et_pb_column_3_8 .et_pb_audio_module_content h2, .et_pb_column_1_3 .et_pb_audio_module_content h2, .et_pb_gallery_grid .et_pb_gallery_item h3, .et_pb_portfolio_grid .et_pb_portfolio_item h2, .et_pb_filterable_portfolio_grid .et_pb_portfolio_item h2 { font-size: <?php echo esc_html( intval( $tablet_header_font_size * .6 ) ); ?>px; }
-				.et_pb_slide_description h2 { font-size: <?php echo esc_html( intval( $tablet_header_font_size * 1.53 ) ); ?>px; }
+				.et_pb_slide_description .et_pb_slide_title { font-size: <?php echo esc_html( intval( $tablet_header_font_size * 1.53 ) ); ?>px; }
 				.woocommerce ul.products li.product h3, .woocommerce-page ul.products li.product h3, .et_pb_gallery_grid .et_pb_gallery_item h3, .et_pb_portfolio_grid .et_pb_portfolio_item h2, .et_pb_filterable_portfolio_grid .et_pb_portfolio_item h2, .et_pb_column_1_4 .et_pb_audio_module_content h2 { font-size: <?php echo esc_html( intval( $tablet_header_font_size * .53 ) ); ?>px; }
 			<?php } ?>
 			<?php if ( '50' !== $tablet_section_height ) { ?>
@@ -6133,7 +6058,7 @@ function et_divi_add_customizer_css(){ ?>
 				h2, .product .related h2, .et_pb_column_1_2 .et_quote_content blockquote p { font-size: <?php echo esc_html( intval( $phone_header_font_size * .86 ) ) ; ?>px; }
 				h3 { font-size: <?php echo esc_html( intval( $phone_header_font_size * .73 ) ); ?>px; }
 				h4, .et_pb_circle_counter h3, .et_pb_number_counter h3, .et_pb_column_1_3 .et_pb_post h2, .et_pb_column_1_4 .et_pb_post h2, .et_pb_blog_grid h2, .et_pb_column_1_3 .et_quote_content blockquote p, .et_pb_column_3_8 .et_quote_content blockquote p, .et_pb_column_1_4 .et_quote_content blockquote p, .et_pb_blog_grid .et_quote_content blockquote p, .et_pb_column_1_3 .et_link_content h2, .et_pb_column_3_8 .et_link_content h2, .et_pb_column_1_4 .et_link_content h2, .et_pb_blog_grid .et_link_content h2, .et_pb_column_1_3 .et_audio_content h2, .et_pb_column_3_8 .et_audio_content h2, .et_pb_column_1_4 .et_audio_content h2, .et_pb_blog_grid .et_audio_content h2, .et_pb_column_3_8 .et_pb_audio_module_content h2, .et_pb_column_1_3 .et_pb_audio_module_content h2, .et_pb_gallery_grid .et_pb_gallery_item h3, .et_pb_portfolio_grid .et_pb_portfolio_item h2, .et_pb_filterable_portfolio_grid .et_pb_portfolio_item h2 { font-size: <?php echo esc_html( intval( $phone_header_font_size * .6 ) ); ?>px; }
-				.et_pb_slide_description h2 { font-size: <?php echo esc_html( intval( $phone_header_font_size * 1.53 ) ); ?>px; }
+				.et_pb_slide_description .et_pb_slide_title { font-size: <?php echo esc_html( intval( $phone_header_font_size * 1.53 ) ); ?>px; }
 				.woocommerce ul.products li.product h3, .woocommerce-page ul.products li.product h3, .et_pb_gallery_grid .et_pb_gallery_item h3, .et_pb_portfolio_grid .et_pb_portfolio_item h2, .et_pb_filterable_portfolio_grid .et_pb_portfolio_item h2, .et_pb_column_1_4 .et_pb_audio_module_content h2 { font-size: <?php echo esc_html( intval( $phone_header_font_size * .53 ) ); ?>px; }
 			<?php } ?>
 			<?php if ( '50' !== $phone_section_height && $tablet_section_height !== $phone_section_height ) { ?>
@@ -6142,7 +6067,7 @@ function et_divi_add_customizer_css(){ ?>
 				.et_pb_section.et_pb_fullwidth_section { padding: 0; }
 			<?php } ?>
 			<?php if ( '30' !== $phone_row_height && $tablet_row_height !== $phone_row_height ) { ?>
-				.et_pb_row, .et_pb_column .et_pb_row_inner { padding: <?php echo esc_html( $phone_row_height ); ?>px 0; }
+				.et_pb_row, .et_pb_column .et_pb_row_inner { padding: <?php echo esc_html( $phone_row_height ); ?>px 0 !important; }
 			<?php } ?>
 		}
 	</style>
@@ -6301,12 +6226,12 @@ function et_divi_add_customizer_css(){ ?>
 				array(
 					'type' 		=> 'font-size',
 					'key' 		=> 'header_font_size',
-					'selector' 	=> '.et_pb_slider_fullwidth_off .et_pb_slide_description h2',
+					'selector' 	=> '.et_pb_slider_fullwidth_off .et_pb_slide_description .et_pb_slide_title',
 				),
 				array(
 					'type' 		=> 'font-style',
 					'key' 		=> 'header_font_style',
-					'selector' 	=> '.et_pb_slider_fullwidth_off .et_pb_slide_description h2',
+					'selector' 	=> '.et_pb_slider_fullwidth_off .et_pb_slide_description .et_pb_slide_title',
 				),
 				array(
 					'type' 		=> 'font-size',
@@ -6465,7 +6390,7 @@ function et_divi_add_customizer_css(){ ?>
 				),
 				array(
 					'type' 		=> 'padding-top-bottom',
-					'key' 		=> 'padding',
+					'key' 		=> 'custom_padding',
 					'selector' 	=> '.et_pb_login',
 				),
 			) );
@@ -6923,13 +6848,13 @@ function et_divi_add_customizer_css(){ ?>
 				array(
 					'type' 		=> 'font-size',
 					'key' 		=> 'header_font_size',
-					'selector' 	=> '.et_pb_fullwidth_section .et_pb_slide_description h2',
+					'selector' 	=> '.et_pb_fullwidth_section .et_pb_slide_description .et_pb_slide_title',
 					'default' 	=> '46',
 				),
 				array(
 					'type' 		=> 'font-style',
 					'key' 		=> 'header_font_style',
-					'selector' 	=> '.et_pb_fullwidth_section .et_pb_slide_description h2',
+					'selector' 	=> '.et_pb_fullwidth_section .et_pb_slide_description .et_pb_slide_title',
 					'default' 	=> '',
 				),
 				array(
@@ -7509,6 +7434,7 @@ function et_divi_post_admin_scripts_styles( $hook ) {
 	global $typenow;
 
 	$theme_version = et_get_theme_version();
+	$current_screen = get_current_screen();
 
 	if ( ! in_array( $hook, array( 'post-new.php', 'post.php' ) ) ) return;
 
@@ -7518,6 +7444,11 @@ function et_divi_post_admin_scripts_styles( $hook ) {
 		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_script( 'wp-color-picker' );
 		wp_enqueue_script( 'et-admin-post-script', get_template_directory_uri() . '/js/admin_post_settings.js', array( 'jquery' ), $theme_version );
+	}
+
+	// Only enqueue on editing screen
+	if ( isset( $current_screen->base ) && 'post' === $current_screen->base ) {
+		wp_enqueue_style( 'et-meta-box-style', get_template_directory_uri() . '/css/meta-box-styles.css', array(), $theme_version );
 	}
 }
 add_action( 'admin_enqueue_scripts', 'et_divi_post_admin_scripts_styles' );
@@ -7621,7 +7552,7 @@ function et_layout_body_class( $classes ) {
 		$classes[] = 'et_boxed_layout';
 	}
 
-	if ( true === et_get_option( 'hide_nav', false ) ) {
+	if ( true === et_get_option( 'hide_nav', false ) && ( ! is_singular() || is_singular() && 'no' !== get_post_meta( get_the_ID(), '_et_pb_post_hide_nav', true ) ) ) {
 		$classes[] = 'et_hide_nav';
 	} else {
 		$classes[] = 'et_show_nav';
@@ -7804,6 +7735,22 @@ function et_divi_sidebar_class( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'et_divi_sidebar_class' );
+
+/**
+ * Custom body classes for handling customizer preview screen
+ * @return array
+ */
+function et_divi_customize_preview_class( $classes ) {
+	if ( is_customize_preview() ) {
+		// Search icon state
+		if ( ! et_get_option( 'show_search_icon', true ) ) {
+			$classes[] = 'et_hide_search_icon';
+		}
+	}
+
+	return $classes;
+}
+add_filter( 'body_class', 'et_divi_customize_preview_class' );
 
 function et_modify_shop_page_columns_num( $columns_num ) {
 	if ( class_exists( 'woocommerce' ) && is_shop() ) {
@@ -8035,3 +7982,17 @@ if ( class_exists( 'WooCommerce' ) ) {
 		woocommerce_related_products( $woocommerce_args );
 	}
 }
+
+function et_divi_maybe_change_frontend_locale( $locale ) {
+	$option_name   = 'divi_disable_translations';
+	$theme_options = get_option( 'et_divi' );
+
+	$disable_translations = isset ( $theme_options[ $option_name ] ) ? $theme_options[ $option_name ] : false;
+
+	if ( 'on' === $disable_translations ) {
+		return 'en_US';
+	}
+
+	return $locale;
+}
+add_filter( 'locale', 'et_divi_maybe_change_frontend_locale' );

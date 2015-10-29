@@ -58,7 +58,7 @@ function et_update_old_layouts_taxonomy( $posts ) {
 add_filter( 'wp_import_posts', 'et_update_old_layouts_taxonomy', 10 );
 
 // add custom filters for posts in the Divi Library
-if ( ! function_exists( 'add_layout_filters' ) ) :
+if ( ! function_exists( 'et_pb_add_layout_filters' ) ) :
 function et_pb_add_layout_filters() {
 	if ( isset( $_GET['post_type'] ) && 'et_pb_layout' === $_GET['post_type'] ) {
 		$layout_categories = get_terms( 'layout_category' );
@@ -185,7 +185,7 @@ endif;
 
 if ( ! function_exists( 'et_pb_get_font_icon_symbols' ) ) :
 function et_pb_get_font_icon_symbols() {
-	$symbols = array( '&amp;#x21;', '&amp;#x22;', '&amp;#x23;', '&amp;#x24;', '&amp;#x25;', '&amp;#x26;', '&amp;#x27;', '&amp;#x28;', '&amp;#x29;', '&amp;#x2a;', '&amp;#x2b;', '&amp;#x2c;', '&amp;#x2d;', '&amp;#x2e;', '&amp;#x2f;', '&amp;#x30;', '&amp;#x31;', '&amp;#x32;', '&amp;#x33;', '&amp;#x34;', '&amp;#x35;', '&amp;#x36;', '&amp;#x37;', '&amp;#x38;', '&amp;#x39;', '&amp;#x3a;', '&amp;#x3b;', '&amp;#x3c;', '&amp;#x3d;', '&amp;#x3e;', '&amp;#x3f;', '&amp;#x40;', '&amp;#x41;', '&amp;#x42;', '&amp;#x43;', '&amp;#x44;', '&amp;#x45;', '&amp;#x46;', '&amp;#x47;', '&amp;#x48;', '&amp;#x49;', '&amp;#x4a;', '&amp;#x4b;', '&amp;#x4c;', '&amp;#x4d;', '&amp;#x4e;', '&amp;#x4f;', '&amp;#x50;', '&amp;#x51;', '&amp;#x52;', '&amp;#x53;', '&amp;#x54;', '&amp;#x55;', '&amp;#x56;', '&amp;#x57;', '&amp;#x58;', '&amp;#x59;', '&amp;#x5a;', '&amp;#x5b;', '&amp;#x5c;', '&amp;#x5d;', '&amp;#x5e;', '&amp;#x5f;', '&amp;#x60;', '&amp;#x61;', '&amp;#x62;', '&amp;#x63;', '&amp;#x64;', '&amp;#x65;', '&amp;#x66;', '&amp;#x67;', '&amp;#x68;', '&amp;#x69;', '&amp;#x6a;', '&amp;#x6b;', '&amp;#x6c;', '&amp;#x6d;', '&amp;#x6e;', '&amp;#x6f;', '&amp;#x70;', '&amp;#x71;', '&amp;#x72;', '&amp;#x73;', '&amp;#x74;', '&amp;#x75;', '&amp;#x76;', '&amp;#x77;', '&amp;#x78;', '&amp;#x79;', '&amp;#x7a;', '&amp;#x7b;', '&amp;#x7c;', '&amp;#x7d;', '&amp;#x7e;', '&amp;#xe000;', '&amp;#xe001;', '&amp;#xe002;', '&amp;#xe003;', '&amp;#xe004;', '&amp;#xe005;', '&amp;#xe006;', '&amp;#xe007;', '&amp;#xe009;', '&amp;#xe00a;', '&amp;#xe00b;', '&amp;#xe00c;', '&amp;#xe00d;', '&amp;#xe00e;', '&amp;#xe00f;', '&amp;#xe010;', '&amp;#xe011;', '&amp;#xe012;', '&amp;#xe013;', '&amp;#xe014;', '&amp;#xe015;', '&amp;#xe016;', '&amp;#xe017;', '&amp;#xe018;', '&amp;#xe019;', '&amp;#xe01a;', '&amp;#xe01b;', '&amp;#xe01c;', '&amp;#xe01d;', '&amp;#xe01e;', '&amp;#xe01f;', '&amp;#xe020;', '&amp;#xe021;', '&amp;#xe022;', '&amp;#xe023;', '&amp;#xe024;', '&amp;#xe025;', '&amp;#xe026;', '&amp;#xe027;', '&amp;#xe028;', '&amp;#xe029;', '&amp;#xe02a;', '&amp;#xe02b;', '&amp;#xe02c;', '&amp;#xe02d;', '&amp;#xe02e;', '&amp;#xe02f;', '&amp;#xe030;', '&amp;#xe103;', '&amp;#xe0ee;', '&amp;#xe0ef;', '&amp;#xe0e8;', '&amp;#xe0ea;', '&amp;#xe101;', '&amp;#xe107;', '&amp;#xe108;', '&amp;#xe102;', '&amp;#xe106;', '&amp;#xe0eb;', '&amp;#xe010;', '&amp;#xe105;', '&amp;#xe0ed;', '&amp;#xe100;', '&amp;#xe104;', '&amp;#xe0e9;', '&amp;#xe109;', '&amp;#xe0ec;', '&amp;#xe0fe;', '&amp;#xe0f6;', '&amp;#xe0fb;', '&amp;#xe0e2;', '&amp;#xe0e3;', '&amp;#xe0f5;', '&amp;#xe0e1;', '&amp;#xe0ff;', '&amp;#xe031;', '&amp;#xe032;', '&amp;#xe033;', '&amp;#xe034;', '&amp;#xe035;', '&amp;#xe036;', '&amp;#xe037;', '&amp;#xe038;', '&amp;#xe039;', '&amp;#xe03a;', '&amp;#xe03b;', '&amp;#xe03c;', '&amp;#xe03d;', '&amp;#xe03e;', '&amp;#xe03f;', '&amp;#xe040;', '&amp;#xe041;', '&amp;#xe042;', '&amp;#xe043;', '&amp;#xe044;', '&amp;#xe045;', '&amp;#xe046;', '&amp;#xe047;', '&amp;#xe048;', '&amp;#xe049;', '&amp;#xe04a;', '&amp;#xe04b;', '&amp;#xe04c;', '&amp;#xe04d;', '&amp;#xe04e;', '&amp;#xe04f;', '&amp;#xe050;', '&amp;#xe051;', '&amp;#xe052;', '&amp;#xe053;', '&amp;#xe054;', '&amp;#xe055;', '&amp;#xe056;', '&amp;#xe057;', '&amp;#xe058;', '&amp;#xe059;', '&amp;#xe05a;', '&amp;#xe05b;', '&amp;#xe05c;', '&amp;#xe05d;', '&amp;#xe05e;', '&amp;#xe05f;', '&amp;#xe060;', '&amp;#xe061;', '&amp;#xe062;', '&amp;#xe063;', '&amp;#xe064;', '&amp;#xe065;', '&amp;#xe066;', '&amp;#xe067;', '&amp;#xe068;', '&amp;#xe069;', '&amp;#xe06a;', '&amp;#xe06b;', '&amp;#xe06c;', '&amp;#xe06d;', '&amp;#xe06e;', '&amp;#xe06f;', '&amp;#xe070;', '&amp;#xe071;', '&amp;#xe072;', '&amp;#xe073;', '&amp;#xe074;', '&amp;#xe075;', '&amp;#xe076;', '&amp;#xe077;', '&amp;#xe078;', '&amp;#xe079;', '&amp;#xe07a;', '&amp;#xe07b;', '&amp;#xe07c;', '&amp;#xe07d;', '&amp;#xe07e;', '&amp;#xe07f;', '&amp;#xe080;', '&amp;#xe081;', '&amp;#xe082;', '&amp;#xe083;', '&amp;#xe084;', '&amp;#xe085;', '&amp;#xe086;', '&amp;#xe087;', '&amp;#xe088;', '&amp;#xe089;', '&amp;#xe08a;', '&amp;#xe08b;', '&amp;#xe08c;', '&amp;#xe08d;', '&amp;#xe08e;', '&amp;#xe08f;', '&amp;#xe090;', '&amp;#xe091;', '&amp;#xe092;', '&amp;#xe0f8;', '&amp;#xe0fa;', '&amp;#xe0e7;', '&amp;#xe0fd;', '&amp;#xe0e4;', '&amp;#xe0e5;', '&amp;#xe0f7;', '&amp;#xe0e0;', '&amp;#xe0fc;', '&amp;#xe0f9;', '&amp;#xe0dd;', '&amp;#xe0f1;', '&amp;#xe0dc;', '&amp;#xe0f3;', '&amp;#xe0d8;', '&amp;#xe0db;', '&amp;#xe0f0;', '&amp;#xe0df;', '&amp;#xe0f2;', '&amp;#xe0f4;', '&amp;#xe0d9;', '&amp;#xe0da;', '&amp;#xe0de;', '&amp;#xe0e6;', '&amp;#xe093;', '&amp;#xe094;', '&amp;#xe095;', '&amp;#xe096;', '&amp;#xe097;', '&amp;#xe098;', '&amp;#xe099;', '&amp;#xe09a;', '&amp;#xe09b;', '&amp;#xe09c;', '&amp;#xe09d;', '&amp;#xe09e;', '&amp;#xe09f;', '&amp;#xe0a0;', '&amp;#xe0a1;', '&amp;#xe0a2;', '&amp;#xe0a3;', '&amp;#xe0a4;', '&amp;#xe0a5;', '&amp;#xe0a6;', '&amp;#xe0a7;', '&amp;#xe0a8;', '&amp;#xe0a9;', '&amp;#xe0aa;', '&amp;#xe0ab;', '&amp;#xe0ac;', '&amp;#xe0ad;', '&amp;#xe0ae;', '&amp;#xe0af;', '&amp;#xe0b0;', '&amp;#xe0b1;', '&amp;#xe0b2;', '&amp;#xe0b3;', '&amp;#xe0b4;', '&amp;#xe0b5;', '&amp;#xe0b6;', '&amp;#xe0b7;', '&amp;#xe0b8;', '&amp;#xe0b9;', '&amp;#xe0ba;', '&amp;#xe0bb;', '&amp;#xe0bc;', '&amp;#xe0bd;', '&amp;#xe0be;', '&amp;#xe0bf;', '&amp;#xe0c0;', '&amp;#xe0c1;', '&amp;#xe0c2;', '&amp;#xe0c3;', '&amp;#xe0c4;', '&amp;#xe0c5;', '&amp;#xe0c6;', '&amp;#xe0c7;', '&amp;#xe0c8;', '&amp;#xe0c9;', '&amp;#xe0ca;', '&amp;#xe0cb;', '&amp;#xe0cc;', '&amp;#xe0cd;', '&amp;#xe0ce;', '&amp;#xe0cf;', '&amp;#xe0d0;', '&amp;#xe0d1;', '&amp;#xe0d2;', '&amp;#xe0d3;', '&amp;#xe0d4;', '&amp;#xe0d5;', '&amp;#xe0d6;', '&amp;#xe0d7;', '&amp;#xe600;', '&amp;#xe601;', '&amp;#xe602;', '&amp;#xe603;', '&amp;#xe604;', '&amp;#xe605;', '&amp;#xe606;', '&amp;#xe607;', '&amp;#xe608;', '&amp;#xe609;', '&amp;#xe60a;', '&amp;#xe60b;', '&amp;#xe60c;', '&amp;#xe60d;', '&amp;#xe60e;', '&amp;#xe60f;', '&amp;#xe610;', '&amp;#xe611;', '&amp;#xe612;', );
+	$symbols = array( '&amp;#x21;', '&amp;#x22;', '&amp;#x23;', '&amp;#x24;', '&amp;#x25;', '&amp;#x26;', '&amp;#x27;', '&amp;#x28;', '&amp;#x29;', '&amp;#x2a;', '&amp;#x2b;', '&amp;#x2c;', '&amp;#x2d;', '&amp;#x2e;', '&amp;#x2f;', '&amp;#x30;', '&amp;#x31;', '&amp;#x32;', '&amp;#x33;', '&amp;#x34;', '&amp;#x35;', '&amp;#x36;', '&amp;#x37;', '&amp;#x38;', '&amp;#x39;', '&amp;#x3a;', '&amp;#x3b;', '&amp;#x3c;', '&amp;#x3d;', '&amp;#x3e;', '&amp;#x3f;', '&amp;#x40;', '&amp;#x41;', '&amp;#x42;', '&amp;#x43;', '&amp;#x44;', '&amp;#x45;', '&amp;#x46;', '&amp;#x47;', '&amp;#x48;', '&amp;#x49;', '&amp;#x4a;', '&amp;#x4b;', '&amp;#x4c;', '&amp;#x4d;', '&amp;#x4e;', '&amp;#x4f;', '&amp;#x50;', '&amp;#x51;', '&amp;#x52;', '&amp;#x53;', '&amp;#x54;', '&amp;#x55;', '&amp;#x56;', '&amp;#x57;', '&amp;#x58;', '&amp;#x59;', '&amp;#x5a;', '&amp;#x5b;', '&amp;#x5c;', '&amp;#x5d;', '&amp;#x5e;', '&amp;#x5f;', '&amp;#x60;', '&amp;#x61;', '&amp;#x62;', '&amp;#x63;', '&amp;#x64;', '&amp;#x65;', '&amp;#x66;', '&amp;#x67;', '&amp;#x68;', '&amp;#x69;', '&amp;#x6a;', '&amp;#x6b;', '&amp;#x6c;', '&amp;#x6d;', '&amp;#x6e;', '&amp;#x6f;', '&amp;#x70;', '&amp;#x71;', '&amp;#x72;', '&amp;#x73;', '&amp;#x74;', '&amp;#x75;', '&amp;#x76;', '&amp;#x77;', '&amp;#x78;', '&amp;#x79;', '&amp;#x7a;', '&amp;#x7b;', '&amp;#x7c;', '&amp;#x7d;', '&amp;#x7e;', '&amp;#xe000;', '&amp;#xe001;', '&amp;#xe002;', '&amp;#xe003;', '&amp;#xe004;', '&amp;#xe005;', '&amp;#xe006;', '&amp;#xe007;', '&amp;#xe009;', '&amp;#xe00a;', '&amp;#xe00b;', '&amp;#xe00c;', '&amp;#xe00d;', '&amp;#xe00e;', '&amp;#xe00f;', '&amp;#xe010;', '&amp;#xe011;', '&amp;#xe012;', '&amp;#xe013;', '&amp;#xe014;', '&amp;#xe015;', '&amp;#xe016;', '&amp;#xe017;', '&amp;#xe018;', '&amp;#xe019;', '&amp;#xe01a;', '&amp;#xe01b;', '&amp;#xe01c;', '&amp;#xe01d;', '&amp;#xe01e;', '&amp;#xe01f;', '&amp;#xe020;', '&amp;#xe021;', '&amp;#xe022;', '&amp;#xe023;', '&amp;#xe024;', '&amp;#xe025;', '&amp;#xe026;', '&amp;#xe027;', '&amp;#xe028;', '&amp;#xe029;', '&amp;#xe02a;', '&amp;#xe02b;', '&amp;#xe02c;', '&amp;#xe02d;', '&amp;#xe02e;', '&amp;#xe02f;', '&amp;#xe030;', '&amp;#xe103;', '&amp;#xe0ee;', '&amp;#xe0ef;', '&amp;#xe0e8;', '&amp;#xe0ea;', '&amp;#xe101;', '&amp;#xe107;', '&amp;#xe108;', '&amp;#xe102;', '&amp;#xe106;', '&amp;#xe0eb;', '&amp;#xe010;', '&amp;#xe105;', '&amp;#xe0ed;', '&amp;#xe100;', '&amp;#xe104;', '&amp;#xe0e9;', '&amp;#xe109;', '&amp;#xe0ec;', '&amp;#xe0fe;', '&amp;#xe0f6;', '&amp;#xe0fb;', '&amp;#xe0e2;', '&amp;#xe0e3;', '&amp;#xe0f5;', '&amp;#xe0e1;', '&amp;#xe0ff;', '&amp;#xe031;', '&amp;#xe032;', '&amp;#xe033;', '&amp;#xe034;', '&amp;#xe035;', '&amp;#xe036;', '&amp;#xe037;', '&amp;#xe038;', '&amp;#xe039;', '&amp;#xe03a;', '&amp;#xe03b;', '&amp;#xe03c;', '&amp;#xe03d;', '&amp;#xe03e;', '&amp;#xe03f;', '&amp;#xe040;', '&amp;#xe041;', '&amp;#xe042;', '&amp;#xe043;', '&amp;#xe044;', '&amp;#xe045;', '&amp;#xe046;', '&amp;#xe047;', '&amp;#xe048;', '&amp;#xe049;', '&amp;#xe04a;', '&amp;#xe04b;', '&amp;#xe04c;', '&amp;#xe04d;', '&amp;#xe04e;', '&amp;#xe04f;', '&amp;#xe050;', '&amp;#xe051;', '&amp;#xe052;', '&amp;#xe053;', '&amp;#xe054;', '&amp;#xe055;', '&amp;#xe056;', '&amp;#xe057;', '&amp;#xe058;', '&amp;#xe059;', '&amp;#xe05a;', '&amp;#xe05b;', '&amp;#xe05c;', '&amp;#xe05d;', '&amp;#xe05e;', '&amp;#xe05f;', '&amp;#xe060;', '&amp;#xe061;', '&amp;#xe062;', '&amp;#xe063;', '&amp;#xe064;', '&amp;#xe065;', '&amp;#xe066;', '&amp;#xe067;', '&amp;#xe068;', '&amp;#xe069;', '&amp;#xe06a;', '&amp;#xe06b;', '&amp;#xe06c;', '&amp;#xe06d;', '&amp;#xe06e;', '&amp;#xe06f;', '&amp;#xe070;', '&amp;#xe071;', '&amp;#xe072;', '&amp;#xe073;', '&amp;#xe074;', '&amp;#xe075;', '&amp;#xe076;', '&amp;#xe077;', '&amp;#xe078;', '&amp;#xe079;', '&amp;#xe07a;', '&amp;#xe07b;', '&amp;#xe07c;', '&amp;#xe07d;', '&amp;#xe07e;', '&amp;#xe07f;', '&amp;#xe080;', '&amp;#xe081;', '&amp;#xe082;', '&amp;#xe083;', '&amp;#xe084;', '&amp;#xe085;', '&amp;#xe086;', '&amp;#xe087;', '&amp;#xe088;', '&amp;#xe089;', '&amp;#xe08a;', '&amp;#xe08b;', '&amp;#xe08c;', '&amp;#xe08d;', '&amp;#xe08e;', '&amp;#xe08f;', '&amp;#xe090;', '&amp;#xe091;', '&amp;#xe092;', '&amp;#xe0f8;', '&amp;#xe0fa;', '&amp;#xe0e7;', '&amp;#xe0fd;', '&amp;#xe0e4;', '&amp;#xe0e5;', '&amp;#xe0f7;', '&amp;#xe0e0;', '&amp;#xe0fc;', '&amp;#xe0f9;', '&amp;#xe0dd;', '&amp;#xe0f1;', '&amp;#xe0dc;', '&amp;#xe0f3;', '&amp;#xe0d8;', '&amp;#xe0db;', '&amp;#xe0f0;', '&amp;#xe0df;', '&amp;#xe0f2;', '&amp;#xe0f4;', '&amp;#xe0d9;', '&amp;#xe0da;', '&amp;#xe0de;', '&amp;#xe0e6;', '&amp;#xe093;', '&amp;#xe094;', '&amp;#xe095;', '&amp;#xe096;', '&amp;#xe097;', '&amp;#xe098;', '&amp;#xe099;', '&amp;#xe09a;', '&amp;#xe09b;', '&amp;#xe09c;', '&amp;#xe09d;', '&amp;#xe09e;', '&amp;#xe09f;', '&amp;#xe0a0;', '&amp;#xe0a1;', '&amp;#xe0a2;', '&amp;#xe0a3;', '&amp;#xe0a4;', '&amp;#xe0a5;', '&amp;#xe0a6;', '&amp;#xe0a7;', '&amp;#xe0a8;', '&amp;#xe0a9;', '&amp;#xe0aa;', '&amp;#xe0ab;', '&amp;#xe0ac;', '&amp;#xe0ad;', '&amp;#xe0ae;', '&amp;#xe0af;', '&amp;#xe0b0;', '&amp;#xe0b1;', '&amp;#xe0b2;', '&amp;#xe0b3;', '&amp;#xe0b4;', '&amp;#xe0b5;', '&amp;#xe0b6;', '&amp;#xe0b7;', '&amp;#xe0b8;', '&amp;#xe0b9;', '&amp;#xe0ba;', '&amp;#xe0bb;', '&amp;#xe0bc;', '&amp;#xe0bd;', '&amp;#xe0be;', '&amp;#xe0bf;', '&amp;#xe0c0;', '&amp;#xe0c1;', '&amp;#xe0c2;', '&amp;#xe0c3;', '&amp;#xe0c4;', '&amp;#xe0c5;', '&amp;#xe0c6;', '&amp;#xe0c7;', '&amp;#xe0c8;', '&amp;#xe0c9;', '&amp;#xe0ca;', '&amp;#xe0cb;', '&amp;#xe0cc;', '&amp;#xe0cd;', '&amp;#xe0ce;', '&amp;#xe0cf;', '&amp;#xe0d0;', '&amp;#xe0d1;', '&amp;#xe0d2;', '&amp;#xe0d3;', '&amp;#xe0d4;', '&amp;#xe0d5;', '&amp;#xe0d6;', '&amp;#xe0d7;', '&amp;#xe600;', '&amp;#xe601;', '&amp;#xe602;', '&amp;#xe603;', '&amp;#xe604;', '&amp;#xe605;', '&amp;#xe606;', '&amp;#xe607;', '&amp;#xe608;', '&amp;#xe609;', '&amp;#xe60a;', '&amp;#xe60b;', '&amp;#xe60c;', '&amp;#xe60d;', '&amp;#xe60e;', '&amp;#xe60f;', '&amp;#xe610;', '&amp;#xe611;', '&amp;#xe612;', '&amp;#xe008;', );
 
 	$symbols = apply_filters( 'et_pb_font_icon_symbols', $symbols );
 
@@ -457,13 +457,13 @@ function et_pb_extract_items( $content ) {
 endif;
 
 if ( ! function_exists( 'et_builder_process_range_value' ) ) :
-function et_builder_process_range_value( $range ) {
+function et_builder_process_range_value( $range, $option_type = '' ) {
 	$range = trim( $range );
-	$range_digit = intval( $range );
+	$range_digit = floatval( $range );
 	$range_string = str_replace( $range_digit, '', (string) $range );
 
 	if ( '' === $range_string ) {
-		$range_string = 'px';
+		$range_string = 'line_height' === $option_type && 3 >= $range_digit ? 'em' : 'px';
 	}
 
 	$result = $range_digit . $range_string;
@@ -486,6 +486,41 @@ function et_builder_get_border_styles() {
 	);
 
 	return apply_filters( 'et_builder_border_styles', $styles );
+}
+endif;
+
+if ( ! function_exists( 'et_builder_get_websafe_fonts' ) ) :
+function et_builder_get_websafe_fonts() {
+	$websafe_fonts = array(
+		'Georgia' => array(
+			'styles' 		=> '300italic,400italic,600italic,700italic,800italic,400,300,600,700,800',
+			'character_set' => 'cyrillic,greek,latin',
+			'type'			=> 'serif',
+		),
+		'Times New Roman' => array(
+			'styles' 		=> '300italic,400italic,600italic,700italic,800italic,400,300,600,700,800',
+			'character_set' => 'arabic,cyrillic,greek,hebrew,latin',
+			'type'			=> 'serif',
+		),
+		'Arial' => array(
+			'styles' 		=> '300italic,400italic,600italic,700italic,800italic,400,300,600,700,800',
+			'character_set' => 'arabic,cyrillic,greek,hebrew,latin',
+			'type'			=> 'sans-serif',
+		),
+		'Trebuchet' => array(
+			'styles' 		=> '300italic,400italic,600italic,700italic,800italic,400,300,600,700,800',
+			'character_set' => 'cyrillic,latin',
+			'type'			=> 'sans-serif',
+			'add_ms_version'=> true,
+		),
+		'Verdana' => array(
+			'styles' 		=> '300italic,400italic,600italic,700italic,800italic,400,300,600,700,800',
+			'character_set' => 'cyrillic,latin',
+			'type'			=> 'sans-serif',
+		),
+	);
+
+	return apply_filters( 'et_websafe_fonts', $websafe_fonts );
 }
 endif;
 
@@ -923,6 +958,14 @@ function et_builder_get_google_fonts() {
 }
 endif;
 
+if ( ! function_exists( 'et_builder_get_fonts' ) ) :
+function et_builder_get_fonts() {
+	$fonts = array_merge( et_builder_get_websafe_fonts(), et_builder_get_google_fonts() );
+
+	return $fonts;
+}
+endif;
+
 if ( ! function_exists( 'et_builder_font_options' ) ) :
 function et_builder_font_options() {
 	$options         = array();
@@ -930,9 +973,9 @@ function et_builder_font_options() {
 	$default_options = array( 'default' => array(
 		'name' => __( 'Default', 'et_builder' ),
 	) );
-	$google_fonts    = array_merge( $default_options, et_builder_get_google_fonts() );
+	$fonts           = array_merge( $default_options, et_builder_get_fonts() );
 
-	foreach ( $google_fonts as $font_name => $font_settings ) {
+	foreach ( $fonts as $font_name => $font_settings ) {
 		$options[ $font_name ] = 'default' !== $font_name ? $font_name : $font_settings['name'];
 	}
 
@@ -979,24 +1022,27 @@ endif;
 
 if ( ! function_exists( 'et_builder_get_font_family' ) ) :
 function et_builder_get_font_family( $font_name, $use_important = false ) {
-	$google_fonts = et_builder_get_google_fonts();
+	$fonts = et_builder_get_fonts();
 
 	$font_style = $font_weight = '';
 
-	if ( isset( $google_fonts[ $font_name ]['parent_font'] ) ){
-		$font_style = $google_fonts[ $font_name ]['styles'];
-		$font_name = $google_fonts[ $font_name ]['parent_font'];
+	$font_name_ms = isset( $fonts[ $font_name ] ) && isset( $fonts[ $font_name ]['add_ms_version'] ) ? "'{$font_name} MS', " : "";
+
+	if ( isset( $fonts[ $font_name ]['parent_font'] ) ){
+		$font_style = $fonts[ $font_name ]['styles'];
+		$font_name = $fonts[ $font_name ]['parent_font'];
 	}
 
 	if ( '' !== $font_style ) {
 		$font_weight = sprintf( ' font-weight: %1$s;', esc_html( $font_style ) );
 	}
 
-	$style = sprintf( 'font-family: \'%1$s\', %2$s%3$s;%4$s',
+	$style = sprintf( 'font-family: \'%1$s\', %5$s%2$s%3$s;%4$s',
 		esc_html( $font_name ),
-		et_builder_get_websafe_font_stack( $google_fonts[ $font_name ]['type'] ),
+		isset( $fonts[ $font_name ] ) ? et_builder_get_websafe_font_stack( $fonts[ $font_name ]['type'] ) : "",
 		( $use_important ? ' !important' : '' ),
-		$font_weight
+		$font_weight,
+		$font_name_ms
 	);
 
 	return $style;
@@ -1102,20 +1148,31 @@ endif;
 
 if ( ! function_exists( 'et_builder_enqueue_font' ) ) :
 function et_builder_enqueue_font( $font_name ) {
-	$google_fonts = et_builder_get_google_fonts();
+	$fonts = et_builder_get_fonts();
+	$websafe_fonts = et_builder_get_websafe_fonts();
 	$protocol = is_ssl() ? 'https' : 'http';
 
-	if ( isset( $google_fonts[ $font_name ]['parent_font'] ) ){
-		$font_name = $google_fonts[ $font_name ]['parent_font'];
+	// Skip enqueueing if font name is not found. Possibly happen if support for particular font need to be dropped
+	if ( ! array_key_exists( $font_name, $fonts ) ) {
+		return;
 	}
-	$google_font_character_set = $google_fonts[ $font_name ]['character_set'];
+
+	// Skip enqueueing for websafe fonts
+	if ( array_key_exists( $font_name, $websafe_fonts ) ) {
+		return;
+	}
+
+	if ( isset( $fonts[ $font_name ]['parent_font'] ) ){
+		$font_name = $fonts[ $font_name ]['parent_font'];
+	}
+	$font_character_set = $fonts[ $font_name ]['character_set'];
 
 	$query_args = array(
 		'family' => sprintf( '%s:%s',
 			str_replace( ' ', '+', $font_name ),
-			apply_filters( 'et_builder_set_styles', $google_fonts[ $font_name ]['styles'], $font_name )
+			apply_filters( 'et_builder_set_styles', $fonts[ $font_name ]['styles'], $font_name )
 		),
-		'subset' => apply_filters( 'et_builder_set_character_set', $google_font_character_set, $font_name ),
+		'subset' => apply_filters( 'et_builder_set_character_set', $font_character_set, $font_name ),
 	);
 
 	$font_name_slug = sprintf(
@@ -1181,6 +1238,24 @@ function et_pb_video_get_oembed_thumbnail() {
 	die();
 }
 add_action( 'wp_ajax_et_pb_video_get_oembed_thumbnail', 'et_pb_video_get_oembed_thumbnail' );
+
+function et_builder_widgets_init(){
+	$et_pb_widgets = get_theme_mod( 'et_pb_widgets' );
+
+	if ( $et_pb_widgets['areas'] ) {
+		foreach ( $et_pb_widgets['areas'] as $id => $name ) {
+			register_sidebar( array(
+				'name' => sanitize_text_field( $name ),
+				'id' => sanitize_text_field( $id ),
+				'before_widget' => '<div id="%1$s" class="et_pb_widget %2$s">',
+				'after_widget' => '</div> <!-- end .et_pb_widget -->',
+				'before_title' => '<h4 class="widgettitle">',
+				'after_title' => '</h4>',
+			) );
+		}
+	}
+}
+add_action( 'wp_loaded', 'et_builder_widgets_init' );
 
 if ( ! function_exists( 'et_builder_get_widget_areas' ) ) :
 function et_builder_get_widget_areas() {
@@ -1398,7 +1473,7 @@ function et_pb_metabox_settings_save_details( $post_id, $post ){
 	if ( ! current_user_can( $post_type->cap->edit_post, $post_id ) )
 		return $post_id;
 
-	if ( ! isset( $_POST['et_settings_nonce'] ) || ! wp_verify_nonce( $_POST['et_settings_nonce'], basename( __FILE__ ) ) )
+	if ( ! isset( $_POST['et_pb_settings_nonce'] ) || ! wp_verify_nonce( $_POST['et_pb_settings_nonce'], basename( __FILE__ ) ) )
 		return $post_id;
 
 	if ( isset( $_POST['et_pb_page_layout'] ) ) {
@@ -1458,7 +1533,7 @@ function et_pb_before_main_editor( $post ) {
 
 	?>
 	<p class="et_pb_page_settings" style="display: none;">
-		<?php wp_nonce_field( basename( __FILE__ ), 'et_settings_nonce' ); ?>
+		<?php wp_nonce_field( basename( __FILE__ ), 'et_pb_settings_nonce' ); ?>
 		<input type="hidden" id="et_pb_use_builder" name="et_pb_use_builder" value="<?php echo esc_attr( $_et_builder_use_builder ); ?>" />
 		<textarea id="et_pb_old_content" name="et_pb_old_content"><?php echo esc_attr( get_post_meta( $post->ID, '_et_pb_old_content', true ) ); ?></textarea>
 	</p>
@@ -2019,6 +2094,7 @@ function et_pb_add_builder_page_js_css(){
 		'et_pb_preview_nonce' => wp_create_nonce( 'et_pb_preview_nonce' ),
 		'is_divi_library'  => 'et_pb_layout' === $typenow ? 1 : 0,
 		'layout_type'      => 'et_pb_layout' === $typenow ? et_pb_get_layout_type( get_the_ID() ) : 0,
+		'is_plugin_used'   => et_is_builder_plugin_active(),
 	) );
 
 	wp_enqueue_style( 'et_pb_admin_css', ET_BUILDER_URI .'/styles/style.css', array(), ET_BUILDER_VERSION );
@@ -2081,11 +2157,11 @@ function et_pb_postinfo_meta( $postinfo, $date_format, $comment_zero, $comment_o
 	$postinfo_meta = '';
 
 	if ( in_array( 'author', $postinfo ) )
-		$postinfo_meta .= ' ' . esc_html__( 'by', 'et_builder' ) . ' ' . et_pb_get_the_author_posts_link();
+		$postinfo_meta .= ' ' . esc_html__( 'by', 'et_builder' ) . ' <span class="author vcard">' . et_pb_get_the_author_posts_link() . '</span>';
 
 	if ( in_array( 'date', $postinfo ) ) {
 		if ( in_array( 'author', $postinfo ) ) $postinfo_meta .= ' | ';
-		$postinfo_meta .= get_the_time( wp_unslash( $date_format ) );
+		$postinfo_meta .= '<span class="published">' . get_the_time( wp_unslash( $date_format ) ) . '</span>';
 	}
 
 	if ( in_array( 'categories', $postinfo ) ){
@@ -3352,24 +3428,58 @@ function et_is_builder_plugin_active() {
 endif;
 
 if ( ! function_exists( 'et_pb_get_mailchimp_lists' ) ) :
-function et_pb_get_mailchimp_lists() {
+function et_pb_get_mailchimp_lists( $regenerate_mailchimp_list = 'off' ) {
 	$lists = array();
 
-	$mailchimp_api_key = et_get_option( 'divi_mailchimp_api_key' );
-	if ( empty( $mailchimp_api_key ) ) {
+	if ( et_is_builder_plugin_active() ) {
+		$mailchimp_api_option = get_option( 'et_pb_builder_options' );
+		$mailchimp_api_key = isset( $mailchimp_api_option['newsletter_main_mailchimp_key'] ) ? $mailchimp_api_option['newsletter_main_mailchimp_key'] : '';
+	} else {
+		$mailchimp_api_key = et_get_option( 'divi_mailchimp_api_key' );
+		$regenerate_mailchimp_list = et_get_option( 'divi_regenerate_mailchimp_lists', 'false' );
+	}
+
+	if ( empty( $mailchimp_api_key ) || false === strpos( $mailchimp_api_key, '-' ) ) {
 		return false;
 	}
 
-	if ( 'on' === et_get_option( 'divi_regenerate_mailchimp_lists', 'false' ) || false === ( $et_pb_mailchimp_lists = get_transient( 'et_pb_mailchimp_lists' ) ) ) {
+	if ( 'on' === $regenerate_mailchimp_list || false === ( $et_pb_mailchimp_lists = get_transient( 'et_pb_mailchimp_lists' ) ) ) {
 		if ( ! class_exists( 'MailChimp_Divi' ) ) {
 			require_once( ET_BUILDER_DIR . 'subscription/mailchimp/mailchimp.php' );
 		}
 
 		try {
 			$mailchimp = new MailChimp_Divi( $mailchimp_api_key );
-			$retval = $mailchimp->call('lists/list');
-			if ( ! empty( $retval['data'] ) ) {
-				foreach ( $retval['data'] as $list ) {
+			$retval = $mailchimp->call( 'lists/list', array( 'limit' => 100 ) );
+			$retval_body = json_decode( wp_remote_retrieve_body( $retval ), true );
+			$retrieved_lists = isset( $retval_body['data'] ) ? $retval_body['data'] : array();
+
+			if ( 200 !== wp_remote_retrieve_response_code( $retval ) || empty( $retval_body['data'] ) || ! is_array( $retval_body['data'] ) ) {
+				return $et_pb_mailchimp_lists;
+			}
+
+			// if there is more than 100 lists in account, then perform additional calls to retrieve all the lists.
+			if ( ! empty( $retval_body['total'] ) && 100 < $retval_body['total'] ) {
+				// determine how many requests we need to retrieve all the lists
+				$total_pages = ceil( $retval_body['total'] / 100 );
+
+				for ( $i = 1; $i <= $total_pages; $i++ ) {
+					$retval_additional = $mailchimp->call( 'lists/list', array(
+							'limit' => 100,
+							'start' => $i,
+						)
+					);
+
+					if ( ! empty( $retval_additional ) && empty( $retval_additional['errors'] ) ) {
+						if ( ! empty( $retval_additional['data'] ) ) {
+							$retrieved_lists = array_merge( $retrieved_lists, $retval_additional['data'] );
+						}
+					}
+				}
+			}
+
+			if ( ! empty( $retrieved_lists ) ) {
+				foreach ( $retrieved_lists as $list ) {
 					$lists[$list['id']] = $list['name'];
 				}
 			}
@@ -3380,6 +3490,8 @@ function et_pb_get_mailchimp_lists() {
 		}
 
 		return $lists;
+	} else {
+		return $et_pb_mailchimp_lists;
 	}
 }
 endif;
@@ -3389,11 +3501,18 @@ function et_pb_get_aweber_account() {
 	if ( ! class_exists( 'AWeberAPI' ) ) {
 		require_once( ET_BUILDER_DIR . 'subscription/aweber/aweber_api.php' );
 	}
-
-	$consumer_key = et_get_option( 'divi_aweber_consumer_key' );
-	$consumer_secret = et_get_option( 'divi_aweber_consumer_secret' );
-	$access_key = et_get_option( 'divi_aweber_access_key' );
-	$access_secret = et_get_option( 'divi_aweber_access_secret' );
+	if ( et_is_builder_plugin_active() ) {
+		$aweber_api_option = get_option( 'et_pb_builder_options' );
+		$consumer_key = isset( $aweber_api_option['aweber_consumer_key'] ) ? $aweber_api_option['aweber_consumer_key'] : '';
+		$consumer_secret = isset( $aweber_api_option['aweber_consumer_secret'] ) ? $aweber_api_option['aweber_consumer_secret'] : '';
+		$access_key = isset( $aweber_api_option['aweber_access_key'] ) ? $aweber_api_option['aweber_access_key'] : '';
+		$access_secret = isset( $aweber_api_option['aweber_access_secret'] ) ? $aweber_api_option['aweber_access_secret'] : '';
+	} else {
+		$consumer_key = et_get_option( 'divi_aweber_consumer_key' );
+		$consumer_secret = et_get_option( 'divi_aweber_consumer_secret' );
+		$access_key = et_get_option( 'divi_aweber_access_key' );
+		$access_secret = et_get_option( 'divi_aweber_access_secret' );
+	}
 
 	if ( ! empty( $consumer_key ) && ! empty( $consumer_secret ) && ! empty( $access_key ) && ! empty( $access_secret ) ) {
 		try {
@@ -3421,16 +3540,20 @@ function et_pb_get_aweber_account() {
 endif;
 
 if ( ! function_exists( 'et_pb_get_aweber_lists' ) ) :
-function et_pb_get_aweber_lists() {
+function et_pb_get_aweber_lists( $regenerate_aweber_list = 'off' ) {
 	$lists = array();
 
 	$account = et_pb_get_aweber_account();
+
+	if ( ! et_is_builder_plugin_active() ) {
+		$regenerate_aweber_list = et_get_option( 'divi_regenerate_aweber_lists', 'false' );
+	}
 
 	if ( ! $account ) {
 		return false;
 	}
 
-	if ( 'on' === et_get_option( 'divi_regenerate_aweber_lists', 'false' ) || false === ( $et_pb_aweber_lists = get_transient( 'et_pb_aweber_lists' ) ) ) {
+	if ( 'on' === $regenerate_aweber_list || false === ( $et_pb_aweber_lists = get_transient( 'et_pb_aweber_lists' ) ) ) {
 
 		if ( ! class_exists( 'AWeberAPI' ) ) {
 			require_once( ET_BUILDER_DIR . 'subscription/aweber/aweber_api.php' );
@@ -3480,30 +3603,34 @@ function et_pb_submit_subscribe_form() {
 			if ( ! class_exists( 'MailChimp_Divi' ) )
 				require_once( ET_BUILDER_DIR . 'subscription/mailchimp/mailchimp.php' );
 
-			$mailchimp_api_key = et_get_option( 'divi_mailchimp_api_key' );
+			if ( et_is_builder_plugin_active() ) {
+				$mailchimp_api_option = get_option( 'et_pb_builder_options' );
+				$mailchimp_api_key = isset( $mailchimp_api_option['newsletter_main_mailchimp_key'] ) ? $mailchimp_api_option['newsletter_main_mailchimp_key'] : '';
+			} else {
+				$mailchimp_api_key = et_get_option( 'divi_mailchimp_api_key' );
+			}
 
 			if ( '' === $mailchimp_api_key ) die( json_encode( array( 'error' => __( 'Configuration error: api key is not defined', 'Divi' ) ) ) );
-
-
 				$mailchimp = new MailChimp_Divi( $mailchimp_api_key );
 
-				$merge_vars = array(
-					'FNAME' => $firstname,
-					'LNAME' => $lastname,
-				);
-
-				$retval =  $mailchimp->call('lists/subscribe', array(
+				$subscribe_args = array(
 					'id'         => $list_id,
 					'email'      => $email,
-					'merge_vars' => $merge_vars,
-				));
+					'merge_vars' => array(
+						'FNAME'  => $firstname,
+						'LNAME'  => $lastname,
+					),
+				);
 
-				if ( isset($retval['error']) ) {
-					if ( '214' == $retval['code'] ) {
-						$error_message = str_replace( 'Click here to update your profile.', '', $retval['error'] );
+				$retval =  $mailchimp->call('lists/subscribe', $subscribe_args );
+
+				if ( 200 !== wp_remote_retrieve_response_code( $retval ) ) {
+					if ( '214' === wp_remote_retrieve_header( $retval, 'x-mailchimp-api-error-code' ) ) {
+						$mailchimp_message = json_decode( wp_remote_retrieve_body( $retval ), true );
+						$error_message = isset( $mailchimp_message['error'] ) ? $mailchimp_message['error'] : wp_remote_retrieve_body( $retval );
 						$result = json_encode( array( 'success' => $error_message ) );
 					} else {
-						$result = json_encode( array( 'success' => $retval['error'] ) );
+						$result = json_encode( array( 'success' => wp_remote_retrieve_response_message( $retval ) ) );
 					}
 				} else {
 					$result = json_encode( array( 'success' => $success_message ) );
@@ -3995,9 +4122,7 @@ function et_get_gallery_attachments( $attr ) {
 			'orderby'        => $atts['orderby'],
 		) );
 	}
-	if ( empty( $attachments ) ) {
-		return '';
-	}
+
 	return $attachments;
 }
 endif;
@@ -4010,6 +4135,11 @@ function et_gallery_layout( $val, $attr ) {
 	if ( ! empty( $val ) ) {
 		return $val;
 	}
+
+	if ( et_is_builder_plugin_active() ) {
+		return $val;
+	}
+
 	$output = '';
 
 	if ( ! is_singular() && ! et_pb_is_pagebuilder_used( get_the_ID() ) ) {
@@ -4066,9 +4196,36 @@ function et_gallery_layout( $val, $attr ) {
 }
 add_filter( 'post_gallery', 'et_gallery_layout', 1000, 2 );
 
-if ( ! function_exists( 'et_gallery_images' ) ) :
-function et_gallery_images() {
-	printf( do_shortcode( '%1$s' ), get_post_gallery() );
+if ( ! function_exists( 'et_pb_gallery_images' ) ) :
+function et_pb_gallery_images( $force_gallery_layout = '' ) {
+	if ( 'slider' === $force_gallery_layout ) {
+		$attachments = get_post_gallery( get_the_ID(), false );
+		$gallery_output = '';
+		$output = '';
+		$images_array = ! empty( $attachments['ids'] ) ? explode( ',', $attachments['ids'] ) : array();
+
+		if ( empty ( $images_array ) ) {
+			return $output;
+		}
+
+		foreach ( $images_array as $attachment ) {
+			$image_src = wp_get_attachment_url( $attachment, 'et-pb-post-main-image-fullwidth' );
+			$gallery_output .= sprintf(
+				'<div class="et_pb_slide" style="background: url(%1$s);"></div>',
+				esc_html( $image_src )
+			);
+		}
+		printf(
+			'<div class="et_pb_slider et_pb_slider_fullwidth_off et_pb_gallery_post_type">
+				<div class="et_pb_slides">
+					%1$s
+				</div>
+			</div>',
+			$gallery_output
+		);
+	} else {
+		printf( do_shortcode( '%1$s' ), get_post_gallery() );
+	}
 }
 endif;
 
@@ -4112,6 +4269,10 @@ function et_pb_all_role_options() {
 				'default'        => 'on',
 				'applicability'  => array( 'administrator' ),
 			),
+			'page_options' => array(
+				'name'    => esc_html__( 'Page Options', 'et_builder' ),
+				'default' => 'on',
+			),
 		)
 		: array();
 
@@ -4126,10 +4287,6 @@ function et_pb_all_role_options() {
 				),
 				'divi_library' => array(
 					'name'    => esc_html__( 'Divi Library', 'et_builder' ),
-					'default' => 'on',
-				),
-				'page_options' => array(
-					'name'    => esc_html__( 'Page Options', 'et_builder' ),
 					'default' => 'on',
 				),
 			),

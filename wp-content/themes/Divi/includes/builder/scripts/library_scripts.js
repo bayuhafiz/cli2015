@@ -191,9 +191,9 @@
 
 		$( '#et_show_export_section' ).click( function() {
 			var this_link = $( this ),
-				margin_value = this_link.hasClass( 'et_pb_opened' ) ? '-100%' : '0';
+				max_height_value = this_link.hasClass( 'et_pb_opened' ) ? '0' : '1000px';
 
-			$( '.et_pb_export_section' ).animate( { marginTop: margin_value }, 500 );
+			$( '.et_pb_export_section' ).animate( { maxHeight: max_height_value }, 500 );
 			this_link.toggleClass( 'et_pb_opened' );
 		});
 	});

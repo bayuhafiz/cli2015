@@ -1,3 +1,154 @@
+version 2.5.5 ( updated 10-21-2015 )
+- Fixed the issue with undefined et_get_option function, when some plugins are active on a site
+	* functions.php
+- Fixed the issue with incorrect font icons order
+	* includes/builder/functions.php
+- Fixed the issue with line-height default units in Page Builder advanced settings
+	* includes/builder/functions.php
+	* includes/builder/class-et-builder-element.php
+- Blog Module: Fixed the issue with WP-Pagenavi plugin
+	* includes/builder/main-modules.php
+- Bumped version number
+	* style.css
+
+version 2.5.4 ( updated 10-20-2015 )
+ - Fixed builder hotkeys, mistakenly capturing ALT + Z to undo changes
+	* includes/builder/scripts/builder.js
+- Image Module: Fixed the issue with Center alignment setting
+- Pricing table: Fixed the issue with Center alignment option not working properly
+	* includes/builder/main-modules.php
+	* includes/builder/styles/frontend-builder-style.css
+- Removed @import declarations from style.css. CSS code is located in style.css file now
+	* style.css
+- Fixed small design issues in predefined layouts
+	* includes/builder/layouts.php
+- Sidebar Module: Made the first registered sidebar default
+	* includes/builder/main-modules.php
+- Fixed the issue with Divi Library export feature when all the items were exported without Layout Type
+	* includes/builder/framework.php
+- Fixed the issue with right click feature not working on some elements inside the Row
+	* includes/builder/scripts/builder.js
+- Fixed the issue with gallery module caption custom styles not applied properly
+- Gallery and Filterable Portfolio: Fixed the issue with border option not applied properly
+- Person Module: Fixed the issue with hover icon color option not working properly
+- Portfolio module: Fixed the issue with "Caption color" option and renamed it to "Meta color"
+- Fullwidth Menu: Fixed the issue with broken menu styles, when Primary menu is not defined
+- Email Optin: Fixed the issue with Focus fields custom options not working
+	* includes/builder/main-modules.php
+- Fixed the issue with some float line-height values not working ( for example, 1.1em, 2.2em, 3.3em etc. )
+	* includes/builder/functions.php
+- Now multiple contact forms can be used on a page
+	* includes/builder/framework.php
+	* includes/builder/main-modules.php
+	* includes/builder/scripts/frontend-builder-scripts.js
+- Fixed the conflict of button custom color option with color scheme colors
+	* functions.php
+	* includes/builder/class-et-builder-element.php
+- Fixed the unexpected behavior when gutter width is set to 0 in Rows
+	* includes/builder/main-structure-elements.php
+- Fixed the issue when unwanted circle appearing in slider with video background on iOS
+	* includes/builder/styles/frontend-builder-style.css
+- Fixed the issue with wrong behavior of Enter and Esc hotkeys, when WordPress modal windows are open ( ex. Image Upload )
+	* includes/builder/scripts/builder.js
+- Fixed the issue with Page Builder editor fullscreen mode incorrect display in Firefox
+	* includes/builder/scripts/builder.js
+- Gallery Module: Fixed the issue with pagination, when multiple galleries exist on a page and one of them has ID attribute
+	* includes/builder/scripts/frontend-builder-scripts.js
+- Global Modules: Fixed the issue with Admin labels not being saved properly
+	* includes/builder/scripts/builder.js
+- Replaced enable/disable text in Dutch language to shorter version ( Aan/Uit )
+	* includes/builder/languages/nl_NL.po
+- Contact Form: Fixed wrongly decoded ampersand in module's email title
+	* includes/builder/main-modules.php
+- Updated Magnific Popup script to 1.0.0 version
+	* includes/builder/scripts/jquery.magnific-popup.js
+- Slider: Fixed item title's discrepancies
+	* style.css
+	* functions.php
+	* js/theme-customizer.js
+	* includes/builder/main-modules.php
+	* includes/builder/styles/frontend-builder-style.css
+- Added Parallax background images option for columns
+- Added Left/Right padding option for sections
+- Added custom margin options for Rows
+- Added Header Image to the CSS Tab in the Fullwidth Header module
+- Updated padding/margin/width option sanitization to accept "vh" and "vw"
+- Fixed the issue with CTA "max width" not being applied correctly
+	* includes/builder/class-et-builder-element.php
+	* includes/builder/main-modules.php
+	* includes/builder/main-structure-elements.php
+	* includes/builder/scripts/builder.js
+	* includes/builder/styles/frontend-builder-style.css
+- Fullwidth header: Fixed the issue when the module becomes inactive, when specific button icons are selected
+	* includes/builder/class-et-builder-element.php
+	* includes/builder/scripts/builder.js
+- Fixed the issue with Background color Reset button in Section settings
+	* includes/builder/main-structure-elements.php
+	* includes/builder/scripts/builder.js
+- Fixed encoding issue with French localization in Code Module
+	* includes/builder/class-et-builder-element.php
+- Countdown Module: Improved responsive layout on small screens
+	* includes/builder/main-modules.php
+	* includes/builder/scripts/frontend-builder-scripts.js
+- Added missing "gift" icon into the Icon Picker option in all Modules
+	* includes/builder/functions.php
+- Improved localization in Contact Form Module
+	* includes/builder/framework.php
+	* includes/builder/scripts/frontend-builder-scripts.js
+- Added support of Microformats
+	* includes/builder/functions.php
+	* includes/builder/main-modules.php
+	* index.php
+	* page.php
+	* single-project.php
+	* single.php
+- Fixed the issue with disappearing "Export Divi Layouts" button in FireFox
+	* includes/builder/scripts/library_scripts.js
+	* includes/builder/styles/library_pages.css
+- Fixed the issue with Submit button icon styling on hover in Contact Form module
+	* includes/builder/styles/frontend-builder-style.css
+- Blurb Module: Fixed the issue when description text alignment is always centered for 768px breakpoint and lower
+	* includes/builder/styles/frontend-builder-style.css
+- Fixed post title module padding issue
+	* includes/builder/styles/frontend-builder-style.css
+- Email Optin: Fixed the issue with 25 lists limit for MailChimp
+	* includes/builder/functions.php
+- Replaced curl function with wp_remote_post funciton in MailChimp_Divi class to avoid some issues
+	* includes/builder/subscription/mailchimp/mailchimp.php
+	* includes/builder/functions.php
+- Added Custom CSS tab to Individual Slides, Pricing tables, Bar Counters and Toggles
+	* includes/builder/class-et-builder-element.php
+	* includes/builder/main-modules.php
+- Added Basic ( websafe ) fonts into the Font options in Page Builder
+	* includes/builder/functions.php
+- Fixed the issue when preview in Customizer stops working with certain options, if fixed menu is disabled
+	* js/theme-customizer.js
+- Added "Disable Translations" option which forces Divi to use English regardless of Wordpress language
+	* epanel/options_divi.php
+	* functions.php
+- Fixed the issue with WooCommerce product image popup appearing under the header
+- Fixed "Comments Reply" button position on mobile breakpoints
+	* style.css
+- Fixed the calendar pagination issue with Events+ plugin
+	* js/custom.js
+- Added option to control number of Products displayed on WooCommerce archive pages
+	* epanel/custom_functions.php
+	* epanel/options_divi.php
+- Fixed the issue with "Hide Nav Before Scroll" option, not working correctly on Single Pages
+	* functions.php
+- Added ability to enter the values manually in Customizer range options
+	* css/theme-customizer-controls-styles.css
+	* functions.php
+	* js/theme-customizer-controls.js
+- Improved theme security by adding sanitization to all options in Customizer
+	* js/theme-customizer.js
+	* js/theme-customizer-controls.js
+	* includes/functions/sanitization.php
+	* includes/functions/choices.php
+	* header.php
+- Removed various backward compatibilities from ePanel which are no longer relevant
+	* epanel/custom_functions.php
+
 version 2.5.3 ( updated 09-05-2015 )
 - Code Module: Fixed the issue with shortcodes, not working in the module with WYSIWIG Text mode activated
 	* includes/builder/class-et-builder-element.php

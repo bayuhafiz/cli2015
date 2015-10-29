@@ -1,4 +1,3 @@
-<?php if ( ! isset( $_SESSION ) ) session_start(); ?>
 <!DOCTYPE html>
 <!--[if IE 6]>
 <html id="ie6" <?php language_attributes(); ?>>
@@ -14,7 +13,6 @@
 <!--<![endif]-->
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
-	<title><?php wp_title(); ?></title>
 	<?php elegant_description(); ?>
 	<?php elegant_keywords(); ?>
 	<?php elegant_canonical(); ?>
@@ -64,7 +62,7 @@
 
 				<div id="et-info">
 				<?php if ( '' !== ( $et_phone_number = et_get_option( 'phone_number' ) ) ) : ?>
-					<span id="et-info-phone"><?php echo esc_html( $et_phone_number ); ?></span>
+					<span id="et-info-phone"><?php echo et_sanitize_html_input_text( $et_phone_number ); ?></span>
 				<?php endif; ?>
 
 				<?php if ( '' !== ( $et_email = et_get_option( 'header_email' ) ) ) : ?>
@@ -159,7 +157,7 @@
 					}
 					?>
 
-					<?php if ( false !== et_get_option( 'show_search_icon', true ) ) : ?>
+					<?php if ( false !== et_get_option( 'show_search_icon', true ) || is_customize_preview() ) : ?>
 					<div id="et_top_search">
 						<span id="et_search_icon"></span>
 					</div>

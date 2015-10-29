@@ -180,6 +180,14 @@ $options = array (
                    "validation_type" => "url",
 				   "desc" => __( "Enter the URL of your RSS feed. ", $themename ) ),
 
+			array( "name" => esc_html__( "Number of Products displayed on WooCommerce archive pages", $themename ),
+				   "id" => $shortname . "_woocommerce_archive_num_posts",
+				   "std" => "9",
+				   "type" => "text",
+				   "desc" => esc_html__( "Here you can designate how many WooCommerce products are displayed on the archive page. This option works independently from the Settings > Reading options in wp-admin.", $themename),
+				   "validation_type" => "number"
+			),
+
 			array( "name" => esc_html__("Number of Posts displayed on Category page",$themename),
 				   "id" => $shortname."_catnum_posts",
 				   "std" => "6",
@@ -247,16 +255,25 @@ $options = array (
 
 			array( "name" => esc_html__("Back To Top Button",$themename),
 				   "id" => $shortname."_back_to_top",
-				   "type" => "checkbox",
+				   "type" => "checkbox2",
 				   "std" => "false",
 				   "desc" => esc_html__("Enable this option to display Back To Top Button while scrolling",$themename)
 			),
 
+			array( "type" => "clearfix",),
+
 			array( "name" => esc_html__( "Smooth Scrolling", $themename ),
 				   "id" => $shortname . "_smooth_scroll",
-				   "type" => "checkbox2",
+				   "type" => "checkbox",
 				   "std" => "false",
 				   "desc" => esc_html__( "Enable this option to get the smooth scrolling effect with mouse wheel", $themename )
+			),
+
+			array( "name" => esc_html__( "Disable Translations", $themename ),
+				   "id" => $shortname . "_disable_translations",
+				   "type" => "checkbox2",
+				   "std" => "false",
+				   "desc" => esc_html__( "Disable translations, if you don't want to display translated theme strings on your site.", $themename )
 			),
 
 			array( "type" => "clearfix",),

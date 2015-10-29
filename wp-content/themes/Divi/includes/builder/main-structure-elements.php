@@ -54,7 +54,7 @@ class ET_Builder_Section extends ET_Builder_Structure_Element {
 		);
 
 		$this->fields_defaults = array(
-			'transparent_background' => array( 'off' ),
+			'transparent_background' => array( 'default' ),
 			'background_color'       => array( '', 'only_default_setting' ),
 			'allow_player_pause'     => array( 'off' ),
 			'inner_shadow'           => array( 'off' ),
@@ -121,6 +121,7 @@ class ET_Builder_Section extends ET_Builder_Structure_Element {
 				'type'            => 'color',
 				'depends_show_if' => 'off',
 				'description'     => __( 'Define a custom background color for your module, or leave blank to use the default color.', 'et_builder' ),
+				'additional_code' => '<span class="et-pb-reset-setting reset-default-color" style="display: none;"></span>',
 			),
 			'background_video_mp4' => array(
 				'label'              => __( 'Background Video MP4', 'et_builder' ),
@@ -147,12 +148,14 @@ class ET_Builder_Section extends ET_Builder_Structure_Element {
 				'type'            => 'text',
 				'option_category' => 'basic_option',
 				'description'     => __( 'In order for videos to be sized correctly, you must input the exact width (in pixels) of your video here.', 'et_builder' ),
+				'validate_unit'   => true,
 			),
 			'background_video_height' => array(
 				'label'           => __( 'Background Video Height', 'et_builder' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
 				'description'     => __( 'In order for videos to be sized correctly, you must input the exact height (in pixels) of your video here.', 'et_builder' ),
+				'validate_unit'   => true,
 			),
 			'allow_player_pause' => array(
 				'label'           => __( 'Pause Video', 'et_builder' ),
@@ -202,7 +205,6 @@ class ET_Builder_Section extends ET_Builder_Structure_Element {
 				'label'           => __( 'Custom Padding', 'et_builder' ),
 				'type'            => 'custom_padding',
 				'option_category' => 'layout',
-				'sides'           => array( 'top', 'bottom' ),
 				'description'     => __( 'Adjust padding to specific values, or leave blank to use the default padding.', 'et_builder' ),
 			),
 			'padding_mobile' => array(
@@ -466,7 +468,11 @@ class ET_Builder_Section extends ET_Builder_Structure_Element {
 			global $et_pb_column_backgrounds, $et_pb_column_paddings, $et_pb_columns_counter;
 
 			$module_class .= 'on' === $make_equal ? ' et_pb_equal_columns' : '';
-			$gutter_class .= 'on' === $use_custom_gutter ? ' et_pb_gutters' . $gutter_width : '';
+
+			if ( 'on' === $use_custom_gutter ) {
+				$gutter_width = '0' === $gutter_width ? '1' : $gutter_width; // set the gutter to 1 if 0 entered by user
+				$gutter_class .= ' et_pb_gutters' . $gutter_width;
+			}
 
 			$et_pb_columns_counter = 0;
 			$et_pb_column_backgrounds = array(
@@ -535,6 +541,12 @@ class ET_Builder_Section extends ET_Builder_Structure_Element {
 			wp_enqueue_script( 'wp-mediaelement' );
 		}
 
+		// set the correct default value for $transparent_background option if plugin activated.
+		if ( et_is_builder_plugin_active() && 'default' === $transparent_background ) {
+			$transparent_background = '' !== $background_color ? 'off' : 'on';
+		} elseif ( 'default' === $transparent_background ) {
+			$transparent_background = 'off';
+		}
 
 		if ( '' !== $background_color && 'off' === $transparent_background ) {
 			ET_Builder_Element::set_style( $function_name, array(
@@ -559,10 +571,20 @@ class ET_Builder_Section extends ET_Builder_Structure_Element {
 		$padding_values = explode( '|', $custom_padding );
 
 		if ( ! empty( $padding_values ) ) {
-			$padding_settings = array(
-				'top' => isset( $padding_values[0] ) ? $padding_values[0] : '',
-				'bottom' => isset( $padding_values[1] ) ? $padding_values[1] : '',
-			);
+			// old version of sections supports only top and bottom padding, so we need to handle it along with the full padding in the recent version
+			if ( 2 === count( $padding_values ) ) {
+				$padding_settings = array(
+					'top' => isset( $padding_values[0] ) ? $padding_values[0] : '',
+					'bottom' => isset( $padding_values[1] ) ? $padding_values[1] : '',
+				);
+			} else {
+				$padding_settings = array(
+					'top' => isset( $padding_values[0] ) ? $padding_values[0] : '',
+					'right' => isset( $padding_values[1] ) ? $padding_values[1] : '',
+					'bottom' => isset( $padding_values[2] ) ? $padding_values[2] : '',
+					'left' => isset( $padding_values[3] ) ? $padding_values[3] : '',
+				);
+			}
 
 			foreach( $padding_settings as $padding_side => $value ) {
 				if ( '' !== $value ) {
@@ -642,6 +664,7 @@ class ET_Builder_Row extends ET_Builder_Structure_Element {
 			'use_custom_gutter',
 			'gutter_width',
 			'custom_padding',
+			'custom_margin',
 			'padding_mobile',
 			'column_padding_mobile',
 			'module_id',
@@ -682,6 +705,14 @@ class ET_Builder_Row extends ET_Builder_Structure_Element {
 			'padding_bottom_4',
 			'padding_left_4',
 			'admin_label',
+			'parallax_1',
+			'parallax_method_1',
+			'parallax_2',
+			'parallax_method_2',
+			'parallax_3',
+			'parallax_method_3',
+			'parallax_4',
+			'parallax_method_4',
 		);
 
 		$this->fields_defaults = array(
@@ -723,6 +754,14 @@ class ET_Builder_Row extends ET_Builder_Structure_Element {
 			'padding_right_4'       => array( '' ),
 			'padding_bottom_4'      => array( '' ),
 			'padding_left_4'        => array( '' ),
+			'parallax_1'            => array( 'off' ),
+			'parallax_method_1'     => array( 'on' ),
+			'parallax_2'            => array( 'off' ),
+			'parallax_method_2'     => array( 'on' ),
+			'parallax_3'            => array( 'off' ),
+			'parallax_method_3'     => array( 'on' ),
+			'parallax_4'            => array( 'off' ),
+			'parallax_method_4'     => array( 'on' ),
 		);
 	}
 
@@ -824,7 +863,6 @@ class ET_Builder_Row extends ET_Builder_Structure_Element {
 				'label'           => __( 'Custom Padding', 'et_builder' ),
 				'type'            => 'custom_padding',
 				'option_category' => 'layout',
-				'sides'           => array( 'top', 'bottom' ),
 				'description'     => __( 'Adjust padding to specific values, or leave blank to use the default padding.', 'et_builder' ),
 			),
 			'padding_mobile' => array(
@@ -848,6 +886,12 @@ class ET_Builder_Row extends ET_Builder_Structure_Element {
 				'type'              => 'text',
 				'option_category'   => 'configuration',
 				'description'       => __( 'Enter optional CSS classes to be used for this module. A CSS class can be used to create custom CSS styling. You can add multiple classes, separated with a space.', 'et_builder' ),
+			),
+			'custom_margin' => array(
+				'label'           => __( 'Custom Margin', 'et_builder' ),
+				'type'            => 'custom_margin',
+				'option_category' => 'layout',
+				'tab_slug'        => 'advanced',
 			),
 			'background_image' => array(
 				'label'              => __( 'Background Image', 'et_builder' ),
@@ -889,12 +933,14 @@ class ET_Builder_Row extends ET_Builder_Structure_Element {
 				'type'            => 'text',
 				'option_category' => 'basic_option',
 				'tab_slug'        => 'advanced',
+				'validate_unit'   => true,
 			),
 			'background_video_height' => array(
 				'label'           => __( 'Background Video Height', 'et_builder' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
 				'tab_slug'        => 'advanced',
+				'validate_unit'   => true,
 			),
 			'allow_player_pause' => array(
 				'label'           => __( 'Pause Video', 'et_builder' ),
@@ -1033,6 +1079,30 @@ class ET_Builder_Row extends ET_Builder_Structure_Element {
 			'padding_left_4' => array(
 				'type' => 'skip',
 			),
+			'parallax_1' => array(
+				'type' => 'skip',
+			),
+			'parallax_method_1' => array(
+				'type' => 'skip',
+			),
+			'parallax_2' => array(
+				'type' => 'skip',
+			),
+			'parallax_method_2' => array(
+				'type' => 'skip',
+			),
+			'parallax_3' => array(
+				'type' => 'skip',
+			),
+			'parallax_method_3' => array(
+				'type' => 'skip',
+			),
+			'parallax_4' => array(
+				'type' => 'skip',
+			),
+			'parallax_method_4' => array(
+				'type' => 'skip',
+			),
 		);
 
 		return $fields;
@@ -1042,6 +1112,7 @@ class ET_Builder_Row extends ET_Builder_Structure_Element {
 		$module_id               = $this->shortcode_atts['module_id'];
 		$module_class            = $this->shortcode_atts['module_class'];
 		$custom_padding          = $this->shortcode_atts['custom_padding'];
+		$custom_margin           = $this->shortcode_atts['custom_margin'];
 		$padding_mobile          = $this->shortcode_atts['padding_mobile'];
 		$column_padding_mobile   = $this->shortcode_atts['column_padding_mobile'];
 		$make_fullwidth          = $this->shortcode_atts['make_fullwidth'];
@@ -1086,8 +1157,16 @@ class ET_Builder_Row extends ET_Builder_Structure_Element {
 		$width_unit              = $this->shortcode_atts['width_unit'];
 		$global_module           = $this->shortcode_atts['global_module'];
 		$use_custom_gutter       = $this->shortcode_atts['use_custom_gutter'];
+		$parallax_1              = $this->shortcode_atts['parallax_1'];
+		$parallax_method_1       = $this->shortcode_atts['parallax_method_1'];
+		$parallax_2              = $this->shortcode_atts['parallax_2'];
+		$parallax_method_2       = $this->shortcode_atts['parallax_method_2'];
+		$parallax_3              = $this->shortcode_atts['parallax_3'];
+		$parallax_method_3       = $this->shortcode_atts['parallax_method_3'];
+		$parallax_4              = $this->shortcode_atts['parallax_4'];
+		$parallax_method_4       = $this->shortcode_atts['parallax_method_4'];
 
-		global $et_pb_column_backgrounds, $et_pb_column_paddings, $et_pb_columns_counter, $keep_column_padding_mobile;
+		global $et_pb_column_backgrounds, $et_pb_column_paddings, $et_pb_columns_counter, $keep_column_padding_mobile, $et_pb_column_parallax;
 
 		$keep_column_padding_mobile = $column_padding_mobile;
 
@@ -1133,6 +1212,13 @@ class ET_Builder_Row extends ET_Builder_Structure_Element {
 			),
 		);
 
+		$et_pb_column_parallax = array(
+			array( $parallax_1, $parallax_method_1 ),
+			array( $parallax_2, $parallax_method_2 ),
+			array( $parallax_3, $parallax_method_3 ),
+			array( $parallax_4, $parallax_method_4 ),
+		);
+
 		$background_video = '';
 
 		$module_class .= ' et_pb_row';
@@ -1144,16 +1230,30 @@ class ET_Builder_Row extends ET_Builder_Structure_Element {
 
 		$module_class .= 'on' === $make_equal ? ' et_pb_equal_columns' : '';
 
-		$module_class .= 'on' === $use_custom_gutter ? ' et_pb_gutters' . $gutter_width : '';
+		if ( 'on' === $use_custom_gutter ) {
+			$gutter_width = '0' === $gutter_width ? '1' : $gutter_width; // set the gutter width to 1 if 0 entered by user
+			$module_class .= ' et_pb_gutters' . $gutter_width;
+		}
 
 
 		$padding_values = explode( '|', $custom_padding );
+		$margin_values = explode( '|', $custom_margin );
 
 		if ( ! empty( $padding_values ) ) {
-			$padding_settings = array(
-				'top' => isset( $padding_values[0] ) ? $padding_values[0] : '',
-				'bottom' => isset( $padding_values[1] ) ? $padding_values[1] : '',
-			);
+			// old version of Rows support only top and bottom padding, so we need to handle it along with the full padding in the recent version
+			if ( 2 === count( $padding_values ) ) {
+				$padding_settings = array(
+					'top' => isset( $padding_values[0] ) ? $padding_values[0] : '',
+					'bottom' => isset( $padding_values[1] ) ? $padding_values[1] : '',
+				);
+			} else {
+				$padding_settings = array(
+					'top' => isset( $padding_values[0] ) ? $padding_values[0] : '',
+					'right' => isset( $padding_values[1] ) ? $padding_values[1] : '',
+					'bottom' => isset( $padding_values[2] ) ? $padding_values[2] : '',
+					'left' => isset( $padding_values[3] ) ? $padding_values[3] : '',
+				);
+			}
 
 			foreach( $padding_settings as $padding_side => $value ) {
 				if ( '' !== $value ) {
@@ -1169,6 +1269,30 @@ class ET_Builder_Row extends ET_Builder_Structure_Element {
 					if ( 'on' !== $padding_mobile ) {
 						$element_style['media_query'] = ET_Builder_Element::get_media_query( 'min_width_981' );
 					}
+
+					ET_Builder_Element::set_style( $function_name, $element_style );
+				}
+			}
+		}
+
+		if ( ! empty( $margin_values ) ) {
+			$margin_settings = array(
+				'top' => isset( $margin_values[0] ) ? $margin_values[0] : '',
+				'right' => isset( $margin_values[1] ) ? $margin_values[1] : '',
+				'bottom' => isset( $margin_values[2] ) ? $margin_values[2] : '',
+				'left' => isset( $margin_values[3] ) ? $margin_values[3] : '',
+			);
+
+			foreach( $margin_settings as $margin_side => $value ) {
+				if ( '' !== $value ) {
+					$element_style = array(
+						'selector'    => '%%order_class%%',
+						'declaration' => sprintf(
+							'margin-%1$s: %2$s;',
+							esc_html( $margin_side ),
+							esc_html( $value )
+						),
+					);
 
 					ET_Builder_Element::set_style( $function_name, $element_style );
 				}
@@ -1267,6 +1391,7 @@ class ET_Builder_Row_Inner extends ET_Builder_Structure_Element {
 
 		$this->whitelisted_fields = array(
 			'custom_padding',
+			'custom_margin',
 			'padding_mobile',
 			'column_padding_mobile',
 			'use_custom_gutter',
@@ -1293,6 +1418,12 @@ class ET_Builder_Row_Inner extends ET_Builder_Structure_Element {
 			'padding_right_3',
 			'padding_bottom_3',
 			'padding_left_3',
+			'parallax_1',
+			'parallax_method_1',
+			'parallax_2',
+			'parallax_method_2',
+			'parallax_3',
+			'parallax_method_3',
 		);
 
 		$this->fields_defaults = array(
@@ -1319,6 +1450,12 @@ class ET_Builder_Row_Inner extends ET_Builder_Structure_Element {
 			'padding_right_3'       => array( '' ),
 			'padding_bottom_3'      => array( '' ),
 			'padding_left_3'        => array( '' ),
+			'parallax_1'            => array( 'off' ),
+			'parallax_method_1'     => array( 'on' ),
+			'parallax_2'            => array( 'off' ),
+			'parallax_method_2'     => array( 'on' ),
+			'parallax_3'            => array( 'off' ),
+			'parallax_method_3'     => array( 'on' ),
 		);
 	}
 
@@ -1328,8 +1465,13 @@ class ET_Builder_Row_Inner extends ET_Builder_Structure_Element {
 				'label'           => __( 'Custom Padding', 'et_builder' ),
 				'type'            => 'custom_padding',
 				'option_category' => 'layout',
-				'sides'           => array( 'top', 'bottom' ),
 				'description'     => __( 'Adjust padding to specific values, or leave blank to use the default padding.', 'et_builder' ),
+			),
+			'custom_margin' => array(
+				'label'           => __( 'Custom Margin', 'et_builder' ),
+				'type'            => 'custom_margin',
+				'option_category' => 'layout',
+				'tab_slug'        => 'advanced',
 			),
 			'padding_mobile' => array(
 				'label'             => __( 'Keep Custom Padding on Mobile', 'et_builder' ),
@@ -1456,6 +1598,24 @@ class ET_Builder_Row_Inner extends ET_Builder_Structure_Element {
 			'padding_left_3' => array(
 				'type' => 'skip',
 			),
+			'parallax_1' => array(
+				'type' => 'skip',
+			),
+			'parallax_method_1' => array(
+				'type' => 'skip',
+			),
+			'parallax_2' => array(
+				'type' => 'skip',
+			),
+			'parallax_method_2' => array(
+				'type' => 'skip',
+			),
+			'parallax_3' => array(
+				'type' => 'skip',
+			),
+			'parallax_method_3' => array(
+				'type' => 'skip',
+			),
 		);
 
 		return $fields;
@@ -1485,12 +1645,19 @@ class ET_Builder_Row_Inner extends ET_Builder_Structure_Element {
 		$gutter_width            = $this->shortcode_atts['gutter_width'];
 		$make_equal              = $this->shortcode_atts['make_equal'];
 		$custom_padding          = $this->shortcode_atts['custom_padding'];
+		$custom_margin           = $this->shortcode_atts['custom_margin'];
 		$padding_mobile          = $this->shortcode_atts['padding_mobile'];
 		$column_padding_mobile   = $this->shortcode_atts['column_padding_mobile'];
 		$global_module           = $this->shortcode_atts['global_module'];
 		$use_custom_gutter       = $this->shortcode_atts['use_custom_gutter'];
+		$parallax_1              = $this->shortcode_atts['parallax_1'];
+		$parallax_method_1       = $this->shortcode_atts['parallax_method_1'];
+		$parallax_2              = $this->shortcode_atts['parallax_2'];
+		$parallax_method_2       = $this->shortcode_atts['parallax_method_2'];
+		$parallax_3              = $this->shortcode_atts['parallax_3'];
+		$parallax_method_3       = $this->shortcode_atts['parallax_method_3'];
 
-		global $et_pb_column_inner_backgrounds, $et_pb_column_inner_paddings, $et_pb_columns_inner_counter, $keep_column_padding_mobile;
+		global $et_pb_column_inner_backgrounds, $et_pb_column_inner_paddings, $et_pb_columns_inner_counter, $keep_column_padding_mobile, $et_pb_column_parallax;
 
 		$keep_column_padding_mobile = $column_padding_mobile;
 
@@ -1529,13 +1696,30 @@ class ET_Builder_Row_Inner extends ET_Builder_Structure_Element {
 			),
 		);
 
+		$et_pb_column_parallax = array(
+			array( $parallax_1, $parallax_method_1 ),
+			array( $parallax_2, $parallax_method_2 ),
+			array( $parallax_3, $parallax_method_3 ),
+		);
+
 		$padding_values = explode( '|', $custom_padding );
+		$margin_values = explode( '|', $custom_margin );
 
 		if ( ! empty( $padding_values ) ) {
-			$padding_settings = array(
-				'top' => isset( $padding_values[0] ) ? $padding_values[0] : '',
-				'bottom' => isset( $padding_values[1] ) ? $padding_values[1] : '',
-			);
+			// old version of Rows support only top and bottom padding, so we need to handle it along with the full padding in the recent version
+			if ( 2 === count( $padding_values ) ) {
+				$padding_settings = array(
+					'top' => isset( $padding_values[0] ) ? $padding_values[0] : '',
+					'bottom' => isset( $padding_values[1] ) ? $padding_values[1] : '',
+				);
+			} else {
+				$padding_settings = array(
+					'top' => isset( $padding_values[0] ) ? $padding_values[0] : '',
+					'right' => isset( $padding_values[1] ) ? $padding_values[1] : '',
+					'bottom' => isset( $padding_values[2] ) ? $padding_values[2] : '',
+					'left' => isset( $padding_values[3] ) ? $padding_values[3] : '',
+				);
+			}
 
 			foreach( $padding_settings as $padding_side => $value ) {
 				if ( '' !== $value ) {
@@ -1552,6 +1736,30 @@ class ET_Builder_Row_Inner extends ET_Builder_Structure_Element {
 			}
 		}
 
+		if ( ! empty( $margin_values ) ) {
+			$margin_settings = array(
+				'top' => isset( $margin_values[0] ) ? $margin_values[0] : '',
+				'right' => isset( $margin_values[1] ) ? $margin_values[1] : '',
+				'bottom' => isset( $margin_values[2] ) ? $margin_values[2] : '',
+				'left' => isset( $margin_values[3] ) ? $margin_values[3] : '',
+			);
+
+			foreach( $margin_settings as $margin_side => $value ) {
+				if ( '' !== $value ) {
+					$element_style = array(
+						'selector'    => '%%order_class%%',
+						'declaration' => sprintf(
+							'margin-%1$s: %2$s;',
+							esc_html( $margin_side ),
+							esc_html( $value )
+						),
+					);
+
+					ET_Builder_Element::set_style( $function_name, $element_style );
+				}
+			}
+		}
+
 		$module_class .= ' et_pb_row_inner';
 
 		$module_class = ET_Builder_Element::add_module_order_class( $module_class, $function_name );
@@ -1561,7 +1769,10 @@ class ET_Builder_Row_Inner extends ET_Builder_Structure_Element {
 
 		$module_class .= 'on' === $make_equal ? ' et_pb_equal_columns' : '';
 
-		$module_class .= 'on' === $use_custom_gutter ? ' et_pb_gutters' . $gutter_width : '';
+		if ( 'on' === $use_custom_gutter ) {
+			$gutter_width = '0' === $gutter_width ? '1' : $gutter_width; // set the gutter to 1 if 0 entered by user
+			$module_class .= ' et_pb_gutters' . $gutter_width;
+		}
 
 		$output = sprintf(
 			'<div%4$s class="%2$s">
@@ -1618,7 +1829,7 @@ class ET_Builder_Column extends ET_Builder_Structure_Element {
 		$specialty_columns           = $this->shortcode_atts['specialty_columns'];
 		$saved_specialty_column_type = $this->shortcode_atts['saved_specialty_column_type'];
 
-		global $et_specialty_column_type, $et_pb_column_backgrounds, $et_pb_column_paddings, $et_pb_column_inner_backgrounds, $et_pb_column_inner_paddings, $et_pb_columns_counter, $et_pb_columns_inner_counter, $keep_column_padding_mobile;
+		global $et_specialty_column_type, $et_pb_column_backgrounds, $et_pb_column_paddings, $et_pb_column_inner_backgrounds, $et_pb_column_inner_paddings, $et_pb_columns_counter, $et_pb_columns_inner_counter, $keep_column_padding_mobile, $et_pb_column_parallax;
 
 		if ( 'et_pb_column_inner' !== $function_name ) {
 			$et_specialty_column_type = $type;
@@ -1636,6 +1847,7 @@ class ET_Builder_Column extends ET_Builder_Structure_Element {
 		$background_color = isset( $backgrounds_array[$array_index][0] ) ? $backgrounds_array[$array_index][0] : '';
 		$background_img = isset( $backgrounds_array[$array_index][1] ) ? $backgrounds_array[$array_index][1] : '';
 		$padding_values = isset( $paddings_array[$array_index] ) ? $paddings_array[$array_index] : array();
+		$parallax_method = isset( $et_pb_column_parallax[$array_index][0] ) && 'on' === $et_pb_column_parallax[$array_index][0] ? $et_pb_column_parallax[$array_index][1] : '';
 
 		if ( '' !== $background_color && 'rgba(0,0,0,0)' !== $background_color ) {
 			ET_Builder_Element::set_style( $function_name, array(
@@ -1647,7 +1859,7 @@ class ET_Builder_Column extends ET_Builder_Structure_Element {
 			) );
 		}
 
-		if ( '' !== $background_img ) {
+		if ( '' !== $background_img && '' === $parallax_method ) {
 			ET_Builder_Element::set_style( $function_name, array(
 				'selector'    => '%%order_class%%',
 				'declaration' => sprintf(
@@ -1717,11 +1929,21 @@ class ET_Builder_Column extends ET_Builder_Structure_Element {
 		$class .= 'et_pb_column_inner' !== $function_name && '' !== $specialty_columns ? ' et_pb_specialty_column' : '';
 
 		$output = sprintf(
-			'<div class="et_pb_column %1$s">
+			'<div class="et_pb_column %1$s%3$s">
+				%4$s
 				%2$s
 			</div> <!-- .et_pb_column -->',
 			esc_attr( $class ),
-			$inner_content
+			$inner_content,
+			( '' !== $parallax_method ? ' et_pb_section_parallax' : '' ),
+			( '' !== $background_img && '' !== $parallax_method
+				? sprintf(
+					'<div class="et_parallax_bg%2$s" style="background-image: url(%1$s);"></div>',
+					esc_attr( $background_img ),
+					( 'off' === $parallax_method ? ' et_pb_parallax_css' : '' )
+				)
+				: ''
+			)
 		);
 
 		return $output;

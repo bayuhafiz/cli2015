@@ -174,19 +174,62 @@
 		});
 
 		$( 'input[type=range]' ).on( 'mousedown', function() {
-			$( '.et_pb_range_tooltip' ).remove();
+			var $range = $(this),
+				$range_input = $range.parent().children( '.et-pb-range-input' );
+
 			value = $( this ).attr( 'value' );
-			$( this ).parent().append( '<div class="et_pb_range_tooltip">' + value + '</div> ' );
+			$range_input.val( value );
+
 			$( this ).mousemove(function() {
 				value = $( this ).attr( 'value' );
-				$( '.et_pb_range_tooltip' ).text( value );
+				$range_input.val( value );
 			});
-			$( this ).mouseup(function() {
-				$( '.et_pb_range_tooltip' ).fadeOut( 'fast' );
-			});
-			$( this ).mousedown(function() {
-				$( '.et_pb_range_tooltip' ).fadeIn( 'fast' );
-			});
+		});
+
+		var et_range_input_number_timeout;
+
+		function et_autocorrect_range_input_number( input_number, timeout ) {
+			$range_input = input_number,
+			$range       = $range_input.parent().find('input[type="range"]'),
+			value        = parseFloat( $range_input.val() ),
+			reset        = parseFloat( $range.attr('data-reset_value') ),
+			step         = parseFloat( $range_input.attr('step') ),
+			min          = parseFloat( $range_input.attr('min') ),
+			max          = parseFloat( $range_input.attr('max') );
+
+			clearTimeout( et_range_input_number_timeout );
+
+			et_range_input_number_timeout = setTimeout( function() {
+				if ( isNaN( value ) ) {
+					$range_input.val( reset );
+					$range.val( reset ).trigger( 'change' );
+					return;
+				}
+
+				if ( step >= 1 && value % 1 !== 0 ) {
+					value = Math.round( value );
+					$range_input.val( value );
+					$range.val( value );
+				}
+
+				if ( value > max ) {
+					$range_input.val( max );
+					$range.val( max ).trigger( 'change' );
+				}
+
+				if ( value < min ) {
+					$range_input.val( min );
+					$range.val( min ).trigger( 'change' );
+				}
+			}, timeout );
+
+			$range.val( value ).trigger( 'change' );
+		}
+
+		$('input.et-pb-range-input').on( 'change keyup', function() {
+			et_autocorrect_range_input_number( $(this), 1000 );
+		}).on( 'focusout', function() {
+			et_autocorrect_range_input_number( $(this), 0 );
 		});
 
 		$('input.et_font_style_checkbox[type=checkbox]').live('change', function(){

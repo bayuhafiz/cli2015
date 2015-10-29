@@ -56,6 +56,9 @@ if ( ! current_user_can( 'edit_posts' ) ) {
 		<div id="page-container">
 			<div id="main-content">
 				<div class="container">
+					<div id="<?php echo esc_attr( apply_filters( 'et_pb_preview_wrap_id', 'content' ) ); ?>">
+					<div class="<?php echo esc_attr( apply_filters( 'et_pb_preview_wrap_class', 'entry-content post-content entry content' ) ); ?>">
+
 					<?php
 						if ( isset( $_POST['shortcode' ] ) ) {
 							if( ! isset( $_POST['et_pb_preview_nonce'] ) || ! wp_verify_nonce( $_POST['et_pb_preview_nonce'], 'et_pb_preview_nonce' ) ) {
@@ -73,6 +76,9 @@ if ( ! current_user_can( 'edit_posts' ) ) {
 							printf( '<p class="et-pb-preview-loading"><span>%1$s</span></p>', esc_html__( 'Loading preview...', 'et_builder' ) );
 						}
 					?>
+
+					</div> <!-- .entry-content.post-content.entry -->
+					</div> <!-- #content -->
 					<div class="et_pb_modal_overlay link-disabled">
 						<div class="et_pb_prompt_modal">
 							<h3><?php _e( 'Link Disabled', 'et_builder' ); ?></h3>

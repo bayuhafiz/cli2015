@@ -23,14 +23,20 @@
 
 .clearfix:after, .et-pb-row-content:after, .et-pb-option:after, .et_pb_section_specialty .et-pb-section-content:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
 
+.et_pb_toggle_builder_wrapper .button-primary, .et_pb_modal_settings_container .button-primary { text-shadow: none !important; }
+
+.et_pb_toggle_builder_wrapper .button:active, .et_pb_modal_settings_container .button:active { -webkit-transform: none; -ms-transform: none; transform: none; }
+
 #et_pb_main_container { position: relative; color: #32373c;}
 #et_pb_main_container a:active { outline: 0; }
 #et_pb_layout .inside { min-height: 345px; margin: 0; padding: 0; }
 .post-type-et_pb_layout #et_pb_layout .inside { min-height: 102px; }
 
-#et_pb_layout h3 { font-weight: 100; font-size: 22px; color: #fff; background-color: #6c2eb9; padding: 25px 80px; border-bottom: 0; line-height: 18px; }
-#et_pb_layout h3:before, #et_pb_toggle_builder:before  { content: '\3c'; display: block; position: absolute; left: 40px; top: 18px; font-size: 32px; }
-#et_pb_layout .handlediv:before { color: #fff; padding: 24px 0px;}
+#et_pb_layout .hndle { font-weight: 100 !important; font-size: 22px; color: #fff; background-color: #6c2eb9; padding: 25px 80px !important; border-bottom: 0; line-height: 18px; }
+#et_pb_layout .hndle:before, #et_pb_toggle_builder:before  { content: '\3c'; display: block; position: absolute; left: 40px; top: 18px; font-size: 32px; }
+#et_pb_layout .handlediv .toggle-indicator:before, #et_pb_layout .handlediv:before { color: #fff; padding: 24px 0px; }
+#et_pb_layout .handlediv .toggle-indicator:before { left: -10px; }
+#et_pb_layout .handlediv:focus { -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
 
 #et_pb_layout_controls { overflow: hidden; text-align: right; top: 0; right: 0; margin: 0 0 -15px; background-color: #7e3bd0; position:relative; z-index:101; }
 #et_pb_layout_controls .et-pb-layout-buttons { box-sizing: border-box; color: #fff; margin: 0; float: left; border-radius: 0; text-align: center; background-color: #7e3bd0; padding: 20px 30px; font-weight: 500; }
@@ -167,7 +173,7 @@ a.et-pb-clone.et-pb-advanced-setting-clone { left: 44px; font-size: 33px; top: 9
 .et-pb-advanced-setting-options { right: auto; left: 10px; top: 9px; }
 .rtl .et-pb-advanced-setting-options { right: 10px; left: auto; }
 
-.et-pb-settings:before, .et-pb-remove:before, .et-pb-section-add:before, .et-pb-row-add:before, .et-pb-insert-column:before, .et-pb-insert-module:before, .et-pb-modal-close:before, .et-pb-advanced-setting-remove:before, .et-pb-advanced-setting-options:before, .et-pb-add-sortable-option:before, .et-pb-layout-buttons:before, .et-pb-all-modules li:before, .et-pb-clone:before, .et-pb-change-structure:before, .et-pb-options-toggle-enabled h3:before, .et_pb_saved_layouts_list li:before, #et_pb_layout h3:before, .et-pb-choose-custom-color-button span:before, #et_pb_toggle_builder:before, .et-pb-expand:before, .et-pb-unlock:before { font-family: 'etbuilder'; speak: none; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+.et-pb-settings:before, .et-pb-remove:before, .et-pb-section-add:before, .et-pb-row-add:before, .et-pb-insert-column:before, .et-pb-insert-module:before, .et-pb-modal-close:before, .et-pb-advanced-setting-remove:before, .et-pb-advanced-setting-options:before, .et-pb-add-sortable-option:before, .et-pb-layout-buttons:before, .et-pb-all-modules li:before, .et-pb-clone:before, .et-pb-change-structure:before, .et-pb-options-toggle-enabled h3:before, .et_pb_saved_layouts_list li:before, #et_pb_layout .hndle:before, .et-pb-choose-custom-color-button span:before, #et_pb_toggle_builder:before, .et-pb-expand:before, .et-pb-unlock:before { font-family: 'etbuilder'; speak: none; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
 .et_font_icon li:before { font-family: 'ETmodules'; content: attr(data-icon); speak: none; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; -webkit-font-smoothing: antialiased; }
 
@@ -683,23 +689,6 @@ ul.et_font_icon { max-width: 617px; overflow-y: scroll; max-height: 180px; borde
 .et_pb_fullwidth_only_module { float: left; }
 
 a.et-pb-modal-save-template.button { float: left; }
-
-/* post meta box */
-
-#et_settings_meta_box h3 { border: none; color: #fff; background-color: #6C2EB9; padding-left: 38px; }
-#et_settings_meta_box h3:before { font-weight: normal; font-family: 'ETmodules'; font-size: 32px; content: '\e625'; display: block; position: absolute; left: 5px; top: -4px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-#et_settings_meta_box .handlediv { color: #fff; }
-#side-sortables #et_settings_meta_box label, #side-sortables #et_settings_meta_box input, #side-sortables #et_settings_meta_box select { display: inline-block !important; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; }
-#side-sortables #et_settings_meta_box label { background-color: #fff; margin: 0 !important; padding: 10px 5% 10px 5%; width: 58%; border-right: 1px solid #E4ECF2; }
-#side-sortables #et_settings_meta_box input, #side-sortables #et_settings_meta_box select { background-color: #F5F8FA; color: #A8B7C5; margin-right: 5%; width: 35%; border: none; box-shadow: none; -webkit-box-shadow: none; outline: none; padding: 0; }
-#side-sortables #et_settings_meta_box input:focus, #side-sortables #et_settings_meta_box select:focus { color: #444; }
-#side-sortables #et_settings_meta_box input[type=checkbox] { width: auto; background-color: #fff; border: 1px solid #E4ECF2; margin-left: 17%; }
-#side-sortables #et_settings_meta_box p { padding: 0; margin: 0; background-color: #F5F8FA; }
-#side-sortables #et_settings_meta_box p:last-child { border-bottom: 0; }
-#side-sortables #et_settings_meta_box .inside { padding: 0; margin: 0; }
-#side-sortables #et_settings_meta_box .et_pb_page_settings { border-bottom: 1px solid #E4ECF2; }
-#side-sortables #et_settings_meta_box .et_post_bg_color_setting { padding: 15px; }
-#side-sortables #et_settings_meta_box .wp-picker-input-wrap input { background-color: #fff; padding: 5px; border-radius: 3px; border: 1px solid #E4ECF2; line-height: 10px;}
 
 /* builder button */
 .et_pb_toggle_builder_wrapper { position: relative; margin-top: 24px; }

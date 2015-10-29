@@ -1,7 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Divi 1.0\n"
-"POT-Creation-Date: 2015-09-02 12:10+0300\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/style\n"
+"POT-Creation-Date: 2015-10-19 12:05:43+00:00\n"
 "PO-Revision-Date: 2015-09-02 15:14+0300\n"
 "Last-Translator: \n"
 "Language-Team: Elegant Themes\n"
@@ -10,131 +11,132 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.7.1\n"
-"X-Poedit-KeywordsList: _x;_n;_e;__;esc_html__;esc_html_e;esc_attr__;"
-"esc_attr_e;esc_attr_x\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;"
+"_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;"
+"esc_html_x:1,2c;\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 "X-Poedit-SearchPathExcluded-0: ../includes/builder\n"
+"X-Poedit-SearchPathExcluded-1: ../node_modules\n"
 
-#: ../comments.php:4
+#: comments.php:4
 msgid "This post is password protected. Enter the password to view comments."
 msgstr ""
 "Tämä viesti on suojattu salasanalla. Syötä salasana nähdäksesi viestin."
 
-#: ../comments.php:13
+#: comments.php:13
 msgid "0 Comments"
 msgstr "0 Kommenttia"
 
-#: ../comments.php:13
+#: comments.php:13
 msgid "1 Comment"
 msgstr "1 Kommentti"
 
-#: ../comments.php:13
+#: comments.php:13
 msgid "Comments"
 msgstr "Kommentit"
 
-#: ../comments.php:18 ../comments.php:31
+#: comments.php:18 comments.php:31
 msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
 msgstr "<span class=\"meta-nav\">&larr;</span> Vanhemmat kommentit"
 
-#: ../comments.php:19 ../comments.php:32
+#: comments.php:19 comments.php:32
 msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Uudemmat kommentit <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../comments.php:38
+#: comments.php:38
 msgid "Trackbacks/Pingbacks"
 msgstr "Trackbackit/Pingbackit"
 
-#: ../comments.php:56
+#: comments.php:56
 msgid "Submit Comment"
 msgstr "Lähetä kommentti"
 
-#: ../comments.php:56
+#: comments.php:56
 msgid "Submit a Comment"
 msgstr "Lähetä kommentti"
 
-#: ../comments.php:56
-#, php-format
+#: comments.php:56
 msgid "Leave a Reply to %s"
 msgstr "Vastaa käyttäjälle %s"
 
-#: ../epanel/core_functions.php:26 ../epanel/core_functions.php:401
+#: epanel/core_functions.php:26 epanel/core_functions.php:401
 msgid "Saving..."
 msgstr "Tallennetaan..."
 
-#: ../epanel/core_functions.php:27
+#: epanel/core_functions.php:27
 msgid "Options Saved."
 msgstr "Asetukset tallennettu."
 
-#: ../epanel/core_functions.php:73
+#: epanel/core_functions.php:73
 msgid "Options"
 msgstr "Asetukset"
 
-#: ../epanel/core_functions.php:73 ../functions.php:7903
+#: epanel/core_functions.php:73 functions.php:7850
 msgid "Theme Options"
 msgstr "Teeman asetukset"
 
-#: ../epanel/core_functions.php:90
+#: epanel/core_functions.php:90
 msgid "settings saved."
 msgstr "asetukset tallennettu."
 
-#: ../epanel/core_functions.php:93
+#: epanel/core_functions.php:93
 msgid "settings reset."
 msgstr "asetukset resetoitu."
 
-#: ../epanel/core_functions.php:111 ../epanel/options_divi.php:297
-#: ../epanel/options_divi.php:448 ../functions.php:533
+#: epanel/core_functions.php:111 epanel/options_divi.php:314
+#: epanel/options_divi.php:465 functions.php:550
 msgid "General Settings"
 msgstr "Yleiset asetukset"
 
-#: ../epanel/core_functions.php:114
+#: epanel/core_functions.php:114
 msgid "Navigation"
 msgstr "Navigointi"
 
-#: ../epanel/core_functions.php:117 ../functions.php:543
+#: epanel/core_functions.php:117 functions.php:560
 msgid "Layout Settings"
 msgstr "Sommittelun asetukset"
 
-#: ../epanel/core_functions.php:120
+#: epanel/core_functions.php:120
 msgid "Ad Management"
 msgstr "Mainosten hallinta"
 
-#: ../epanel/core_functions.php:123
+#: epanel/core_functions.php:123
 msgid "Colorization"
 msgstr "Väri"
 
-#: ../epanel/core_functions.php:126
+#: epanel/core_functions.php:126
 msgid "SEO"
 msgstr "SEO"
 
-#: ../epanel/core_functions.php:129
+#: epanel/core_functions.php:129
 msgid "Integration"
 msgstr "Integraatio"
 
-#: ../epanel/core_functions.php:132
+#: epanel/core_functions.php:132
 msgid "Support Docs"
 msgstr "Tuki asiakirjat"
 
-#: ../epanel/core_functions.php:209 ../epanel/core_functions.php:389
+#: epanel/core_functions.php:209 epanel/core_functions.php:389
 msgid "Reset"
 msgstr "Resetoi"
 
-#: ../epanel/core_functions.php:210
+#: epanel/core_functions.php:210
 msgid "Upload Image"
 msgstr "Lataa kuva"
 
-#: ../epanel/core_functions.php:237
+#: epanel/core_functions.php:237
 msgid "You don't have pages"
 msgstr "Sinulla ei ole yhtään sivua"
 
-#: ../epanel/core_functions.php:374
+#: epanel/core_functions.php:374
 msgid "Save changes"
 msgstr "Tallenna muutokset"
 
-#: ../epanel/core_functions.php:385
+#: epanel/core_functions.php:385
 msgid ""
 "This will return all of the settings throughout the options page to their "
 "default values. <strong>Are you sure you want to do this?</strong>"
@@ -142,42 +144,39 @@ msgstr ""
 "Tämä palauttaa kaikki asetukset oletusasetuksisti. <strong>Oletko varma, "
 "että haluat tehdä sen?</strong>"
 
-#: ../epanel/core_functions.php:558
+#: epanel/core_functions.php:558
 msgid "Choose an Image"
 msgstr "Valitse kuva"
 
-#: ../epanel/custom_functions.php:178
+#: epanel/custom_functions.php:174
 msgid "&hellip;"
 msgstr "&hellip;"
 
-#: ../epanel/custom_functions.php:451 ../header.php:141
+#: epanel/custom_functions.php:447 header.php:139
 msgid "Home"
 msgstr "Koti"
 
-#: ../epanel/custom_functions.php:699
+#: epanel/custom_functions.php:689
 msgid "Archives"
 msgstr "Arkistot"
 
-#: ../epanel/custom_functions.php:701
-#, php-format
+#: epanel/custom_functions.php:691
 msgid "Search results for \"%s\""
 msgstr "Haun tulokset haulle \"%s\""
 
-#: ../epanel/custom_functions.php:703
+#: epanel/custom_functions.php:693
 msgid "404 Not Found"
 msgstr "404 Sivua ei löytynyt"
 
-#: ../epanel/custom_functions.php:774
-#, php-format
+#: epanel/custom_functions.php:764
 msgid "Currently viewing archives from %1$s"
 msgstr "Tarkastellaan arkistoja %1$s"
 
-#: ../epanel/custom_functions.php:1007
+#: epanel/custom_functions.php:997
 msgid "Image doesn't exist"
 msgstr "Kuvaa ei ole olemassa"
 
-#: ../epanel/custom_functions.php:1203
-#, php-format
+#: epanel/custom_functions.php:1198
 msgid ""
 "<div class=\"updated\"><p>This is a fresh installation of %1$s theme. Don't "
 "forget to go to <a href=\"%2$s\">ePanel</a> to set it up. This message will "
@@ -189,8 +188,7 @@ msgstr ""
 "kun olet painanut \"Tallenna\" -nappia <a href=\"%2$s\">teeman asetukset -"
 "sivulla</a>.</p></div>"
 
-#: ../epanel/custom_functions.php:1215
-#, php-format
+#: epanel/custom_functions.php:1210
 msgid ""
 "There is a new version of %1$s available. <a href=\"%2$s\" class=\"thickbox"
 "\" title=\"%1$s\">View version %3$s details</a>. <em>Before you can update "
@@ -204,7 +202,7 @@ msgstr ""
 "\"https://www.elegantthemes.com/members-area/documentation.html#updater\" "
 "target=\"_blank\">Elegant Updater Plugin</a> varmentaaksesi tilauksesi.</em>"
 
-#: ../epanel/custom_functions.php:1219
+#: epanel/custom_functions.php:1214
 msgid ""
 "Before you can update your Elegant Themes, you must first install the <a "
 "href=\"https://www.elegantthemes.com/members-area/documentation.html#updater"
@@ -215,44 +213,44 @@ msgstr ""
 "href=\"https://www.elegantthemes.com/members-area/documentation.html#updater"
 "\" target=\"_blank\">Elegant Updater Plugin</a> varmentaaksesi tilauksesi."
 
-#: ../epanel/options_divi.php:38
+#: epanel/options_divi.php:38
 msgid "General"
 msgstr "Yleiset"
 
-#: ../epanel/options_divi.php:45
+#: epanel/options_divi.php:45
 msgid "Logo"
 msgstr "Logo"
 
-#: ../epanel/options_divi.php:48
+#: epanel/options_divi.php:48
 msgid "Set As Logo"
 msgstr "Aseta logoksi"
 
-#: ../epanel/options_divi.php:50
+#: epanel/options_divi.php:50
 msgid ""
 "If you would like to use your own custom logo image click the Upload Image "
 "button."
 msgstr "Jos haluat käyttää omaa logoasi, klikkaa \"Lataa kuva\" -nappia."
 
-#: ../epanel/options_divi.php:53
+#: epanel/options_divi.php:53
 msgid "Favicon"
 msgstr "Favicon"
 
-#: ../epanel/options_divi.php:56
+#: epanel/options_divi.php:56
 msgid "Set As Favicon"
 msgstr "Aseta Favicon:iksi"
 
-#: ../epanel/options_divi.php:58
+#: epanel/options_divi.php:58
 msgid ""
 "If you would like to use your own custom favicon image click the Upload "
 "Image button."
 msgstr ""
 "Jos haluat käyttää omaa favicon -kuvaa, klikkaa \"Lataa kuva\" -nappia."
 
-#: ../epanel/options_divi.php:61
+#: epanel/options_divi.php:61
 msgid "Fixed Navigation Bar"
 msgstr "Lukittu navigointipalkki"
 
-#: ../epanel/options_divi.php:65
+#: epanel/options_divi.php:65
 msgid ""
 "By default the navigation bar stays on top of the screen at all times. We "
 "suggest to disable this option, if you need to use a logo taller than the "
@@ -261,11 +259,11 @@ msgstr ""
 "Oletuksena navigointipalkki pysyy sivun ylälaidassa. Suosittelemme ottamaan "
 "tämän toiminnon pois käytöstä, jos käytät suurta logokuvaa."
 
-#: ../epanel/options_divi.php:70
+#: epanel/options_divi.php:70
 msgid "Grab the first post image"
 msgstr "Käytä sivun ensimmäistä kuvaa"
 
-#: ../epanel/options_divi.php:74
+#: epanel/options_divi.php:74
 msgid ""
 "By default thumbnail images are created using custom fields. However, if you "
 "would rather use the images that are already in your post for your thumbnail "
@@ -278,11 +276,11 @@ msgstr ""
 "käyttöön tämän toiminnon. Kuvakkeiden kuvat luodaan automaattisesti "
 "postauksesi ensimmäisestä kuvasta. Kuvan täytyy olla omalla palvelimellasi."
 
-#: ../epanel/options_divi.php:77
+#: epanel/options_divi.php:77
 msgid "Blog Style Mode"
 msgstr "Blogityyli"
 
-#: ../epanel/options_divi.php:81
+#: epanel/options_divi.php:81
 msgid ""
 "By default the theme truncates your posts on index/homepages automatically "
 "to create post previews. If you would rather show your posts in full on "
@@ -292,33 +290,32 @@ msgstr ""
 "kuitenkin haluat näyttää postauksesi kokonaan, kuten blogeissa "
 "perinteisesti, voit aktivoida tämän toiminnon."
 
-#: ../epanel/options_divi.php:86
+#: epanel/options_divi.php:86
 msgid "Shop Page & Category Page Layout for WooCommerce"
 msgstr "Kauppasivun, sekä kategoriasivun asettelu WooCommerce lle"
 
-#: ../epanel/options_divi.php:90 ../functions.php:262
+#: epanel/options_divi.php:90 functions.php:288
 msgid "Right Sidebar"
 msgstr "Siirrä sivupalkki oikealle"
 
-#: ../epanel/options_divi.php:91 ../functions.php:263
+#: epanel/options_divi.php:91 functions.php:289
 msgid "Left Sidebar"
 msgstr "Siirrä sivupalkki vasemmalle"
 
-#: ../epanel/options_divi.php:92 ../functions.php:264
+#: epanel/options_divi.php:92 functions.php:290
 msgid "Full Width"
 msgstr "Täysi leveys"
 
-#: ../epanel/options_divi.php:95
+#: epanel/options_divi.php:95
 msgid "Here you can choose Shop Page & Category Page Layout for WooCommerce."
 msgstr ""
 "Täällä voit valita kauppasivun ja kategoriasivun asettelun WooCommerce lle."
 
-#: ../epanel/options_divi.php:99
+#: epanel/options_divi.php:99
 msgid "MailChimp API Key"
 msgstr "MailChimp API-avain"
 
-#: ../epanel/options_divi.php:104
-#, php-format
+#: epanel/options_divi.php:104
 msgid ""
 "Enter your MailChimp API key. You can create an api key <a target=\"_blank\" "
 "href=\"%1$s\">here</a>"
@@ -326,19 +323,19 @@ msgstr ""
 "Syötä MailChimp API -avaimesi. Voit luoda sellaisen <a target=\"_blank\" "
 "href=\"%1$s\">täällä</a>"
 
-#: ../epanel/options_divi.php:107
+#: epanel/options_divi.php:107
 msgid "Aweber Authorization"
 msgstr "Aweber valtuutus"
 
-#: ../epanel/options_divi.php:109
+#: epanel/options_divi.php:109
 msgid "Authorize your Aweber account here."
 msgstr "Valtuuta Aweber käyttäjäsi täällä."
 
-#: ../epanel/options_divi.php:113
+#: epanel/options_divi.php:113
 msgid "Regenerate MailChimp Lists"
 msgstr "Uudista MailChimp Listoja"
 
-#: ../epanel/options_divi.php:117
+#: epanel/options_divi.php:117
 msgid ""
 "By default, MailChimp lists are cached for one day. If you added new list, "
 "but it doesn't appear within the Email Optin module settings, activate this "
@@ -349,11 +346,11 @@ msgstr ""
 "käyttöön tämä vaihtoehto. Älä unohda poistaa se kerran luettelo on "
 "regeneroitu."
 
-#: ../epanel/options_divi.php:119
+#: epanel/options_divi.php:119
 msgid "Regenerate Aweber Lists"
 msgstr "Uudista Aweber Listat"
 
-#: ../epanel/options_divi.php:123
+#: epanel/options_divi.php:123
 msgid ""
 "By default, Aweber lists are cached for one day. If you added new list, but "
 "it doesn't appear within the Email Optin module settings, activate this "
@@ -364,75 +361,90 @@ msgstr ""
 "käyttöön tämä vaihtoehto. Älä unohda poistaa se kerran luettelo on "
 "regeneroitu."
 
-#: ../epanel/options_divi.php:127
+#: epanel/options_divi.php:127
 msgid "Show Facebook Icon"
 msgstr "Näytä Facebook -kuvake"
 
-#: ../epanel/options_divi.php:131
+#: epanel/options_divi.php:131
 msgid "Here you can choose to display the Facebook Icon on your homepage. "
 msgstr "Voit valita näytätkö Facebook -kuvakkeen etusivullasi. "
 
-#: ../epanel/options_divi.php:133
+#: epanel/options_divi.php:133
 msgid "Show Twitter Icon"
 msgstr "Näytä Twitter -kuvake"
 
-#: ../epanel/options_divi.php:137
+#: epanel/options_divi.php:137
 msgid "Here you can choose to display the Twitter Icon. "
 msgstr "Voit valita näytätkö Twitter kuvakkeen. "
 
-#: ../epanel/options_divi.php:141
+#: epanel/options_divi.php:141
 msgid "Show Google+ Icon"
 msgstr "Näytä Google+ -kuvake"
 
-#: ../epanel/options_divi.php:145
+#: epanel/options_divi.php:145
 msgid "Here you can choose to display the Google+ Icon on your homepage. "
 msgstr "Voit valita näytätkö Google+ -kuvakkeen etusivullasi. "
 
-#: ../epanel/options_divi.php:147
+#: epanel/options_divi.php:147
 msgid "Show RSS Icon"
 msgstr "Näytä RSS -kuvake"
 
-#: ../epanel/options_divi.php:151
+#: epanel/options_divi.php:151
 msgid "Here you can choose to display the RSS Icon. "
 msgstr "Voit valita näytätkö RSS kuvakkeen. "
 
-#: ../epanel/options_divi.php:155
+#: epanel/options_divi.php:155
 msgid "Facebook Profile Url"
 msgstr "Facebook Profiilin URL"
 
-#: ../epanel/options_divi.php:160
+#: epanel/options_divi.php:160
 msgid "Enter the URL of your Facebook Profile. "
 msgstr "Aseta Facebook profiilisi URL. "
 
-#: ../epanel/options_divi.php:162
+#: epanel/options_divi.php:162
 msgid "Twitter Profile Url"
 msgstr "Twitter Profiilin URL"
 
-#: ../epanel/options_divi.php:167
+#: epanel/options_divi.php:167
 msgid "Enter the URL of your Twitter Profile."
 msgstr "Aseta Twitter Profiilisi URL."
 
-#: ../epanel/options_divi.php:169
+#: epanel/options_divi.php:169
 msgid "Google+ Profile Url"
 msgstr "Google+ Profiilin URL"
 
-#: ../epanel/options_divi.php:174
+#: epanel/options_divi.php:174
 msgid "Enter the URL of your Google+ Profile. "
 msgstr "Aseta Google+ Profiilisi URL "
 
-#: ../epanel/options_divi.php:176
+#: epanel/options_divi.php:176
 msgid "RSS Icon Url"
 msgstr "RSS Kuvakkeen URL"
 
-#: ../epanel/options_divi.php:181
+#: epanel/options_divi.php:181
 msgid "Enter the URL of your RSS feed. "
 msgstr "Aseta RSS Kuvakkeesi URL "
 
-#: ../epanel/options_divi.php:183
+#: epanel/options_divi.php:183
+#, fuzzy
+msgid "Number of Products displayed on WooCommerce archive pages"
+msgstr "Arkistosivuilla näkyvien kirjoitusten lukumäärä"
+
+#: epanel/options_divi.php:187
+#, fuzzy
+msgid ""
+"Here you can designate how many WooCommerce products are displayed on the "
+"archive page. This option works independently from the Settings > Reading "
+"options in wp-admin."
+msgstr ""
+"Täällä voit määrittää, kuinka monta uusinta artikkelia näytetään "
+"arkistosivulla.Tämä toiminto toimii itsenäisesti wp-admin in lukuasetuksista."
+
+#: epanel/options_divi.php:191
 msgid "Number of Posts displayed on Category page"
 msgstr "Kategoriasivulla näkyvien kirjoitusten lukumäärä"
 
-#: ../epanel/options_divi.php:187
+#: epanel/options_divi.php:195
 msgid ""
 "Here you can designate how many recent articles are displayed on the "
 "Category page. This option works independently from the Settings > Reading "
@@ -441,11 +453,11 @@ msgstr ""
 "Täällä voit määrittää, kuinka monta uusinta artikkelia näytetään Kategoria "
 "sivulla.Tämä toiminto toimii itsenäisesti wp-admin in lukuasetuksista."
 
-#: ../epanel/options_divi.php:191
+#: epanel/options_divi.php:199
 msgid "Number of Posts displayed on Archive pages"
 msgstr "Arkistosivuilla näkyvien kirjoitusten lukumäärä"
 
-#: ../epanel/options_divi.php:195
+#: epanel/options_divi.php:203
 msgid ""
 "Here you can designate how many recent articles are displayed on the Archive "
 "pages. This option works independently from the Settings > Reading options "
@@ -454,11 +466,11 @@ msgstr ""
 "Täällä voit määrittää, kuinka monta uusinta artikkelia näytetään "
 "arkistosivulla.Tämä toiminto toimii itsenäisesti wp-admin in lukuasetuksista."
 
-#: ../epanel/options_divi.php:199
+#: epanel/options_divi.php:207
 msgid "Number of Posts displayed on Search pages"
 msgstr "Hakusivujen kirjoitusten lukumäärä"
 
-#: ../epanel/options_divi.php:203
+#: epanel/options_divi.php:211
 msgid ""
 "Here you can designate how many recent articles are displayed on the Search "
 "results pages. This option works independently from the Settings > Reading "
@@ -468,11 +480,11 @@ msgstr ""
 "Hakutulokset -sivulla.Tämä toiminto toimii itsenäisesti wp-admin in "
 "lukuasetuksista."
 
-#: ../epanel/options_divi.php:207
+#: epanel/options_divi.php:215
 msgid "Number of Posts displayed on Tag pages"
 msgstr "Tägisivuilla näkyvien kirjoitusten lukumäärä"
 
-#: ../epanel/options_divi.php:211
+#: epanel/options_divi.php:219
 msgid ""
 "Here you can designate how many recent articles are displayed on the Tag "
 "pages. This option works independently from the Settings > Reading options "
@@ -481,11 +493,11 @@ msgstr ""
 "Täällä voit määrittää, kuinka monta uusinta artikkelia näytetään tägit -"
 "sivulla.Tämä toiminto toimii itsenäisesti wp-admin in lukuasetuksista."
 
-#: ../epanel/options_divi.php:215
+#: epanel/options_divi.php:223
 msgid "Date format"
 msgstr "Päiväyksen formaatti"
 
-#: ../epanel/options_divi.php:219
+#: epanel/options_divi.php:227
 msgid ""
 "This option allows you to change how your dates are displayed. For more "
 "information please refer to the WordPress codex here:<a href='http://codex."
@@ -496,70 +508,80 @@ msgstr ""
 "WordPress codex täältä:<a href='http://codex.wordpress.org/"
 "Formatting_Date_and_Time' target='_blank'>Päivämäärän ja ajan formaatti</a>"
 
-#: ../epanel/options_divi.php:225
+#: epanel/options_divi.php:233
 msgid "Use excerpts when defined"
 msgstr "Käytä lainauksia, jos ne on asetettu"
 
-#: ../epanel/options_divi.php:229
+#: epanel/options_divi.php:237
 msgid "This will enable the use of excerpts in posts or pages."
 msgstr ""
 "Tämä toiminto mahdollistaa lainauksien käytön kirjoituksissa ja sivuilla."
 
-#: ../epanel/options_divi.php:232
+#: epanel/options_divi.php:240
 msgid "Responsive shortcodes"
 msgstr "Responsiiviset shortcodes"
 
-#: ../epanel/options_divi.php:236
+#: epanel/options_divi.php:244
 msgid "Enable this option to make shortcodes respond to various screen sizes"
 msgstr "Käytä tätä toimintoa, jotta shortcodes reagoi erikokoisiin näyttöihin."
 
-#: ../epanel/options_divi.php:241
+#: epanel/options_divi.php:249
 msgid "Google Fonts subsets"
 msgstr "Google Fonts osajoukot"
 
-#: ../epanel/options_divi.php:245
+#: epanel/options_divi.php:253
 msgid "This will enable Google Fonts for Non-English languages."
 msgstr "Tämä mahdollistaa Google Fonts in muille kielille."
 
-#: ../epanel/options_divi.php:248
+#: epanel/options_divi.php:256
 msgid "Back To Top Button"
 msgstr "Palaa ylös -painike"
 
-#: ../epanel/options_divi.php:252
+#: epanel/options_divi.php:260
 msgid "Enable this option to display Back To Top Button while scrolling"
 msgstr "Tämä toiminto lisää Palaa ylös- painikkeen selatassesi sivua."
 
-#: ../epanel/options_divi.php:255
+#: epanel/options_divi.php:265
 msgid "Smooth Scrolling"
 msgstr "Sulava vieritys"
 
-#: ../epanel/options_divi.php:259
+#: epanel/options_divi.php:269
 msgid "Enable this option to get the smooth scrolling effect with mouse wheel"
 msgstr ""
 "Käytä tätä toimintoa, jos haluat sivusi vierittyvän sulavasti, kun hiiren "
 "rullaa käytetään."
 
-#: ../epanel/options_divi.php:264
+#: epanel/options_divi.php:272
+msgid "Disable Translations"
+msgstr ""
+
+#: epanel/options_divi.php:276
+msgid ""
+"Disable translations, if you don't want to display translated theme strings "
+"on your site."
+msgstr ""
+
+#: epanel/options_divi.php:281
 msgid "Custom CSS"
 msgstr "Oma CSS"
 
-#: ../epanel/options_divi.php:268
+#: epanel/options_divi.php:285
 msgid "Here you can add custom css to override or extend default styles."
 msgstr "Täällä voit lisätä oman CSS oletustyylien tilalle tai lisäksi."
 
-#: ../epanel/options_divi.php:287
+#: epanel/options_divi.php:304
 msgid "Pages"
 msgstr "Sivut"
 
-#: ../epanel/options_divi.php:292
+#: epanel/options_divi.php:309
 msgid "Categories"
 msgstr "Kategoriat"
 
-#: ../epanel/options_divi.php:305
+#: epanel/options_divi.php:322
 msgid "Exclude pages from the navigation bar"
 msgstr "Poista sivuja navigointipalkista"
 
-#: ../epanel/options_divi.php:309
+#: epanel/options_divi.php:326
 msgid ""
 "Here you can choose to remove certain pages from the navigation menu. All "
 "pages marked with an X will not appear in your navigation bar. "
@@ -567,11 +589,11 @@ msgstr ""
 "Täällä voit halutessasi poistaa tiettyjä sivuja navigointivalikosta. Sivut, "
 "jotka on merkattu X llä eivät näy navigointipalkissa. "
 
-#: ../epanel/options_divi.php:313 ../epanel/options_divi.php:368
+#: epanel/options_divi.php:330 epanel/options_divi.php:385
 msgid "Show dropdown menus"
 msgstr "Näytä pudotusvalikot"
 
-#: ../epanel/options_divi.php:317
+#: epanel/options_divi.php:334
 msgid ""
 "If you would like to remove the dropdown menus from the pages navigation bar "
 "disable this feature."
@@ -579,11 +601,11 @@ msgstr ""
 "Jos haluat poistaa pudotusvalikot sivun navigointipalkista, ota tämä "
 "toiminto pois käytöstä."
 
-#: ../epanel/options_divi.php:320
+#: epanel/options_divi.php:337
 msgid "Display Home link"
 msgstr "Näytä Koti -linkki"
 
-#: ../epanel/options_divi.php:324
+#: epanel/options_divi.php:341
 msgid ""
 "By default the theme creates a Home link that, when clicked, leads back to "
 "your blog's homepage. If, however, you are using a static homepage and have "
@@ -595,19 +617,19 @@ msgstr ""
 "Koti -nimisen sivun, luo tämä toiminto toisen samanlaisen linkin. Tässä "
 "tapauksessa tämä valinta tulisi ottaa pois päältä."
 
-#: ../epanel/options_divi.php:329
+#: epanel/options_divi.php:346
 msgid "Sort Pages Links"
 msgstr "Sivun linkkien asettelu"
 
-#: ../epanel/options_divi.php:333
+#: epanel/options_divi.php:350
 msgid "Here you can choose to sort your pages links."
 msgstr "Täällä voit valita sivusi linkkien asettelun."
 
-#: ../epanel/options_divi.php:336
+#: epanel/options_divi.php:353
 msgid "Order Pages Links by Ascending/Descending"
 msgstr "Järjestä sivun linkit tyylillä Nouseva/Laskeva"
 
-#: ../epanel/options_divi.php:340
+#: epanel/options_divi.php:357
 msgid ""
 "Here you can choose to reverse the order that your pages links are "
 "displayed. You can choose between ascending and descending."
@@ -615,11 +637,11 @@ msgstr ""
 "Täällä voit halutessasi muuttaa sivun linkkijärjestyksen käänteiseksi. Voit "
 "valita joko nousevan tai laskevan."
 
-#: ../epanel/options_divi.php:343 ../epanel/options_divi.php:384
+#: epanel/options_divi.php:360 epanel/options_divi.php:401
 msgid "Number of dropdown tiers shown"
 msgstr "Pudotusvalikoiden tasojen lukumäärä"
 
-#: ../epanel/options_divi.php:347 ../epanel/options_divi.php:388
+#: epanel/options_divi.php:364 epanel/options_divi.php:405
 msgid ""
 "This options allows you to control how many teirs your pages dropdown menu "
 "has. Increasing the number allows for additional menu items to be shown."
@@ -627,11 +649,11 @@ msgstr ""
 "Tämän toiminnon avulla voit valita, kuinka monta tasoa sivusi pudosvalikossa "
 "on. Suurempi numero tarkoittaa, että valikko näyttää enemmän valintoja."
 
-#: ../epanel/options_divi.php:360
+#: epanel/options_divi.php:377
 msgid "Exclude categories from the navigation bar"
 msgstr "Poista kategorioita navigointipalkista"
 
-#: ../epanel/options_divi.php:364
+#: epanel/options_divi.php:381
 msgid ""
 "Here you can choose to remove certain categories from the navigation menu. "
 "All categories marked with an X will not appear in your navigation bar. "
@@ -639,7 +661,7 @@ msgstr ""
 "Tällä toiminnolla voit poistaa haluamasi kategoriat navigointipalkista. X "
 "llä merkatut kategoriat eivät näy navigointipalkissasi. "
 
-#: ../epanel/options_divi.php:372
+#: epanel/options_divi.php:389
 msgid ""
 "If you would like to remove the dropdown menus from the categories "
 "navigation bar disable this feature."
@@ -647,11 +669,11 @@ msgstr ""
 "Jos haluat poistaa pudotusvalikot kategorioiden navigointipalkista, laita "
 "tämä toiminto pois käytöstä."
 
-#: ../epanel/options_divi.php:375
+#: epanel/options_divi.php:392
 msgid "Hide empty categories"
 msgstr "Älä näytä kategorioita"
 
-#: ../epanel/options_divi.php:379
+#: epanel/options_divi.php:396
 msgid ""
 "If you would like categories to be displayed in your navigationbar that "
 "don't have any posts in them then disable this option. By default empty "
@@ -660,11 +682,11 @@ msgstr ""
 "Jos haluat tyhjien kategorioiden olevan näkyvillä navigointivalikossa, ota "
 "tämä toiminto pois käytöstä. Oletuksena tyhjät kategoriat ovat piilotettuja."
 
-#: ../epanel/options_divi.php:394
+#: epanel/options_divi.php:411
 msgid "Sort Categories Links by Name/ID/Slug/Count/Term Group"
 msgstr "Järjestä kategorioiden linkit Name/ID/Slug/Count/Term mukaan"
 
-#: ../epanel/options_divi.php:398
+#: epanel/options_divi.php:415
 msgid ""
 "By default pages are sorted by name. However if you would rather have them "
 "sorted by ID you can adjust this setting."
@@ -672,11 +694,11 @@ msgstr ""
 "Oletuksena sivut ovat nimijärjestyksessä. Jos haluat ne kuitenkin ID "
 "järjestykseen, voit muuttaa tätä asetusta."
 
-#: ../epanel/options_divi.php:401
+#: epanel/options_divi.php:418
 msgid "Order Category Links by Ascending/Descending"
 msgstr "Järjestä kategorialinkit nousevan tai laskevan mukaan."
 
-#: ../epanel/options_divi.php:405
+#: epanel/options_divi.php:422
 msgid ""
 "Here you can choose to reverse the order that your categories links are "
 "displayed. You can choose between ascending and descending."
@@ -684,11 +706,11 @@ msgstr ""
 "Voit valita käänteisen järjestyksen kategorioiden linkeille. Voit valita "
 "joko nousevan tai laskevan."
 
-#: ../epanel/options_divi.php:414
+#: epanel/options_divi.php:431
 msgid "Disable top tier dropdown menu links"
 msgstr "Ota pudotusvalikkojen ylimpien tasojen linkit poissa käytöstä."
 
-#: ../epanel/options_divi.php:418
+#: epanel/options_divi.php:435
 msgid ""
 "In some cases users will want to create parent categories or links as "
 "placeholders to hold a list of child links or categories. In this case it is "
@@ -703,19 +725,19 @@ msgstr ""
 "toiminnon käyttöönotto poistaa linkit kaikista pääkategorioista/sivuista, "
 "jolloin ne eivät johda enää niitä klikatessa mihinkään."
 
-#: ../epanel/options_divi.php:438
+#: epanel/options_divi.php:455
 msgid "Single Post Layout"
 msgstr "Eritellyn kirjoituksen sommittelu"
 
-#: ../epanel/options_divi.php:443
+#: epanel/options_divi.php:460
 msgid "Single Page Layout"
 msgstr "Eritellyn sivun sommittelu"
 
-#: ../epanel/options_divi.php:456
+#: epanel/options_divi.php:473
 msgid "Choose which items to display in the postinfo section"
 msgstr "Valitse, mitä info-osiossa on näkyvillä."
 
-#: ../epanel/options_divi.php:460
+#: epanel/options_divi.php:477
 msgid ""
 "Here you can choose which items appear in the postinfo section on single "
 "post pages. This is the area, usually below the post title, which displays "
@@ -726,11 +748,11 @@ msgstr ""
 "kirjoituksen otsikon alla, ja näyttää yleistiedot kirjoituksestasi. Alhaalla "
 "näkyvät korostetut osat tulevat näkyviin. "
 
-#: ../epanel/options_divi.php:464
+#: epanel/options_divi.php:481
 msgid "Show comments on posts"
 msgstr "Näytä kirjoitusten kommentit"
 
-#: ../epanel/options_divi.php:468
+#: epanel/options_divi.php:485
 msgid ""
 "You can disable this option if you want to remove the comments and comment "
 "form from single post pages. "
@@ -738,11 +760,11 @@ msgstr ""
 "Voit ottaa tämän valinnan pois käytöstä, jos haluat poistaa kommentit ja "
 "kommenttikentät kirjoituksistasi. "
 
-#: ../epanel/options_divi.php:471
+#: epanel/options_divi.php:488
 msgid "Place Thumbs on Posts"
 msgstr "Aseta kuvakkeet kirjoituksiin"
 
-#: ../epanel/options_divi.php:475
+#: epanel/options_divi.php:492
 msgid ""
 "By default thumbnails are placed at the beginning of your post on single "
 "post pages. If you would like to remove this initial thumbnail image to "
@@ -751,11 +773,11 @@ msgstr ""
 "Oletuksena kuvakekuvat sijaitsevat kirjoituksesi alussa. Jos haluat poistaa "
 "tämän, laita tämä toiminto pois päältä. "
 
-#: ../epanel/options_divi.php:486
+#: epanel/options_divi.php:503
 msgid "Place Thumbs on Pages"
 msgstr "Aseta kuvakkeet sivuille"
 
-#: ../epanel/options_divi.php:490
+#: epanel/options_divi.php:507
 msgid ""
 "By default thumbnails are not placed on pages (they are only used on posts). "
 "However, if you want to use thumbnails on pages you can! Just enable this "
@@ -765,11 +787,11 @@ msgstr ""
 "kirjoitusten yhteydessä). Kuitenkin, jos haluat käyttää esikatselukuvakkeita "
 "sivuilla, voit tehdä niin! Ota vain tämä vaihtoehto käyttöön. "
 
-#: ../epanel/options_divi.php:493
+#: epanel/options_divi.php:510
 msgid "Show comments on pages"
 msgstr "Näytä kommentit sivuilla"
 
-#: ../epanel/options_divi.php:497
+#: epanel/options_divi.php:514
 msgid ""
 "By default comments are not placed on pages, however, if you would like to "
 "allow people to comment on your pages simply enable this option. "
@@ -777,11 +799,11 @@ msgstr ""
 "Oletuksena kommentit ovat sivuilla. Laita tämä valinta päälle, jos haluat "
 "ihmisten kommentoivan sivuillesi. "
 
-#: ../epanel/options_divi.php:508
+#: epanel/options_divi.php:525
 msgid "Post info section"
 msgstr "Kirjoituksen info-osio"
 
-#: ../epanel/options_divi.php:512
+#: epanel/options_divi.php:529
 msgid ""
 "Here you can choose which items appear in the postinfo section on pages. "
 "This is the area, usually below the post title, which displays basic "
@@ -790,32 +812,32 @@ msgstr ""
 "Täältä voit valita suunnan, johon alavalikkosi avautuvat. Voit valita niiden "
 "avautuvan joko alas- tai ylöspäin."
 
-#: ../epanel/options_divi.php:517
+#: epanel/options_divi.php:534
 msgid "Show Thumbs on Index pages"
 msgstr "Näytä kuvakkeet hakemistosivuilla"
 
-#: ../epanel/options_divi.php:521
+#: epanel/options_divi.php:538
 msgid "Enable this option to show thumbnails on Index Pages."
 msgstr ""
 "Ota tämä toiminto käyttöön, jos haluat kuvakkeiden näkyvän hakemistosivulla."
 
-#: ../epanel/options_divi.php:540
+#: epanel/options_divi.php:557
 msgid "Homepage SEO"
 msgstr "Kotisivu SEO"
 
-#: ../epanel/options_divi.php:545
+#: epanel/options_divi.php:562
 msgid "Single Post Page SEO"
 msgstr "Yhden kirjoituksen sivu SEO"
 
-#: ../epanel/options_divi.php:550
+#: epanel/options_divi.php:567
 msgid "Index Page SEO"
 msgstr "Hakemistosivu SEO"
 
-#: ../epanel/options_divi.php:558
+#: epanel/options_divi.php:575
 msgid " Enable custom title "
 msgstr "Oma otsikko "
 
-#: ../epanel/options_divi.php:562
+#: epanel/options_divi.php:579
 msgid ""
 "By default the theme uses a combination of your blog name and your blog "
 "description, as defined when you created your blog, to create your homepage "
@@ -826,11 +848,11 @@ msgstr ""
 "kotisivun otsikkoa. Ota tämä valinta käyttöön ja voit kirjoittaa alla "
 "olevaan kenttään oman otsikon. "
 
-#: ../epanel/options_divi.php:565
+#: epanel/options_divi.php:582
 msgid " Enable meta description"
 msgstr "Ota käyttöön meta tägi -kuvaukset"
 
-#: ../epanel/options_divi.php:569
+#: epanel/options_divi.php:586
 msgid ""
 "By default the theme uses your blog description, as defined when you created "
 "your blog, to fill in the meta description field. If you would like to use a "
@@ -840,11 +862,11 @@ msgstr ""
 "Oletuksena teema käyttää blogisi kuvausta. Ota käyttöön tämä valinta, ja "
 "kirjoita haluamasi metakuvaus alla olevaan kenttään. "
 
-#: ../epanel/options_divi.php:572
+#: epanel/options_divi.php:589
 msgid " Enable meta keywords"
 msgstr "Ota käyttöön meta -avainsanat"
 
-#: ../epanel/options_divi.php:576
+#: epanel/options_divi.php:593
 msgid ""
 "By default the theme does not add keywords to your header. Most search "
 "engines don't use keywords to rank your site anymore, but some people define "
@@ -856,12 +878,12 @@ msgstr ""
 "metakuvausta jokatapauksessa. Ota halutessasi käyttöön tämä valinta ja laita "
 "avainsanoja alla olevaan kenttään. "
 
-#: ../epanel/options_divi.php:579 ../epanel/options_divi.php:712
+#: epanel/options_divi.php:596 epanel/options_divi.php:729
 msgid " Enable canonical URL's"
 msgstr "Ota käyttöön kanoniset URL's"
 
-#: ../epanel/options_divi.php:583 ../epanel/options_divi.php:661
-#: ../epanel/options_divi.php:716
+#: epanel/options_divi.php:600 epanel/options_divi.php:678
+#: epanel/options_divi.php:733
 msgid ""
 "Canonicalization helps to prevent the indexing of duplicate content by "
 "search engines, and as a result, may help avoid duplicate content penalties "
@@ -886,11 +908,11 @@ msgstr ""
 "kanoniset URLs:t linkeistäsi ja domainnimestä, joka on määritelty wp-admin:n "
 "asetusvalikossa. "
 
-#: ../epanel/options_divi.php:588
+#: epanel/options_divi.php:605
 msgid "Homepage custom title (if enabled)"
 msgstr "Kotisivun oma otsikko (jos otettu käyttöön)"
 
-#: ../epanel/options_divi.php:592
+#: epanel/options_divi.php:609
 msgid ""
 "If you have enabled custom titles you can add your custom title here. "
 "Whatever you type here will be placed between the < title >< /title > tags "
@@ -900,22 +922,22 @@ msgstr ""
 "ikinä kirjoitat tänne, tulee näkymään < title >< /title > tägien väliin "
 "header.php osaan."
 
-#: ../epanel/options_divi.php:596
+#: epanel/options_divi.php:613
 msgid "Homepage meta description (if enabled)"
 msgstr "Kotisivun metakuvaus (jos otettu käyttöön)"
 
-#: ../epanel/options_divi.php:600
+#: epanel/options_divi.php:617
 msgid ""
 "If you have enabled meta descriptions you can add your custom description "
 "here."
 msgstr ""
 "Jos olet ottanut käyttöön metakuvaukset voit lisätä oman kuvauksesi tänne."
 
-#: ../epanel/options_divi.php:604
+#: epanel/options_divi.php:621
 msgid "Homepage meta keywords (if enabled)"
 msgstr "Kotisivun meta-avainsanat (jos otettu käyttöön)"
 
-#: ../epanel/options_divi.php:608
+#: epanel/options_divi.php:625
 msgid ""
 "If you have enabled meta keywords you can add your custom keywords here. "
 "Keywords should be separated by comas. For example: wordpress,themes,"
@@ -924,12 +946,12 @@ msgstr ""
 "Jos olet ottanut käyttöön meta-avainsanat, voit lisätä ne tänne. Erota sanat "
 "pilkulla. Esim: wordpress,themes,templates,elegant"
 
-#: ../epanel/options_divi.php:612 ../epanel/options_divi.php:690
+#: epanel/options_divi.php:629 epanel/options_divi.php:707
 msgid "If custom titles are disabled, choose autogeneration method"
 msgstr ""
 "Jos omat otsikot ovat poissa käytössä, valitse automaattinen muodostus."
 
-#: ../epanel/options_divi.php:617
+#: epanel/options_divi.php:634
 msgid ""
 "If you are not using cutsom post titles you can still have control over how "
 "your titles are generated. Here you can choose which order you would like "
@@ -940,12 +962,12 @@ msgstr ""
 "otsikkosi muodostetaan. Täältä voit valita järjestyksen, jossa kirjoituksesi "
 "otsikko ja nimi näytetään, tai voit poistaa blogin nimen otsikosta kokonaan."
 
-#: ../epanel/options_divi.php:620 ../epanel/options_divi.php:698
-#: ../epanel/options_divi.php:736
+#: epanel/options_divi.php:637 epanel/options_divi.php:715
+#: epanel/options_divi.php:753
 msgid "Define a character to separate BlogName and Post title"
 msgstr "Määritä merkki erottamaan nettisivun nimi ja kirjoituksen otsikko"
 
-#: ../epanel/options_divi.php:624 ../epanel/options_divi.php:702
+#: epanel/options_divi.php:641 epanel/options_divi.php:719
 msgid ""
 "Here you can change which character separates your blog title and post name "
 "when using autogenerated post titles. Common values are | or -"
@@ -953,11 +975,11 @@ msgstr ""
 "Voit päättää, mikä merkki erottaa blogisi otsikon ja kirjoituksen nimen, kun "
 "käytät automaattisesti muodostettuja otsikoita. Yleisiä merkkejä ovat | tai -"
 
-#: ../epanel/options_divi.php:634
+#: epanel/options_divi.php:651
 msgid "Enable custom titles"
 msgstr "Ota käyttöön omat otsikot"
 
-#: ../epanel/options_divi.php:638
+#: epanel/options_divi.php:655
 msgid ""
 "By default the theme creates post titles based on the title of your post and "
 "your blog name. If you would like to make your meta title different than "
@@ -972,11 +994,11 @@ msgstr ""
 "valinnan on oltava käytössä, jotta omat otsikot toimivat, ja sinun täytyy "
 "valita kustomoitu kentän nimi otsikollesi alla."
 
-#: ../epanel/options_divi.php:641
+#: epanel/options_divi.php:658
 msgid "Enable custom description"
 msgstr "Ota käyttöön oma kuvaus"
 
-#: ../epanel/options_divi.php:645
+#: epanel/options_divi.php:662
 msgid ""
 "If you would like to add a meta description to your post you can do so using "
 "custom fields. This option must be enabled for descriptions to be displayed "
@@ -987,11 +1009,11 @@ msgstr ""
 "alapuolella olevia kenttiä. Tämän valinnan täytyy olla käytössä, jotta "
 "kuvauksesi näkyvät kirjoitustesi sivuilla."
 
-#: ../epanel/options_divi.php:650
+#: epanel/options_divi.php:667
 msgid "Enable custom keywords"
 msgstr "Ota käyttöön omat avainsanat"
 
-#: ../epanel/options_divi.php:654
+#: epanel/options_divi.php:671
 msgid ""
 "If you would like to add meta keywords to your post you can do so using "
 "custom fields. This option must be enabled for keywords to be displayed on "
@@ -1002,15 +1024,15 @@ msgstr ""
 "oleviin kenttiin. Tämän valinnan täytyy olla käytössä, jotta avainsanat "
 "näkyvät kirjoitustesi sivulla."
 
-#: ../epanel/options_divi.php:657
+#: epanel/options_divi.php:674
 msgid "Enable canonical URL's"
 msgstr "Ota käyttöön kanoniset URL's"
 
-#: ../epanel/options_divi.php:666
+#: epanel/options_divi.php:683
 msgid "Custom field Name to be used for title"
 msgstr "Kustomoitu kentän nimi otsikkoa varten"
 
-#: ../epanel/options_divi.php:670
+#: epanel/options_divi.php:687
 msgid ""
 "When you define your title using custom fields you should use this value for "
 "the custom field Name. The Value of your custom field should be the custom "
@@ -1019,11 +1041,11 @@ msgstr ""
 "Kun määrität otsikon mukautettuja kenttiä käyttäen, sinun tulisi käyttää "
 "tätä arvoa mukautetun kentän nimenä. Kentässä tulisi lukea haluamasi otsikko."
 
-#: ../epanel/options_divi.php:674
+#: epanel/options_divi.php:691
 msgid "Custom field Name to be used for description"
 msgstr "Oma kentän nimi kuvausta varten"
 
-#: ../epanel/options_divi.php:678
+#: epanel/options_divi.php:695
 msgid ""
 "When you define your meta description using custom fields you should use "
 "this value for the custom field Name. The Value of your custom field should "
@@ -1032,11 +1054,11 @@ msgstr ""
 "Kun määrität metakuvaustasi mukautettuja kenttiä käyttäen, sinun tulisi "
 "käyttää tätä arvoa kentän nimenä. Kentässä tulisi lukea oma kuvauksesi."
 
-#: ../epanel/options_divi.php:682
+#: epanel/options_divi.php:699
 msgid "Custom field Name to be used for keywords"
 msgstr "Oma kentän nimi avainsanoja varten"
 
-#: ../epanel/options_divi.php:686
+#: epanel/options_divi.php:703
 msgid ""
 "When you define your keywords using custom fields you should use this value "
 "for the custom field Name. The Value of your custom field should be the meta "
@@ -1046,7 +1068,7 @@ msgstr ""
 "käyttää tätä arvoa kentän nimenä. Kentässä tulisi lukea omat meta-"
 "avainsanasi, erotettuna pilkulla."
 
-#: ../epanel/options_divi.php:695
+#: epanel/options_divi.php:712
 msgid ""
 "If you are not using cutsom post titles you can still have control over hw "
 "your titles are generated. Here you can choose which order you would like "
@@ -1058,11 +1080,11 @@ msgstr ""
 "kirjoituksesi otsikko ja blogin nimi näkyvät, tai voit poistaa blogin nimen "
 "otsikosta kokonaan."
 
-#: ../epanel/options_divi.php:719
+#: epanel/options_divi.php:736
 msgid "Enable meta descriptions"
 msgstr "Ota käyttöön metakuvaukset"
 
-#: ../epanel/options_divi.php:723
+#: epanel/options_divi.php:740
 msgid ""
 "Check this box if you want to display meta descriptions on category/archive "
 "pages. The description is based off the category description you choose when "
@@ -1072,11 +1094,11 @@ msgstr ""
 "sivuilla. Kuvaus perustuu kategorian kuvaukseen, jonka valitset luodessasi/"
 "muokatessasi kategoriaa wp-admin issa."
 
-#: ../epanel/options_divi.php:728
+#: epanel/options_divi.php:745
 msgid "Choose title autogeneration method"
 msgstr "Valitse otsikon luomistapa"
 
-#: ../epanel/options_divi.php:733
+#: epanel/options_divi.php:750
 msgid ""
 "Here you can choose how your titles on index pages are generated. You can "
 "change which order your blog name and index title are displayed, or you can "
@@ -1086,7 +1108,7 @@ msgstr ""
 "järjestyksessä blogisi nimi ja hakemiston otsikko näytetään, tai voit "
 "poistaa blogisi nimen otsikosta kokonaan."
 
-#: ../epanel/options_divi.php:740
+#: epanel/options_divi.php:757
 msgid ""
 "Here you can change which character separates your blog title and index page "
 "name when using autogenerated post titles. Common values are | or -"
@@ -1095,15 +1117,15 @@ msgstr ""
 "nimen, kun käytät automaattisesti luotuja kirjoitusten otsikoita. Yleisiä "
 "merkkejä ovat | ja -"
 
-#: ../epanel/options_divi.php:761
+#: epanel/options_divi.php:778
 msgid "Code Integration"
 msgstr "Koodin integrointi"
 
-#: ../epanel/options_divi.php:769
+#: epanel/options_divi.php:786
 msgid "Enable header code"
 msgstr "Ota käyttöön ylätunnisteen koodi"
 
-#: ../epanel/options_divi.php:773
+#: epanel/options_divi.php:790
 msgid ""
 "Disabling this option will remove the header code below from your blog. This "
 "allows you to remove the code while saving it for later use."
@@ -1112,11 +1134,11 @@ msgstr ""
 "blogistasi. Tämä mahdollistaa koodin poiston ja säilyttämisen myöhempää "
 "käyttöä varten."
 
-#: ../epanel/options_divi.php:776
+#: epanel/options_divi.php:793
 msgid "Enable body code"
 msgstr "Ota käyttöön < body > koodi"
 
-#: ../epanel/options_divi.php:780
+#: epanel/options_divi.php:797
 msgid ""
 "Disabling this option will remove the body code below from your blog. This "
 "allows you to remove the code while saving it for later use."
@@ -1125,11 +1147,11 @@ msgstr ""
 "blogistasi. Tämä mahdollistaa sen poiston, ja säilyttämisen myöhempää "
 "käyttöä varten"
 
-#: ../epanel/options_divi.php:785
+#: epanel/options_divi.php:802
 msgid "Enable single top code"
 msgstr "Ota käyttöön yläkoodi"
 
-#: ../epanel/options_divi.php:789
+#: epanel/options_divi.php:806
 msgid ""
 "Disabling this option will remove the single top code below from your blog. "
 "This allows you to remove the code while saving it for later use."
@@ -1137,11 +1159,11 @@ msgstr ""
 "Tämän valinnan pois ottaminen poistaa blogistasi allaolevan yläkoodin. Tämä "
 "mahdollistaa sen poiston, ja säilyttämisen myöhempää käyttöä varten"
 
-#: ../epanel/options_divi.php:792
+#: epanel/options_divi.php:809
 msgid "Enable single bottom code"
 msgstr "Ota käyttöön alakoodi"
 
-#: ../epanel/options_divi.php:796
+#: epanel/options_divi.php:813
 msgid ""
 "Disabling this option will remove the single bottom code below from your "
 "blog. This allows you to remove the code while saving it for later use."
@@ -1149,11 +1171,11 @@ msgstr ""
 "Tämän valinnan pois ottaminen poistaa blogistasi allaolevan alakoodin. Tämä "
 "mahdollistaa sen poiston, ja säilyttämisen myöhempää käyttöä varten."
 
-#: ../epanel/options_divi.php:801
+#: epanel/options_divi.php:818
 msgid "Add code to the < head > of your blog"
 msgstr "Lisää koodi blogisi < head > osioon"
 
-#: ../epanel/options_divi.php:805
+#: epanel/options_divi.php:822
 msgid ""
 "Any code you place here will appear in the head section of every page of "
 "your blog. This is useful when you need to add javascript or css to all "
@@ -1162,14 +1184,14 @@ msgstr ""
 "Tähän kirjoitettu koodi ilmestyy blogisi jokaisen sivun yläosioon. Tämä on "
 "hyödyllistä, kun sinun täytyy lisätä Javascript tai CSS kaikille sivuille."
 
-#: ../epanel/options_divi.php:808
+#: epanel/options_divi.php:825
 msgid ""
 "Add code to the < body > (good for tracking codes such as google analytics)"
 msgstr ""
 "Lisää koodia < body > osioon(hyvä paikka seurantakoodeille, kuten Google "
 "Analytics)"
 
-#: ../epanel/options_divi.php:812
+#: epanel/options_divi.php:829
 msgid ""
 "Any code you place here will appear in body section of all pages of your "
 "blog. This is usefull if you need to input a tracking pixel for a state "
@@ -1179,11 +1201,11 @@ msgstr ""
 "hyödyllistä, jos sinun täytyy lisätä seurantapikseli esimerkiksi Google "
 "Analytics in kaltaiselle laskurille."
 
-#: ../epanel/options_divi.php:815
+#: epanel/options_divi.php:832
 msgid "Add code to the top of your posts"
 msgstr "Lisää koodia kirjoitustesi yläpuolelle"
 
-#: ../epanel/options_divi.php:819 ../epanel/options_divi.php:826
+#: epanel/options_divi.php:836 epanel/options_divi.php:843
 msgid ""
 "Any code you place here will be placed at the top of all single posts. This "
 "is useful if you are looking to integrating things such as social "
@@ -1193,23 +1215,23 @@ msgstr ""
 "hyödyllinen toiminto integroidassesi asioita, kuten sosiaalisen median "
 "kirjanmerkkilinkkejä."
 
-#: ../epanel/options_divi.php:822
+#: epanel/options_divi.php:839
 msgid "Add code to the bottom of your posts, before the comments"
 msgstr "Lisää koodia kirjoitustesi alaosaan, kommenttien edelle"
 
-#: ../epanel/options_divi.php:844
+#: epanel/options_divi.php:861
 msgid "Documentation"
 msgstr "Dokumentointi"
 
-#: ../epanel/options_divi.php:870
+#: epanel/options_divi.php:887
 msgid "Manage Un-widgetized Advertisements"
 msgstr "Hallitse mainoksia"
 
-#: ../epanel/options_divi.php:878
+#: epanel/options_divi.php:895
 msgid "Enable Single Post 468x60 banner"
 msgstr "Ota käyttöön 468x60 kokoinen banneri"
 
-#: ../epanel/options_divi.php:882
+#: epanel/options_divi.php:899
 msgid ""
 "Enabling this option will display a 468x60 banner ad on the bottom of your "
 "post pages below the single post content. If enabled you must fill in the "
@@ -1219,275 +1241,265 @@ msgstr ""
 "kirjoitustesi alaosaan. Jos otat tämän valinnan käyttöön, sinun täytyy "
 "lisätä bannerikuva ja sen kohdeosoite alle."
 
-#: ../epanel/options_divi.php:887
+#: epanel/options_divi.php:904
 msgid "Input 468x60 advertisement banner image"
 msgstr "Lisää 468x60 kokoinen mainoskuva"
 
-#: ../epanel/options_divi.php:891
+#: epanel/options_divi.php:908
 msgid "Here you can provide 468x60 banner image url"
 msgstr "Tähän voit lisätä 468x60 banneri mainos kuvan URL n"
 
-#: ../epanel/options_divi.php:895
+#: epanel/options_divi.php:912
 msgid "Input 468x60 advertisement destination url"
 msgstr "Aseta 468x60 mainoksen kohde URL"
 
-#: ../epanel/options_divi.php:899
+#: epanel/options_divi.php:916
 msgid "Here you can provide 468x60 banner destination url"
 msgstr "Tänne voit asettaa 468x60 bannerin kohde URL n"
 
-#: ../epanel/options_divi.php:903
+#: epanel/options_divi.php:920
 msgid "Input 468x60 adsense code"
 msgstr "Aseta 468x60 Google Adsense koodi"
 
-#: ../epanel/options_divi.php:907
+#: epanel/options_divi.php:924
 msgid "Place your adsense code here."
 msgstr "Aseta Google Adsense koodisi tänne."
 
-#: ../epanel/shortcodes/shortcodes.php:15
-#: ../epanel/shortcodes/shortcodes.php:518
+#: epanel/shortcodes/shortcodes.php:15 epanel/shortcodes/shortcodes.php:518
 msgid "Previous"
 msgstr "Edellinen"
 
-#: ../epanel/shortcodes/shortcodes.php:15
-#: ../epanel/shortcodes/shortcodes.php:519
+#: epanel/shortcodes/shortcodes.php:15 epanel/shortcodes/shortcodes.php:519
 msgid "Next"
 msgstr "Seuraava"
 
-#: ../epanel/shortcodes/shortcodes.php:273
+#: epanel/shortcodes/shortcodes.php:273
 msgid "Tweet"
 msgstr "Tweettaa"
 
-#: ../epanel/shortcodes/shortcodes.php:289
+#: epanel/shortcodes/shortcodes.php:289
 msgid "Member Login"
 msgstr "Jäsenten kirjautuminen"
 
-#: ../epanel/shortcodes/shortcodes.php:292
+#: epanel/shortcodes/shortcodes.php:292
 msgid "Username: "
 msgstr "Käyttäjänimi: "
 
-#: ../epanel/shortcodes/shortcodes.php:293
+#: epanel/shortcodes/shortcodes.php:293
 msgid "Password: "
 msgstr "Salasana: "
 
-#: ../epanel/shortcodes/shortcodes.php:294 ../functions.php:3483
+#: epanel/shortcodes/shortcodes.php:294 functions.php:3492
 msgid "Login"
 msgstr "Kirjaudu"
 
-#: ../epanel/shortcodes/shortcodes.php:330
+#: epanel/shortcodes/shortcodes.php:330
 msgid "Add a Tooltip Text"
 msgstr "Lisää vinkkiteksti"
 
-#: ../epanel/shortcodes/shortcodes.php:352
+#: epanel/shortcodes/shortcodes.php:352
 msgid "Click here to learn more"
 msgstr "Paina tästä lukeaksesi lisää"
 
-#: ../epanel/shortcodes/shortcodes.php:732
+#: epanel/shortcodes/shortcodes.php:732
 msgid "Join Now"
 msgstr "Liity nyt"
 
-#: ../epanel/shortcodes/shortcodes.php:967
+#: epanel/shortcodes/shortcodes.php:967
 msgid "Add ET Learn more block"
 msgstr "Lisää kytkinpalikka"
 
-#: ../epanel/shortcodes/shortcodes.php:968
+#: epanel/shortcodes/shortcodes.php:968
 msgid "Add ET Box"
 msgstr "Lisää laatikko"
 
-#: ../epanel/shortcodes/shortcodes.php:969
+#: epanel/shortcodes/shortcodes.php:969
 msgid "Add ET Button"
 msgstr "Lisää painike"
 
-#: ../epanel/shortcodes/shortcodes.php:970
+#: epanel/shortcodes/shortcodes.php:970
 msgid "Add ET Tabs"
 msgstr "Lisää välilehti"
 
-#: ../epanel/shortcodes/shortcodes.php:971
+#: epanel/shortcodes/shortcodes.php:971
 msgid "Add Author Bio"
 msgstr "Lisää kirjoittajan biografia"
 
-#: ../epanel/shortcodes/shortcodes.php:972
+#: epanel/shortcodes/shortcodes.php:972
 msgid "Shortcodes"
 msgstr "Lyhytkoodit"
 
-#: ../epanel/shortcodes/shortcodes.php:977
+#: epanel/shortcodes/shortcodes.php:977
 msgid "Caption"
 msgstr "Kuvateksti"
 
-#: ../epanel/shortcodes/shortcodes.php:978
+#: epanel/shortcodes/shortcodes.php:978
 msgid "Caption goes here"
 msgstr "Kirjoita kuvateksti tähän"
 
-#: ../epanel/shortcodes/shortcodes.php:979
+#: epanel/shortcodes/shortcodes.php:979
 msgid "Caption title goes here"
 msgstr "Kirjoita kuvatekstin otsikko tähän"
 
-#: ../epanel/shortcodes/shortcodes.php:983
+#: epanel/shortcodes/shortcodes.php:983
 msgid "State"
 msgstr "Tila"
 
-#: ../epanel/shortcodes/shortcodes.php:985
+#: epanel/shortcodes/shortcodes.php:985
 msgid "Select between expanded and closed state"
 msgstr "Valitse laajennetun ja suljetun tilan väliltä"
 
-#: ../epanel/shortcodes/shortcodes.php:990
-#: ../epanel/shortcodes/shortcodes.php:1006
-#: ../epanel/shortcodes/shortcodes.php:1035
-#: ../epanel/shortcodes/shortcodes.php:1115
+#: epanel/shortcodes/shortcodes.php:990 epanel/shortcodes/shortcodes.php:1006
+#: epanel/shortcodes/shortcodes.php:1035 epanel/shortcodes/shortcodes.php:1115
 msgid "Content"
 msgstr "Sisältö"
 
-#: ../epanel/shortcodes/shortcodes.php:991
-#: ../epanel/shortcodes/shortcodes.php:1007
-#: ../epanel/shortcodes/shortcodes.php:1093
-#: ../epanel/shortcodes/shortcodes.php:1116
+#: epanel/shortcodes/shortcodes.php:991 epanel/shortcodes/shortcodes.php:1007
+#: epanel/shortcodes/shortcodes.php:1093 epanel/shortcodes/shortcodes.php:1116
 msgid "Content goes here"
 msgstr "Kirjoita sisältö tänne"
 
-#: ../epanel/shortcodes/shortcodes.php:992
-#: ../epanel/shortcodes/shortcodes.php:1008
-#: ../epanel/shortcodes/shortcodes.php:1037
+#: epanel/shortcodes/shortcodes.php:992 epanel/shortcodes/shortcodes.php:1008
+#: epanel/shortcodes/shortcodes.php:1037
 msgid "Content text or html"
 msgstr "Sisältöteksti tai HTML"
 
-#: ../epanel/shortcodes/shortcodes.php:999
-#: ../epanel/shortcodes/shortcodes.php:1021
+#: epanel/shortcodes/shortcodes.php:999 epanel/shortcodes/shortcodes.php:1021
 msgid "Type"
 msgstr "Tyyppi"
 
-#: ../epanel/shortcodes/shortcodes.php:1001
+#: epanel/shortcodes/shortcodes.php:1001
 msgid "Type of the box"
 msgstr "Laatikon tyyppi"
 
-#: ../epanel/shortcodes/shortcodes.php:1015
+#: epanel/shortcodes/shortcodes.php:1015
 msgid "Link"
 msgstr "Linkki"
 
-#: ../epanel/shortcodes/shortcodes.php:1017
+#: epanel/shortcodes/shortcodes.php:1017
 msgid "URL"
 msgstr "URL"
 
-#: ../epanel/shortcodes/shortcodes.php:1023
+#: epanel/shortcodes/shortcodes.php:1023
 msgid "Choose button type"
 msgstr "Valitse napin tyyli"
 
-#: ../epanel/shortcodes/shortcodes.php:1028
+#: epanel/shortcodes/shortcodes.php:1028
 msgid "Color"
 msgstr "Väri"
 
-#: ../epanel/shortcodes/shortcodes.php:1030
+#: epanel/shortcodes/shortcodes.php:1030
 msgid "Choose button color"
 msgstr "Valitse napin väri"
 
-#: ../epanel/shortcodes/shortcodes.php:1036
+#: epanel/shortcodes/shortcodes.php:1036
 msgid "Link text"
 msgstr "Linkin teksti"
 
-#: ../epanel/shortcodes/shortcodes.php:1041
+#: epanel/shortcodes/shortcodes.php:1041
 msgid "Icon"
 msgstr "Ikoni"
 
-#: ../epanel/shortcodes/shortcodes.php:1043
+#: epanel/shortcodes/shortcodes.php:1043
 msgid "Used for icon button type"
 msgstr "Käytetään kuvan napin tyyliä vartin"
 
-#: ../epanel/shortcodes/shortcodes.php:1048
+#: epanel/shortcodes/shortcodes.php:1048
 msgid "Open link in new window"
 msgstr "Avaa linkki uudessa ikkunassa"
 
-#: ../epanel/shortcodes/shortcodes.php:1050
+#: epanel/shortcodes/shortcodes.php:1050
 msgid "Select yes if the link should be opened in a new window"
 msgstr "Valitsekyllä, jos linkin tulee avautua uudessa ikkunassa"
 
-#: ../epanel/shortcodes/shortcodes.php:1058
+#: epanel/shortcodes/shortcodes.php:1058
 msgid "Slider Type"
 msgstr "Sliderin tyyppi"
 
-#: ../epanel/shortcodes/shortcodes.php:1060
+#: epanel/shortcodes/shortcodes.php:1060
 msgid "Select Slider Type here"
 msgstr "Valitse sliderin tyyppi täällä"
 
-#: ../epanel/shortcodes/shortcodes.php:1065
+#: epanel/shortcodes/shortcodes.php:1065
 msgid "Effect"
 msgstr "Tehoste"
 
-#: ../epanel/shortcodes/shortcodes.php:1067
+#: epanel/shortcodes/shortcodes.php:1067
 msgid "Select Animation Effect"
 msgstr "Valitse animaatio tehoste"
 
-#: ../epanel/shortcodes/shortcodes.php:1072
+#: epanel/shortcodes/shortcodes.php:1072
 msgid "Auto"
 msgstr "Automaattinen"
 
-#: ../epanel/shortcodes/shortcodes.php:1074
+#: epanel/shortcodes/shortcodes.php:1074
 msgid "Choose yes if you want for automatic slider animation"
 msgstr ""
 "Valitse kyllä, jos haluat ottaa käyttöön automaattisen sliderin animaation"
 
-#: ../epanel/shortcodes/shortcodes.php:1079
+#: epanel/shortcodes/shortcodes.php:1079
 msgid "Auto Speed"
 msgstr "Automaattinen nopeus"
 
-#: ../epanel/shortcodes/shortcodes.php:1081
+#: epanel/shortcodes/shortcodes.php:1081
 msgid "Automattic slider speed (works only if Auto is set to yes)"
 msgstr ""
 "Automaattinen sliderin nopeus (toimii vain, jos automaattiseen on valittu "
 "\"kyllä\")"
 
-#: ../epanel/shortcodes/shortcodes.php:1085
+#: epanel/shortcodes/shortcodes.php:1085
 msgid "Tab Text"
 msgstr "Välilehden teksti"
 
-#: ../epanel/shortcodes/shortcodes.php:1092
+#: epanel/shortcodes/shortcodes.php:1092
 msgid "Tab Content"
 msgstr "Välilehden sisältö"
 
-#: ../epanel/shortcodes/shortcodes.php:1094
+#: epanel/shortcodes/shortcodes.php:1094
 msgid "Paste image url here, if you chose \"images\" slider type"
 msgstr "Liitä kuvan URL tähän, jos valitsit \"images\" sliderin tyypin"
 
-#: ../epanel/shortcodes/shortcodes.php:1102
+#: epanel/shortcodes/shortcodes.php:1102
 msgid "Image Url"
 msgstr "Kuva URL"
 
-#: ../epanel/shortcodes/shortcodes.php:1104
+#: epanel/shortcodes/shortcodes.php:1104
 msgid "Author Image URL"
 msgstr "Kirjoittajan kuva URL"
 
-#: ../epanel/shortcodes/shortcodes.php:1108
+#: epanel/shortcodes/shortcodes.php:1108
 msgid "Use resizing"
 msgstr "Käytä kuvan koon muuttamista"
 
-#: ../epanel/shortcodes/shortcodes.php:1185
+#: epanel/shortcodes/shortcodes.php:1185
 msgid "+ Add One More Tab"
 msgstr "+ Lisää yksi välilehti"
 
-#: ../epanel/shortcodes/shortcodes.php:1335 ../functions.php:3126
+#: epanel/shortcodes/shortcodes.php:1335 functions.php:3154
 msgid "Image Height"
 msgstr "Kuvan korkeus"
 
-#: ../epanel/shortcodes/shortcodes.php:1336 ../functions.php:3107
+#: epanel/shortcodes/shortcodes.php:1336 functions.php:3134
 msgid "Image Width"
 msgstr "Kuvan leveys"
 
-#: ../footer.php:40
-#, php-format
+#: footer.php:40
 msgid "Designed by %1$s | Powered by %2$s"
 msgstr "Suunnittelu: %1$s | Tuen toimitti: %2$s"
 
-#: ../functions.php:30
+#: functions.php:34
 msgid "Primary Menu"
 msgstr "Päävalikko"
 
-#: ../functions.php:31
+#: functions.php:35
 msgid "Secondary Menu"
 msgstr "Valikko"
 
-#: ../functions.php:32 ../functions.php:628
+#: functions.php:36 functions.php:645
 msgid "Footer Menu"
 msgstr "Linkkivalikko"
 
-#: ../functions.php:73
-#, php-format
+#: functions.php:83
 msgid ""
 "Welcome to Divi! Before diving in to your new theme, please visit the <a "
 "style=\"color: #fff; font-weight: bold;\" href=\"%1$s\" target=\"_blank"
@@ -1498,1250 +1510,1157 @@ msgstr ""
 "\">Divi Documentation</a> -sivua, josta pääset kymmeniin seikkaperäisiin "
 "tutoriaaleihin."
 
-#: ../functions.php:97
-msgid "on"
-msgstr " "
-
-#: ../functions.php:187
+#: functions.php:197
 msgid "Select Page"
 msgstr "Valitse sivu"
 
-#: ../functions.php:227
+#: functions.php:253
 msgid "Divi Page Settings"
 msgstr "Divi-sivun asetukset"
 
-#: ../functions.php:229
+#: functions.php:255
 msgid "Divi Post Settings"
 msgstr "Divi-postauksen asetukset"
 
-#: ../functions.php:230
+#: functions.php:256
 msgid "Divi Product Settings"
 msgstr "Divi-tuotteen asetukset"
 
-#: ../functions.php:231
+#: functions.php:257
 msgid "Divi Project Settings"
 msgstr "Divi-projektin asetukset"
 
-#: ../functions.php:238
+#: functions.php:264
 msgid "Skills"
 msgstr "Taidot"
 
-#: ../functions.php:241
+#: functions.php:267
 msgid "Posted on"
 msgstr "Lähetetty"
 
-#: ../functions.php:268
+#: functions.php:294
 msgid "Light"
 msgstr "Valoisa"
 
-#: ../functions.php:269
+#: functions.php:295
 msgid "Dark"
 msgstr "Tumma"
 
-#: ../functions.php:282
+#: functions.php:308
 msgid "Page Layout"
 msgstr "Sivun sommittelu"
 
-#: ../functions.php:296
+#: functions.php:322
 msgid "Dot Navigation"
 msgstr "Dot-navigointi"
 
-#: ../functions.php:299 ../functions.php:307
+#: functions.php:325 functions.php:334
 msgid "Off"
 msgstr "Pois päältä"
 
-#: ../functions.php:300 ../functions.php:308
+#: functions.php:326 functions.php:335
 msgid "On"
 msgstr "Päällä"
 
-#: ../functions.php:304
+#: functions.php:330
 msgid "Hide Nav Before Scroll"
 msgstr "Piilota navigointi ennen skrollausta"
 
-#: ../functions.php:314
+#: functions.php:333 functions.php:5348 includes/functions/choices.php:24
+#: includes/functions/choices.php:40
+msgid "Default"
+msgstr "Oletus"
+
+#: functions.php:341
 msgid "Post Title"
 msgstr "Postauksen otsikko"
 
-#: ../functions.php:317
+#: functions.php:344
 msgid "Show"
 msgstr "Näytä"
 
-#: ../functions.php:318
+#: functions.php:345
 msgid "Hide"
 msgstr "Piilota"
 
-#: ../functions.php:323
+#: functions.php:350
 msgid "Use Background Color"
 msgstr "Käytä taustaväriä"
 
-#: ../functions.php:328 ../functions.php:5471
+#: functions.php:355 functions.php:5384
 msgid "Hex Value"
 msgstr "Värin arvot"
 
-#: ../functions.php:332 ../functions.php:1645 ../functions.php:1670
-#: ../functions.php:1793 ../functions.php:2311 ../functions.php:2410
-#: ../functions.php:2616
+#: functions.php:359 functions.php:1683 functions.php:1710 functions.php:1837
+#: functions.php:2358 functions.php:2458 functions.php:2663
 msgid "Text Color"
 msgstr "Tekstin väri"
 
-#: ../functions.php:466 ../functions.php:478 ../functions.php:7981
+#: functions.php:493 functions.php:505 functions.php:7928
 msgid "you don't have sufficient permissions to access this page"
 msgstr "sinulla ei ole riittäviä oikeuksia käyttää tätä sivua"
 
-#: ../functions.php:538
+#: functions.php:555
 msgid "Site Identity"
 msgstr "sivuston identiteetti"
 
-#: ../functions.php:548
+#: functions.php:565
 msgid "Typography"
 msgstr "Typografia"
 
-#: ../functions.php:553
+#: functions.php:570
 msgid "Mobile Styles"
 msgstr "Mobiililaitteen tyylit"
 
-#: ../functions.php:558
+#: functions.php:575
 msgid "Tablet"
 msgstr "Tabletti"
 
-#: ../functions.php:563
+#: functions.php:580
 msgid "Phone"
 msgstr "Puhelin"
 
-#: ../functions.php:568
+#: functions.php:585
 msgid "Mobile Menu"
 msgstr "Mobiililaitteen valikko"
 
-#: ../functions.php:573
+#: functions.php:590
 msgid "Background"
 msgstr "Tausta"
 
-#: ../functions.php:578
+#: functions.php:595
 msgid "Header & Navigation"
 msgstr "Ylätunniste & navigointi"
 
-#: ../functions.php:583
+#: functions.php:600
 msgid "Header Format"
 msgstr "Ylätunnisteen muoto"
 
-#: ../functions.php:588
+#: functions.php:605
 msgid "Primary Menu Bar"
 msgstr "Päävalikon palkki"
 
-#: ../functions.php:593
+#: functions.php:610
 msgid "Secondary Menu Bar"
 msgstr "Alavalikon palkki"
 
-#: ../functions.php:598
+#: functions.php:615
 msgid "Fixed Navigation Settings"
 msgstr "Kiinteät navigointiasetukset"
 
-#: ../functions.php:603
+#: functions.php:620
 msgid "Header Elements"
 msgstr "Ylätunnisteen elementit"
 
-#: ../functions.php:608
+#: functions.php:625
 msgid "Footer"
 msgstr "Alatunniste"
 
-#: ../functions.php:613
+#: functions.php:630
 msgid "Layout"
 msgstr "Sommitelma"
 
-#: ../functions.php:618
+#: functions.php:635
 msgid "Widgets"
 msgstr "Widgetit"
 
-#: ../functions.php:623
+#: functions.php:640
 msgid "Footer Elements"
 msgstr "Alatunnisteen elementit"
 
-#: ../functions.php:633
+#: functions.php:650
 msgid "Bottom Bar"
 msgstr "Alapalkki"
 
-#: ../functions.php:638 ../functions.php:1337
+#: functions.php:655 functions.php:1376
 msgid "Color Schemes"
 msgstr "Väriteemat"
 
-#: ../functions.php:640
+#: functions.php:657
 msgid ""
 "Note: Color settings set above should be applied to the Default color scheme."
 msgstr "Huomaa: Ylle syötetyt väriasetukset tulee lisätä Oletusväreihin"
 
-#: ../functions.php:644
+#: functions.php:661
 msgid "Buttons"
 msgstr "Painikkeet"
 
-#: ../functions.php:649
+#: functions.php:666
 msgid "Buttons Style"
 msgstr "Painikkeitten tyyli"
 
-#: ../functions.php:654
+#: functions.php:671
 msgid "Buttons Hover Style"
 msgstr "Kursorin alla olevien painikkeitten tyyli"
 
-#: ../functions.php:659 ../functions.php:4735
+#: functions.php:676 functions.php:4682
 msgid "Blog"
 msgstr "Blogi"
 
-#: ../functions.php:664
+#: functions.php:681
 msgid "Post"
 msgstr "Postaus"
 
-#: ../functions.php:680
+#: functions.php:698
 msgid "Meta Text Size"
 msgstr "Metatekstin koko"
 
-#: ../functions.php:698
+#: functions.php:717
 msgid "Meta Line Height"
 msgstr "Metatekstin rivikorkeus"
 
-#: ../functions.php:716
+#: functions.php:736
 msgid "Meta Letter Spacing"
 msgstr "Metatekstin kirjainväli"
 
-#: ../functions.php:734 ../functions.php:4806 ../functions.php:4892
+#: functions.php:755 functions.php:4752 functions.php:4832
 msgid "Meta Font Style"
 msgstr "Metatekstin fontin tyyli"
 
-#: ../functions.php:738 ../functions.php:811 ../functions.php:1202
-#: ../functions.php:1546 ../functions.php:1630 ../functions.php:2080
-#: ../functions.php:2135 ../functions.php:2264 ../functions.php:2328
-#: ../functions.php:2507 ../functions.php:2786 ../functions.php:2825
-#: ../functions.php:2899 ../functions.php:2985 ../functions.php:3024
-#: ../functions.php:3052 ../functions.php:3072 ../functions.php:3176
-#: ../functions.php:3215 ../functions.php:3254 ../functions.php:3301
-#: ../functions.php:3367 ../functions.php:3406 ../functions.php:3453
-#: ../functions.php:3519 ../functions.php:3613 ../functions.php:3652
-#: ../functions.php:3727 ../functions.php:3766 ../functions.php:3805
-#: ../functions.php:3852 ../functions.php:3891 ../functions.php:3975
-#: ../functions.php:4014 ../functions.php:4061 ../functions.php:4100
-#: ../functions.php:4146 ../functions.php:4166 ../functions.php:4252
-#: ../functions.php:4272 ../functions.php:4357 ../functions.php:4396
-#: ../functions.php:4454 ../functions.php:4501 ../functions.php:4666
-#: ../functions.php:4705 ../functions.php:4771 ../functions.php:4810
-#: ../functions.php:4857 ../functions.php:4896 ../functions.php:4943
-#: ../functions.php:4982 ../functions.php:5021 ../functions.php:5060
-#: ../functions.php:5107 ../functions.php:5154 ../functions.php:5220
-#: ../functions.php:5259
-msgid "Bold"
-msgstr "Lihavointi"
-
-#: ../functions.php:739 ../functions.php:812 ../functions.php:1203
-#: ../functions.php:1547 ../functions.php:1631 ../functions.php:2081
-#: ../functions.php:2136 ../functions.php:2265 ../functions.php:2329
-#: ../functions.php:2508 ../functions.php:2787 ../functions.php:2826
-#: ../functions.php:2900 ../functions.php:2986 ../functions.php:3025
-#: ../functions.php:3053 ../functions.php:3073 ../functions.php:3177
-#: ../functions.php:3216 ../functions.php:3255 ../functions.php:3302
-#: ../functions.php:3368 ../functions.php:3407 ../functions.php:3454
-#: ../functions.php:3520 ../functions.php:3614 ../functions.php:3653
-#: ../functions.php:3728 ../functions.php:3767 ../functions.php:3806
-#: ../functions.php:3853 ../functions.php:3892 ../functions.php:3976
-#: ../functions.php:4015 ../functions.php:4062 ../functions.php:4101
-#: ../functions.php:4147 ../functions.php:4167 ../functions.php:4253
-#: ../functions.php:4273 ../functions.php:4358 ../functions.php:4397
-#: ../functions.php:4455 ../functions.php:4502 ../functions.php:4667
-#: ../functions.php:4706 ../functions.php:4772 ../functions.php:4811
-#: ../functions.php:4858 ../functions.php:4897 ../functions.php:4944
-#: ../functions.php:4983 ../functions.php:5022 ../functions.php:5061
-#: ../functions.php:5108 ../functions.php:5155 ../functions.php:5221
-#: ../functions.php:5260
-msgid "Italic"
-msgstr "Kursivointi"
-
-#: ../functions.php:740 ../functions.php:813 ../functions.php:1204
-#: ../functions.php:1548 ../functions.php:1632 ../functions.php:2082
-#: ../functions.php:2137 ../functions.php:2266 ../functions.php:2330
-#: ../functions.php:2509 ../functions.php:2788 ../functions.php:2827
-#: ../functions.php:2901 ../functions.php:2987 ../functions.php:3026
-#: ../functions.php:3054 ../functions.php:3074 ../functions.php:3178
-#: ../functions.php:3217 ../functions.php:3256 ../functions.php:3303
-#: ../functions.php:3369 ../functions.php:3408 ../functions.php:3455
-#: ../functions.php:3521 ../functions.php:3615 ../functions.php:3654
-#: ../functions.php:3729 ../functions.php:3768 ../functions.php:3807
-#: ../functions.php:3854 ../functions.php:3893 ../functions.php:3977
-#: ../functions.php:4016 ../functions.php:4063 ../functions.php:4102
-#: ../functions.php:4148 ../functions.php:4168 ../functions.php:4254
-#: ../functions.php:4274 ../functions.php:4359 ../functions.php:4398
-#: ../functions.php:4456 ../functions.php:4503 ../functions.php:4668
-#: ../functions.php:4707 ../functions.php:4773 ../functions.php:4812
-#: ../functions.php:4859 ../functions.php:4898 ../functions.php:4945
-#: ../functions.php:4984 ../functions.php:5023 ../functions.php:5062
-#: ../functions.php:5109 ../functions.php:5156 ../functions.php:5222
-#: ../functions.php:5261
-msgid "Uppercase"
-msgstr "Iso kirjain"
-
-#: ../functions.php:741 ../functions.php:814 ../functions.php:1205
-#: ../functions.php:1549 ../functions.php:1633 ../functions.php:2083
-#: ../functions.php:2138 ../functions.php:2267 ../functions.php:2331
-#: ../functions.php:2510 ../functions.php:2789 ../functions.php:2828
-#: ../functions.php:2902 ../functions.php:2988 ../functions.php:3027
-#: ../functions.php:3055 ../functions.php:3075 ../functions.php:3179
-#: ../functions.php:3218 ../functions.php:3257 ../functions.php:3304
-#: ../functions.php:3370 ../functions.php:3409 ../functions.php:3456
-#: ../functions.php:3522 ../functions.php:3616 ../functions.php:3655
-#: ../functions.php:3730 ../functions.php:3769 ../functions.php:3808
-#: ../functions.php:3855 ../functions.php:3894 ../functions.php:3978
-#: ../functions.php:4017 ../functions.php:4064 ../functions.php:4103
-#: ../functions.php:4149 ../functions.php:4169 ../functions.php:4255
-#: ../functions.php:4275 ../functions.php:4360 ../functions.php:4399
-#: ../functions.php:4457 ../functions.php:4504 ../functions.php:4669
-#: ../functions.php:4708 ../functions.php:4774 ../functions.php:4813
-#: ../functions.php:4860 ../functions.php:4899 ../functions.php:4946
-#: ../functions.php:4985 ../functions.php:5024 ../functions.php:5063
-#: ../functions.php:5110 ../functions.php:5157 ../functions.php:5223
-#: ../functions.php:5262
-msgid "Underline"
-msgstr "Alleviivaus"
-
-#: ../functions.php:753 ../functions.php:1144 ../functions.php:1217
-#: ../functions.php:1235 ../functions.php:2058
+#: functions.php:770 functions.php:1176 functions.php:1248 functions.php:1267
+#: functions.php:2104
 msgid "Header Text Size"
 msgstr "Ylätunnisteen tekstin koko"
 
-#: ../functions.php:771 ../functions.php:1180
+#: functions.php:789 functions.php:1214
 msgid "Header Line Height"
 msgstr "Ylätunnisteen rivikorkeus"
 
-#: ../functions.php:789 ../functions.php:1162
+#: functions.php:808 functions.php:1195
 msgid "Header Letter Spacing"
 msgstr "Ylätunnisteen kirjainväli"
 
-#: ../functions.php:807 ../functions.php:1198 ../functions.php:2076
-#: ../functions.php:2981 ../functions.php:3172 ../functions.php:3297
-#: ../functions.php:3363 ../functions.php:3449 ../functions.php:3515
-#: ../functions.php:4353 ../functions.php:5103 ../functions.php:5216
+#: functions.php:827 functions.php:1233 functions.php:2123 functions.php:3022
+#: functions.php:3202 functions.php:3318 functions.php:3382 functions.php:3462
+#: functions.php:3526 functions.php:4325 functions.php:5028 functions.php:5136
 msgid "Header Font Style"
 msgstr "Ylätunnisteen fontin tyyli"
 
-#: ../functions.php:825
+#: functions.php:841
 msgid "Enable Boxed Layout"
 msgstr "Salli laatikot asettelussa"
 
-#: ../functions.php:838
+#: functions.php:855
 msgid "Website Content Width"
 msgstr "Nettisivun sisällön leveys"
 
-#: ../functions.php:856
+#: functions.php:874
 msgid "Website Gutter Width"
 msgstr "Nettisivun  sarakkeiden etäisyys"
 
-#: ../functions.php:873
+#: functions.php:892
 msgid "Use Custom Sidebar Width"
 msgstr "Käytä Custom sivupalkki Leveys"
 
-#: ../functions.php:886
+#: functions.php:906
 msgid "Sidebar Width"
 msgstr "Sivupalkin leveys"
 
-#: ../functions.php:904 ../functions.php:922 ../functions.php:940
+#: functions.php:925 functions.php:944 functions.php:963
 msgid "Section Height"
 msgstr "Osion korkeus"
 
-#: ../functions.php:958 ../functions.php:976 ../functions.php:994
+#: functions.php:982 functions.php:1001 functions.php:1020
 msgid "Row Height"
 msgstr "Rivin korkeus"
 
-#: ../functions.php:1012
+#: functions.php:1039
 msgid "Stretch Background Image"
 msgstr "Venytä taustan kuvaa"
 
-#: ../functions.php:1019 ../functions.php:1696 ../functions.php:1767
-#: ../functions.php:1780 ../functions.php:2298 ../functions.php:2423
-#: ../functions.php:2629
+#: functions.php:1046 functions.php:1738 functions.php:1809 functions.php:1823
+#: functions.php:2344 functions.php:2472 functions.php:2677
 msgid "Background Color"
 msgstr "Taustaväri"
 
-#: ../functions.php:1026
+#: functions.php:1053
 msgid "Background Image"
 msgstr "Taustakuva"
 
-#: ../functions.php:1032
+#: functions.php:1059
 msgid "Background Repeat"
 msgstr "Taustan toisto"
 
-#: ../functions.php:1036
+#: functions.php:1063
 msgid "No Repeat"
 msgstr "Ei toistoa"
 
-#: ../functions.php:1037
+#: functions.php:1064
 msgid "Tile"
 msgstr "Ristikko"
 
-#: ../functions.php:1038
+#: functions.php:1065
 msgid "Tile Horizontally"
 msgstr "Ristikko vaakasuoraan"
 
-#: ../functions.php:1039
+#: functions.php:1066
 msgid "Tile Vertically"
 msgstr "Ristikko pystysuoraan"
 
-#: ../functions.php:1044 ../functions.php:1055
+#: functions.php:1071 functions.php:1082
 msgid "Background Position"
 msgstr "Taustan asettelu"
 
-#: ../functions.php:1048 ../functions.php:2587
+#: functions.php:1075 includes/functions/choices.php:104
 msgid "Left"
 msgstr "Vasemmalla"
 
-#: ../functions.php:1049
+#: functions.php:1076
 msgid "Center"
 msgstr "Keskellä"
 
-#: ../functions.php:1050 ../functions.php:2586
+#: functions.php:1077 includes/functions/choices.php:103
 msgid "Right"
 msgstr "Oikealla"
 
-#: ../functions.php:1059
+#: functions.php:1086
 msgid "Scroll"
 msgstr "Skrollaa"
 
-#: ../functions.php:1060
+#: functions.php:1087
 msgid "Fixed"
 msgstr "Kiinteä"
 
-#: ../functions.php:1072 ../functions.php:1108 ../functions.php:1126
+#: functions.php:1100 functions.php:1138 functions.php:1157
 msgid "Body Text Size"
 msgstr "Leipätekstin koko"
 
-#: ../functions.php:1090
+#: functions.php:1119
 msgid "Body Line Height"
 msgstr "Leipätekstin rivikorkeus"
 
-#: ../functions.php:1254
+#: functions.php:1287
 msgid "Header Font"
 msgstr "Ylätunnisteen fontti"
 
-#: ../functions.php:1269
+#: functions.php:1303
 msgid "Body Font"
 msgstr "Päätekstin fontti"
 
-#: ../functions.php:1285
+#: functions.php:1320
 msgid "Body Link Color"
 msgstr "Leipätekstin linkin väri"
 
-#: ../functions.php:1298
+#: functions.php:1334
 msgid "Body Text Color"
 msgstr "Leipätekstin väri"
 
-#: ../functions.php:1311
+#: functions.php:1348
 msgid "Header Text Color"
 msgstr "Ylätunnisteen tekstin väri"
 
-#: ../functions.php:1324
+#: functions.php:1362
 msgid "Theme Accent Color"
 msgstr "Teeman korostusväri"
 
-#: ../functions.php:1342 ../functions.php:1362 ../functions.php:5435
-msgid "Default"
-msgstr "Oletus"
-
-#: ../functions.php:1343
-msgid "Green"
-msgstr "Vihreä"
-
-#: ../functions.php:1344
-msgid "Orange"
-msgstr "Oranssi"
-
-#: ../functions.php:1345
-msgid "Pink"
-msgstr "Vaaleanpunainen"
-
-#: ../functions.php:1346
-msgid "Red"
-msgstr "Punainen"
-
-#: ../functions.php:1358
+#: functions.php:1392
 msgid "Header Style"
 msgstr "Ylätunnisteen tyyli"
 
-#: ../functions.php:1363
-msgid "Centered"
-msgstr "Keskitetty"
-
-#: ../functions.php:1364
-msgid "Centered Inline Logo"
-msgstr "Keskitetty tasattu logo"
-
-#: ../functions.php:1375
+#: functions.php:1406
 msgid "Enable Vertical Navigation"
 msgstr "Salli pystysuoraan navigointi"
 
-#: ../functions.php:1389
+#: functions.php:1421
 msgid "Hide Navigation Until Scroll"
 msgstr "Piilota navigointi skrollaukseen asti"
 
-#: ../functions.php:1403 ../functions.php:2006
+#: functions.php:1436 functions.php:2060
 msgid "Show Social Icons"
 msgstr "Näytä some-ikonit"
 
-#: ../functions.php:1416
+#: functions.php:1450
 msgid "Show Search Icon"
 msgstr "Näytä hakukuvake"
 
-#: ../functions.php:1428 ../functions.php:1567
+#: functions.php:1463 functions.php:1606
 msgid "Make Full Width"
 msgstr "Tee täyslevyiseksi"
 
-#: ../functions.php:1440 ../functions.php:1657 ../functions.php:1867
+#: functions.php:1476 functions.php:1696 functions.php:1912
 msgid "Hide Logo Image"
 msgstr "Piilota logo"
 
-#: ../functions.php:1453
+#: functions.php:1490
 msgid "Menu Height"
 msgstr "valikko Korkeus"
 
-#: ../functions.php:1471
+#: functions.php:1509
 msgid "Logo Max Height"
 msgstr "Logo Max Korkeus"
 
-#: ../functions.php:1489 ../functions.php:1573 ../functions.php:1898
-#: ../functions.php:2392
+#: functions.php:1528 functions.php:1612 functions.php:1945 functions.php:2439
 msgid "Text Size"
 msgstr "Tekstin koko"
 
-#: ../functions.php:1507 ../functions.php:1591 ../functions.php:2242
-#: ../functions.php:2485 ../functions.php:2673
+#: functions.php:1547 functions.php:1631 functions.php:2290 functions.php:2538
+#: functions.php:2724
 msgid "Letter Spacing"
 msgstr "Kirjainväli"
 
-#: ../functions.php:1526 ../functions.php:1610
+#: functions.php:1567 functions.php:1651
 msgid "Font"
 msgstr "Fontti"
 
-#: ../functions.php:1542 ../functions.php:1626 ../functions.php:2260
-#: ../functions.php:2324
+#: functions.php:1584 functions.php:1668 functions.php:2309 functions.php:2372
 msgid "Font Style"
 msgstr "Fontin tyyli"
 
-#: ../functions.php:1683
+#: functions.php:1724
 msgid "Active Link Color"
 msgstr "Âktiivisen linkin väri"
 
-#: ../functions.php:1709 ../functions.php:1806
+#: functions.php:1752 functions.php:1851
 msgid "Dropdown Menu Background Color"
 msgstr "Pudotusvalikon taustaväri"
 
-#: ../functions.php:1722
+#: functions.php:1766
 msgid "Dropdown Menu Line Color"
 msgstr "Pudotusvalikon rivin väri"
 
-#: ../functions.php:1735 ../functions.php:1819
+#: functions.php:1780 functions.php:1865
 msgid "Dropdown Menu Text Color"
 msgstr "Pudotusvalikon tekstin väri"
 
-#: ../functions.php:1748 ../functions.php:1832
+#: functions.php:1794 functions.php:1879
 msgid "Dropdown Menu Animation"
 msgstr "Pudotusvalikon animaatio"
 
-#: ../functions.php:1752 ../functions.php:1836
-msgid "Fade"
-msgstr "Häivytä"
-
-#: ../functions.php:1753 ../functions.php:1837
-msgid "Expand"
-msgstr "Laajenna"
-
-#: ../functions.php:1754 ../functions.php:1838
-msgid "Slide"
-msgstr "Diakuva"
-
-#: ../functions.php:1755 ../functions.php:1839
-msgid "Flip"
-msgstr "Käännä"
-
-#: ../functions.php:1880
+#: functions.php:1926
 msgid "Fixed Menu Height"
 msgstr "Kiinteä Valikko Korkeus"
 
-#: ../functions.php:1916
+#: functions.php:1964
 msgid "Primary Menu Background Color"
 msgstr "Päävalikon taustaväri"
 
-#: ../functions.php:1929
+#: functions.php:1978
 msgid "Secondary Menu Background Color"
 msgstr "Alavalikon taustaväri"
 
-#: ../functions.php:1942
+#: functions.php:1992
 msgid "Primary Menu Link Color"
 msgstr "Ensisijainen Valikko linkin väri"
 
-#: ../functions.php:1955
+#: functions.php:2005
 msgid "Secondary Menu Link Color"
 msgstr "Toissijainen valikko linkin väri"
 
-#: ../functions.php:1968
+#: functions.php:2019
 msgid "Active Primary Menu Link Color"
 msgstr "Aktiivinen Ensisijainen Valikko linkin väri"
 
-#: ../functions.php:1981
+#: functions.php:2033
 msgid "Phone Number"
 msgstr "Puhelinnumero"
 
-#: ../functions.php:1993
+#: functions.php:2046
 msgid "Email"
 msgstr "Sähköposti"
 
-#: ../functions.php:2019
+#: functions.php:2074
 msgid "Column Layout"
 msgstr "Sarakkeen asettelu"
 
-#: ../functions.php:2024 ../functions.php:2025 ../functions.php:2026
-#: ../functions.php:2028 ../functions.php:2029 ../functions.php:2030
-#: ../functions.php:2031 ../functions.php:2032 ../functions.php:2033
-#, php-format
-msgid "%1$s Columns"
-msgstr "%1$s Sarakkeet"
-
-#: ../functions.php:2027
-msgid "1 Column"
-msgstr "1 sarake"
-
-#: ../functions.php:2045
+#: functions.php:2090
 msgid "Footer Background Color"
 msgstr "Alatunnisteen taustan väri"
 
-#: ../functions.php:2095
+#: functions.php:2138
 msgid "Body/Link Text Size"
 msgstr "Leipätekstin/linkin tekstikoko"
 
-#: ../functions.php:2113
+#: functions.php:2157
 msgid "Body/Link Line Height"
 msgstr "Leipätekstin/linkin rivikorkeus"
 
-#: ../functions.php:2131
+#: functions.php:2176
 msgid "Body Font Style"
 msgstr "Leipätekstin fontin tyyli"
 
-#: ../functions.php:2150
+#: functions.php:2191
 msgid "Widget Text Color"
 msgstr "Widgetin tekstin väri"
 
-#: ../functions.php:2163
+#: functions.php:2205
 msgid "Widget Link Color"
 msgstr "Widgetin linkin väri"
 
-#: ../functions.php:2176
+#: functions.php:2219
 msgid "Widget Header Color"
 msgstr "Widgetin ylätunnisteen väri"
 
-#: ../functions.php:2189
+#: functions.php:2233
 msgid "Widget Bullet Color"
 msgstr "Widgetin Dot-väri"
 
-#: ../functions.php:2203
+#: functions.php:2248
 msgid "Footer Menu Background Color"
 msgstr "Alavalikon taustaväri"
 
-#: ../functions.php:2216
+#: functions.php:2262
 msgid "Footer Menu Text Color"
 msgstr "Alavalikon tekstin väri"
 
-#: ../functions.php:2229
+#: functions.php:2276
 msgid "Footer Menu Active Link Color"
 msgstr "Alavalikon aktiivisen linkin väri"
 
-#: ../functions.php:2279 ../functions.php:2343
+#: functions.php:2324 functions.php:2387
 msgid "Font Size"
 msgstr "Fonttikoko"
 
-#: ../functions.php:2361
+#: functions.php:2406
 msgid "Social Icon Size"
 msgstr "Some-ikonin koko"
 
-#: ../functions.php:2379
+#: functions.php:2425
 msgid "Social Icon Color"
 msgstr "Some-ikonin väri"
 
-#: ../functions.php:2436
+#: functions.php:2486
 msgid "Border Width"
 msgstr "Reunuksen leveys"
 
-#: ../functions.php:2454 ../functions.php:2642
+#: functions.php:2505 functions.php:2691
 msgid "Border Color"
 msgstr "Reunuksen väri"
 
-#: ../functions.php:2467 ../functions.php:2655
+#: functions.php:2519 functions.php:2705
 msgid "Border Radius"
 msgstr "Reunuksen kaarevuus"
 
-#: ../functions.php:2503 ../functions.php:5150
+#: functions.php:2557 functions.php:5072
 msgid "Button Font Style"
 msgstr "Painikkeen fontin tyyli"
 
-#: ../functions.php:2523
+#: functions.php:2573
 msgid "Buttons Font"
 msgstr "Painikkeiden fontti"
 
-#: ../functions.php:2539
+#: functions.php:2590
 msgid "Add Button Icon"
 msgstr "Lisää painikkeen ikoni"
 
-#: ../functions.php:2543 ../functions.php:2603
-msgid "Yes"
-msgstr "Kyllä"
-
-#: ../functions.php:2544 ../functions.php:2604
-msgid "No"
-msgstr "Ei"
-
-#: ../functions.php:2556
+#: functions.php:2605
 msgid "Select Icon"
 msgstr "Valitse ikoni"
 
-#: ../functions.php:2569
+#: functions.php:2619
 msgid "Icon Color"
 msgstr "Kuvakkeen väri"
 
-#: ../functions.php:2582
+#: functions.php:2633
 msgid "Icon Placement"
 msgstr "Ikonin asettelu"
 
-#: ../functions.php:2599
+#: functions.php:2648
 msgid "Only Show Icon on Hover"
 msgstr "Näytä ikoni vain kursorin alla"
 
-#: ../functions.php:2688
-msgid "Left to Right"
-msgstr "Vasemmalta oikealle"
-
-#: ../functions.php:2689
-msgid "Right to Left"
-msgstr "Oikealta vasemmalle"
-
-#: ../functions.php:2690
-msgid "Top to Bottom"
-msgstr "Ylhäältä alas"
-
-#: ../functions.php:2691
-msgid "Bottom to Top"
-msgstr "Alhaalta ylös"
-
-#: ../functions.php:2692
-msgid "Fade In"
-msgstr "Voimistuminen"
-
-#: ../functions.php:2693
-msgid "No Animation"
-msgstr "Ei animaatioita"
-
-#: ../functions.php:2700 ../includes/widgets/widget-about.php:50
-#: ../includes/widgets/widget-ads.php:180
-#: ../includes/widgets/widget-ads.php:188
-#: ../includes/widgets/widget-ads.php:196
-#: ../includes/widgets/widget-ads.php:204
-#: ../includes/widgets/widget-ads.php:212
-#: ../includes/widgets/widget-ads.php:220
-#: ../includes/widgets/widget-ads.php:228
-#: ../includes/widgets/widget-ads.php:236
+#: functions.php:2742 includes/widgets/widget-about.php:50
+#: includes/widgets/widget-ads.php:180 includes/widgets/widget-ads.php:188
+#: includes/widgets/widget-ads.php:196 includes/widgets/widget-ads.php:204
+#: includes/widgets/widget-ads.php:212 includes/widgets/widget-ads.php:220
+#: includes/widgets/widget-ads.php:228 includes/widgets/widget-ads.php:236
 msgid "Image"
 msgstr "Kuva"
 
-#: ../functions.php:2701
+#: functions.php:2743
 msgid "Image Module Settings"
 msgstr "Kuvaosion asetukset"
 
-#: ../functions.php:2711
+#: functions.php:2754
 msgid "Animation"
 msgstr "Animaatio"
 
-#: ../functions.php:2712
+#: functions.php:2755
 msgid "This controls default direction of the lazy-loading animation."
 msgstr "Tämä hallinnoi hitaasti latautuvan animaation oletussuuntaa."
 
-#: ../functions.php:2722
+#: functions.php:2765
 msgid "Gallery"
 msgstr "Galleria"
 
-#: ../functions.php:2735 ../functions.php:3562 ../functions.php:3676
+#: functions.php:2779 functions.php:3570 functions.php:3680
 msgid "Zoom Icon Color"
 msgstr "Suurenna ikonin väriin"
 
-#: ../functions.php:2749 ../functions.php:3576 ../functions.php:3690
+#: functions.php:2794 functions.php:3585 functions.php:3695
 msgid "Hover Overlay Color"
 msgstr "Kursorin alla olevan päälle asetettavan elementin väri"
 
-#: ../functions.php:2763 ../functions.php:2876 ../functions.php:3590
-#: ../functions.php:3704 ../functions.php:3991 ../functions.php:4077
-#: ../functions.php:4123 ../functions.php:4229
+#: functions.php:2809 functions.php:2917 functions.php:3600 functions.php:3710
+#: functions.php:3981 functions.php:4061 functions.php:4104 functions.php:4205
 msgid "Title Font Size"
 msgstr "Otsikon fonttikoko"
 
-#: ../functions.php:2782 ../functions.php:2895 ../functions.php:3609
-#: ../functions.php:3723 ../functions.php:4010 ../functions.php:4096
-#: ../functions.php:4767 ../functions.php:4853
+#: functions.php:2829 functions.php:2937 functions.php:3620 functions.php:3730
+#: functions.php:4001 functions.php:4081 functions.php:4716 functions.php:4796
 msgid "Title Font Style"
 msgstr "Otsikon fontin tyyli"
 
-#: ../functions.php:2802 ../functions.php:3629 ../functions.php:3743
+#: functions.php:2845 functions.php:3636 functions.php:3746
 msgid "Caption Font Size"
 msgstr "Kuvatekstin fonttikoko"
 
-#: ../functions.php:2821 ../functions.php:3648 ../functions.php:3762
+#: functions.php:2865 functions.php:3656 functions.php:3766
 msgid "Caption Font Style"
 msgstr "Kuvatekstin fontin tyyli"
 
-#: ../functions.php:2836
+#: functions.php:2875
 msgid "Blurb"
 msgstr "Blurb"
 
-#: ../functions.php:2849 ../functions.php:2962 ../functions.php:3153
-#: ../functions.php:3278 ../functions.php:3344 ../functions.php:3430
-#: ../functions.php:3496 ../functions.php:4334 ../functions.php:5084
-#: ../functions.php:5197
+#: functions.php:2889 functions.php:3002 functions.php:3182 functions.php:3298
+#: functions.php:3362 functions.php:3442 functions.php:3506 functions.php:4305
+#: functions.php:5008 functions.php:5116
 msgid "Header Font Size"
 msgstr "Ylätunnisteen fonttikoko"
 
-#: ../functions.php:2863
+#: functions.php:2903
 msgid "Tabs"
 msgstr "Välilehdet"
 
-#: ../functions.php:2916 ../functions.php:3317 ../functions.php:3469
-#: ../functions.php:3535
+#: functions.php:2954 functions.php:3334 functions.php:3478 functions.php:3542
 msgid "Padding"
 msgstr "Täyte"
 
-#: ../functions.php:2930
+#: functions.php:2968
 msgid "Slider"
 msgstr "Vieritys"
 
-#: ../functions.php:2943 ../functions.php:5178
+#: functions.php:2982 functions.php:5096
 msgid "Top & Bottom Padding"
 msgstr "Ylä- ja alatäytteet"
 
-#: ../functions.php:3001 ../functions.php:5236
+#: functions.php:3038 functions.php:5152
 msgid "Content Font Size"
 msgstr "Sisällön fonttikoko"
 
-#: ../functions.php:3020 ../functions.php:5255
+#: functions.php:3058 functions.php:5172
 msgid "Content Font Style"
 msgstr "Sisällön fonttityyli"
 
-#: ../functions.php:3035
+#: functions.php:3068
 msgid "Testimonial"
 msgstr "Palaute"
 
-#: ../functions.php:3048 ../functions.php:4662
+#: functions.php:3082 functions.php:4616
 msgid "Name Font Style"
 msgstr "Nimen fonttityyli"
 
-#: ../functions.php:3068
+#: functions.php:3098
 msgid "Details Font Style"
 msgstr "Tarkempien tietojen fonttityyli"
 
-#: ../functions.php:3088
+#: functions.php:3114
 msgid "Portrait Border Radius"
 msgstr "Kuvan reunuksen kaarevuus"
 
-#: ../functions.php:3140
+#: functions.php:3168
 msgid "Pricing Table"
 msgstr "Hinnoittelualusta"
 
-#: ../functions.php:3192 ../functions.php:3383 ../functions.php:4682
+#: functions.php:3218 functions.php:3398 functions.php:4632
 msgid "Subheader Font Size"
 msgstr "Yläotsikon fonttikoko"
 
-#: ../functions.php:3211 ../functions.php:3402 ../functions.php:4701
+#: functions.php:3238 functions.php:3418 functions.php:4652
 msgid "Subheader Font Style"
 msgstr "Alaotsikon fonttityyli"
 
-#: ../functions.php:3231 ../functions.php:4998
+#: functions.php:3254 functions.php:4928
 msgid "Price Font Size"
 msgstr "Hinnan fonttikoko"
 
-#: ../functions.php:3250
+#: functions.php:3274
 msgid "Pricing Font Style"
 msgstr "Hinnoittelun fonttityyli"
 
-#: ../functions.php:3265
+#: functions.php:3284
 msgid "Call To Action"
 msgstr "Kutsu toimeen"
 
-#: ../functions.php:3331
+#: functions.php:3348
 msgid "Audio"
 msgstr "Ääni"
 
-#: ../functions.php:3417
+#: functions.php:3428
 msgid "Email Optin"
 msgstr "Sähköposti OptIn"
 
-#: ../functions.php:3549
+#: functions.php:3556
 msgid "Portfolio"
 msgstr "Portfolio"
 
-#: ../functions.php:3663
+#: functions.php:3666
 msgid "Filterable Portfolio"
 msgstr "Järjestettävä portfolio"
 
-#: ../functions.php:3782
+#: functions.php:3782
 msgid "Filters Font Size"
 msgstr "Suodattimien  fonttikoko"
 
-#: ../functions.php:3801
+#: functions.php:3802
 msgid "Filters Font Style"
 msgstr "Suodattimien fonttityyli"
 
-#: ../functions.php:3816
+#: functions.php:3812
 msgid "Bar Counter"
 msgstr "Laskuripalkki"
 
-#: ../functions.php:3829
+#: functions.php:3826
 msgid "Label Font Size"
 msgstr "Kylttien fonttikoko"
 
-#: ../functions.php:3848
+#: functions.php:3846
 msgid "Label Font Style"
 msgstr "Kylttien fonttityyli"
 
-#: ../functions.php:3868
+#: functions.php:3862
 msgid "Percent Font Size"
 msgstr "Prosenttien fonttikoko"
 
-#: ../functions.php:3887
+#: functions.php:3882
 msgid "Percent Font Style"
 msgstr "Prosenttien fonttityyli"
 
-#: ../functions.php:3907
+#: functions.php:3898
 msgid "Bar Padding"
 msgstr "Palkin täyte"
 
-#: ../functions.php:3926
+#: functions.php:3918
 msgid "Bar Border Radius"
 msgstr "Palkin reunuksen kaarevuus"
 
-#: ../functions.php:3940
+#: functions.php:3932
 msgid "Circle Counter"
 msgstr "Ympyrälaskuri"
 
-#: ../functions.php:3952 ../functions.php:4038
+#: functions.php:3945 functions.php:4025
 msgid "Number Font Size"
 msgstr "Numerojen fonttikoko"
 
-#: ../functions.php:3971 ../functions.php:4057
+#: functions.php:3965 functions.php:4045
 msgid "Number Font Style"
 msgstr "Numerojen fonttityyli"
 
-#: ../functions.php:4025
+#: functions.php:4011
 msgid "Number Counter"
 msgstr "Numerolaskuri"
 
-#: ../functions.php:4111
+#: functions.php:4091
 msgid "Accordion"
 msgstr "Haitari"
 
-#: ../functions.php:4142 ../functions.php:4248
+#: functions.php:4124 functions.php:4225
 msgid "Opened Title Font Style"
 msgstr "Avatun otsikon fonttityyli"
 
-#: ../functions.php:4162 ../functions.php:4268
+#: functions.php:4140 functions.php:4241
 msgid "Closed Title Font Style"
 msgstr "Suljetun otsikon fonttityyli"
 
-#: ../functions.php:4182 ../functions.php:4288
+#: functions.php:4156 functions.php:4257
 msgid "Toggle Icon Size"
 msgstr "Toggle-ikonin koko"
 
-#: ../functions.php:4202 ../functions.php:4307
+#: functions.php:4177 functions.php:4277
 msgid "Toggle Padding"
 msgstr "Toggle-täyte"
 
-#: ../functions.php:4216
+#: functions.php:4191
 msgid "Toggle"
 msgstr "Henkilö"
 
-#: ../functions.php:4321
+#: functions.php:4291
 msgid "Contact Form"
 msgstr "Yhteydenottolomake"
 
-#: ../functions.php:4373
+#: functions.php:4341
 msgid "Input Font Size"
 msgstr "Syötön fonttikoko"
 
-#: ../functions.php:4392
+#: functions.php:4361
 msgid "Input Font Style"
 msgstr "Syötön fonttityyli"
 
-#: ../functions.php:4412
+#: functions.php:4377
 msgid "Input Field Padding"
 msgstr "Syöttökentän täyte"
 
-#: ../functions.php:4431
+#: functions.php:4397
 msgid "Captcha Font Size"
 msgstr "Kuvavarmennuksen fonttikoko"
 
-#: ../functions.php:4450
+#: functions.php:4417
 msgid "Captcha Font Style"
 msgstr "Kuvavarmennuksen fonttityyli"
 
-#: ../functions.php:4465 ../includes/functions/sidebars.php:4
+#: functions.php:4427 includes/functions/sidebars.php:4
 msgid "Sidebar"
 msgstr "Sivupalkki"
 
-#: ../functions.php:4478
+#: functions.php:4441
 msgid "Widget Header Font Size"
 msgstr "Widgetin ylätunnisteen fonttikoko"
 
-#: ../functions.php:4497
+#: functions.php:4461
 msgid "Widget Header Font Style"
 msgstr "Widgetin ylätunnisteen fonttityyli"
 
-#: ../functions.php:4517
+#: functions.php:4477
 msgid "Remove Vertical Divider"
 msgstr "Poista pystysuora erotin"
 
-#: ../functions.php:4526
+#: functions.php:4486
 msgid "Divider"
 msgstr "Jakaja"
 
-#: ../functions.php:4538
+#: functions.php:4499
 msgid "Show Divider"
 msgstr "Näytä jakaja"
 
-#: ../functions.php:4552
+#: functions.php:4514
 msgid "Divider Style"
 msgstr "Erottimen tyyli"
 
-#: ../functions.php:4557
-msgid "Solid"
-msgstr "Kiinteä"
-
-#: ../functions.php:4558
-msgid "Dotted"
-msgstr "Pilkutettu"
-
-#: ../functions.php:4559
-msgid "Dashed"
-msgstr "Katkoviivoitettu"
-
-#: ../functions.php:4560
-msgid "Double"
-msgstr "Kaksinkertainen"
-
-#: ../functions.php:4561
-msgid "Groove"
-msgstr "Kaari"
-
-#: ../functions.php:4562
-msgid "Ridge"
-msgstr "Taite"
-
-#: ../functions.php:4563
-msgid "Inset"
-msgstr "Sisäpuolinen"
-
-#: ../functions.php:4564
-msgid "Outset"
-msgstr "Ulkopuolinen"
-
-#: ../functions.php:4577
+#: functions.php:4531
 msgid "Divider Weight"
 msgstr "Erottimen paino"
 
-#: ../functions.php:4596
+#: functions.php:4551
 msgid "Divider Height"
 msgstr "Erottimen korkeus"
 
-#: ../functions.php:4615
+#: functions.php:4571
 msgid "Divider Position"
 msgstr "Erottimen asettelu"
 
-#: ../functions.php:4620
-msgid "Top"
-msgstr "Ylhäällä"
-
-#: ../functions.php:4621
-msgid "Vertically Centered"
-msgstr "Pystysuoraan keskitetty"
-
-#: ../functions.php:4622
-msgid "Bottom"
-msgstr "Alhaalla"
-
-#: ../functions.php:4630
+#: functions.php:4582
 msgid "Person"
 msgstr "Henkilö"
 
-#: ../functions.php:4643
+#: functions.php:4596
 msgid "Name Font Size"
 msgstr "Nimen fonttikoko"
 
-#: ../functions.php:4721
+#: functions.php:4668
 msgid "Social Network Icon Size"
 msgstr "Some-ikonin koko"
 
-#: ../functions.php:4748 ../functions.php:4834
+#: functions.php:4696 functions.php:4776
 msgid "Post Title Font Size"
 msgstr "Postauksen otsikon fonttityyli"
 
-#: ../functions.php:4787 ../functions.php:4873
+#: functions.php:4732 functions.php:4812
 msgid "Meta Font Size"
 msgstr "Metatekstin fonttikoko"
 
-#: ../functions.php:4821
+#: functions.php:4762
 msgid "Blog Grid"
 msgstr "Blogi Grid"
 
-#: ../functions.php:4907
+#: functions.php:4842
 msgid "Shop"
 msgstr "Kauppa"
 
-#: ../functions.php:4920
+#: functions.php:4856
 msgid "Product Name Font Size"
 msgstr "Tuotenimen fonttikoko"
 
-#: ../functions.php:4939
+#: functions.php:4876
 msgid "Product Name Font Style"
 msgstr "Tuotenimen fonttityyli"
 
-#: ../functions.php:4959
+#: functions.php:4892
 msgid "Sale Badge Font Size"
 msgstr "Alennuskyltin fonttikoko"
 
-#: ../functions.php:4978
+#: functions.php:4912
 msgid "Sale Badge Font Style"
 msgstr "Alennuskyltin fonttityyli"
 
-#: ../functions.php:5017
+#: functions.php:4948
 msgid "Price Font Style"
 msgstr "Hinnan fonttityyli"
 
-#: ../functions.php:5037
+#: functions.php:4964
 msgid "Sale Price Font Size"
 msgstr "Alennushinnan fonttikoko"
 
-#: ../functions.php:5056
+#: functions.php:4984
 msgid "Sale Price Font Style"
 msgstr "Alennushinnan fonttityyli"
 
-#: ../functions.php:5071
+#: functions.php:4994
 msgid "Countdown"
 msgstr "Lähtölaskenta"
 
-#: ../functions.php:5118
+#: functions.php:5038
 msgid "Social Follow"
 msgstr "Some-seuranta"
 
-#: ../functions.php:5131
+#: functions.php:5052
 msgid "Follow Font & Icon Size"
 msgstr "Some-fontin & -ikonin koko"
 
-#: ../functions.php:5165
+#: functions.php:5082
 msgid "Fullwidth Slider"
 msgstr "Täysimittainen Slider"
 
-#: ../functions.php:7469
+#: functions.php:7389
 msgid "0 comments"
 msgstr "0 Kommenttia"
 
-#: ../functions.php:7469
+#: functions.php:7389
 msgid "1 comment"
 msgstr "1 Kommentti"
 
-#: ../functions.php:7469
+#: functions.php:7389
 msgid "comments"
 msgstr "Kommentit"
 
-#: ../functions.php:7542
+#: functions.php:7468
 msgid "Password Protected"
 msgstr "Salasanasuojattu"
 
-#: ../functions.php:7543
+#: functions.php:7469
 msgid "To view this protected post, enter the password below"
 msgstr "Katsoaksesi tätä suojattua sisältöä, kirjoita salasana alle"
 
-#: ../functions.php:7546
+#: functions.php:7472
 msgid "Password"
 msgstr "Salasana"
 
-#: ../functions.php:7547
+#: functions.php:7473
 msgid "Submit"
 msgstr "Lähetä"
 
-#: ../functions.php:7727
-#, php-format
+#: functions.php:7658
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
 
-#: ../functions.php:7729
+#: functions.php:7660
 msgid "Item"
 msgstr "Nimike"
 
-#: ../functions.php:7729
+#: functions.php:7660
 msgid "Items"
 msgstr "Nimikkeet"
 
-#: ../functions.php:7907 ../functions.php:7942
+#: functions.php:7854 functions.php:7889
 msgid "Theme Customizer"
 msgstr "Teeman mukautus"
 
-#: ../functions.php:7911 ../functions.php:7955
+#: functions.php:7858 functions.php:7902
 msgid "Module Customizer"
 msgstr "Moduulin mukautus"
 
-#: ../functions.php:7913
+#: functions.php:7860
 msgid "Role Editor"
 msgstr "rooli Editor"
 
-#: ../functions.php:7916
+#: functions.php:7863
 msgid "Divi Library"
 msgstr "Divi-kirjasto"
 
-#: ../header.php:176
+#: header.php:174
 msgid "Search &hellip;"
 msgstr "Etsi &hellip;"
 
-#: ../header.php:178
+#: header.php:176
 msgid "Search for:"
 msgstr "Etsi:"
 
+#: includes/functions/choices.php:9
+msgid "Bold"
+msgstr "Lihavointi"
+
+#: includes/functions/choices.php:10
+msgid "Italic"
+msgstr "Kursivointi"
+
+#: includes/functions/choices.php:11
+msgid "Uppercase"
+msgstr "Iso kirjain"
+
+#: includes/functions/choices.php:12
+msgid "Underline"
+msgstr "Alleviivaus"
+
+#: includes/functions/choices.php:25
+msgid "Green"
+msgstr "Vihreä"
+
+#: includes/functions/choices.php:26
+msgid "Orange"
+msgstr "Oranssi"
+
+#: includes/functions/choices.php:27
+msgid "Pink"
+msgstr "Vaaleanpunainen"
+
+#: includes/functions/choices.php:28
+msgid "Red"
+msgstr "Punainen"
+
+#: includes/functions/choices.php:41
+msgid "Centered"
+msgstr "Keskitetty"
+
+#: includes/functions/choices.php:42
+msgid "Centered Inline Logo"
+msgstr "Keskitetty tasattu logo"
+
+#: includes/functions/choices.php:54
+msgid "Fade"
+msgstr "Häivytä"
+
+#: includes/functions/choices.php:55
+msgid "Expand"
+msgstr "Laajenna"
+
+#: includes/functions/choices.php:56
+msgid "Slide"
+msgstr "Diakuva"
+
+#: includes/functions/choices.php:57
+msgid "Flip"
+msgstr "Käännä"
+
+#: includes/functions/choices.php:69 includes/functions/choices.php:70
+#: includes/functions/choices.php:71 includes/functions/choices.php:73
+#: includes/functions/choices.php:74 includes/functions/choices.php:75
+#: includes/functions/choices.php:76 includes/functions/choices.php:77
+#: includes/functions/choices.php:78
+msgid "%1$s Columns"
+msgstr "%1$s Sarakkeet"
+
+#: includes/functions/choices.php:72
+msgid "1 Column"
+msgstr "1 sarake"
+
+#: includes/functions/choices.php:90
+msgid "Yes"
+msgstr "Kyllä"
+
+#: includes/functions/choices.php:91
+msgid "No"
+msgstr "Ei"
+
+#: includes/functions/choices.php:116
+msgid "Left to Right"
+msgstr "Vasemmalta oikealle"
+
+#: includes/functions/choices.php:117
+msgid "Right to Left"
+msgstr "Oikealta vasemmalle"
+
+#: includes/functions/choices.php:118
+msgid "Top to Bottom"
+msgstr "Ylhäältä alas"
+
+#: includes/functions/choices.php:119
+msgid "Bottom to Top"
+msgstr "Alhaalta ylös"
+
+#: includes/functions/choices.php:120
+msgid "Fade In"
+msgstr "Voimistuminen"
+
+#: includes/functions/choices.php:121
+msgid "No Animation"
+msgstr "Ei animaatioita"
+
+#: includes/functions/choices.php:133
+msgid "Solid"
+msgstr "Kiinteä"
+
+#: includes/functions/choices.php:134
+msgid "Dotted"
+msgstr "Pilkutettu"
+
+#: includes/functions/choices.php:135
+msgid "Dashed"
+msgstr "Katkoviivoitettu"
+
+#: includes/functions/choices.php:136
+msgid "Double"
+msgstr "Kaksinkertainen"
+
+#: includes/functions/choices.php:137
+msgid "Groove"
+msgstr "Kaari"
+
+#: includes/functions/choices.php:138
+msgid "Ridge"
+msgstr "Taite"
+
+#: includes/functions/choices.php:139
+msgid "Inset"
+msgstr "Sisäpuolinen"
+
+#: includes/functions/choices.php:140
+msgid "Outset"
+msgstr "Ulkopuolinen"
+
+#: includes/functions/choices.php:152
+msgid "Top"
+msgstr "Ylhäällä"
+
+#: includes/functions/choices.php:153
+msgid "Vertically Centered"
+msgstr "Pystysuoraan keskitetty"
+
+#: includes/functions/choices.php:154
+msgid "Bottom"
+msgstr "Alhaalla"
+
 #. translators: 1: date, 2: time
-#: ../includes/functions/comments.php:15
-#, php-format
+#: includes/functions/comments.php:15
 msgid "on %1$s at %2$s"
 msgstr "%1$s kello %2$s"
 
-#: ../includes/functions/comments.php:18
+#: includes/functions/comments.php:18
 msgid "(Edit)"
 msgstr "(Muokkaa)"
 
-#: ../includes/functions/comments.php:21
+#: includes/functions/comments.php:21
 msgid "Reply"
 msgstr "Vastaa"
 
-#: ../includes/functions/comments.php:30
+#: includes/functions/comments.php:30
 msgid "Your comment is awaiting moderation."
 msgstr "Kommenttisi odottaa moderaattorin toimenpiteitä."
 
-#: ../includes/functions/installation.php:1
+#: includes/functions/installation.php:1
 msgid "Read Divi Documentation"
 msgstr "Lue Divi dokumentointi"
 
-#: ../includes/functions/sidebars.php:13 ../includes/functions/sidebars.php:22
-#: ../includes/functions/sidebars.php:31 ../includes/functions/sidebars.php:40
+#: includes/functions/sidebars.php:13 includes/functions/sidebars.php:22
+#: includes/functions/sidebars.php:31 includes/functions/sidebars.php:40
 msgid "Footer Area"
 msgstr "Alatunniste-alue"
 
-#: ../includes/functions/tutorials.php:1
+#: includes/functions/tutorials.php:1
 msgid "Watch video tutorials"
 msgstr "Katso videotutoriaali"
 
-#: ../includes/navigation.php:2
+#: includes/navigation.php:2
 msgid "&laquo; Older Entries"
 msgstr "&laquo; Vanhemmat merkinnät"
 
-#: ../includes/navigation.php:3
+#: includes/navigation.php:3
 msgid "Next Entries &raquo;"
 msgstr "Seuraavat merkinnät &raquo;"
 
-#: ../includes/no-results.php:3
+#: includes/no-results.php:3
 msgid "No Results Found"
 msgstr "Ei tuloksia"
 
-#: ../includes/no-results.php:4
+#: includes/no-results.php:4
 msgid ""
 "The page you requested could not be found. Try refining your search, or use "
 "the navigation above to locate the post."
@@ -2749,1461 +2668,143 @@ msgstr ""
 "Hakemaasi sivua ei löytynyt. Yritä muuttaa hakuasi, tai käytä yläpuolella "
 "olevaa navigointia löytääksesi kirjoituksen."
 
-#: ../includes/social_icons.php:6
+#: includes/social_icons.php:6
 msgid "Facebook"
 msgstr "Facebook"
 
-#: ../includes/social_icons.php:13
+#: includes/social_icons.php:13
 msgid "Twitter"
 msgstr "Twitter"
 
-#: ../includes/social_icons.php:20
+#: includes/social_icons.php:20
 msgid "Google"
 msgstr "Google"
 
-#: ../includes/social_icons.php:32
+#: includes/social_icons.php:32
 msgid "RSS"
 msgstr "RSS"
 
-#: ../includes/widgets/widget-about.php:4
+#: includes/widgets/widget-about.php:4
 msgid "Displays About Me Information"
 msgstr "Tietoja minusta"
 
-#: ../includes/widgets/widget-about.php:6
+#: includes/widgets/widget-about.php:6
 msgid "ET About Me Widget"
 msgstr "Tietoja minusta -widgetti"
 
-#: ../includes/widgets/widget-about.php:12
-#: ../includes/widgets/widget-about.php:41
+#: includes/widgets/widget-about.php:12 includes/widgets/widget-about.php:41
 msgid "About Me"
 msgstr "Tietoja minusta"
 
-#: ../includes/widgets/widget-about.php:48
-#: ../includes/widgets/widget-ads.php:172
-#: ../includes/widgets/widget-ads.php:184
-#: ../includes/widgets/widget-ads.php:192
-#: ../includes/widgets/widget-ads.php:200
-#: ../includes/widgets/widget-ads.php:208
-#: ../includes/widgets/widget-ads.php:216
-#: ../includes/widgets/widget-ads.php:224
-#: ../includes/widgets/widget-ads.php:232
-#: ../includes/widgets/widget-ads.php:240
-#: ../includes/widgets/widget-adsense.php:46
+#: includes/widgets/widget-about.php:48 includes/widgets/widget-ads.php:172
+#: includes/widgets/widget-ads.php:184 includes/widgets/widget-ads.php:192
+#: includes/widgets/widget-ads.php:200 includes/widgets/widget-ads.php:208
+#: includes/widgets/widget-ads.php:216 includes/widgets/widget-ads.php:224
+#: includes/widgets/widget-ads.php:232 includes/widgets/widget-ads.php:240
+#: includes/widgets/widget-adsense.php:46
 msgid "Title"
 msgstr "Otsikko"
 
-#: ../includes/widgets/widget-about.php:52
+#: includes/widgets/widget-about.php:52
 msgid "Text"
 msgstr "Teksti"
 
-#: ../includes/widgets/widget-ads.php:4
+#: includes/widgets/widget-ads.php:4
 msgid "Displays Advertisements"
 msgstr "Näyttää mainokset"
 
-#: ../includes/widgets/widget-ads.php:6
+#: includes/widgets/widget-ads.php:6
 msgid "ET Advertisement"
 msgstr "ET mainos"
 
-#: ../includes/widgets/widget-ads.php:12
-#: ../includes/widgets/widget-ads.php:128
+#: includes/widgets/widget-ads.php:12 includes/widgets/widget-ads.php:128
 msgid "Advertisement"
 msgstr "Mainos"
 
-#: ../includes/widgets/widget-ads.php:175
+#: includes/widgets/widget-ads.php:175
 msgid "Use Relative Image Paths"
 msgstr "Käytä suhteellisia polkunimiä kuville"
 
-#: ../includes/widgets/widget-ads.php:177
+#: includes/widgets/widget-ads.php:177
 msgid "Open in a new window"
 msgstr "Avaa uudessa ikkunassa"
 
-#: ../includes/widgets/widget-ads.php:180
-#: ../includes/widgets/widget-ads.php:182
-#: ../includes/widgets/widget-ads.php:184
-#: ../includes/widgets/widget-ads.php:186
-#: ../includes/widgets/widget-ads.php:188
-#: ../includes/widgets/widget-ads.php:190
-#: ../includes/widgets/widget-ads.php:192
-#: ../includes/widgets/widget-ads.php:194
-#: ../includes/widgets/widget-ads.php:196
-#: ../includes/widgets/widget-ads.php:198
-#: ../includes/widgets/widget-ads.php:200
-#: ../includes/widgets/widget-ads.php:202
-#: ../includes/widgets/widget-ads.php:204
-#: ../includes/widgets/widget-ads.php:206
-#: ../includes/widgets/widget-ads.php:208
-#: ../includes/widgets/widget-ads.php:210
-#: ../includes/widgets/widget-ads.php:212
-#: ../includes/widgets/widget-ads.php:214
-#: ../includes/widgets/widget-ads.php:216
-#: ../includes/widgets/widget-ads.php:218
-#: ../includes/widgets/widget-ads.php:220
-#: ../includes/widgets/widget-ads.php:222
-#: ../includes/widgets/widget-ads.php:224
-#: ../includes/widgets/widget-ads.php:226
-#: ../includes/widgets/widget-ads.php:228
-#: ../includes/widgets/widget-ads.php:230
-#: ../includes/widgets/widget-ads.php:232
-#: ../includes/widgets/widget-ads.php:234
-#: ../includes/widgets/widget-ads.php:236
-#: ../includes/widgets/widget-ads.php:238
-#: ../includes/widgets/widget-ads.php:240
-#: ../includes/widgets/widget-ads.php:242
+#: includes/widgets/widget-ads.php:180 includes/widgets/widget-ads.php:182
+#: includes/widgets/widget-ads.php:184 includes/widgets/widget-ads.php:186
+#: includes/widgets/widget-ads.php:188 includes/widgets/widget-ads.php:190
+#: includes/widgets/widget-ads.php:192 includes/widgets/widget-ads.php:194
+#: includes/widgets/widget-ads.php:196 includes/widgets/widget-ads.php:198
+#: includes/widgets/widget-ads.php:200 includes/widgets/widget-ads.php:202
+#: includes/widgets/widget-ads.php:204 includes/widgets/widget-ads.php:206
+#: includes/widgets/widget-ads.php:208 includes/widgets/widget-ads.php:210
+#: includes/widgets/widget-ads.php:212 includes/widgets/widget-ads.php:214
+#: includes/widgets/widget-ads.php:216 includes/widgets/widget-ads.php:218
+#: includes/widgets/widget-ads.php:220 includes/widgets/widget-ads.php:222
+#: includes/widgets/widget-ads.php:224 includes/widgets/widget-ads.php:226
+#: includes/widgets/widget-ads.php:228 includes/widgets/widget-ads.php:230
+#: includes/widgets/widget-ads.php:232 includes/widgets/widget-ads.php:234
+#: includes/widgets/widget-ads.php:236 includes/widgets/widget-ads.php:238
+#: includes/widgets/widget-ads.php:240 includes/widgets/widget-ads.php:242
 msgid "Banner"
 msgstr "Banneri"
 
-#: ../includes/widgets/widget-ads.php:182
-#: ../includes/widgets/widget-ads.php:190
-#: ../includes/widgets/widget-ads.php:198
-#: ../includes/widgets/widget-ads.php:206
-#: ../includes/widgets/widget-ads.php:214
-#: ../includes/widgets/widget-ads.php:222
-#: ../includes/widgets/widget-ads.php:230
-#: ../includes/widgets/widget-ads.php:238
+#: includes/widgets/widget-ads.php:182 includes/widgets/widget-ads.php:190
+#: includes/widgets/widget-ads.php:198 includes/widgets/widget-ads.php:206
+#: includes/widgets/widget-ads.php:214 includes/widgets/widget-ads.php:222
+#: includes/widgets/widget-ads.php:230 includes/widgets/widget-ads.php:238
 msgid "Url"
 msgstr "URL"
 
-#: ../includes/widgets/widget-ads.php:186
-#: ../includes/widgets/widget-ads.php:194
-#: ../includes/widgets/widget-ads.php:202
-#: ../includes/widgets/widget-ads.php:210
-#: ../includes/widgets/widget-ads.php:218
-#: ../includes/widgets/widget-ads.php:226
-#: ../includes/widgets/widget-ads.php:234
-#: ../includes/widgets/widget-ads.php:242
+#: includes/widgets/widget-ads.php:186 includes/widgets/widget-ads.php:194
+#: includes/widgets/widget-ads.php:202 includes/widgets/widget-ads.php:210
+#: includes/widgets/widget-ads.php:218 includes/widgets/widget-ads.php:226
+#: includes/widgets/widget-ads.php:234 includes/widgets/widget-ads.php:242
 msgid "Alt"
 msgstr "Vaihtoehtoinen"
 
-#: ../includes/widgets/widget-ads.php:243
+#: includes/widgets/widget-ads.php:243
 msgid ""
 "If you don't want to display some banners - leave approptiate fields blank"
 msgstr "Jos et halua näyttää joitain bannereita, jätä ne kentät tyhjiksi"
 
-#: ../includes/widgets/widget-adsense.php:4
+#: includes/widgets/widget-adsense.php:4
 msgid "Displays Adsense Ads"
 msgstr "Näyttää Adsense-mainokset"
 
-#: ../includes/widgets/widget-adsense.php:6
+#: includes/widgets/widget-adsense.php:6
 msgid "ET Adsense Widget"
 msgstr "Adsense-widgetti"
 
-#: ../includes/widgets/widget-adsense.php:12
-#: ../includes/widgets/widget-adsense.php:40
+#: includes/widgets/widget-adsense.php:12
+#: includes/widgets/widget-adsense.php:40
 msgid "Adsense"
 msgstr "Adsense"
 
-#: ../includes/widgets/widget-adsense.php:48
+#: includes/widgets/widget-adsense.php:48
 msgid "Adsense Code"
 msgstr "Adsense-koodi"
 
-#: ../page-template-blank.php:49 ../page.php:48 ../single-project.php:53
-#: ../single.php:105
+#: page-template-blank.php:49 page.php:48 single-project.php:53 single.php:105
 msgid "Pages:"
 msgstr "Sivut:"
 
-#: ../single-project.php:62
+#. Translators: If there are characters in your language that are not supported
+#. by Open Sans, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:107
+#, fuzzy
+msgctxt "Open Sans font: on or off"
+msgid "on"
+msgstr " "
+
+#: single-project.php:62
+#, fuzzy
+msgctxt "Previous post link"
 msgid "&larr;"
 msgstr "&larr;"
 
-#: ../single-project.php:63
+#: single-project.php:63
+#, fuzzy
+msgctxt "Next post link"
 msgid "&rarr;"
 msgstr "&rarr;"
-
-#~ msgid ""
-#~ "By default, MailChimp lists are cached for one day. If you added new "
-#~ "list, but it doesn't appear within the SignUp module settings, activate "
-#~ "this option. Don't forget to disable it once the list has been "
-#~ "regenerated."
-#~ msgstr ""
-#~ "Oletuksena MailChimp listat säilyvät välimuistissa yhden päivän. Jos "
-#~ "lisäsit uuden listan, mutta se ei ilmesty SignUp -moduulin asetuksiin, "
-#~ "aktivoi tämä valinta. Älä unohda poistaa tätä käytöstä, kun lista on "
-#~ "uudistettu."
-
-#~ msgid ""
-#~ "By default, Aweber lists are cached for one day. If you added new list, "
-#~ "but it doesn't appear within the SignUp module settings, activate this "
-#~ "option. Don't forget to disable it once the list has been regenerated."
-#~ msgstr ""
-#~ "Oletuksena Aweber listat säilyvät välimuistissa yhden päivän. Jos lisäsit "
-#~ "uuden listan, mutta se ei ilmesty SignUp -moduulin asetuksiin, aktivoi "
-#~ "tämä valinta. Älä unohda poistaa tätä käytöstä, kun lista on uudistettu."
-
-#~ msgid ""
-#~ "Please, check the fields below to make sure you entered the correct "
-#~ "information."
-#~ msgstr ""
-#~ "Ole hyvä ja tarkista alla olevat tekstikentät varmistaaksesi, että tiedot "
-#~ "ovat oikein."
-
-#~ msgid "Fill"
-#~ msgstr "Täytä"
-
-#~ msgid "field"
-#~ msgstr "kenttä"
-
-#~ msgid "Invalid email"
-#~ msgstr "Virheellinen sähköposti"
-
-#~ msgid "Captcha"
-#~ msgstr "Kuvavarmennus"
-
-#~ msgid "Prev"
-#~ msgstr "Edellinen"
-
-#~ msgid "Projects"
-#~ msgstr "Projektit"
-
-#~ msgid "Project"
-#~ msgstr "Projekti"
-
-#~ msgid "Add New"
-#~ msgstr "Lisää uusi"
-
-#~ msgid "Add New Project"
-#~ msgstr "Lisää uusi projekti"
-
-#~ msgid "Edit Project"
-#~ msgstr "Muokkaa projektia"
-
-#~ msgid "New Project"
-#~ msgstr "Uusi projekti"
-
-#~ msgid "All Projects"
-#~ msgstr "Kaikki projektit"
-
-#~ msgid "View Project"
-#~ msgstr "Tarkastele projektia"
-
-#~ msgid "Search Projects"
-#~ msgstr "Etsi projekteja"
-
-#~ msgid "Nothing found"
-#~ msgstr "Mitään ei löytynyt"
-
-#~ msgid "Nothing found in Trash"
-#~ msgstr "Roskakorista ei löytynyt mitään"
-
-#~ msgid "Category"
-#~ msgstr "Kategoria"
-
-#~ msgid "Search Categories"
-#~ msgstr "Etsi kategorioita"
-
-#~ msgid "All Categories"
-#~ msgstr "Kaikki kategoriat"
-
-#~ msgid "Parent Category"
-#~ msgstr "Pääkategoria"
-
-#~ msgid "Parent Category:"
-#~ msgstr "Pääkategoria:"
-
-#~ msgid "Edit Category"
-#~ msgstr "Hallitse kategoriaa"
-
-#~ msgid "Update Category"
-#~ msgstr "Päivitä kategoria"
-
-#~ msgid "Add New Category"
-#~ msgstr "Lisää uusi kategoria"
-
-#~ msgid "New Category Name"
-#~ msgstr "Uusia kategorian nimi"
-
-#~ msgid "Tags"
-#~ msgstr "Tägit"
-
-#~ msgid "Tag"
-#~ msgstr "Tägi"
-
-#~ msgid "Search Tags"
-#~ msgstr "Etsi tägejä"
-
-#~ msgid "All Tags"
-#~ msgstr "Kaikki tägit"
-
-#~ msgid "Parent Tag"
-#~ msgstr "Päätägi"
-
-#~ msgid "Parent Tag:"
-#~ msgstr "Päätägi:"
-
-#~ msgid "Edit Tag"
-#~ msgstr "Muokkaa tägiä"
-
-#~ msgid "Update Tag"
-#~ msgstr "Päivitä tägi"
-
-#~ msgid "Add New Tag"
-#~ msgstr "Lisää uusi tägi"
-
-#~ msgid "New Tag Name"
-#~ msgstr "Uusi tägin nimi"
-
-#~ msgid "Menu/Logo Height"
-#~ msgstr "Valikon/logon korkeus"
-
-#~ msgid "Fixed Menu/Logo Height"
-#~ msgstr "Kiinteä valikon/logon korkeus"
-
-#~ msgid "Menu Link Color"
-#~ msgstr "Valikon linkin väri"
-
-#~ msgid "Active Menu Link Color"
-#~ msgstr "Aktiivisen valikon linkkien väri"
-
-#~ msgid "Subscribe"
-#~ msgstr "Tilaa"
-
-#~ msgid "Masonry Blog"
-#~ msgstr "Ruudukkomainen blogi"
-
-#~ msgid "Full Width Slider"
-#~ msgstr "Täyslevyinen liukusäädin"
-
-#~ msgid "Connecting..."
-#~ msgstr "Yhdistetään..."
-
-#~ msgid "Connection failed"
-#~ msgstr "Yhdistäminen epäonnistui"
-
-#~ msgid "Removing connection..."
-#~ msgstr "Poistetaan yhteyttä..."
-
-#~ msgid "Done"
-#~ msgstr "Valmis"
-
-#~ msgid ""
-#~ "Step 1: <a href=\"%1$s\" target=\"_blank\">Generate authorization code</a>"
-#~ msgstr "Vaihe 1: <a href=\"%1$s\" target=\"_blank\">Luo valtuutuskoodi</a>"
-
-#~ msgid ""
-#~ "Step 2: Paste in the authorization code and click \"Make a connection\" "
-#~ "button: "
-#~ msgstr ""
-#~ "Vaihe 2: Kopioi ja liitä valtuutuskoodi ja klikkaa \"Luo yhteys\" nappia: "
-
-#~ msgid "Make a connection"
-#~ msgstr "Luo yhteys"
-
-#~ msgid ""
-#~ "Aweber is set up properly. You can remove connection here if you wish."
-#~ msgstr "Aweber on nyt asennettu. Voit halutessasi poistaa tämän yhteyden."
-
-#~ msgid "Remove the connection"
-#~ msgstr "Poista yhteys"
-
-#~ msgid "Nonce failed."
-#~ msgstr "Nonce epäonnistui."
-
-#~ msgid "Authorization code is empty."
-#~ msgstr "Valtuutuskoodin kohta on tyhjä."
-
-#~ msgid ""
-#~ "Authorization code is invalid. Try regenerating it and paste in the new "
-#~ "code."
-#~ msgstr "Valtuutuskoodi on väärä. Yritä luoda uusi, ja kopioida sen koodi."
-
-#~ msgid "Aweber API Exception"
-#~ msgstr "Aweber API-poikkeus"
-
-#~ msgid "Message"
-#~ msgstr "Sähköpostiviesti"
-
-#~ msgid "Nonce failed"
-#~ msgstr "Nonce epäonnistui"
-
-#~ msgid "Read more"
-#~ msgstr "Lue lisää"
-
-#~ msgid "Configuration error"
-#~ msgstr "Konfiguraatiovirhe"
-
-#~ msgid "Please enter first name"
-#~ msgstr "Syötä etunimi"
-
-#~ msgid "Incorrect email"
-#~ msgstr "Virheellinen sähköposti"
-
-#~ msgid "Configuration error: List is not defined"
-#~ msgstr "Kondiguraatiovirhe: Listaa ei ole valittuna"
-
-#~ msgid ""
-#~ "<h2 class=\"et_pb_subscribed\">Subscribed - look for the confirmation "
-#~ "email!</h2>"
-#~ msgstr ""
-#~ "<h2 class=\"et_pb_subscribed\">Tilattu - saat pian varmennussähköpostin!</"
-#~ "h2>"
-
-#~ msgid "Configuration error: api key is not defined"
-#~ msgstr "Konfiguraatiovirhe: API-koodia ei ole syötetty"
-
-#~ msgid "Aweber: Wrong configuration data"
-#~ msgstr "Aweber: Konfiguraatiotiedot ovat väärin"
-
-#~ msgid ""
-#~ "Welcome to Divi! Before diving in to your new theme, please visit the <a "
-#~ "href=\"%1$s\" target=\"_blank\">Divi Documentation</a> page for access to "
-#~ "dozens of in-depth tutorials."
-#~ msgstr ""
-#~ "Tervetuloa Diviiin! Ennen kuin sukellat uuteen teemaasi, käy katsomassa "
-#~ "<a href=\"%1$s\" target=\"_blank\">DiviDocumentation</a> -sivua, josta "
-#~ "pääset kymmeniin seikkaperäisiin tutoriaaleihin."
-
-#~ msgid "%1$s Font"
-#~ msgstr "%1$s Fontti"
-
-#~ msgid "%1$s Font Size"
-#~ msgstr "%1$s Fonttikoko"
-
-#~ msgid "%1$s Text Color"
-#~ msgstr "%1$s Tekstin väri"
-
-#~ msgid "%1$s Letter Spacing"
-#~ msgstr "%1$s Kirjainväli"
-
-#~ msgid "%1$s Line Height"
-#~ msgstr "%1$s Rivikorkeus"
-
-#~ msgid "%1$s All Caps"
-#~ msgstr "%1$s Isot kirjaimet"
-
-#~ msgid "Use Border"
-#~ msgstr "Käytä reunusta"
-
-#~ msgid "Border Style"
-#~ msgstr "Reunuksen tyyli"
-
-#~ msgid "Custom Margin"
-#~ msgstr "Mukautettu marginaali"
-
-#~ msgid "Custom Padding"
-#~ msgstr "Mukauta täyte"
-
-#~ msgid "Use Custom Button Styles"
-#~ msgstr "Käytä painikkeiden mukautusta"
-
-#~ msgid "Button Background Color"
-#~ msgstr "Painikkeen taustaväri"
-
-#~ msgid "Button Border Width"
-#~ msgstr "Painikkeen reunuksen leveys"
-
-#~ msgid "Button Border Color"
-#~ msgstr "Painikkeen reunuksen väri"
-
-#~ msgid "Button Border Radius"
-#~ msgstr "Painikkeen reunuksen kaarevuus"
-
-#~ msgid "Button Letter Spacing"
-#~ msgstr "Painikkeen kirjainväli"
-
-#~ msgid "Button Font"
-#~ msgstr "Painikkeen fontti"
-
-#~ msgid "Button Icon"
-#~ msgstr "Painikkeen ikoni"
-
-#~ msgid "Button Icon Color"
-#~ msgstr "Painikkeen ikonin väri"
-
-#~ msgid "Only Show Icon On Hover"
-#~ msgstr "Näytä ikoni vain kursorin alla"
-
-#~ msgid "Button Hover Text Color"
-#~ msgstr "Kursorin alaisen painikkeen tekstin väri"
-
-#~ msgid "Button Text Color"
-#~ msgstr "Painikkeen tekstin väri"
-
-#~ msgid "Button Hover Background Color"
-#~ msgstr "Kursorin alaisen painikkeen taustaväri"
-
-#~ msgid "Button Hover Border Color"
-#~ msgstr "Kursorin alaisen painikkeen reunuksen väri"
-
-#~ msgid "Button Hover Border Radius"
-#~ msgstr "Kursorin alaisen painikkeen reunuksen kaarevuus"
-
-#~ msgid "Button Hover Letter Spacing"
-#~ msgstr "Kursorin alaisen painikkeen kirjainväli"
-
-#~ msgid "Before"
-#~ msgstr "Ennen"
-
-#~ msgid "Main Element"
-#~ msgstr "Pääelementti"
-
-#~ msgid "After"
-#~ msgstr "Jälkeen"
-
-#~ msgid "Choose Custom Color"
-#~ msgstr "Valitse elementin väri"
-
-#~ msgid "Upload"
-#~ msgstr "Lähetä tiedosto"
-
-#~ msgid "Choose image"
-#~ msgstr "Valitse kuva"
-
-#~ msgid "Set image"
-#~ msgstr "Aseta kuva"
-
-#~ msgid "Advanced Design Settings"
-#~ msgstr "Muotoilun lisäasetukset"
-
-#~ msgid "Add New %s"
-#~ msgstr "Lisää uusi %s"
-
-#~ msgid "%1$s %2$s Settings"
-#~ msgstr "%1$s %2$s Asetukset"
-
-#~ msgid "Column"
-#~ msgstr "Sarake"
-
-#~ msgid "Modules"
-#~ msgstr "Moduulit"
-
-#~ msgid "Rows"
-#~ msgstr "Rivit"
-
-#~ msgid "Sections"
-#~ msgstr "Osiot"
-
-#~ msgid "Global/not Global"
-#~ msgstr "Globaali/Ei-globaali"
-
-#~ msgid "Global"
-#~ msgstr "Globaali"
-
-#~ msgid "not Global"
-#~ msgstr "ei-globaali"
-
-#~ msgid "Justified"
-#~ msgstr "Tasaus"
-
-#~ msgid "Export Divi Builder Layouts"
-#~ msgstr "Siirrä Divi-rakentajan pohjat"
-
-#~ msgid "Select Templates you want to export:"
-#~ msgstr "Valitse alustat, jotka haluat siirtää:"
-
-#~ msgid "Export Divi Layouts"
-#~ msgstr "Siirrä Divi-pohjat"
-
-#~ msgid "Manage Categories"
-#~ msgstr "Hallinnoi luokituksia"
-
-#~ msgid "Use The Divi Builder"
-#~ msgstr "Käytä Divi-rakentajaa"
-
-#~ msgid ""
-#~ "You have not saved any items to your Divi Library yet. Once an item has "
-#~ "been saved to your library, it will appear here for easy use."
-#~ msgstr ""
-#~ "Et ole tallentanut vielä yhtään elementtiä Divi-kirjastoosi. Kun "
-#~ "elementti on tallennettu kirjastoon, se näkyy täällä ja on helppo käyttää."
-
-#~ msgid "No available options for this configuration."
-#~ msgstr "Näillä asetuksilla ei ole saatavana valintoja."
-
-#~ msgid ""
-#~ "You're about to update global module. This change will be applied to all "
-#~ "pages where you use this module. Press OK if you want to update this "
-#~ "module"
-#~ msgstr ""
-#~ "Olet päivittämässä globaalin moduulin. Tämä muutos otetaan käyttöön "
-#~ "kaikilla sivuilla, joilla moduuli on käytössä. Paina OK, mikäli haluat "
-#~ "päivittää tämän moduulin."
-
-#~ msgid "You cannot add global rows into global sections"
-#~ msgstr "Globaaleihin osioihin ei voi lisätä globaaleja rivejä"
-
-#~ msgid "You cannot add global modules into global sections or rows"
-#~ msgstr ""
-#~ "Globaaleihin osioihin tai riveihin ei voi lisätä globaaleja moduuleja"
-
-#~ msgid "The Divi Builder"
-#~ msgstr "Divi-rakentaja"
-
-#~ msgid "Save to Library"
-#~ msgstr "Tallenna kirjastoon"
-
-#~ msgid "Load From Library"
-#~ msgstr "Lataa kirjastosta"
-
-#~ msgid "Standard Section"
-#~ msgstr "Perusosio"
-
-#~ msgid "Fullwidth Section"
-#~ msgstr "Täyslevyinen osio"
-
-#~ msgid "Specialty Section"
-#~ msgstr "Erityisosio"
-
-#~ msgid "Add From Library"
-#~ msgstr "Lisää kirjastosta"
-
-#~ msgid "Change Structure"
-#~ msgstr "Muuta rakenne"
-
-#~ msgid "Remove Module"
-#~ msgstr "Poista moduuli"
-
-#~ msgid "Save & Add To Library"
-#~ msgstr "Tallenna & lisää kirjastoon"
-
-#~ msgid "Cancel"
-#~ msgstr "Peruuta"
-
-#~ msgid "Save & Exit"
-#~ msgstr "Tallenna & poistu"
-
-#~ msgid "New Row"
-#~ msgstr "Uusi rivi"
-
-#~ msgid "New Module"
-#~ msgstr "Uusi moduuli"
-
-#~ msgid "Predefined Layouts"
-#~ msgstr "Ennalta määrätyt pohjat"
-
-#~ msgid "Disable Builder"
-#~ msgstr "Poista trakentaja käytöstä"
-
-#~ msgid ""
-#~ "All content created in the Divi Builder will be lost. Previous content "
-#~ "will be restored."
-#~ msgstr ""
-#~ "Kaikki Divillä luotu sisältö menetetään. Aikaisempi sisältö palautetaan."
-
-#~ msgid "Do you wish to proceed?"
-#~ msgstr "Haluatko jatkaa?"
-
-#~ msgid "All of your current page content will be lost."
-#~ msgstr "Kaikki nykyisen sivun sisältö mentetään."
-
-#~ msgid "All advanced module settings in will be lost."
-#~ msgstr "Kaikki lisämoduulin asetukset menetetään."
-
-#~ msgid "Save To Library"
-#~ msgstr "Tallenna kirjastoon."
-
-#~ msgid "Save your current page to the Divi Library for later use."
-#~ msgstr "Tallenna nykyinen sivusi Divi-kirjastoon myöhempää käyttöä varten."
-
-#~ msgid "Layout Name:"
-#~ msgstr "Pohjan nimi:"
-
-#~ msgid "Save And Add To Library"
-#~ msgstr "Tallenna ja lisää kirjastoon"
-
-#~ msgid "Add To Categories:"
-#~ msgstr "Lisää luokituksiin:"
-
-#~ msgid "Create New Category"
-#~ msgstr "Luo uusi luokitus"
-
-#~ msgid ""
-#~ "Here you can save the current item and add it to your Divi Library for "
-#~ "later use as well."
-#~ msgstr ""
-#~ "Tästä voit tallentaa nykyisen elementtisi ja lisätä sen Divi-kirjastoosi "
-#~ "käytettäväksi myöhemminkin."
-
-#~ msgid "Template Name"
-#~ msgstr "Alustan nimi"
-
-#~ msgid "Selective Sync"
-#~ msgstr "Valikoiva synkronointi"
-
-#~ msgid "Include General settings"
-#~ msgstr "Sisällytä yleisasetukset"
-
-#~ msgid "Include Advanced Design settings"
-#~ msgstr "Sisällytä muotoilun lisäasetukset"
-
-#~ msgid "Include Custom CSS"
-#~ msgstr "Sisällytä CSS -mukautus"
-
-#~ msgid "Please select at least 1 tab to save"
-#~ msgstr "Valitse vähintään 1 välilehti tallennettavaksi"
-
-#~ msgid "Save as Global:"
-#~ msgstr "Tallenna globaalina:"
-
-#~ msgid "Make this a global item"
-#~ msgstr "Tee tästä globaali elementti"
-
-#~ msgid "Scope"
-#~ msgstr "Ulottuvuus"
-
-#~ msgid "Layout Type"
-#~ msgstr "Pohjan tyyppi"
-
-#~ msgid "Module Width"
-#~ msgstr "Moduulin leveys"
-
-#~ msgid "New Template Settings"
-#~ msgstr "Uuden alustan asetukset"
-
-#~ msgid "Template Name:"
-#~ msgstr "Alustan nimi:"
-
-#~ msgid "Template Type:"
-#~ msgstr "Alustan tyyppi:"
-
-#~ msgid "Fullwidth Module"
-#~ msgstr "Täyslevyinen moduuli"
-
-#~ msgid "Row"
-#~ msgstr "Rivi"
-
-#~ msgid "Section"
-#~ msgstr "Osio"
-
-#~ msgid "Include General Settings"
-#~ msgstr "Sisällytä yleisasetukset"
-
-#~ msgid "Include Advanced Design Settings"
-#~ msgstr "Sisällytä muotoilun lisäasetukset"
-
-#~ msgid ""
-#~ "Select category(ies) for new template or type a new name ( optional )"
-#~ msgstr ""
-#~ "Valitse luokitus(/luokitukset) uutta alustaa varten tai kirjoita nimi "
-#~ "(valinnainen)"
-
-#~ msgid "Open in Lightbox"
-#~ msgstr "Avaa Lightboxissa"
-
-#~ msgid "Image Alignment"
-#~ msgstr "Kuvakkeen tasaus"
-
-#~ msgid "Here you can choose the image alignment."
-#~ msgstr "Täällä voit valita kuvakkeen tasauksen."
-
-#~ msgid "Image Max Width"
-#~ msgstr "Kuvakkeen suurin mahdollinen leveys"
-
-#~ msgid "Force Fullwidth"
-#~ msgstr "Tee täyslevyiseksi"
-
-#~ msgid "Always Center Image On Mobile"
-#~ msgstr "Keskitä kuva aina mobiililaitteessa"
-
-#~ msgid "Gallery Item"
-#~ msgstr "Gallerian elementti"
-
-#~ msgid "Overlay"
-#~ msgstr "Päälle asettaminen"
-
-#~ msgid "Overlay Icon"
-#~ msgstr "Päälle asetettu ikoni"
-
-#~ msgid "Gallery Item Title"
-#~ msgstr "Gallerian elementin nimi"
-
-#~ msgid "Caption Font"
-#~ msgstr "Kuvatekstin fontti"
-
-#~ msgid "Caption Font Color"
-#~ msgstr "Kuvatekstin fontin väri"
-
-#~ msgid "Hover Icon Picker"
-#~ msgstr "Kursorin alla olevan ikonin valitsin"
-
-#~ msgid "Video Icon"
-#~ msgstr "Videon ikoni"
-
-#~ msgid "Play Icon Color"
-#~ msgstr "Play-ikonin väri"
-
-#~ msgid "Play Button"
-#~ msgstr "Play-painike"
-
-#~ msgid "Thumbnail Item"
-#~ msgstr "Esikatselukuva"
-
-#~ msgid "Thumbnail Overlay Color"
-#~ msgstr "Päälle asetettavan esikatselukuvan väri"
-
-#~ msgid "Line Height"
-#~ msgstr "Rivikorkeus"
-
-#~ msgid "Use Border Color"
-#~ msgstr "Käytä reunuksen väriä"
-
-#~ msgid "Max Width"
-#~ msgstr "Suurin mahdollinen leveys"
-
-#~ msgid "Header"
-#~ msgstr "Ylätunniste"
-
-#~ msgid "Body"
-#~ msgstr "Leipäteksti"
-
-#~ msgid "Blurb Image"
-#~ msgstr "Mainostekstin kuva"
-
-#~ msgid "Blurb Title"
-#~ msgstr "Mainostekstin otsikko"
-
-#~ msgid "Blurb Content"
-#~ msgstr "Mainostekstin sisältö"
-
-#~ msgid "Use Icon Font Size"
-#~ msgstr "Käytä ikonin fonttikokoa"
-
-#~ msgid "Icon Font Size"
-#~ msgstr "Ikonin fonttikoko"
-
-#~ msgid "Tabs Controls"
-#~ msgstr "Välilehtien hallitseminen"
-
-#~ msgid "Active Tab"
-#~ msgstr "Aktiivinen välilehti"
-
-#~ msgid "Active Tab Background Color"
-#~ msgstr "Aktiivisen välilehden taustaväri"
-
-#~ msgid "Inactive Tab Background Color"
-#~ msgstr "Ei-aktiivisen välilehden taustaväri"
-
-#~ msgid "Slide Description"
-#~ msgstr "Dian kuvaus"
-
-#~ msgid "Slide Title"
-#~ msgstr "Dian otsikko"
-
-#~ msgid "Slide Button"
-#~ msgstr "Dian painike"
-
-#~ msgid "Slide Controllers"
-#~ msgstr "Dian hallitsimet"
-
-#~ msgid "Slide Active Controller"
-#~ msgstr "Dian aktiivinen hallitsin"
-
-#~ msgid "Use Parallax effect"
-#~ msgstr "Käytä Parallax-vaikutelmaa"
-
-#~ msgid "Remove Inner Shadow"
-#~ msgstr "Poista sisempi varjo"
-
-#~ msgid "Top Padding"
-#~ msgstr "Ylätäyte"
-
-#~ msgid "Bottom Padding"
-#~ msgstr "Alatäyte"
-
-#~ msgid "Hide Content On Mobile"
-#~ msgstr "Piilota sisältö mobiililaitteella"
-
-#~ msgid "Hide CTA On Mobile"
-#~ msgstr "Piilota CTA mobiililaitteella"
-
-#~ msgid "Show Image / Video On Mobile"
-#~ msgstr "Näytä kuva / video mobiililaitteella"
-
-#~ msgid "Arrows Custom Color"
-#~ msgstr "Mukauta nuolien väri"
-
-#~ msgid "Dot Nav Custom Color"
-#~ msgstr "Valitse navigointipalkin väri"
-
-#~ msgid "Testimonial Portrait"
-#~ msgstr "Suosittelijan kuva"
-
-#~ msgid "Testimonial Description"
-#~ msgstr "Suosittelun kuvaus"
-
-#~ msgid "Testimonial Author"
-#~ msgstr "Suosittelun kirjoittaja"
-
-#~ msgid "Testimonial Meta"
-#~ msgstr "Suosittelun metatiedot"
-
-#~ msgid "Body Text Font"
-#~ msgstr "Leipätekstin fontti"
-
-#~ msgid "Body Font Size"
-#~ msgstr "Leipätekstin fonttikoko"
-
-#~ msgid "Body Letter Spacing"
-#~ msgstr "Leipätekstin kirjainväli"
-
-#~ msgid "Quote Icon Color"
-#~ msgstr "Lainausikonin väri"
-
-#~ msgid "Portrait Width"
-#~ msgstr "Kuvan leveys"
-
-#~ msgid "Portrait Height"
-#~ msgstr "Kuvan korkeus"
-
-#~ msgid "Pricing Tables"
-#~ msgstr "Hintataulukot"
-
-#~ msgid "Pricing Heading"
-#~ msgstr "Hintataulukon yläotsikko"
-
-#~ msgid "Pricing Title"
-#~ msgstr "Hintataulukon otsikko"
-
-#~ msgid "Pricing Top"
-#~ msgstr "Hintataulukon yläosa"
-
-#~ msgid "Pricing Content"
-#~ msgstr "Hintataulukon sisältö"
-
-#~ msgid "Pricing Button"
-#~ msgstr "Hintataulukon painike"
-
-#~ msgid "Featured Table"
-#~ msgstr "Valittu taulukko"
-
-#~ msgid "Subheader"
-#~ msgstr "Yläotsikko"
-
-#~ msgid "Featured Table Background Color"
-#~ msgstr "Valitun taulukon taustaväri"
-
-#~ msgid "Table Header Background Color"
-#~ msgstr "Taulukon ylätunnisteen taustaväri"
-
-#~ msgid "Featured Table Header Background Color"
-#~ msgstr "Valitun taulukon ylätunnisteen taustaväri"
-
-#~ msgid "Featured Table Header Text Color"
-#~ msgstr "Valitun taulukon ylätunnisteen tekstin väri"
-
-#~ msgid "Featured Table Subheader Text Color"
-#~ msgstr "Valitun taulukon yläotsikon tekstin väri"
-
-#~ msgid "Featured Table Price Color"
-#~ msgstr "Valitun taulukon hinnan väri"
-
-#~ msgid "Featured Table Body Text Color"
-#~ msgstr "Valitun taulukon leipätekstin väri"
-
-#~ msgid "Show Bullet"
-#~ msgstr "Näytä Dot"
-
-#~ msgid "Bullet Color"
-#~ msgstr "Dotin väri"
-
-#~ msgid "Featured Table Bullet Color"
-#~ msgstr "Valitun taulukon Dot-äri"
-
-#~ msgid "Remove Featured Table Drop Shadow"
-#~ msgstr "Poista valitun taulukon varjostus"
-
-#~ msgid "Center List Items"
-#~ msgstr "Keskitä listan elementit"
-
-#~ msgid "Promo Description"
-#~ msgstr "Kuvaus"
-
-#~ msgid "Promo Button"
-#~ msgstr "Painike"
-
-#~ msgid "Audio Cover Art"
-#~ msgstr "Äänen kuvake"
-
-#~ msgid "Audio Content"
-#~ msgstr "Äänisisältö"
-
-#~ msgid "Audio Meta"
-#~ msgstr "Äänen metatiedot"
-
-#~ msgid "Signup"
-#~ msgstr "Rekisteröidy"
-
-#~ msgid "Newsletter Description"
-#~ msgstr "Uutiskirjeen kuvaus"
-
-#~ msgid "Newsletter Form"
-#~ msgstr "Uutiskirjeen muoto"
-
-#~ msgid "Newsletter Button"
-#~ msgstr "Uutiskirjeen painike"
-
-#~ msgid "Form Field Background Color"
-#~ msgstr "Lomakekentän taustan väri"
-
-#~ msgid "Form Field Text Color"
-#~ msgstr "Lomakekentän tekstin väri"
-
-#~ msgid "Focus Background Color"
-#~ msgstr "Kohdistuksen taustaväri"
-
-#~ msgid "Focus Text Color"
-#~ msgstr "Kohdistuksen tekstin väri"
-
-#~ msgid "Use Focus Border Color"
-#~ msgstr "Käytä kohdistuksen reunan väriä"
-
-#~ msgid "Focus Border Color"
-#~ msgstr "Kohdistuksen reunan väri"
-
-#~ msgid "Portfolio Image"
-#~ msgstr "Portfolion kuvake"
-
-#~ msgid "Portfolio Post Meta"
-#~ msgstr "Portfolion kuvauksen metatiedot"
-
-#~ msgid "Filter"
-#~ msgstr "Suodata"
-
-#~ msgid "Portfolio Filters"
-#~ msgstr "Portfolion suotimet"
-
-#~ msgid "Active Portfolio Filter"
-#~ msgstr "Aktiivisen portfolion suodatin"
-
-#~ msgid "Counter Title"
-#~ msgstr "Laskurin otsikko"
-
-#~ msgid "Counter Container"
-#~ msgstr "Laskurin laatikko"
-
-#~ msgid "Counter Amount"
-#~ msgstr "Laskurin numero"
-
-#~ msgid "Use Percentages"
-#~ msgstr "Käytä prosentteja"
-
-#~ msgid "Bar Top Padding"
-#~ msgstr "Palkin ylätäyte"
-
-#~ msgid "Bar Bottom Padding"
-#~ msgstr "Palkin alatäyte"
-
-#~ msgid "Label Color"
-#~ msgstr "Nimikkeen väri"
-
-#~ msgid "Percentage Color"
-#~ msgstr "Prosentin väri"
-
-#~ msgid "Circle Counter Title"
-#~ msgstr "Ympyrälaskurin otsikko"
-
-#~ msgid "Circle Color Opacity"
-#~ msgstr "Ympyrälaskurin sameus"
-
-#~ msgid "Number Counter Title"
-#~ msgstr "Numerolaskurin otsikko"
-
-#~ msgid "Open Toggle"
-#~ msgstr "Avoin toggle"
-
-#~ msgid "Toggle Title"
-#~ msgstr "Togglen otsikko"
-
-#~ msgid "Toggle Icon"
-#~ msgstr "Togglen ikoni"
-
-#~ msgid "Toggle Content"
-#~ msgstr "Togglen sisältö"
-
-#~ msgid "Open Toggle Background Color"
-#~ msgstr "Avoimen togglen taustaväri"
-
-#~ msgid "Closed Toggle Background Color"
-#~ msgstr "Suljetun togglen taustaväri"
-
-#~ msgid "Open Toggle Text Color"
-#~ msgstr "Avoimen togglen tekstin väri"
-
-#~ msgid "Closed Toggle Text Color"
-#~ msgstr "Suljetun togglen tekstin väri"
-
-#~ msgid "Form Field"
-#~ msgstr "Lomakekenttä"
-
-#~ msgid "Contact Title"
-#~ msgstr "Yhteystiedon otsikko"
-
-#~ msgid "Contact Button"
-#~ msgstr "Yhteystiedon painike"
-
-#~ msgid "Form Background Color"
-#~ msgstr "Lomakkeen taustaväri"
-
-#~ msgid "Input Border Radius"
-#~ msgstr "Kirjoitusalueen reunuksen kaarevuus"
-
-#~ msgid "Widget"
-#~ msgstr "Widgetti"
-
-#~ msgid "Remove Border Separator"
-#~ msgstr "Poista reunuksen erotin"
-
-#~ msgid "Define how much space should be added below the divider."
-#~ msgstr "Määrittele paljonko tilaa erottimen alle lisätään."
-
-#~ msgid "Hide On Mobile"
-#~ msgstr "Piilota mobiililaitteella"
-
-#~ msgid "Member Image"
-#~ msgstr "Jäsenen kuva"
-
-#~ msgid "Member Description"
-#~ msgstr "Jäsenen kuvaus"
-
-#~ msgid "Member Position"
-#~ msgstr "Jäsenen asettelu"
-
-#~ msgid "Member Social Links"
-#~ msgstr "Jäsenen sosiaaliset linkit"
-
-#~ msgid "Icon Hover Color"
-#~ msgstr "Ikonin väri kursorin alla ollessa"
-
-#~ msgid "Meta"
-#~ msgstr "Metatiedot"
-
-#~ msgid "Post Meta"
-#~ msgstr "Lisää metatietoja"
-
-#~ msgid "Pagenavi"
-#~ msgstr "Sivun navigointi"
-
-#~ msgid "Grid Tile Background Color"
-#~ msgstr "Ruudukon taustaväri"
-
-#~ msgid "Use Dropshadow"
-#~ msgstr "Käytä varjostusta"
-
-#~ msgid "Product"
-#~ msgstr "Tuote"
-
-#~ msgid "Onsale"
-#~ msgstr "Alennuksessa"
-
-#~ msgid "Rating"
-#~ msgstr "Arviointi"
-
-#~ msgid "default"
-#~ msgstr "oletus"
-
-#~ msgid "Choose how many columns to display."
-#~ msgstr "Valitse montako saraketta näytetään."
-
-#~ msgid "Sale Badge Color"
-#~ msgstr "Alennuskyltin väri"
-
-#~ msgid "Numbers"
-#~ msgstr "Numerot"
-
-#~ msgid "Label"
-#~ msgstr "Kyltti"
-
-#~ msgid "Container"
-#~ msgstr "Laatikko"
-
-#~ msgid "Timer Section"
-#~ msgstr "Ajastinosio"
-
-#~ msgid "Pin"
-#~ msgstr "Pin"
-
-#~ msgid "Use Grayscale Filter"
-#~ msgstr "Käytä mustavalkosuodatinta"
-
-#~ msgid "Grayscale Filter Amount (%)"
-#~ msgstr "Mustavalkosuotimen aste (%)"
-
-#~ msgid "Social Icon"
-#~ msgstr "Some-ikoni"
-
-#~ msgid "Here you can choose whether or not display the Post Title"
-#~ msgstr "Tästä voit valita näytetäänkö otsikko vai eí"
-
-#~ msgid "Show Meta"
-#~ msgstr "Näytä metatiedot"
-
-#~ msgid "Here you can choose whether or not display the Post Meta"
-#~ msgstr "Tästä voit valita näytetäänkö metatiedot vai eí"
-
-#~ msgid ""
-#~ "Here you can choose whether or not display the Author Name in Post Meta"
-#~ msgstr ""
-#~ "Tästä voit valita näytetäänkö kirjoittajan nimi metatiedoissa vai eí"
-
-#~ msgid "Here you can choose whether or not display the Date in Post Meta"
-#~ msgstr "Tästä voit valita näytetäänkö päiväys metatiedoissa vai eí"
-
-#~ msgid "Date Format"
-#~ msgstr "Päiväyksen muoto"
-
-#~ msgid ""
-#~ "Here you can define the Date Format in Post Meta. Default is 'M j, Y'"
-#~ msgstr ""
-#~ "Tästä voit määrittää päiväyksen muodon metatiedoissa. Oletus on 'M j, Y'"
-
-#~ msgid "Show Post Categories"
-#~ msgstr "Näytä käytetyt luokitukset"
-
-#~ msgid ""
-#~ "Here you can choose whether or not display the Categories in Post Meta. "
-#~ "Note: This option doesn't work with custom post types."
-#~ msgstr ""
-#~ "Tästä voit valita näytetäänkö luokitukset metatiedoissa. Huom: Tämä "
-#~ "valinta ei ole mahdollinen mukautetuilla sivutyypeillä."
-
-#~ msgid "Show Comments Count"
-#~ msgstr "Näytä kommenttien laskuri"
-
-#~ msgid ""
-#~ "Here you can choose whether or not display the Comments Count in Post "
-#~ "Meta."
-#~ msgstr ""
-#~ "Tästä voit valita näytetäänkö kommenttien laskuri metatiedoissa vai ei."
-
-#~ msgid "Here you can choose whether or not display the Featured Image"
-#~ msgstr "Tästä voit valita näytetäänkö valittu kuva"
-
-#~ msgid "Featured Image Placement"
-#~ msgstr "Valitun kuvan asettelu"
-
-#~ msgid "Below Title"
-#~ msgstr "Otsikon alle"
-
-#~ msgid "Above Title"
-#~ msgstr "Otsikon yläpuolelle"
-
-#~ msgid "Title/Meta Background Image"
-#~ msgstr "Otsikon taustakuva"
-
-#~ msgid "Here you can choose where to place the Featured Image"
-#~ msgstr "Tästä voit valita minne valittu kuva asetetaan"
-
-#~ msgid ""
-#~ "Here you can choose whether or not use parallax effect for the featured "
-#~ "image"
-#~ msgstr "Tästä voit valita käytetäänkö parallax-vaikutelmaa valittuun kuvaan"
-
-#~ msgid "Parallax Method"
-#~ msgstr "Parallax-metodi"
-
-#~ msgid ""
-#~ "Here you can choose which parallax method to use for the featured image"
-#~ msgstr "Tästä voit valita mitä parallax-metodia käytetään valittuun kuvaan."
-
-#~ msgid "Here you can choose the orientation for the Title/Meta text"
-#~ msgstr "Tästä voit valita otsikkotekstin suunnan"
-
-#~ msgid "Here you can choose the color for the Title/Meta text"
-#~ msgstr "Tästä voit valita otsikkotekstin värin"
-
-#~ msgid "Use Text Background Color"
-#~ msgstr "Käytä tekstin taustaväriä"
-
-#~ msgid ""
-#~ "Here you can choose whether or not use the background color for the Title/"
-#~ "Meta text"
-#~ msgstr "Tästä voit valita käytetäänkö otsikkotekstissä taustaväriä vai ei"
-
-#~ msgid "Text Background Color"
-#~ msgstr "Tekstin taustaväri"
-
-#~ msgid "Title Styling"
-#~ msgstr "Otsikon tyyli"
-
-#~ msgid "Subhead Styling"
-#~ msgstr "Yläotsikon tyyli"
-
-#~ msgid "Content Styling"
-#~ msgstr "Sisällön tyyli"
-
-#~ msgid "Button Styling"
-#~ msgstr "Painikkeen tyyli"
-
-#~ msgid "Text & Logo Orientation"
-#~ msgstr "Tekstin & logon suunta"
-
-#~ msgid "Make Fullscreen"
-#~ msgstr "Näytä koko näytöllä"
-
-#~ msgid ""
-#~ "Here you can choose whether the header is expanded to fullscreen size."
-#~ msgstr ""
-#~ "Tästä voit valita laajennetaanko ylätunniste koko näytön laajuiseksi."
-
-#~ msgid "Show Scroll Down Button"
-#~ msgstr "Näytä vierityspalkki"
-
-#~ msgid "Here you can choose whether the scroll down button is shown."
-#~ msgstr "Tästä voit valita näytetäänkö vierityspalkki."
-
-#~ msgid "Choose an icon to display for the scroll down button."
-#~ msgstr "Valitse ikoni osoittamaan vierityspalkkia."
-
-#~ msgid "Scroll Down Icon Color"
-#~ msgstr "Vierityspalkin ikonin väri"
-
-#~ msgid "Scroll Down Icon Size"
-#~ msgstr "Vierityspalkin ikonin koko"
-
-#~ msgid "Title Font"
-#~ msgstr "Otsikon fontti"
-
-#~ msgid "Title Font Color"
-#~ msgstr "Otsikon fontin väri"
-
-#~ msgid "Subhead Font"
-#~ msgstr "Yläotsikon fontti"
-
-#~ msgid "Subhead Font Color"
-#~ msgstr "Yläotsikon fontin väri"
-
-#~ msgid "Content Font"
-#~ msgstr "Sisällön fontti"
-
-#~ msgid "Content Font Color"
-#~ msgstr "Sisällön fontin väri"
-
-#~ msgid "Button %1$s Text"
-#~ msgstr "Painikkeen  %1$s teksti"
-
-#~ msgid "Enter the text for the Button."
-#~ msgstr "Kirjoita painikkeen teksti."
-
-#~ msgid "Button %1$s URL"
-#~ msgstr "Painikkeen %1$s URL"
-
-#~ msgid "Enter the URL for the Button."
-#~ msgstr "Kirjoita painikkeen URL."
-
-#~ msgid "Button %1$s Font"
-#~ msgstr "Painikkeen %1$s fontti"
-
-#~ msgid "Button %1$s Font Color"
-#~ msgstr "Painikkeen %1$s fontin väri"
-
-#~ msgid "Button %1$s Background Color"
-#~ msgstr "Painikkeen %1$s taustaväri"
-
-#~ msgid "Button %1$s Font Size"
-#~ msgstr "Painikkeen %1$s fonttikoko"
-
-#~ msgid "Button %1$s Border Radius"
-#~ msgstr "Painikkeen %1$s reunuksen kaarevuus"
-
-#~ msgid "Background Image URL"
-#~ msgstr "Taustakuvan URL"
-
-#~ msgid "Background Overlay Color"
-#~ msgstr "Taustan väri päälle asetettaessa"
-
-#~ msgid "Logo Image URL"
-#~ msgstr "Logon URL"
-
-#~ msgid "Text Vertical Alignment"
-#~ msgstr "Tekstin tasaus pystysuoraan"
-
-#~ msgid ""
-#~ "This setting determines the vertical alignment of your content. Your "
-#~ "content can either be vertically centered, or aligned to the bottom."
-#~ msgstr ""
-#~ "Tämä asetus määrittelee sisältösi pystysuoran tasauksen. Sisältö voi olla "
-#~ "joko keskitetty pystysuoraan tai tasattu alaosaan."
-
-#~ msgid "Header Image URL"
-#~ msgstr "Ylätunnistekuvan URL"
-
-#~ msgid "Image Vertical Alignment"
-#~ msgstr "Kuvan pystysuora tasaus"
-
-#~ msgid "This controls the orientation of the image within the module."
-#~ msgstr "Tämä hallinnoi moduulissa olevan kuvan suuntaa."
-
-#~ msgid "Code"
-#~ msgstr "Koodi"
-
-#~ msgid "Fullwidth Code"
-#~ msgstr "Täyslevyinen koodi"
-
-#~ msgid "Fullwidth Image"
-#~ msgstr "Täyslevyinen kuva"
-
-#~ msgid "Fullwidth Post Title"
-#~ msgstr "Täyslevyinen postauksen otsikko"
-
-#~ msgid ""
-#~ "Enabling this option will remove the background color of this section, "
-#~ "allowing the website background color or background image to show through."
-#~ msgstr ""
-#~ "Tämän valinnan käyttöönotto poistaa tämän osion taustavärin ja sallii "
-#~ "nettisivun taustavärin tai taustakuvan näkyä läpi."
-
-#~ msgid ""
-#~ "Adjust padding to specific values, or leave blank to use the default "
-#~ "padding."
-#~ msgstr ""
-#~ "Säädä täyte tiettyyn arvoon tai jätä tyhjäksi, jolloin käytetään "
-#~ "oletustäytettä."
-
-#~ msgid "Keep Custom Padding on Mobile"
-#~ msgstr "Säilytä täytteen asetukset mobiililaitteella."
-
-#~ msgid "Allow custom padding to be retained on mobile screens"
-#~ msgstr "Salli täytteen asetukset mobiilinäytöllä"
-
-#~ msgid "Make This Row Fullwidth"
-#~ msgstr "Tee tästä rivistä koko sivun levyinen"
-
-#~ msgid ""
-#~ "Enable this option to extend the width of this row to the edge of the "
-#~ "browser window."
-#~ msgstr ""
-#~ "Salli valinnan laajentaa tämän rivin leveys selainikkunan reunaan asti."
-
-#~ msgid "Use Custom Width"
-#~ msgstr "Käytä mukautettua leveyttä"
-
-#~ msgid ""
-#~ "Change to Yes if you would like to adjust the width of this row to a non-"
-#~ "standard width."
-#~ msgstr ""
-#~ "Valitse Kyllä, mikäli haluat säätää tämän rivin leveyttä pois normaalista "
-#~ "leveydestä."
-
-#~ msgid "Unit"
-#~ msgstr "Yksikkö"
-
-#~ msgid "px"
-#~ msgstr "pikselit"
-
-#~ msgid "Custom Width"
-#~ msgstr "Mukautettu leveys"
-
-#~ msgid "Define custom width for this Row"
-#~ msgstr "Määrittele tämän rivin mukautettu leveys"
-
-#~ msgid "Gutter Width"
-#~ msgstr "Sarakkeiden väli"
-
-#~ msgid "Adjust the spacing between each column in this row."
-#~ msgstr "Säädä tämän rivin jokaisen sarakkeen etäisyys toisistaan."
-
-#~ msgid "Equalize Column Heights"
-#~ msgstr "Yhtenäistä sarakkeitten korkeus."
-
-#~ msgid ""
-#~ "Welcome to Divi! Before diving in to your new theme, please visit the <a "
-#~ "href=\"%1$s\" target=\"_blank\">DiviDocumentation</a> page for access to "
-#~ "dozens of in-depth tutorials."
-#~ msgstr ""
-#~ "Tervetuloa Diviiin! Ennen kuin sukellat uuteen teemaasi, käy katsomassa "
-#~ "<a href=\"%1$s\" target=\"_blank\">DiviDocumentation</a> -sivua, josta "
-#~ "pääset kymmeniin seikkaperäisiin tutoriaaleihin."
-
-#~ msgid "Category Font Size"
-#~ msgstr "Luokitusten fonttikoko"
-
-#~ msgid "Category Font Style"
-#~ msgstr "Luokitusten fonttityyli"

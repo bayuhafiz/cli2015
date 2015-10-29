@@ -641,7 +641,10 @@
 		} );
 
 		$( 'a[href*=#]:not([href=#])' ).click( function() {
-			if ( ( location.pathname.replace( /^\//,'' ) == this.pathname.replace( /^\//,'' ) && location.hostname == this.hostname ) && ! ( $( this ).closest( '.woocommerce-tabs' ).length && $( this ).closest( '.tabs' ).length ) ) {
+			var $this_link = $( this ),
+				disable_scroll = ( $this_link.closest( '.woocommerce-tabs' ).length && $this_link.closest( '.tabs' ).length ) || $this_link.closest( '.eab-shortcode_calendar-navigation-link' ).length;
+
+			if ( ( location.pathname.replace( /^\//,'' ) == this.pathname.replace( /^\//,'' ) && location.hostname == this.hostname ) && ! disable_scroll ) {
 				var target = $( this.hash );
 				target = target.length ? target : $( '[name=' + this.hash.slice(1) +']' );
 				if ( target.length ) {
