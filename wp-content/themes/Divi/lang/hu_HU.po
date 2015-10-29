@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Divi 1.0\n"
-"POT-Creation-Date: 2015-06-17 18:07+0300\n"
-"PO-Revision-Date: 2015-06-17 19:39+0300\n"
-"Last-Translator: \n"
+"Project-Id-Version: Divi 2.4\n"
+"POT-Creation-Date: 2015-09-02 12:11+0300\n"
+"PO-Revision-Date: 2015-09-02 15:23+0300\n"
+"Last-Translator: I♥WP <info@ilovewp.net>\n"
 "Language-Team: Elegant Themes\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -22,12 +22,12 @@ msgstr ""
 #: ../comments.php:4
 msgid "This post is password protected. Enter the password to view comments."
 msgstr ""
-"Ez a bejegyzés jelszóval védett. A hozzászólások megjelenítéséhez írja be a "
+"Ez a bejegyzés jelszóval védett. A hozzászólások megtekintéséhez adja meg a "
 "jelszót."
 
 #: ../comments.php:13
 msgid "0 Comments"
-msgstr "Nincsenek hozzászólások"
+msgstr "0 hozzászólás"
 
 #: ../comments.php:13
 msgid "1 Comment"
@@ -35,7 +35,7 @@ msgstr "1 hozzászólás"
 
 #: ../comments.php:13
 msgid "Comments"
-msgstr "Hozzászólások"
+msgstr "hozzászólás"
 
 #: ../comments.php:18 ../comments.php:31
 msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
@@ -55,12 +55,12 @@ msgstr "Hozzászólás elküldése"
 
 #: ../comments.php:56
 msgid "Submit a Comment"
-msgstr "Hozzászólás elküldése"
+msgstr "Hozzászólás írása"
 
 #: ../comments.php:56
 #, php-format
 msgid "Leave a Reply to %s"
-msgstr "Válaszoljon ennek a hozzászólónak %s"
+msgstr "Válasz írása: %s"
 
 #: ../epanel/core_functions.php:26 ../epanel/core_functions.php:401
 msgid "Saving..."
@@ -68,26 +68,26 @@ msgstr "Mentés..."
 
 #: ../epanel/core_functions.php:27
 msgid "Options Saved."
-msgstr "Opció elmentve."
+msgstr "Beállítások mentve."
 
 #: ../epanel/core_functions.php:73
 msgid "Options"
-msgstr "Opciók"
+msgstr "Beállítások"
 
-#: ../epanel/core_functions.php:73 ../functions.php:8939
+#: ../epanel/core_functions.php:73 ../functions.php:7903
 msgid "Theme Options"
-msgstr "Témabeállítások"
+msgstr "Sablon beállítások"
 
 #: ../epanel/core_functions.php:90
 msgid "settings saved."
-msgstr "beállítások elmentve."
+msgstr "beállítások mentve."
 
 #: ../epanel/core_functions.php:93
 msgid "settings reset."
-msgstr "beállítások helyreállítva."
+msgstr "beállítások visszaállítva."
 
 #: ../epanel/core_functions.php:111 ../epanel/options_divi.php:297
-#: ../epanel/options_divi.php:448 ../functions.php:616
+#: ../epanel/options_divi.php:448 ../functions.php:533
 msgid "General Settings"
 msgstr "Általános beállítások"
 
@@ -95,7 +95,7 @@ msgstr "Általános beállítások"
 msgid "Navigation"
 msgstr "Navigáció"
 
-#: ../epanel/core_functions.php:117 ../functions.php:621
+#: ../epanel/core_functions.php:117 ../functions.php:543
 msgid "Layout Settings"
 msgstr "Szerkezeti beállítások"
 
@@ -105,7 +105,7 @@ msgstr "Reklámkezelés"
 
 #: ../epanel/core_functions.php:123
 msgid "Colorization"
-msgstr "Szín"
+msgstr "Színezés"
 
 #: ../epanel/core_functions.php:126
 msgid "SEO"
@@ -117,11 +117,11 @@ msgstr "Integráció"
 
 #: ../epanel/core_functions.php:132
 msgid "Support Docs"
-msgstr "Felhasználói dokumentáció"
+msgstr "Támogató dokumentumok"
 
 #: ../epanel/core_functions.php:209 ../epanel/core_functions.php:389
 msgid "Reset"
-msgstr "Helyreállítás"
+msgstr "Törlés"
 
 #: ../epanel/core_functions.php:210
 msgid "Upload Image"
@@ -129,55 +129,55 @@ msgstr "Kép feltöltése"
 
 #: ../epanel/core_functions.php:237
 msgid "You don't have pages"
-msgstr "Nincs egy oldala sem"
+msgstr "Nincsenek oldalak"
 
 #: ../epanel/core_functions.php:374
 msgid "Save changes"
-msgstr "Változások mentése"
+msgstr "Módosítások mentése"
 
 #: ../epanel/core_functions.php:385
 msgid ""
 "This will return all of the settings throughout the options page to their "
 "default values. <strong>Are you sure you want to do this?</strong>"
 msgstr ""
-"Ez minden az opciók oldalon található beállítást visszaállít "
+"Ez a beállítások oldalon található összes beállítást visszaállítja "
 "alapértelmezettre. <strong>Biztosan ezt akarja tenni?</strong>"
 
 #: ../epanel/core_functions.php:558
 msgid "Choose an Image"
-msgstr "Válasszon ki egy képet"
+msgstr "Kép kiválasztása"
 
-#: ../epanel/custom_functions.php:192
+#: ../epanel/custom_functions.php:178
 msgid "&hellip;"
 msgstr "&hellip;"
 
-#: ../epanel/custom_functions.php:465 ../header.php:141
+#: ../epanel/custom_functions.php:451 ../header.php:141
 msgid "Home"
 msgstr "Kezdőlap"
 
-#: ../epanel/custom_functions.php:713
+#: ../epanel/custom_functions.php:699
 msgid "Archives"
 msgstr "Archívum"
 
-#: ../epanel/custom_functions.php:715
+#: ../epanel/custom_functions.php:701
 #, php-format
 msgid "Search results for \"%s\""
-msgstr "Keresési eredmények erre \"%s\""
+msgstr "“%s” keresési eredményei"
 
-#: ../epanel/custom_functions.php:717
+#: ../epanel/custom_functions.php:703
 msgid "404 Not Found"
-msgstr "404 Az oldal nem található"
+msgstr "404 Nem található"
 
-#: ../epanel/custom_functions.php:788
+#: ../epanel/custom_functions.php:774
 #, php-format
 msgid "Currently viewing archives from %1$s"
-msgstr "Jelenleg %1$s archívumot olvas."
+msgstr "Jelenleg archívumot tekint meg innen: %1$s"
 
-#: ../epanel/custom_functions.php:1021
+#: ../epanel/custom_functions.php:1007
 msgid "Image doesn't exist"
-msgstr "Ez a kép nem létezik"
+msgstr "Kép nem létezik"
 
-#: ../epanel/custom_functions.php:1217
+#: ../epanel/custom_functions.php:1203
 #, php-format
 msgid ""
 "<div class=\"updated\"><p>This is a fresh installation of %1$s theme. Don't "
@@ -185,12 +185,12 @@ msgid ""
 "disappear once you have clicked the Save button within the <a href=\"%2$s"
 "\">theme's options page</a>.</p></div>"
 msgstr ""
-"<div class=\"updated\"><p>Ez a %1$s téma frissen telepített változata. Ne "
-"felejtsen ellátogatni az <a href=\"%2$s\">ePanel</a> pontra, hogy testre "
-"szabja. Ez az üzenet eltűnik, ha a Mentés gombra kattint a <a href=\"%2$s"
-"\">téma opciók oldalán</a>.</p></div>"
+"<div class=\"updated\"><p>Ez a %1$s sablon frissen telepített változata. Ne "
+"felejtse el megnyitni az <a href=\"%2$s\">ePanel</a> menüpontot, hogy testre "
+"szabja. Ez az üzenet eltűnik, miután a Mentés gombra kattint a <a href=\"%2$s"
+"\">sablon beállítások oldalán</a>.</p></div>"
 
-#: ../epanel/custom_functions.php:1229
+#: ../epanel/custom_functions.php:1215
 #, php-format
 msgid ""
 "There is a new version of %1$s available. <a href=\"%2$s\" class=\"thickbox"
@@ -200,21 +200,21 @@ msgid ""
 "\">Elegant Updater Plugin</a> to authenticate your subscription.</em>"
 msgstr ""
 "%1$s új változata érhető el. <a href=\"%2$s\" class=\"thickbox\" title=\"%1$s"
-"\">Nézze meg a %3$s verzió részleteit</a>. <em>Mielőtt az Elegant Themes-t "
-"frissíthetné, telepítenie kell az <a href=\"https://www.elegantthemes.com/"
-"members-area/documentation.html#updater\" target=\"_blank\">Elegant Updater "
-"Plugin</a> hogy hitelesítse az előfizetését.</em>"
+"\">Nézze meg a %3$s verzió részleteit</a>. <em>Mielőtt az Elegant Themes "
+"sablont frissíthetné, telepítenie kell az <a href=\"https://www."
+"elegantthemes.com/members-area/documentation.html#updater\" target=\"_blank"
+"\">Elegant Updater bővítményt</a>, hogy hitelesítse az előfizetését.</em>"
 
-#: ../epanel/custom_functions.php:1233
+#: ../epanel/custom_functions.php:1219
 msgid ""
 "Before you can update your Elegant Themes, you must first install the <a "
 "href=\"https://www.elegantthemes.com/members-area/documentation.html#updater"
 "\" target=\"_blank\">Elegant Updater Plugin</a> to authenticate your "
 "subscription."
 msgstr ""
-"Mielőtt az Elegant Themes-t frissíthetné, telepítenie kell az <a href="
+"Mielőtt az Elegant Themes sablont frissíthetné, telepítenie kell az <a href="
 "\"https://www.elegantthemes.com/members-area/documentation.html#updater\" "
-"target=\"_blank\">Elegant Updater Plugin</a> hogy hitelesítse az "
+"target=\"_blank\">Elegant Updater bővítményt</a>, hogy hitelesítse az "
 "előfizetését."
 
 #: ../epanel/options_divi.php:38
@@ -234,7 +234,7 @@ msgid ""
 "If you would like to use your own custom logo image click the Upload Image "
 "button."
 msgstr ""
-"Ha egyedi logóképet szeretne használni, kattintson a \"Kép feltöltése\" "
+"Ha saját, egyéni logóját szeretné használni, kattintson a \"Kép feltöltése\" "
 "gombra."
 
 #: ../epanel/options_divi.php:53
@@ -243,19 +243,19 @@ msgstr "Favicon"
 
 #: ../epanel/options_divi.php:56
 msgid "Set As Favicon"
-msgstr "Beállítás Favicon-ként"
+msgstr "Beállítás faviconként"
 
 #: ../epanel/options_divi.php:58
 msgid ""
 "If you would like to use your own custom favicon image click the Upload "
 "Image button."
 msgstr ""
-"Ha egyedi favicon képet szeretne használni, kattintson a \"Kép feltöltése\" "
-"gombra."
+"Ha saját, egyéni faviconját szeretné használni, kattintson a \"Kép feltöltése"
+"\" gombra."
 
 #: ../epanel/options_divi.php:61
 msgid "Fixed Navigation Bar"
-msgstr "Rögzített navigációs sáv"
+msgstr "Fix navigációs sáv"
 
 #: ../epanel/options_divi.php:65
 msgid ""
@@ -263,12 +263,13 @@ msgid ""
 "suggest to disable this option, if you need to use a logo taller than the "
 "default one."
 msgstr ""
-"Alapértelmezettként a navigációs sáv mindig a kijelző tetején marad. "
-"Javasoljuk, hogy nagyobb logó használata esetén ezt az opciót kapcsolja ki."
+"Alapértelmezetten a navigációs sáv mindig a kijelző tetején marad. "
+"Javasoljuk, hogy ezt az opciót kapcsolja ki, amennyiben magasabb logót "
+"használna az alapértelmezettnél."
 
 #: ../epanel/options_divi.php:70
 msgid "Grab the first post image"
-msgstr "Első kép keresése az oldalon"
+msgstr "Első kép keresése a bejegyzésben"
 
 #: ../epanel/options_divi.php:74
 msgid ""
@@ -278,16 +279,16 @@ msgid ""
 "activcated thumbnail images will be generated automatically using the first "
 "image in your post. The image must be hosted on your own server."
 msgstr ""
-"Alapértelmezettként a nézőképeket egyedi mezők segítségével tudja "
-"létrehozni. Viszont ha inkább használna a bejegyzésében már megtalálható "
-"képeket nézőképként (ezzel megkerülve az egyedi mezőket), ezt az opciót "
-"aktiválhatja. Ha aktiválja, a nézőképek automatikusan generálódnak a "
-"bejegyzésében található első képet felhasználva. Ezt a képet a saját "
-"szerverén kell tárolnia."
+"Alapértelmezetten a bélyegképeket egyedi mezők segítségével lehet "
+"létrehozni. Amennyiben inkább a bejegyzésekben már megtalálható képeket "
+"szeretné bélyegképként használni (ezzel megkerülve az egyedi mezőket), ezt "
+"az opciót aktiválhatja. Aktiválás után a bélyegképek a bejegyzésben "
+"található első képből automatikusan generálódnak. Ezt a képet a szerveren "
+"kell tárolni."
 
 #: ../epanel/options_divi.php:77
 msgid "Blog Style Mode"
-msgstr "Blogstílus mód"
+msgstr "Blog stílus"
 
 #: ../epanel/options_divi.php:81
 msgid ""
@@ -295,30 +296,31 @@ msgid ""
 "to create post previews. If you would rather show your posts in full on "
 "index pages like a traditional blog then you can activate this feature."
 msgstr ""
-"Alapértelmezettként a téma automatikusan lerövidíti a bejegyzése idézeteit, "
-"hogy előnézetet készítsen. Ha hagyományos blogként inkább az egész "
-"bejegyzést szeretné megjeleníteni, aktiválja ezt az opciót."
+"Alapértelmezetten a sablon automatikusan lerövidíti a bejegyzéseit, hogy "
+"előnézetet készítsen. Ha inkább hagyományos blogként az egész bejegyzést "
+"szeretné megjeleníteni, aktiválja ezt az opciót."
 
 #: ../epanel/options_divi.php:86
 msgid "Shop Page & Category Page Layout for WooCommerce"
-msgstr "Vásárló és kategória oldalszerkezet a WooCommerce számára"
+msgstr "Áruház és kategória oldalszerkezet WooCommerce esetén"
 
-#: ../epanel/options_divi.php:90 ../functions.php:364
+#: ../epanel/options_divi.php:90 ../functions.php:262
 msgid "Right Sidebar"
-msgstr "Jobb oldali oldalléc"
+msgstr "Jobb oldali oldalsáv"
 
-#: ../epanel/options_divi.php:91 ../functions.php:365
+#: ../epanel/options_divi.php:91 ../functions.php:263
 msgid "Left Sidebar"
-msgstr "Bal oldali oldalléc"
+msgstr "Bal oldali oldalsáv"
 
-#: ../epanel/options_divi.php:92 ../functions.php:366
+#: ../epanel/options_divi.php:92 ../functions.php:264
 msgid "Full Width"
 msgstr "Teljes szélesség"
 
 #: ../epanel/options_divi.php:95
 msgid "Here you can choose Shop Page & Category Page Layout for WooCommerce."
 msgstr ""
-"Itt a WooCommerce-hez választhat vásárló és kategória oldalszerkezetet."
+"Itt választhatja ki az áruház és kategória oldalszerkezetet WooCommerce "
+"esetén."
 
 #: ../epanel/options_divi.php:99
 msgid "MailChimp API Key"
@@ -330,8 +332,8 @@ msgid ""
 "Enter your MailChimp API key. You can create an api key <a target=\"_blank\" "
 "href=\"%1$s\">here</a>"
 msgstr ""
-"Írja be MailChimp API kulcsát! API kulcsot <a target=\"_blank\" href=\"%1$s"
-"\">itt</a> készíthet."
+"Adja meg MailChimp API kulcsát. API kulcsot <a target=\"_blank\" href=\"%1$s"
+"\">itt</a> készíthet"
 
 #: ../epanel/options_divi.php:107
 msgid "Aweber Authorization"
@@ -339,7 +341,7 @@ msgstr "Aweber engedélyezése"
 
 #: ../epanel/options_divi.php:109
 msgid "Authorize your Aweber account here."
-msgstr "Engedélyezze Aweber felhasználóját itt."
+msgstr "Engedélyezze Aweber fiókját itt."
 
 #: ../epanel/options_divi.php:113
 msgid "Regenerate MailChimp Lists"
@@ -348,13 +350,12 @@ msgstr "MailChimp listák újragenerálása"
 #: ../epanel/options_divi.php:117
 msgid ""
 "By default, MailChimp lists are cached for one day. If you added new list, "
-"but it doesn't appear within the SignUp module settings, activate this "
+"but it doesn't appear within the Email Optin module settings, activate this "
 "option. Don't forget to disable it once the list has been regenerated."
 msgstr ""
-"Alapértelmezettként a MailChimp listák egy napig vannak gyorsítótárban. Ha "
-"új listát adott hozzá, de az nem jelenik meg a SignUp modul beállításai "
-"között, aktiválja ezt az opciót. Ne felejtse el kikapcsolni, ha a lista "
-"újragenerálódott."
+"Alapértelmezésben MailChimp listák elrejt egy napra. Ha hozzá az új lista, "
+"de ez nem jelenik meg az e-mail Optin modul beállításainak be ezt az opciót. "
+"Ne felejtsük el, hogy tiltsa meg, ha a listán már regenerálódott."
 
 #: ../epanel/options_divi.php:119
 msgid "Regenerate Aweber Lists"
@@ -363,13 +364,12 @@ msgstr "Aweber listák újragenerálása"
 #: ../epanel/options_divi.php:123
 msgid ""
 "By default, Aweber lists are cached for one day. If you added new list, but "
-"it doesn't appear within the SignUp module settings, activate this option. "
-"Don't forget to disable it once the list has been regenerated."
+"it doesn't appear within the Email Optin module settings, activate this "
+"option. Don't forget to disable it once the list has been regenerated."
 msgstr ""
-"Alapértelmezettként a Aweber listák egy napig vannak gyorsítótárban. Ha új "
-"listát adott hozzá, de az nem jelenik meg a SignUp modul beállításai között, "
-"aktiválja ezt az opciót. Ne felejtse el kikapcsolni, ha a lista "
-"újragenerálódott."
+"Alapértelmezésben Aweber listák elrejt egy napra. Ha hozzá az új lista, de "
+"ez nem jelenik meg az e-mail Optin modul beállításainak be ezt az opciót. Ne "
+"felejtsük el, hogy tiltsa meg, ha a listán már regenerálódott."
 
 #: ../epanel/options_divi.php:127
 msgid "Show Facebook Icon"
@@ -377,7 +377,7 @@ msgstr "Facebook ikon megjelenítése"
 
 #: ../epanel/options_divi.php:131
 msgid "Here you can choose to display the Facebook Icon on your homepage. "
-msgstr "Itt választhatja ki a Facebook ikon megjelenítését a kezdőlapján."
+msgstr "Itt választhatja ki a Facebook ikon megjelenítését a kezdőlapján. "
 
 #: ../epanel/options_divi.php:133
 msgid "Show Twitter Icon"
@@ -401,39 +401,39 @@ msgstr "RSS ikon megjelenítése"
 
 #: ../epanel/options_divi.php:151
 msgid "Here you can choose to display the RSS Icon. "
-msgstr "Itt választhatja ki a RSS ikon megjelenítését. "
+msgstr "Itt választhatja ki az RSS ikon megjelenítését. "
 
 #: ../epanel/options_divi.php:155
 msgid "Facebook Profile Url"
-msgstr "Facebook profil URL"
+msgstr "Facebook profil webcím"
 
 #: ../epanel/options_divi.php:160
 msgid "Enter the URL of your Facebook Profile. "
-msgstr "Írja be Facebook profilja URL-jét. "
+msgstr "Adja meg Facebook profilja webcímét. "
 
 #: ../epanel/options_divi.php:162
 msgid "Twitter Profile Url"
-msgstr "Twitter profil URL"
+msgstr "Twitter profil webcím"
 
 #: ../epanel/options_divi.php:167
 msgid "Enter the URL of your Twitter Profile."
-msgstr "Írja be Twitter profilja URL-jét."
+msgstr "Adja meg Twitter profilja webcímét."
 
 #: ../epanel/options_divi.php:169
 msgid "Google+ Profile Url"
-msgstr "Google+ profil URL"
+msgstr "Google+ profil webcím"
 
 #: ../epanel/options_divi.php:174
 msgid "Enter the URL of your Google+ Profile. "
-msgstr "Írja be Google+ profilja URL-jét. "
+msgstr "Adja meg Google+ profilja webcímét. "
 
 #: ../epanel/options_divi.php:176
 msgid "RSS Icon Url"
-msgstr "RSS ikon URL"
+msgstr "RSS ikon webcím"
 
 #: ../epanel/options_divi.php:181
 msgid "Enter the URL of your RSS feed. "
-msgstr "Írja be RSS feedje URL-jét. "
+msgstr "Adja meg RSS feedje webcímét. "
 
 #: ../epanel/options_divi.php:183
 msgid "Number of Posts displayed on Category page"
@@ -445,8 +445,8 @@ msgid ""
 "Category page. This option works independently from the Settings > Reading "
 "options in wp-admin."
 msgstr ""
-"Itt kijelölheti, hány új cikk jelenjen meg a Kategória oldalon. Ez az opció "
-"függetlenül működik a wp-admin olvasási opcióitól."
+"Itt kijelölheti, hány új cikk jelenjen meg a Kategória oldalon. Ez a "
+"beállítás függetlenül működik a Beállítások > Olvasás opcióitól."
 
 #: ../epanel/options_divi.php:191
 msgid "Number of Posts displayed on Archive pages"
@@ -458,8 +458,8 @@ msgid ""
 "pages. This option works independently from the Settings > Reading options "
 "in wp-admin."
 msgstr ""
-"Itt kijelölheti, hány új cikk jelenjen meg az Archívum oldalakon. Ez az "
-"opció függetlenül működik a wp-admin olvasási opcióitól."
+"Itt kijelölheti, hány új cikk jelenjen meg az Archívum oldalakon. Ez a "
+"beállítás függetlenül működik a Beállítások > Olvasás opcióitól."
 
 #: ../epanel/options_divi.php:199
 msgid "Number of Posts displayed on Search pages"
@@ -471,8 +471,8 @@ msgid ""
 "results pages. This option works independently from the Settings > Reading "
 "options in wp-admin."
 msgstr ""
-"Itt kijelölheti, hány új cikk jelenjen meg a Keresés oldalakon. Ez az opció "
-"függetlenül működik a wp-admin olvasási opcióitól."
+"Itt kijelölheti, hány új cikk jelenjen meg a Keresési eredmények oldalakon. "
+"Ez a beállítás függetlenül működik a Beállítások > Olvasás opcióitól."
 
 #: ../epanel/options_divi.php:207
 msgid "Number of Posts displayed on Tag pages"
@@ -484,8 +484,8 @@ msgid ""
 "pages. This option works independently from the Settings > Reading options "
 "in wp-admin."
 msgstr ""
-"Itt kijelölheti, hány új cikk jelenjen meg a Címke oldalakon. Ez az opció "
-"függetlenül működik a wp-admin olvasási opcióitól."
+"Itt kijelölheti, hány új cikk jelenjen meg a Címke oldalakon. Ez a beállítás "
+"függetlenül működik a Beállítások > Olvasás opcióitól."
 
 #: ../epanel/options_divi.php:215
 msgid "Date format"
@@ -498,29 +498,29 @@ msgid ""
 "wordpress.org/Formatting_Date_and_Time' target='_blank'>Formatting Date and "
 "Time</a>"
 msgstr ""
-"Ez az opció engedélyezi a dátumok megjelenítésének változtatását. További "
-"információért forduljon a WordPress dokumentációhoz itt:<a href='http://"
-"codex.wordpress.org/Formatting_Date_and_Time' target='_blank'>Dátum és Idő "
-"Formázása</a>"
+"Ez az opció lehetővé teszi, hogy módosítsa a dátumok megjelenését. További "
+"információért forduljon a WordPress dokumentációhoz itt: <a href='http://"
+"codex.wordpress.org/Formatting_Date_and_Time' target='_blank'>Dátum és idő "
+"formázása</a>"
 
 #: ../epanel/options_divi.php:225
 msgid "Use excerpts when defined"
-msgstr "Használjon idézeteket, ha meg vannak adva"
+msgstr "Kivonatok használata, ha adottak"
 
 #: ../epanel/options_divi.php:229
 msgid "This will enable the use of excerpts in posts or pages."
 msgstr ""
-"Ez lehetővé teszi az idézetek használatát bejegyzéseknél vagy oldalakon."
+"Ez lehetővé teszi a kivonatok használatát bejegyzéseknél vagy oldalakon."
 
 #: ../epanel/options_divi.php:232
 msgid "Responsive shortcodes"
-msgstr "Alkalmazkodó shortcodes"
+msgstr "Responsive shortcode-ok"
 
 #: ../epanel/options_divi.php:236
 msgid "Enable this option to make shortcodes respond to various screen sizes"
 msgstr ""
-"Aktiválja ezt az opciót, hogy a shortcodes alkalmazkodjon különböző kijelzők "
-"nagyságához"
+"Engedélyezze ezt az opciót, hogy a shortcode-ok különböző kijelző méretekhez "
+"alkalmazkodjanak"
 
 #: ../epanel/options_divi.php:241
 msgid "Google Fonts subsets"
@@ -528,7 +528,7 @@ msgstr "Google Fonts alcsoportok"
 
 #: ../epanel/options_divi.php:245
 msgid "This will enable Google Fonts for Non-English languages."
-msgstr "Ez lehetővé teszi a Google Fonts-t nem angol nyelvekre."
+msgstr "Ez lehetővé teszi a Google betűtípusokat nem angol nyelvek részére is."
 
 #: ../epanel/options_divi.php:248
 msgid "Back To Top Button"
@@ -537,51 +537,53 @@ msgstr "Vissza a tetejére gomb"
 #: ../epanel/options_divi.php:252
 msgid "Enable this option to display Back To Top Button while scrolling"
 msgstr ""
-"Aktiválja ezt az opciót, hogy a Vissza a tetejére gomb megjelenjen görgetés "
-"közben"
+"Engedélyezze ezt az opciót a Vissza a tetejére gomb görgetés közbeni "
+"megjelenítéséhez"
 
 #: ../epanel/options_divi.php:255
 msgid "Smooth Scrolling"
-msgstr "Folyamatos görgetés"
+msgstr "Finomgörgetés"
 
 #: ../epanel/options_divi.php:259
 msgid "Enable this option to get the smooth scrolling effect with mouse wheel"
 msgstr ""
-"Aktiválja ezt az opciót, hogy folyamatos hatást érjen el az egér görgőjével"
+"Engedélyezze ezt az opciót, hogy folyamatos görgetés hatást érjen el az egér "
+"görgőjével"
 
 #: ../epanel/options_divi.php:264
 msgid "Custom CSS"
-msgstr "Egyedi CSS"
+msgstr "Egyéni CSS"
 
 #: ../epanel/options_divi.php:268
 msgid "Here you can add custom css to override or extend default styles."
 msgstr ""
-"Itt egyedi CSS-t adhat hozzá, hogy felülírja vagy kiterjessze az "
+"Itt egyéni CSS-t adhat hozzá, hogy felülírja vagy kiterjessze az "
 "alapértelmezett stílusokat."
 
 #: ../epanel/options_divi.php:287
 msgid "Pages"
 msgstr "Oldalak"
 
-#: ../epanel/options_divi.php:292 ../functions.php:292 ../functions.php:302
+#: ../epanel/options_divi.php:292
 msgid "Categories"
 msgstr "Kategóriák"
 
 #: ../epanel/options_divi.php:305
 msgid "Exclude pages from the navigation bar"
-msgstr "Lapok kizárása a navigációs sávról"
+msgstr "Oldalak kihagyása a navigációs sávból"
 
 #: ../epanel/options_divi.php:309
 msgid ""
 "Here you can choose to remove certain pages from the navigation menu. All "
 "pages marked with an X will not appear in your navigation bar. "
 msgstr ""
-"Itt választhat olyan lapokat, amelyeket nem kíván szerepeltetni a navigációs "
-"sávon. Minden X-szel jelölt lap nem látszódik majd a navigációs sávon. "
+"Itt választhatja ki, hogy melyik oldalakat nem kívánja szerepeltetni a "
+"navigációs sávon. Minden X-szel jelölt oldal ki lesz hagyva a navigációs "
+"sávról. "
 
 #: ../epanel/options_divi.php:313 ../epanel/options_divi.php:368
 msgid "Show dropdown menus"
-msgstr "Legördülő menük mutatása"
+msgstr "Legördülő menük megjelenítése"
 
 #: ../epanel/options_divi.php:317
 msgid ""
@@ -593,7 +595,7 @@ msgstr ""
 
 #: ../epanel/options_divi.php:320
 msgid "Display Home link"
-msgstr "Kezdőlap link megjelenítése"
+msgstr "Kezdőlap hivatkozás megjelenítése"
 
 #: ../epanel/options_divi.php:324
 msgid ""
@@ -602,19 +604,21 @@ msgid ""
 "already created a page called Home to use, this will result in a duplicate "
 "link. In this case you should disable this feature to remove the link."
 msgstr ""
-"Alapértelmezettként a téma készít egy Kezdőlap linket, amelyre ha "
-"ráklikkelnek, visszavezet blogja kezdőlapjára. Ha azonban statikus weboldalt "
-"használ, és Kezdőlapként már készített lapot, akkor ez duplikált linkként "
-"fog megjelenni. Ebben az esetben tiltsa le ezt az opciót, hogy a linket "
-"eltávolítsa."
+"Alapértelmezetten a sablon készít egy Kezdőlap hivatkozást, amelyre ha "
+"rákattintanak, visszavezet blogja kezdőlapjára. Ha azonban statikus "
+"weboldalt használ, és létrehozott egy oldalt Kezdőlap néven, akkor ez "
+"duplikált linkként fog megjelenni. Ebben az esetben tiltsa le ezt az opciót, "
+"hogy a linket eltávolítsa."
 
 #: ../epanel/options_divi.php:329
 msgid "Sort Pages Links"
-msgstr "Oldalak linkjeinek sorrendje"
+msgstr "Oldalak hivatkozásainak sorrendje"
 
 #: ../epanel/options_divi.php:333
 msgid "Here you can choose to sort your pages links."
-msgstr "Itt kiválaszthatja az oldalainak a linkelt sorrendjét."
+msgstr ""
+"Itt választhatja ki, hogy mi alapján legyenek sorrendbe téve az oldalak "
+"hivatkozásai."
 
 #: ../epanel/options_divi.php:336
 msgid "Order Pages Links by Ascending/Descending"
@@ -625,8 +629,8 @@ msgid ""
 "Here you can choose to reverse the order that your pages links are "
 "displayed. You can choose between ascending and descending."
 msgstr ""
-"Itt választhatja az oldalak jelen linkjeinek sorrendjének megfordítását. "
-"Választhat növekvő és csökkenő listát."
+"Itt megfordíthatja az oldalak hivatkozásainak sorrendjét. Növekvő (asc) és "
+"csökkenő (desc) között választhat."
 
 #: ../epanel/options_divi.php:343 ../epanel/options_divi.php:384
 msgid "Number of dropdown tiers shown"
@@ -637,29 +641,29 @@ msgid ""
 "This options allows you to control how many teirs your pages dropdown menu "
 "has. Increasing the number allows for additional menu items to be shown."
 msgstr ""
-"Ez az opció pontosan szabályozza, milyen mély lehet oldalain a legördülő "
-"menü. A szám növelése több menüegység megjelenítését teszi lehetővé."
+"Ez az opció szabályozza, hogy hány almenüje lehet az oldalak legördülő "
+"menüjének. A szám növelése több menü elem megjelenítését teszi lehetővé."
 
 #: ../epanel/options_divi.php:360
 msgid "Exclude categories from the navigation bar"
-msgstr "Záron ki a kategóriákat a navigációs sávból"
+msgstr "Kategóriák kihagyása a navigációs sávból"
 
 #: ../epanel/options_divi.php:364
 msgid ""
 "Here you can choose to remove certain categories from the navigation menu. "
 "All categories marked with an X will not appear in your navigation bar. "
 msgstr ""
-"Itt választhat olyan kategóriákat, amelyeket nem kíván szerepeltetni a "
-"navigációs sávon. Minden X-szel jelölt lap nem látszódik majd a navigációs "
-"sávon. "
+"Itt választhatja ki, hogy melyik kategóriákat nem kívánja szerepeltetni a "
+"navigációs sávon. Minden X-szel jelölt kategória ki lesz hagyva a navigációs "
+"sávról. "
 
 #: ../epanel/options_divi.php:372
 msgid ""
 "If you would like to remove the dropdown menus from the categories "
 "navigation bar disable this feature."
 msgstr ""
-"Ha a legördülő menüket szeretné eltávolítani a kategóriák navigációs "
-"sávjáról, tiltsa le ezt az opciót."
+"Ha el kívánja távolítani a legördülő menüket a kategóriák navigációs "
+"sávjából, tiltsa le ezt az opciót."
 
 #: ../epanel/options_divi.php:375
 msgid "Hide empty categories"
@@ -671,22 +675,21 @@ msgid ""
 "don't have any posts in them then disable this option. By default empty "
 "categories are hidden"
 msgstr ""
-"Ha szeretné az olyan kategóriákat is a navigációs sávon látni, amelyekhez "
-"nem tartozik bejegyzés, akkor tiltsa le ezt az opciót. Alapértelmezettként "
-"az üres kategóriák el vannak rejtve."
+"Ha szeretné, hogy az olyan kategóriák is megjelenjenek a navigációs sávon, "
+"amelyekhez nem tartoznak bejegyzések, akkor tiltsa le ezt az opciót. "
+"Alapértelmezetten az üres kategóriák rejtve vannak"
 
 #: ../epanel/options_divi.php:394
 msgid "Sort Categories Links by Name/ID/Slug/Count/Term Group"
-msgstr ""
-"Sorolja a kategóriák linkjeit Name/ID/Slug/Count/Term csoportok alapján"
+msgstr "Kategóriák hivatkozásainak sorrendje"
 
 #: ../epanel/options_divi.php:398
 msgid ""
 "By default pages are sorted by name. However if you would rather have them "
 "sorted by ID you can adjust this setting."
 msgstr ""
-"Alapértelmezettként az oldalak név alapján vannak sorrendben. Ha inkább ID "
-"szerinti sorolást kívánna inkább, ezt a beállítást változtathatja."
+"Alapértelmezetten az oldalak név szerint vannak sorrendben. Ha inkább ID "
+"szerinti sorrendet szeretne, ezt a beállítást módosíthatja."
 
 #: ../epanel/options_divi.php:401
 msgid "Order Category Links by Ascending/Descending"
@@ -697,12 +700,12 @@ msgid ""
 "Here you can choose to reverse the order that your categories links are "
 "displayed. You can choose between ascending and descending."
 msgstr ""
-"Itt változtathatja a kategóriák jelen linkjeinek sorrendjének megfordítását. "
-"Választhat növekvő és csökkenő listát."
+"Itt megfordíthatja a kategóriák hivatkozásainak sorrendjét. Növekvő (asc) és "
+"csökkenő (desc) között választhat."
 
 #: ../epanel/options_divi.php:414
 msgid "Disable top tier dropdown menu links"
-msgstr "Legfelsőbb szintű legördülő menü tiltása"
+msgstr "Legfelsőbb szintű legördülő menü hivatkozások tiltása"
 
 #: ../epanel/options_divi.php:418
 msgid ""
@@ -713,27 +716,26 @@ msgid ""
 "links from all parent pages/categories so that they don't lead anywhere when "
 "clicked."
 msgstr ""
-"Néhány esetben a felhasználó szülőkategóriákat vagy linkeket vagy "
-"helykitöltőt akar majd készíteni, hogy egy gyerekekből álló link vagy "
-"kategórialistát tároljanak. Ebben az esetben nem kívánatos, hogy a szülő "
-"linkek akárhová vezessenek, hanem csak hogy elrendezésbeli szerepet "
-"töltsenek be. Ennek az opciónak az aktiválása megszünteti a linkeket a szülő "
-"oldalaktól és kategóriáktól, hogy sehova se vezessen, ha a felhasználó "
-"rákattint."
+"Néhány esetben a felhasználók szülőkategóriákat vagy hivatkozásokat hoznak "
+"létre helykitöltőként, hogy egy hivatkozás vagy kategórialistát tároljanak. "
+"Ebben az esetben nem kívánatos, hogy a szülő hivatkozások valahová "
+"vezessenek, csak elrendezésbeli szerepet töltenek be. Ennek az opciónak az "
+"engedélyezése eltávolítja a hivatkozásokat a szülő oldalakról és "
+"kategóriákról, hogy sehova se vezessenek, ha a felhasználó rájuk kattint."
 
 #: ../epanel/options_divi.php:438
 msgid "Single Post Layout"
-msgstr "Egy bejegyzéses szerkezet"
+msgstr "Bejegyzés szerkezete"
 
 #: ../epanel/options_divi.php:443
 msgid "Single Page Layout"
-msgstr "Egy oldalas szerkezet"
+msgstr "Oldal szerkezete"
 
 #: ../epanel/options_divi.php:456
 msgid "Choose which items to display in the postinfo section"
 msgstr ""
-"Válassza ki, milyen részleteket kíván a bejegyzés információs részén "
-"megjeleníteni"
+"Válassza ki, milyen elemeket kíván megjeleníteni a bejegyzés információs "
+"részén"
 
 #: ../epanel/options_divi.php:460
 msgid ""
@@ -742,10 +744,10 @@ msgid ""
 "basic information about your post. The highlighted itmes shown below will "
 "appear. "
 msgstr ""
-"Itt kiválaszthatja a bejegyzés információs részén megjeleníteni kívánt "
-"részleteket egy bejegyzéses oldalon. Ez a terület rendszerint a cím alatt "
-"található, és alapvető információt nyújt a bejegyzéséről. A lentebb írt "
-"kiválasztott részletek jelennek meg. "
+"Itt választhatja ki, hogy az egy bejegyzést tartalmazó oldalakon a bejegyzés "
+"információs részén milyen elemek jelenjenek meg. Ez a terület rendszerint a "
+"bejegyzés címe alatt található, és alapvető információt nyújt a "
+"bejegyzésről. A kiemelt elemek jelennek meg. "
 
 #: ../epanel/options_divi.php:464
 msgid "Show comments on posts"
@@ -756,12 +758,12 @@ msgid ""
 "You can disable this option if you want to remove the comments and comment "
 "form from single post pages. "
 msgstr ""
-"Letilthatja ezt az opciót, ha a hozzászólásokat el kívánja távolítani "
-"bejegyzésektől. "
+"Letilthatja ezt az opciót, ha a hozzászólásokat el kívánja távolítani az egy "
+"bejegyzést tartalmazó oldalakról. "
 
 #: ../epanel/options_divi.php:471
 msgid "Place Thumbs on Posts"
-msgstr "Nézőkép elhelyezése bejegyzésekre"
+msgstr "Bélyegkép elhelyezése bejegyzéseknél"
 
 #: ../epanel/options_divi.php:475
 msgid ""
@@ -769,13 +771,13 @@ msgid ""
 "post pages. If you would like to remove this initial thumbnail image to "
 "avoid repetition simply disable this option. "
 msgstr ""
-"Alapértelmezettként a nézőképek egy bejegyzéses oldalakon a bejegyzés "
-"elejére kerülnek. Ha ezt a kezdeti nézőképet ismétlés miatt el kívánja "
-"távolítani, egyszerűen tiltsa le ezt az opciót. "
+"Alapértelmezetten a bélyegképek az egy bejegyzést tartalmazó oldalon a "
+"bejegyzés elejére kerülnek. Ha ezt a kezdeti bélyegképet ismétlés miatt el "
+"kívánja távolítani, egyszerűen tiltsa le ezt az opciót. "
 
 #: ../epanel/options_divi.php:486
 msgid "Place Thumbs on Pages"
-msgstr "Nézőkép elhelyezése oldalakra"
+msgstr "Bélyegkép elhelyezése oldalakra"
 
 #: ../epanel/options_divi.php:490
 msgid ""
@@ -783,9 +785,9 @@ msgid ""
 "However, if you want to use thumbnails on pages you can! Just enable this "
 "option. "
 msgstr ""
-"Alapértelmezett esetben nincsenek thumbnailek az oldalakon (csak a "
-"bejegyzésekben). Azonban ha akar használni, akkor megteheti! Csak "
-"engedélyezze ezt az opciót."
+"Alapértelmezetten nincsenek bélyegképek az oldalakon (csak a "
+"bejegyzésekben). Azonban ha szeretné, akkor megteheti! Csak engedélyezze ezt "
+"az opciót. "
 
 #: ../epanel/options_divi.php:493
 msgid "Show comments on pages"
@@ -796,8 +798,9 @@ msgid ""
 "By default comments are not placed on pages, however, if you would like to "
 "allow people to comment on your pages simply enable this option. "
 msgstr ""
-"Alapértelmezettként hozzászólások nem kerülnek oldalakra, de ha szeretné "
-"engedélyezni az oldalakra való kommentálást, csak aktiválja ezt az opciót! "
+"Alapértelmezetten a hozzászólások nem kerülnek fel az oldalakra, de ha "
+"szeretné engedélyezni az oldalakon való hozzászólást, csak aktiválja ezt az "
+"opciót! "
 
 #: ../epanel/options_divi.php:508
 msgid "Post info section"
@@ -809,18 +812,19 @@ msgid ""
 "This is the area, usually below the post title, which displays basic "
 "information about your post. The highlighted itmes shown below will appear. "
 msgstr ""
-"Itt választhatja ki, milyen részletek jelennek meg a cikk információs "
-"részében az oldalakon. Ez a terület rendszerint a cím alatt található, és "
-"alapvető információt nyújt a bejegyzéséről. A lentebb írt kiválasztott "
-"részletek jelennek meg. "
+"Itt választhatja ki, hogy az oldalakon milyen elemek jelenjenek meg a "
+"bejegyzés információs részén. Ez a terület rendszerint a cím alatt "
+"található, és alap információt nyújt a bejegyzésről. A kiemelt elemek "
+"jelennek meg. "
 
 #: ../epanel/options_divi.php:517
 msgid "Show Thumbs on Index pages"
-msgstr "Mutassa a nézőképeket Index oldalakon"
+msgstr "Bélyegképek megjelenítése az Index oldalakon"
 
 #: ../epanel/options_divi.php:521
 msgid "Enable this option to show thumbnails on Index Pages."
-msgstr "Aktiválja ezt az opciót, hogy nézőképeket lásson az Index oldalakon."
+msgstr ""
+"Aktiválja ezt az opciót a bélyegképek megjelenítéséhez az Index oldalakon."
 
 #: ../epanel/options_divi.php:540
 msgid "Homepage SEO"
@@ -828,7 +832,7 @@ msgstr "Kezdőlap SEO"
 
 #: ../epanel/options_divi.php:545
 msgid "Single Post Page SEO"
-msgstr "Egy bejegyzéses oldal SEO"
+msgstr "Bejegyzés oldal SEO"
 
 #: ../epanel/options_divi.php:550
 msgid "Index Page SEO"
@@ -836,7 +840,7 @@ msgstr "Index oldal SEO"
 
 #: ../epanel/options_divi.php:558
 msgid " Enable custom title "
-msgstr "Egyedi cím aktiválása "
+msgstr " Egyéni cím engedélyezése"
 
 #: ../epanel/options_divi.php:562
 msgid ""
@@ -845,14 +849,14 @@ msgid ""
 "titles. However if you want to create a custom title then simply enable this "
 "option and fill in the custom title field below. "
 msgstr ""
-"Alapértelmezettként a téma a blogja nevének és leírásának kombinációját "
+"Alapértelmezetten a sablon a blogja nevének és leírásának kombinációját "
 "használja, ahogy a blog készítésekor lett megadva, hogy a kezdőlap címe "
-"legyen. Ha azonban egyedi címet készítene, csak aktiválja ezt az opciót és "
-"töltse ki az egyedi cím mezőt lentebb. "
+"legyen. Ha azonban egyéni címet készítene, csak aktiválja ezt az opciót és "
+"töltse ki az egyéni cím mezőt lentebb. "
 
 #: ../epanel/options_divi.php:565
 msgid " Enable meta description"
-msgstr "Leírás elhelyezése meta elemmel"
+msgstr " Meta leírás engedélyezése"
 
 #: ../epanel/options_divi.php:569
 msgid ""
@@ -861,14 +865,14 @@ msgid ""
 "different description then enable this option and fill in the custom "
 "description field below. "
 msgstr ""
-"Alapértelmezettként a téma a blogja leírását használja, ahogy a blog "
-"készítésekor lett megadva, hogy a blog meta elembeli leírását adja. Ha más "
-"leírást kíván használni, aktiválja ezt az opciót és töltse ki az egyedi "
-"leírás mezőt lentebb. "
+"Alapértelmezetten a sablon a blogja leírását használja, ahogy a blog "
+"készítésekor lett megadva, hogy kitöltse a meta leírás mezőt. Ha más leírást "
+"kíván használni, aktiválja ezt az opciót és töltse ki az egyéni leírás mezőt "
+"lentebb. "
 
 #: ../epanel/options_divi.php:572
 msgid " Enable meta keywords"
-msgstr "Meta kulcsszavak alkalmazása"
+msgstr " Meta kulcsszavak engedélyezése"
 
 #: ../epanel/options_divi.php:576
 msgid ""
@@ -877,15 +881,15 @@ msgid ""
 "them anyway just in case. If you want to add meta keywords to your header "
 "then enable this option and fill in the custom keywords field below. "
 msgstr ""
-"Alapértelmezettként a téma nem tesz a fejhez kulcsszavakat. A legtöbb "
+"Alapértelmezetten a sablon nem tesz kulcsszavakat a fejlécbe. A legtöbb "
 "keresőmotor nem használja a keresőszavak módszerét, hogy a honlapját "
 "értékeljék, de néhány ember csak a biztonság kedvéért leírja őket. Ha meta "
-"kulcsszavakat szeretne a fejhez tenni, aktiválja ezt az opciót és töltse ki "
-"az egyedi kulcsszavak mezőt lentebb. "
+"kulcsszavakat szeretne a fejléchez adni, aktiválja ezt az opciót és töltse "
+"ki az egyéni kulcsszavak mezőt lentebb. "
 
 #: ../epanel/options_divi.php:579 ../epanel/options_divi.php:712
 msgid " Enable canonical URL's"
-msgstr "Kanonikus URL alkalmazása"
+msgstr " Kanonikus webcímek engedélyezése"
 
 #: ../epanel/options_divi.php:583 ../epanel/options_divi.php:661
 #: ../epanel/options_divi.php:716
@@ -901,21 +905,21 @@ msgid ""
 "would like to use officially. The theme bases its canonical URLs off your "
 "permalinks and the domain name defined in the settings tab of wp-admin."
 msgstr ""
-"A kanonikalizáció segít megelõzni a keresõmotorok általi duplikált tartalmak "
-"indexelését, és ennek eredményeképp segít megelõzni a duplikált tartalom "
-"büntetéseket és az oldal rangsorának degradációját. Egyes oldalak különbözõ "
-"URL-ekkel rendelkeznek, amelyek mind egy helyre vezetnek. Például a domain."
-"com, a domain.com/index.html és a www.domain.com különbözõ URL-el "
-"rendelkeznek és egy honlapra vezetnek. A keresõmotor szempontjából ezek a "
-"duplikált URL-ek, amelyek gyakran egyéni hivatkozások miatt jönnek létre, "
-"egyetlen cél helyett többnek tûnnek. A kanonikus URL definiálás elárulja a "
-"keresõmotornak, hogy melyik URL-t kívánja hivatalosan használni. A téma a "
-"kanonikus URLs-et a hivatkozásaira és a wp-admin lapon meghatározott domain "
-"névre alapozza."
+"A kanonikalizáció segít megelőzni a keresőmotorok általi duplikált tartalmak "
+"indexelését, és ennek eredményeképp segít megelőzni a duplikált tartalom "
+"büntetéseket és az oldal rangsorának degradációját. Egyes oldalak különböző "
+"webcímekkel rendelkeznek, amelyek mind egy helyre vezetnek. Például a domain."
+"com, a domain.com/index.html és a www.domain.com különböző webcímmel "
+"rendelkeznek és egy honlapra vezetnek. A keresőmotor szempontjából ezek a "
+"duplikált webcímek, amelyek gyakran egyéni hivatkozások miatt jönnek létre, "
+"egyetlen cél helyett többnek tűnnek. A kanonikus webcím definiálás elárulja "
+"a keresőmotornak, hogy melyik webcímet kívánja hivatalosan használni. A "
+"sablon a kanonikus webcímeket a hivatkozásaira és a wp-admin lapon "
+"meghatározott domain névre alapozza."
 
 #: ../epanel/options_divi.php:588
 msgid "Homepage custom title (if enabled)"
-msgstr "Holnap egyedi címe (ha engedélyezve van)"
+msgstr "Kezdőlap egyéni címe (ha engedélyezett)"
 
 #: ../epanel/options_divi.php:592
 msgid ""
@@ -923,22 +927,22 @@ msgid ""
 "Whatever you type here will be placed between the < title >< /title > tags "
 "in header.php"
 msgstr ""
-"Ha az egyedi címeket engedélyezte, ide írja az egyedi címét! Amit ide ír, az "
-"kerül a < title >< /title > elemek közé a header.php fájlban"
+"Ha engedélyezte az egyéni címet, akkor írja ide az egyéni címet. Amit ide "
+"ír, az kerül a < title >< /title > címkék közé a header.php fájlban"
 
 #: ../epanel/options_divi.php:596
 msgid "Homepage meta description (if enabled)"
-msgstr "Holnap meta leírása (ha engedélyezve van)"
+msgstr "Kezdőlap meta leírása (ha engedélyezett)"
 
 #: ../epanel/options_divi.php:600
 msgid ""
 "If you have enabled meta descriptions you can add your custom description "
 "here."
-msgstr "Ha a meta leírást engedélyezte, ide írja egyedi leírását!"
+msgstr "Ha a meta leírást engedélyezte, akkor írja ide az egyéni leírását."
 
 #: ../epanel/options_divi.php:604
 msgid "Homepage meta keywords (if enabled)"
-msgstr "Holnap meta kulcsszavai (ha engedélyezve van)"
+msgstr "Kezdőlap meta kulcsszavai (ha engedélyezett)"
 
 #: ../epanel/options_divi.php:608
 msgid ""
@@ -946,13 +950,13 @@ msgid ""
 "Keywords should be separated by comas. For example: wordpress,themes,"
 "templates,elegant"
 msgstr ""
-"Ha a meta kulcsszavakat engedélyezte, ide írja egyedi kulcsszavait! A "
-"kulcsszavak legyenek vesszővel elválasztva, mint például: wordpress,themes,"
+"Ha a meta kulcsszavakat engedélyezte, akkor írja ide az egyéni kulcsszavait. "
+"A kulcsszavak legyenek vesszővel elválasztva. Például: wordpress,themes,"
 "templates,elegant"
 
 #: ../epanel/options_divi.php:612 ../epanel/options_divi.php:690
 msgid "If custom titles are disabled, choose autogeneration method"
-msgstr "Ha az egyedi cím tiltva van, automatikusan válasszon generáló módszert"
+msgstr "Ha az egyéni cím tiltva van, válasszon egy automatikus módszert"
 
 #: ../epanel/options_divi.php:617
 msgid ""
@@ -961,10 +965,10 @@ msgid ""
 "your post title and blog name to be displayed, or you can remove the blog "
 "name from the title completely."
 msgstr ""
-"Ha nem használ egyedi bejegyzéscímeket, attól még irányíthatja a címek "
-"generáló rendszerét. Itt választhat, milyen sorrendben szeretné a bejegyzés "
-"címét és a blog nevét megjeleníttetni, vagy a blog nevét teljesen "
-"eltávolíthatja a címből."
+"Ha nem használ egyéni bejegyzéscímeket, attól még irányíthatja a címek "
+"létrehozását. Itt választhat, milyen sorrendben szeretné a bejegyzés címét "
+"és a blog nevét megjeleníteni, vagy a blog nevét teljesen eltávolíthatja a "
+"címből."
 
 #: ../epanel/options_divi.php:620 ../epanel/options_divi.php:698
 #: ../epanel/options_divi.php:736
@@ -984,7 +988,7 @@ msgstr ""
 
 #: ../epanel/options_divi.php:634
 msgid "Enable custom titles"
-msgstr "Egyedi címek használata"
+msgstr "Egyéni címek engedélyezése"
 
 #: ../epanel/options_divi.php:638
 msgid ""
@@ -994,16 +998,16 @@ msgid ""
 "custom fields. This option must be enabled for custom titles to work, and "
 "you must choose a custom field name for your title below."
 msgstr ""
-"Alapértelmezettként a téma a bejegyzése címe és a blogja neve alapján "
-"készíti a bejegyzés címét. Ha a meta címet szeretné különbözővé tenni a "
-"valós bejegyzéscímtől, meghatározhat egyedi címet minden egyes bejegyzésre "
+"Alapértelmezetten a sablon a bejegyzése címe és a blogja neve alapján "
+"készíti a bejegyzés címét. Ha azt szeretné, hogy a meta cím más legyen, mint "
+"a valós bejegyzéscím, meghatározhat egyéni címet minden egyes bejegyzésre "
 "egyedi mezőket használva. Ennek az opciónak kötelezően engedélyezve kell "
-"lennie, hogy működjenek az egyedi címek, és egy egyedi mezőnév kiválasztása "
-"szükséges alább a címének."
+"lennie, hogy működjenek az egyéni címek, és egy egyedi mezőnév kiválasztása "
+"is szükséges."
 
 #: ../epanel/options_divi.php:641
 msgid "Enable custom description"
-msgstr "Egyedi leírás használata"
+msgstr "Egyéni leírás engedélyezése"
 
 #: ../epanel/options_divi.php:645
 msgid ""
@@ -1015,11 +1019,11 @@ msgstr ""
 "Ha meta leírást szeretne adni bejegyzésének, ezt megteheti egyedi mezőket "
 "használva. Ennek az opciónak kötelezően engedélyezve kell lennie, hogy a "
 "bejegyzések oldalain megjelenjen a leírás. Meta leírást megadhat az alább "
-"meghatározott egyedi mezőnéven alapuló egyedi mezők segítségével."
+"meghatározott egyéni mezőnéven alapuló egyedi mezők segítségével."
 
 #: ../epanel/options_divi.php:650
 msgid "Enable custom keywords"
-msgstr "Egyedi kulcsszavak használata"
+msgstr "Egyéni kulcsszavak használata"
 
 #: ../epanel/options_divi.php:654
 msgid ""
@@ -1031,16 +1035,16 @@ msgstr ""
 "Ha meta kulcsszavakat szeretne adni bejegyzéséhez, ezt megteheti egyedi "
 "mezőket használva. Ennek az opciónak kötelezően engedélyezve kell lennie, "
 "hogy a bejegyzések oldalain megjelenjenek a kulcsszavak. Meta kulcsszavakat "
-"megadhat az alább meghatározott egyedi mezőnéven alapuló egyedi mezők "
+"megadhat az alább meghatározott egyéni mezőnéven alapuló egyedi mezők "
 "segítségével."
 
 #: ../epanel/options_divi.php:657
 msgid "Enable canonical URL's"
-msgstr "Kanonikus URL-ek használata"
+msgstr "Kanonikus webcímek engedélyezése"
 
 #: ../epanel/options_divi.php:666
 msgid "Custom field Name to be used for title"
-msgstr "Egyedi mezőnév címre"
+msgstr "Egyedi mezőnév címhez"
 
 #: ../epanel/options_divi.php:670
 msgid ""
@@ -1049,12 +1053,12 @@ msgid ""
 "title you would like to use."
 msgstr ""
 "Amikor a címét egyedi mezők segítségével meghatározza, használja ezt az "
-"értéket egyedi mezőnévként. Az egyedi mező értéke pedig legyen az egyedi "
+"értéket egyedi mezőnévként. Az egyedi mező értéke pedig legyen az egyéni "
 "cím, amelyet használni kíván."
 
 #: ../epanel/options_divi.php:674
 msgid "Custom field Name to be used for description"
-msgstr "Egyedi mezőnév leírásra"
+msgstr "Egyedi mezőnév leíráshoz"
 
 #: ../epanel/options_divi.php:678
 msgid ""
@@ -1063,7 +1067,7 @@ msgid ""
 "be the custom description you would like to use."
 msgstr ""
 "Amikor a leírását egyedi mezők segítségével meghatározza, használja ezt az "
-"értéket egyedi mezőnévként. Az egyedi mező értéke pedig legyen az egyedi "
+"értéket egyedi mezőnévként. Az egyedi mező értéke pedig legyen az egyéni "
 "leírás, amelyet használni kíván."
 
 #: ../epanel/options_divi.php:682
@@ -1078,7 +1082,7 @@ msgid ""
 msgstr ""
 "Amikor a kulcsszavait egyedi mezők segítségével meghatározza, használja ezt "
 "az értéket egyedi mezőnévként. Az egyedi mező értéke pedig legyenek az "
-"egyedi kulcsszavak, amelyeket használni kíván."
+"egyéni kulcsszavak, amelyeket használni kíván."
 
 #: ../epanel/options_divi.php:695
 msgid ""
@@ -1087,10 +1091,10 @@ msgid ""
 "your post title and blog name to be displayed, or you can remove the blog "
 "name from the title completely."
 msgstr ""
-"Ha nem használ egyedi bejegyzéscímeket, attól még irányíthatja a címek "
-"generáló rendszerét. Itt választhat, milyen sorrendben szeretné a bejegyzés "
-"címét és a blog nevét megjeleníttetni, vagy a blog nevét teljesen "
-"eltávolíthatja a címből."
+"Ha nem használ egyéni bejegyzéscímeket, attól még irányíthatja a címek "
+"létrehozását. Itt választhat, milyen sorrendben szeretné a bejegyzés címét "
+"és a blog nevét megjeleníteni, vagy a blog nevét teljesen eltávolíthatja a "
+"címből."
 
 #: ../epanel/options_divi.php:719
 msgid "Enable meta descriptions"
@@ -1102,9 +1106,9 @@ msgid ""
 "pages. The description is based off the category description you choose when "
 "creating/edit your category in wp-admin."
 msgstr ""
-"Jelölje be ezt a négyzetet, ha meg akarja jeleníteni a meta leírásokat a "
+"Engedélyezze ezt az opciót, ha meg akarja jeleníteni a meta leírásokat a "
 "kategória/archív oldalakon. A leírás azon a kategória leíráson alapul, "
-"amelyet a kategória készítésekor/szerkesztésekor választott wp-admin-ként."
+"amelyet a kategória készítésekor/szerkesztésekor választott a wp-adminban."
 
 #: ../epanel/options_divi.php:728
 msgid "Choose title autogeneration method"
@@ -1116,9 +1120,9 @@ msgid ""
 "change which order your blog name and index title are displayed, or you can "
 "remove the blog name from the title completely."
 msgstr ""
-"Itt kiválaszthatja, hogyan generálódjanak az index oldalak a címei. "
+"Itt választhatja ki, hogyan generálódjanak az index oldalak címei. "
 "Választhat, milyen sorrendben szeretné a blog nevét és az index címét "
-"megjeleníttetni, vagy a blog nevét teljesen eltávolíthatja a címből."
+"megjeleníteni, vagy a blog nevét teljesen eltávolíthatja a címből."
 
 #: ../epanel/options_divi.php:740
 msgid ""
@@ -1142,46 +1146,44 @@ msgid ""
 "Disabling this option will remove the header code below from your blog. This "
 "allows you to remove the code while saving it for later use."
 msgstr ""
-"Ennek az opciónak a tiltása eltávolítja az alább látható fejléc kódját a "
-"blogból. Ezzel kiveheti a kódot, de későbbi használatra vissza is teheti."
+"Ennek az opciónak a letiltása eltávolítja a blogból a lenti fejléc kódot. "
+"Ezzel eltávolíthatja a kódot, miközben későbbi használatra elmentheti."
 
 #: ../epanel/options_divi.php:776
 msgid "Enable body code"
-msgstr "< body > kód engedélyezése"
+msgstr "Törzs kód engedélyezése"
 
 #: ../epanel/options_divi.php:780
 msgid ""
 "Disabling this option will remove the body code below from your blog. This "
 "allows you to remove the code while saving it for later use."
 msgstr ""
-"Ennek az opciónak a tiltása eltávolítja az alább látható test kódját a "
-"blogból. Ezzel kiveheti a kódot, de későbbi használatra vissza is teheti."
+"Ennek az opciónak a letiltása eltávolítja a blogból a lenti törzs kódot. "
+"Ezzel eltávolíthatja a kódot, miközben későbbi használatra elmentheti."
 
 #: ../epanel/options_divi.php:785
 msgid "Enable single top code"
-msgstr "Egyszeri fenti kód engedélyezése"
+msgstr "Egyszeri felső kód engedélyezése"
 
 #: ../epanel/options_divi.php:789
 msgid ""
 "Disabling this option will remove the single top code below from your blog. "
 "This allows you to remove the code while saving it for later use."
 msgstr ""
-"Ennek az opciónak a tiltása eltávolítja az alább látható egyszeri fenti kód "
-"kódját a blogból. Ezzel kiveheti a kódot, de későbbi használatra vissza is "
-"teheti."
+"Ennek az opciónak a letiltása eltávolítja a blogból a lenti egyszeri felső "
+"kódot. Ezzel eltávolíthatja a kódot, miközben későbbi használatra elmentheti."
 
 #: ../epanel/options_divi.php:792
 msgid "Enable single bottom code"
-msgstr "Egyszeri lenti kód engedélyezése"
+msgstr "Egyszeri alsó kód engedélyezése"
 
 #: ../epanel/options_divi.php:796
 msgid ""
 "Disabling this option will remove the single bottom code below from your "
 "blog. This allows you to remove the code while saving it for later use."
 msgstr ""
-"Ennek az opciónak a tiltása eltávolítja az alább látható egyszeri lenti kód "
-"kódját a blogból. Ezzel kiveheti a kódot, de későbbi használatra vissza is "
-"teheti."
+"Ennek az opciónak a letiltása eltávolítja a blogból a lenti egyszeri alsó "
+"kódot. Ezzel eltávolíthatja a kódot, miközben későbbi használatra elmentheti."
 
 #: ../epanel/options_divi.php:801
 msgid "Add code to the < head > of your blog"
@@ -1193,16 +1195,16 @@ msgid ""
 "your blog. This is useful when you need to add javascript or css to all "
 "pages."
 msgstr ""
-"Az összes kód, amit ide helyez, a blog minden oldalának fej részében "
-"megjelenik. Ez hasznos, amikor Javascript et vagy CSS-t szeretne hozzáadni "
-"minden laphoz."
+"Az összes kód, amit ide helyez, a blog összes oldalának fejléc részében "
+"elhelyezésre kerül. Ez hasznos, amikor Javascript-et vagy CSS-t szeretne "
+"hozzáadni minden oldalhoz."
 
 #: ../epanel/options_divi.php:808
 msgid ""
 "Add code to the < body > (good for tracking codes such as google analytics)"
 msgstr ""
 "A blog < body > részéhez hozzáadandó kód (alkalmas követési kódok "
-"injektálására, például Google Analytics -ra)"
+"integrációjára, mint például a Google Analytics kódra)"
 
 #: ../epanel/options_divi.php:812
 msgid ""
@@ -1210,13 +1212,14 @@ msgid ""
 "blog. This is usefull if you need to input a tracking pixel for a state "
 "counter such as Google Analytics."
 msgstr ""
-"Az összes kód, amit ide helyez, a blog minden oldalának test részében "
-"megjelenik. Ez hasznos, amikor egy olyan követési képpont hozzáadására van "
-"szüksége statisztika mérésére, mint például a Google Analytics."
+"Az összes kód, amit ide helyez, a blog összes oldalának törzs részében "
+"elhelyezésre kerül. Ez hasznos, amikor egy olyan követési képpont "
+"hozzáadására van szüksége statisztika mérésére, mint például a Google "
+"Analytics."
 
 #: ../epanel/options_divi.php:815
 msgid "Add code to the top of your posts"
-msgstr "A bejegyzések tetejére teendő kód"
+msgstr "A bejegyzések elejére adandó kód"
 
 #: ../epanel/options_divi.php:819 ../epanel/options_divi.php:826
 msgid ""
@@ -1224,25 +1227,25 @@ msgid ""
 "is useful if you are looking to integrating things such as social "
 "bookmarking links."
 msgstr ""
-"Az összes kód, amit ide helyez, minden bejegyzés tetején megjelenik. Ez "
-"hasznos, amikor olyan dolgok integrálására van szükség, mint például a "
+"Az összes kód, amit ide helyez, minden bejegyzés elején elhelyezésre kerül. "
+"Ez hasznos, amikor olyan dolgok integrálására van szükség, mint például a "
 "közösségi linkmegosztás."
 
 #: ../epanel/options_divi.php:822
 msgid "Add code to the bottom of your posts, before the comments"
-msgstr "A bejegyzések aljára, de a hozzászólások előttre teendő kód"
+msgstr "A bejegyzések aljára, de a hozzászólások előtt hozzáadandó kód"
 
-#: ../epanel/options_divi.php:844 ../functions.php:8612
+#: ../epanel/options_divi.php:844
 msgid "Documentation"
 msgstr "Dokumentáció"
 
 #: ../epanel/options_divi.php:870
 msgid "Manage Un-widgetized Advertisements"
-msgstr "Reklámok kezelése"
+msgstr "Reklámok kezelése (nem widget)"
 
 #: ../epanel/options_divi.php:878
 msgid "Enable Single Post 468x60 banner"
-msgstr "Egy bejegyzéses 468x60 banner használata"
+msgstr "Bejegyzés 468x60 banner engedélyezése"
 
 #: ../epanel/options_divi.php:882
 msgid ""
@@ -1252,39 +1255,39 @@ msgid ""
 msgstr ""
 "Ezt az opciót aktiválva lehetősége nyílik egy 468x60 banner reklám "
 "hozzáadására a bejegyzéses oldalak alján, a bejegyzés tartalma után. Ha "
-"bekapcsolja, a banner képét adja meg itt: URL."
+"engedélyezi, meg kell adnia a banner képét és a cél webcímet."
 
 #: ../epanel/options_divi.php:887
 msgid "Input 468x60 advertisement banner image"
-msgstr "468x60 reklám banner képének feltöltése"
+msgstr "468x60 reklám banner képének hozzáadása"
 
 #: ../epanel/options_divi.php:891
 msgid "Here you can provide 468x60 banner image url"
-msgstr "Ide tehet 468x60 banner képet URL"
+msgstr "Itt adhatja meg a 468x60 banner kép webcímét"
 
 #: ../epanel/options_divi.php:895
 msgid "Input 468x60 advertisement destination url"
-msgstr "468x60 reklám céljának megadása URL"
+msgstr "468x60 reklám cél-webcímének hozzáadása"
 
 #: ../epanel/options_divi.php:899
 msgid "Here you can provide 468x60 banner destination url"
-msgstr "Ide teheti a 468x60 banner érkezési helyét URL"
+msgstr "Itt adhatja meg a 468x60 banner cél-webcímét"
 
 #: ../epanel/options_divi.php:903
 msgid "Input 468x60 adsense code"
-msgstr "468x60 Google Adsense kód hozzáadása"
+msgstr "468x60 Adsense kód hozzáadása"
 
 #: ../epanel/options_divi.php:907
 msgid "Place your adsense code here."
-msgstr "Ide teheti Google Adsense kódját."
+msgstr "Itt adhatja meg Adsense kódját."
 
 #: ../epanel/shortcodes/shortcodes.php:15
-#: ../epanel/shortcodes/shortcodes.php:518 ../functions.php:160
+#: ../epanel/shortcodes/shortcodes.php:518
 msgid "Previous"
 msgstr "Előző"
 
 #: ../epanel/shortcodes/shortcodes.php:15
-#: ../epanel/shortcodes/shortcodes.php:519 ../functions.php:161
+#: ../epanel/shortcodes/shortcodes.php:519
 msgid "Next"
 msgstr "Következő"
 
@@ -1294,27 +1297,27 @@ msgstr "Tweet"
 
 #: ../epanel/shortcodes/shortcodes.php:289
 msgid "Member Login"
-msgstr "Bejelentkezés"
+msgstr "Felhasználói bejelentkezés"
 
 #: ../epanel/shortcodes/shortcodes.php:292
 msgid "Username: "
-msgstr "Felhasználónév:"
+msgstr "Felhasználónév: "
 
 #: ../epanel/shortcodes/shortcodes.php:293
 msgid "Password: "
-msgstr "Jelszó:"
+msgstr "Jelszó: "
 
-#: ../epanel/shortcodes/shortcodes.php:294 ../functions.php:3522
+#: ../epanel/shortcodes/shortcodes.php:294 ../functions.php:3483
 msgid "Login"
 msgstr "Bejelentkezés"
 
 #: ../epanel/shortcodes/shortcodes.php:330
 msgid "Add a Tooltip Text"
-msgstr "Feliratok hozzáadása"
+msgstr "Buboréksúgó szöveg hozzáadása"
 
 #: ../epanel/shortcodes/shortcodes.php:352
 msgid "Click here to learn more"
-msgstr "Többet erről: itt"
+msgstr "Részletekért kattintson ide"
 
 #: ../epanel/shortcodes/shortcodes.php:732
 msgid "Join Now"
@@ -1322,39 +1325,39 @@ msgstr "Csatlakozzon most"
 
 #: ../epanel/shortcodes/shortcodes.php:967
 msgid "Add ET Learn more block"
-msgstr "Adjon meg egy toggle blokkot"
+msgstr "ET tudjon meg többet blokk hozzáadása"
 
 #: ../epanel/shortcodes/shortcodes.php:968
 msgid "Add ET Box"
-msgstr "Doboz hozzáadása"
+msgstr "ET doboz hozzáadása"
 
 #: ../epanel/shortcodes/shortcodes.php:969
 msgid "Add ET Button"
-msgstr "Gomb hozzáadása"
+msgstr "ET gomb hozzáadása"
 
 #: ../epanel/shortcodes/shortcodes.php:970
 msgid "Add ET Tabs"
-msgstr "Lapok hozzáadása"
+msgstr "ET fülek hozzáadása"
 
 #: ../epanel/shortcodes/shortcodes.php:971
 msgid "Add Author Bio"
-msgstr "Írói bio hozzáadása"
+msgstr "Szerző bio hozzáadása"
 
 #: ../epanel/shortcodes/shortcodes.php:972
 msgid "Shortcodes"
-msgstr "Rövid kódok"
+msgstr "Shortcode-ok"
 
 #: ../epanel/shortcodes/shortcodes.php:977
 msgid "Caption"
-msgstr "Képaláírás"
+msgstr "Felirat"
 
 #: ../epanel/shortcodes/shortcodes.php:978
 msgid "Caption goes here"
-msgstr "Ide jön a képaláírás"
+msgstr "Ide jön a felirat"
 
 #: ../epanel/shortcodes/shortcodes.php:979
 msgid "Caption title goes here"
-msgstr "Ide jön a képaláírás címe"
+msgstr "Ide jön a felirat címe"
 
 #: ../epanel/shortcodes/shortcodes.php:983
 msgid "State"
@@ -1362,7 +1365,7 @@ msgstr "Állapot"
 
 #: ../epanel/shortcodes/shortcodes.php:985
 msgid "Select between expanded and closed state"
-msgstr "Válasszon nyílt és zárt állapotok között"
+msgstr "Válasszon a nyitott és zárt állapotok között"
 
 #: ../epanel/shortcodes/shortcodes.php:990
 #: ../epanel/shortcodes/shortcodes.php:1006
@@ -1382,10 +1385,10 @@ msgstr "Ide jön a tartalom"
 #: ../epanel/shortcodes/shortcodes.php:1008
 #: ../epanel/shortcodes/shortcodes.php:1037
 msgid "Content text or html"
-msgstr "Ide jön szöveg vagy HTML"
+msgstr "Tartalom szöveg vagy html"
 
 #: ../epanel/shortcodes/shortcodes.php:999
-#: ../epanel/shortcodes/shortcodes.php:1021 ../functions.php:8610
+#: ../epanel/shortcodes/shortcodes.php:1021
 msgid "Type"
 msgstr "Típus"
 
@@ -1395,11 +1398,11 @@ msgstr "A doboz típusa"
 
 #: ../epanel/shortcodes/shortcodes.php:1015
 msgid "Link"
-msgstr "Link"
+msgstr "Hivatkozás"
 
 #: ../epanel/shortcodes/shortcodes.php:1017
 msgid "URL"
-msgstr "URL"
+msgstr "Webcím"
 
 #: ../epanel/shortcodes/shortcodes.php:1023
 msgid "Choose button type"
@@ -1415,7 +1418,7 @@ msgstr "Válasszon gombszínt"
 
 #: ../epanel/shortcodes/shortcodes.php:1036
 msgid "Link text"
-msgstr "Link szöveg"
+msgstr "Hivatkozás szöveg"
 
 #: ../epanel/shortcodes/shortcodes.php:1041
 msgid "Icon"
@@ -1423,23 +1426,23 @@ msgstr "Ikon"
 
 #: ../epanel/shortcodes/shortcodes.php:1043
 msgid "Used for icon button type"
-msgstr "Ikon gombtípusra használt"
+msgstr "Ikon gombtípusnál használt"
 
 #: ../epanel/shortcodes/shortcodes.php:1048
 msgid "Open link in new window"
-msgstr "Link új ablakban való megnyitása"
+msgstr "Hivatkozás megnyitása új ablakban"
 
 #: ../epanel/shortcodes/shortcodes.php:1050
 msgid "Select yes if the link should be opened in a new window"
-msgstr "Válassza az igent, ha a linket új ablakban kívánja megnyitni"
+msgstr "Válassza az igent, ha a hivatkozást új ablakban kívánja megnyitni"
 
 #: ../epanel/shortcodes/shortcodes.php:1058
 msgid "Slider Type"
-msgstr "Csúszka típus"
+msgstr "Lapozó típusa"
 
 #: ../epanel/shortcodes/shortcodes.php:1060
 msgid "Select Slider Type here"
-msgstr "Válasszon itt csúszka típust"
+msgstr "Válasszon lapozó típust"
 
 #: ../epanel/shortcodes/shortcodes.php:1065
 msgid "Effect"
@@ -1447,7 +1450,7 @@ msgstr "Effekt"
 
 #: ../epanel/shortcodes/shortcodes.php:1067
 msgid "Select Animation Effect"
-msgstr "Válasszon animációs effektet"
+msgstr "Válassza ki az animáció típusát"
 
 #: ../epanel/shortcodes/shortcodes.php:1072
 msgid "Auto"
@@ -1455,7 +1458,7 @@ msgstr "Automatikus"
 
 #: ../epanel/shortcodes/shortcodes.php:1074
 msgid "Choose yes if you want for automatic slider animation"
-msgstr "Válassza az igent, ha automatikus csúszka animációt vesz igénybe"
+msgstr "Válassza az igent, ha automatikus lapozó animációt szeretne"
 
 #: ../epanel/shortcodes/shortcodes.php:1079
 msgid "Auto Speed"
@@ -1464,11 +1467,11 @@ msgstr "Automatikus sebesség"
 #: ../epanel/shortcodes/shortcodes.php:1081
 msgid "Automattic slider speed (works only if Auto is set to yes)"
 msgstr ""
-"Automatikus csúszka sebesség (csak ha az Automatikus igenre van állítva)"
+"Automatikus lapozó sebesség (csak ha az Automatikus igenre van állítva)"
 
 #: ../epanel/shortcodes/shortcodes.php:1085
 msgid "Tab Text"
-msgstr "Fül szövege"
+msgstr "Fülszöveg"
 
 #: ../epanel/shortcodes/shortcodes.php:1092
 msgid "Tab Content"
@@ -1476,15 +1479,15 @@ msgstr "Fül tartalma"
 
 #: ../epanel/shortcodes/shortcodes.php:1094
 msgid "Paste image url here, if you chose \"images\" slider type"
-msgstr "Másolja ide a kép URL-jét, ha \"images\" csúszka típus választott"
+msgstr "Másolja ide a kép webcímét, ha \"images\" lapozó típust választott"
 
 #: ../epanel/shortcodes/shortcodes.php:1102
 msgid "Image Url"
-msgstr "Kép URL"
+msgstr "Kép webcíme"
 
 #: ../epanel/shortcodes/shortcodes.php:1104
 msgid "Author Image URL"
-msgstr "Szerző képe URL"
+msgstr "Szerző képének webcíme"
 
 #: ../epanel/shortcodes/shortcodes.php:1108
 msgid "Use resizing"
@@ -1494,18 +1497,18 @@ msgstr "Átméretezés használata"
 msgid "+ Add One More Tab"
 msgstr "+ Fül hozzáadása"
 
-#: ../epanel/shortcodes/shortcodes.php:1335 ../functions.php:3165
+#: ../epanel/shortcodes/shortcodes.php:1335 ../functions.php:3126
 msgid "Image Height"
 msgstr "Kép magassága"
 
-#: ../epanel/shortcodes/shortcodes.php:1336 ../functions.php:3146
+#: ../epanel/shortcodes/shortcodes.php:1336 ../functions.php:3107
 msgid "Image Width"
 msgstr "Kép szélessége"
 
 #: ../footer.php:40
 #, php-format
 msgid "Designed by %1$s | Powered by %2$s"
-msgstr "Dizájn: %1$s | Fejlesztő: %2$s"
+msgstr "Dizájn: %1$s | Motor: %2$s"
 
 #: ../functions.php:30
 msgid "Primary Menu"
@@ -1515,7 +1518,7 @@ msgstr "Elsődleges menü"
 msgid "Secondary Menu"
 msgstr "Másodlagos menü"
 
-#: ../functions.php:32 ../functions.php:706
+#: ../functions.php:32 ../functions.php:628
 msgid "Footer Menu"
 msgstr "Lábléc menü"
 
@@ -1526,876 +1529,744 @@ msgid ""
 "style=\"color: #fff; font-weight: bold;\" href=\"%1$s\" target=\"_blank"
 "\">Divi Documentation</a> page for access to dozens of in-depth tutorials."
 msgstr ""
-"Üdvözli a Divi! Mielõtt belevetné magát új témájába, kérjük látogassa meg a "
-"<a style=\"color: #fff; font-weight: bold;\" href=\"%1$s\" target=\"_blank"
-"\">Divi Documentation</a> oldalt, több tucatnyi mélyeható útmutatóért."
+"Üdvözli a Divi! Mielőtt belevetné magát az új sablonjába, kérjük látogassa "
+"meg a <a style=\"color: #fff; font-weight: bold;\" href=\"%1$s\" target="
+"\"_blank\">Divi Dokumentáció</a> oldalt, több tucatnyi útmutatóért."
 
 #: ../functions.php:97
 msgid "on"
-msgstr "on"
+msgstr "@"
 
-#: ../functions.php:154
-msgid ""
-"Please, check the fields below to make sure you entered the correct "
-"information."
-msgstr ""
-"Kérjük, ellenőrizze az alábbi beviteli mezőkben, hogy helyes adatokat írt-e "
-"be."
-
-#: ../functions.php:155
-msgid "Fill"
-msgstr "Kitöltés"
-
-#: ../functions.php:156
-msgid "field"
-msgstr "mező"
-
-#: ../functions.php:157
-msgid "Invalid email"
-msgstr "Érvénytelen email"
-
-#: ../functions.php:158
-msgid "Captcha"
-msgstr "Captcha"
-
-#: ../functions.php:159
-msgid "Prev"
-msgstr "Előző"
-
-#: ../functions.php:208
+#: ../functions.php:187
 msgid "Select Page"
-msgstr "Válasszon oldalt!"
+msgstr "Oldal kiválasztása"
 
-#: ../functions.php:246
+#: ../functions.php:227
 msgid "Divi Page Settings"
-msgstr "Divi Oldalbeállítások"
+msgstr "Divi oldalbeállítások"
 
-#: ../functions.php:247
+#: ../functions.php:229
 msgid "Divi Post Settings"
-msgstr "Divi Posztbeállítások"
+msgstr "Divi bejegyzés-beállítások"
 
-#: ../functions.php:248
+#: ../functions.php:230
 msgid "Divi Product Settings"
-msgstr "Divi Termékbeállítások"
+msgstr "Divi termékbeállítások"
 
-#: ../functions.php:249
+#: ../functions.php:231
 msgid "Divi Project Settings"
-msgstr "Divi Projektbeállítások"
+msgstr "Divi projektbeállítások"
 
-#: ../functions.php:255
-msgid "Projects"
-msgstr "Projektek"
-
-#: ../functions.php:256
-msgid "Project"
-msgstr "Projekt"
-
-#: ../functions.php:257
-msgid "Add New"
-msgstr "Hozzáad"
-
-#: ../functions.php:258
-msgid "Add New Project"
-msgstr "Új projekt hozzáadása"
-
-#: ../functions.php:259
-msgid "Edit Project"
-msgstr "Projekt szerkesztése"
-
-#: ../functions.php:260
-msgid "New Project"
-msgstr "Új projekt"
-
-#: ../functions.php:261
-msgid "All Projects"
-msgstr "Összes projekt"
-
-#: ../functions.php:262
-msgid "View Project"
-msgstr "Projekt megtekintése"
-
-#: ../functions.php:263
-msgid "Search Projects"
-msgstr "Projektek keresése"
-
-#: ../functions.php:264
-msgid "Nothing found"
-msgstr "Nincs találat"
-
-#: ../functions.php:265
-msgid "Nothing found in Trash"
-msgstr "Nincs találat a kukában"
-
-#: ../functions.php:293
-msgid "Category"
-msgstr "Kategória"
-
-#: ../functions.php:294
-msgid "Search Categories"
-msgstr "Kategóriák keresése"
-
-#: ../functions.php:295
-msgid "All Categories"
-msgstr "Összes kategória"
-
-#: ../functions.php:296
-msgid "Parent Category"
-msgstr "Szülőkategória"
-
-#: ../functions.php:297
-msgid "Parent Category:"
-msgstr "Szülőkategória:"
-
-#: ../functions.php:298
-msgid "Edit Category"
-msgstr "Kategória szerkesztése"
-
-#: ../functions.php:299
-msgid "Update Category"
-msgstr "Kategória frissítése"
-
-#: ../functions.php:300
-msgid "Add New Category"
-msgstr "Új kategória hozzáadása"
-
-#: ../functions.php:301
-msgid "New Category Name"
-msgstr "Új kategória neve"
-
-#: ../functions.php:314 ../functions.php:324
-msgid "Tags"
-msgstr "Címkék"
-
-#: ../functions.php:315
-msgid "Tag"
-msgstr "Címke"
-
-#: ../functions.php:316
-msgid "Search Tags"
-msgstr "Címkék keresése"
-
-#: ../functions.php:317
-msgid "All Tags"
-msgstr "Összes címke"
-
-#: ../functions.php:318
-msgid "Parent Tag"
-msgstr "Szülőcímke"
-
-#: ../functions.php:319
-msgid "Parent Tag:"
-msgstr "Szülőcímke:"
-
-#: ../functions.php:320
-msgid "Edit Tag"
-msgstr "Címke szerkesztése"
-
-#: ../functions.php:321
-msgid "Update Tag"
-msgstr "Címke frissítése"
-
-#: ../functions.php:322
-msgid "Add New Tag"
-msgstr "Új címke hozzáadása"
-
-#: ../functions.php:323
-msgid "New Tag Name"
-msgstr "Új címke neve"
-
-#: ../functions.php:340
+#: ../functions.php:238
 msgid "Skills"
-msgstr "Szakismeret"
+msgstr "Szakértelem"
 
-#: ../functions.php:343
+#: ../functions.php:241
 msgid "Posted on"
-msgstr "Beküldve"
+msgstr "Közzétéve"
 
-#: ../functions.php:370
+#: ../functions.php:268
 msgid "Light"
 msgstr "Világos"
 
-#: ../functions.php:371
+#: ../functions.php:269
 msgid "Dark"
 msgstr "Sötét"
 
-#: ../functions.php:384
+#: ../functions.php:282
 msgid "Page Layout"
 msgstr "Oldalszerkezet"
 
-#: ../functions.php:398
+#: ../functions.php:296
 msgid "Dot Navigation"
-msgstr "Pontos Navigáció"
+msgstr "Pontnavigáció"
 
-#: ../functions.php:401 ../functions.php:409
+#: ../functions.php:299 ../functions.php:307
 msgid "Off"
 msgstr "Ki"
 
-#: ../functions.php:402 ../functions.php:410
+#: ../functions.php:300 ../functions.php:308
 msgid "On"
 msgstr "Be"
 
-#: ../functions.php:406
+#: ../functions.php:304
 msgid "Hide Nav Before Scroll"
-msgstr "Navigáció elrejtése görgetés elõtt"
+msgstr "Navigáció elrejtése görgetésig"
 
-#: ../functions.php:416
+#: ../functions.php:314
 msgid "Post Title"
-msgstr "Poszt cím"
+msgstr "Bejegyzés cím"
 
-#: ../functions.php:419
+#: ../functions.php:317
 msgid "Show"
 msgstr "Megjelenítés"
 
-#: ../functions.php:420
+#: ../functions.php:318
 msgid "Hide"
 msgstr "Elrejtés"
 
-#: ../functions.php:425
+#: ../functions.php:323
 msgid "Use Background Color"
 msgstr "Háttérszín használata"
 
-#: ../functions.php:430 ../functions.php:5510
+#: ../functions.php:328 ../functions.php:5471
 msgid "Hex Value"
 msgstr "Színkód"
 
-#: ../functions.php:434 ../functions.php:1697 ../functions.php:1722
-#: ../functions.php:1845 ../functions.php:2350 ../functions.php:2449
-#: ../functions.php:2655
+#: ../functions.php:332 ../functions.php:1645 ../functions.php:1670
+#: ../functions.php:1793 ../functions.php:2311 ../functions.php:2410
+#: ../functions.php:2616
 msgid "Text Color"
-msgstr "Betűszín"
+msgstr "Szövegszín"
 
-#: ../functions.php:626
+#: ../functions.php:466 ../functions.php:478 ../functions.php:7981
+msgid "you don't have sufficient permissions to access this page"
+msgstr "Ön nem rendelkezik a megfelelő jogosultságokkal erre a lapra"
+
+#: ../functions.php:538
+msgid "Site Identity"
+msgstr "Honlap Identity"
+
+#: ../functions.php:548
 msgid "Typography"
 msgstr "Tipográfia"
 
-#: ../functions.php:631
+#: ../functions.php:553
 msgid "Mobile Styles"
 msgstr "Mobil stílusok"
 
-#: ../functions.php:636
+#: ../functions.php:558
 msgid "Tablet"
 msgstr "Tablet"
 
-#: ../functions.php:641
+#: ../functions.php:563
 msgid "Phone"
 msgstr "Telefon"
 
-#: ../functions.php:646
+#: ../functions.php:568
 msgid "Mobile Menu"
 msgstr "Mobil menü"
 
-#: ../functions.php:651
+#: ../functions.php:573
 msgid "Background"
 msgstr "Háttér"
 
-#: ../functions.php:656
+#: ../functions.php:578
 msgid "Header & Navigation"
-msgstr "Fejléc & Navigáció"
+msgstr "Fejléc és navigáció"
 
-#: ../functions.php:661
+#: ../functions.php:583
 msgid "Header Format"
 msgstr "Fejléc fomátum"
 
-#: ../functions.php:666
+#: ../functions.php:588
 msgid "Primary Menu Bar"
-msgstr "Elsõdleges menüsor"
+msgstr "Elsődleges menüsor"
 
-#: ../functions.php:671
+#: ../functions.php:593
 msgid "Secondary Menu Bar"
 msgstr "Másodlagos menüsor"
 
-#: ../functions.php:676
+#: ../functions.php:598
 msgid "Fixed Navigation Settings"
-msgstr "Meghatározott navigációbeállítások"
+msgstr "Fix navigáció beállítások"
 
-#: ../functions.php:681
+#: ../functions.php:603
 msgid "Header Elements"
 msgstr "Fejléc elemek"
 
-#: ../functions.php:686
+#: ../functions.php:608
 msgid "Footer"
 msgstr "Lábléc"
 
-#: ../functions.php:691
+#: ../functions.php:613
 msgid "Layout"
 msgstr "Szerkezet"
 
-#: ../functions.php:696
+#: ../functions.php:618
 msgid "Widgets"
 msgstr "Widgetek"
 
-#: ../functions.php:701
+#: ../functions.php:623
 msgid "Footer Elements"
 msgstr "Lábléc elemek"
 
-#: ../functions.php:711
+#: ../functions.php:633
 msgid "Bottom Bar"
-msgstr "Alsó sor"
+msgstr "Alsó sáv"
 
-#: ../functions.php:716 ../functions.php:1411
+#: ../functions.php:638 ../functions.php:1337
 msgid "Color Schemes"
-msgstr "Színösszeállítások"
+msgstr "Színsémák"
 
-#: ../functions.php:718
+#: ../functions.php:640
 msgid ""
 "Note: Color settings set above should be applied to the Default color scheme."
 msgstr ""
-"Megjegyzés: a fenti színbeállítások az alapértelmezett színösszeállításra "
+"Megjegyzés: a fenti színbeállítások az alapértelmezett színsémára "
 "vonatkoznak."
 
-#: ../functions.php:722
+#: ../functions.php:644
 msgid "Buttons"
 msgstr "Gombok"
 
-#: ../functions.php:727
+#: ../functions.php:649
 msgid "Buttons Style"
-msgstr "Gombokstílusa"
+msgstr "Gombok stílusa"
 
-#: ../functions.php:732
+#: ../functions.php:654
 msgid "Buttons Hover Style"
-msgstr "Gombok stílusa áthúzáskor"
+msgstr "Gombok stílusa egérmutató alatt"
 
-#: ../functions.php:737 ../functions.php:4774
+#: ../functions.php:659 ../functions.php:4735
 msgid "Blog"
 msgstr "Blog"
 
-#: ../functions.php:742
+#: ../functions.php:664
 msgid "Post"
-msgstr "Poszt"
+msgstr "Bejegyzés"
 
-#: ../functions.php:754
+#: ../functions.php:680
 msgid "Meta Text Size"
-msgstr "Metaadatok betûméret"
+msgstr "Meta szövegméret"
 
-#: ../functions.php:772
+#: ../functions.php:698
 msgid "Meta Line Height"
-msgstr "Metaadatok sorköz"
+msgstr "Meta sormagasság"
 
-#: ../functions.php:790
+#: ../functions.php:716
 msgid "Meta Letter Spacing"
-msgstr "Metaadatok betûtávolság"
+msgstr "Meta betűköz"
 
-#: ../functions.php:808 ../functions.php:4845 ../functions.php:4931
+#: ../functions.php:734 ../functions.php:4806 ../functions.php:4892
 msgid "Meta Font Style"
-msgstr "Metaadatok betûstílus"
+msgstr "Meta betűtípus"
 
-#: ../functions.php:812 ../functions.php:885 ../functions.php:1276
-#: ../functions.php:1598 ../functions.php:1682 ../functions.php:2119
-#: ../functions.php:2174 ../functions.php:2303 ../functions.php:2367
-#: ../functions.php:2546 ../functions.php:2825 ../functions.php:2864
-#: ../functions.php:2938 ../functions.php:3024 ../functions.php:3063
-#: ../functions.php:3091 ../functions.php:3111 ../functions.php:3215
-#: ../functions.php:3254 ../functions.php:3293 ../functions.php:3340
-#: ../functions.php:3406 ../functions.php:3445 ../functions.php:3492
-#: ../functions.php:3558 ../functions.php:3652 ../functions.php:3691
-#: ../functions.php:3766 ../functions.php:3805 ../functions.php:3844
-#: ../functions.php:3891 ../functions.php:3930 ../functions.php:4014
-#: ../functions.php:4053 ../functions.php:4100 ../functions.php:4139
-#: ../functions.php:4185 ../functions.php:4205 ../functions.php:4291
-#: ../functions.php:4311 ../functions.php:4396 ../functions.php:4435
-#: ../functions.php:4493 ../functions.php:4540 ../functions.php:4705
-#: ../functions.php:4744 ../functions.php:4810 ../functions.php:4849
-#: ../functions.php:4896 ../functions.php:4935 ../functions.php:4982
-#: ../functions.php:5021 ../functions.php:5060 ../functions.php:5099
-#: ../functions.php:5146 ../functions.php:5193 ../functions.php:5259
-#: ../functions.php:5298
+#: ../functions.php:738 ../functions.php:811 ../functions.php:1202
+#: ../functions.php:1546 ../functions.php:1630 ../functions.php:2080
+#: ../functions.php:2135 ../functions.php:2264 ../functions.php:2328
+#: ../functions.php:2507 ../functions.php:2786 ../functions.php:2825
+#: ../functions.php:2899 ../functions.php:2985 ../functions.php:3024
+#: ../functions.php:3052 ../functions.php:3072 ../functions.php:3176
+#: ../functions.php:3215 ../functions.php:3254 ../functions.php:3301
+#: ../functions.php:3367 ../functions.php:3406 ../functions.php:3453
+#: ../functions.php:3519 ../functions.php:3613 ../functions.php:3652
+#: ../functions.php:3727 ../functions.php:3766 ../functions.php:3805
+#: ../functions.php:3852 ../functions.php:3891 ../functions.php:3975
+#: ../functions.php:4014 ../functions.php:4061 ../functions.php:4100
+#: ../functions.php:4146 ../functions.php:4166 ../functions.php:4252
+#: ../functions.php:4272 ../functions.php:4357 ../functions.php:4396
+#: ../functions.php:4454 ../functions.php:4501 ../functions.php:4666
+#: ../functions.php:4705 ../functions.php:4771 ../functions.php:4810
+#: ../functions.php:4857 ../functions.php:4896 ../functions.php:4943
+#: ../functions.php:4982 ../functions.php:5021 ../functions.php:5060
+#: ../functions.php:5107 ../functions.php:5154 ../functions.php:5220
+#: ../functions.php:5259
 msgid "Bold"
 msgstr "Félkövér"
 
-#: ../functions.php:813 ../functions.php:886 ../functions.php:1277
-#: ../functions.php:1599 ../functions.php:1683 ../functions.php:2120
-#: ../functions.php:2175 ../functions.php:2304 ../functions.php:2368
-#: ../functions.php:2547 ../functions.php:2826 ../functions.php:2865
-#: ../functions.php:2939 ../functions.php:3025 ../functions.php:3064
-#: ../functions.php:3092 ../functions.php:3112 ../functions.php:3216
-#: ../functions.php:3255 ../functions.php:3294 ../functions.php:3341
-#: ../functions.php:3407 ../functions.php:3446 ../functions.php:3493
-#: ../functions.php:3559 ../functions.php:3653 ../functions.php:3692
-#: ../functions.php:3767 ../functions.php:3806 ../functions.php:3845
-#: ../functions.php:3892 ../functions.php:3931 ../functions.php:4015
-#: ../functions.php:4054 ../functions.php:4101 ../functions.php:4140
-#: ../functions.php:4186 ../functions.php:4206 ../functions.php:4292
-#: ../functions.php:4312 ../functions.php:4397 ../functions.php:4436
-#: ../functions.php:4494 ../functions.php:4541 ../functions.php:4706
-#: ../functions.php:4745 ../functions.php:4811 ../functions.php:4850
-#: ../functions.php:4897 ../functions.php:4936 ../functions.php:4983
-#: ../functions.php:5022 ../functions.php:5061 ../functions.php:5100
-#: ../functions.php:5147 ../functions.php:5194 ../functions.php:5260
-#: ../functions.php:5299
+#: ../functions.php:739 ../functions.php:812 ../functions.php:1203
+#: ../functions.php:1547 ../functions.php:1631 ../functions.php:2081
+#: ../functions.php:2136 ../functions.php:2265 ../functions.php:2329
+#: ../functions.php:2508 ../functions.php:2787 ../functions.php:2826
+#: ../functions.php:2900 ../functions.php:2986 ../functions.php:3025
+#: ../functions.php:3053 ../functions.php:3073 ../functions.php:3177
+#: ../functions.php:3216 ../functions.php:3255 ../functions.php:3302
+#: ../functions.php:3368 ../functions.php:3407 ../functions.php:3454
+#: ../functions.php:3520 ../functions.php:3614 ../functions.php:3653
+#: ../functions.php:3728 ../functions.php:3767 ../functions.php:3806
+#: ../functions.php:3853 ../functions.php:3892 ../functions.php:3976
+#: ../functions.php:4015 ../functions.php:4062 ../functions.php:4101
+#: ../functions.php:4147 ../functions.php:4167 ../functions.php:4253
+#: ../functions.php:4273 ../functions.php:4358 ../functions.php:4397
+#: ../functions.php:4455 ../functions.php:4502 ../functions.php:4667
+#: ../functions.php:4706 ../functions.php:4772 ../functions.php:4811
+#: ../functions.php:4858 ../functions.php:4897 ../functions.php:4944
+#: ../functions.php:4983 ../functions.php:5022 ../functions.php:5061
+#: ../functions.php:5108 ../functions.php:5155 ../functions.php:5221
+#: ../functions.php:5260
 msgid "Italic"
-msgstr "Dõlt"
+msgstr "Dőlt"
 
-#: ../functions.php:814 ../functions.php:887 ../functions.php:1278
-#: ../functions.php:1600 ../functions.php:1684 ../functions.php:2121
-#: ../functions.php:2176 ../functions.php:2305 ../functions.php:2369
-#: ../functions.php:2548 ../functions.php:2827 ../functions.php:2866
-#: ../functions.php:2940 ../functions.php:3026 ../functions.php:3065
-#: ../functions.php:3093 ../functions.php:3113 ../functions.php:3217
-#: ../functions.php:3256 ../functions.php:3295 ../functions.php:3342
-#: ../functions.php:3408 ../functions.php:3447 ../functions.php:3494
-#: ../functions.php:3560 ../functions.php:3654 ../functions.php:3693
-#: ../functions.php:3768 ../functions.php:3807 ../functions.php:3846
-#: ../functions.php:3893 ../functions.php:3932 ../functions.php:4016
-#: ../functions.php:4055 ../functions.php:4102 ../functions.php:4141
-#: ../functions.php:4187 ../functions.php:4207 ../functions.php:4293
-#: ../functions.php:4313 ../functions.php:4398 ../functions.php:4437
-#: ../functions.php:4495 ../functions.php:4542 ../functions.php:4707
-#: ../functions.php:4746 ../functions.php:4812 ../functions.php:4851
-#: ../functions.php:4898 ../functions.php:4937 ../functions.php:4984
-#: ../functions.php:5023 ../functions.php:5062 ../functions.php:5101
-#: ../functions.php:5148 ../functions.php:5195 ../functions.php:5261
-#: ../functions.php:5300
+#: ../functions.php:740 ../functions.php:813 ../functions.php:1204
+#: ../functions.php:1548 ../functions.php:1632 ../functions.php:2082
+#: ../functions.php:2137 ../functions.php:2266 ../functions.php:2330
+#: ../functions.php:2509 ../functions.php:2788 ../functions.php:2827
+#: ../functions.php:2901 ../functions.php:2987 ../functions.php:3026
+#: ../functions.php:3054 ../functions.php:3074 ../functions.php:3178
+#: ../functions.php:3217 ../functions.php:3256 ../functions.php:3303
+#: ../functions.php:3369 ../functions.php:3408 ../functions.php:3455
+#: ../functions.php:3521 ../functions.php:3615 ../functions.php:3654
+#: ../functions.php:3729 ../functions.php:3768 ../functions.php:3807
+#: ../functions.php:3854 ../functions.php:3893 ../functions.php:3977
+#: ../functions.php:4016 ../functions.php:4063 ../functions.php:4102
+#: ../functions.php:4148 ../functions.php:4168 ../functions.php:4254
+#: ../functions.php:4274 ../functions.php:4359 ../functions.php:4398
+#: ../functions.php:4456 ../functions.php:4503 ../functions.php:4668
+#: ../functions.php:4707 ../functions.php:4773 ../functions.php:4812
+#: ../functions.php:4859 ../functions.php:4898 ../functions.php:4945
+#: ../functions.php:4984 ../functions.php:5023 ../functions.php:5062
+#: ../functions.php:5109 ../functions.php:5156 ../functions.php:5222
+#: ../functions.php:5261
 msgid "Uppercase"
-msgstr "Nagybetû"
+msgstr "Nagybetű"
 
-#: ../functions.php:815 ../functions.php:888 ../functions.php:1279
-#: ../functions.php:1601 ../functions.php:1685 ../functions.php:2122
-#: ../functions.php:2177 ../functions.php:2306 ../functions.php:2370
-#: ../functions.php:2549 ../functions.php:2828 ../functions.php:2867
-#: ../functions.php:2941 ../functions.php:3027 ../functions.php:3066
-#: ../functions.php:3094 ../functions.php:3114 ../functions.php:3218
-#: ../functions.php:3257 ../functions.php:3296 ../functions.php:3343
-#: ../functions.php:3409 ../functions.php:3448 ../functions.php:3495
-#: ../functions.php:3561 ../functions.php:3655 ../functions.php:3694
-#: ../functions.php:3769 ../functions.php:3808 ../functions.php:3847
-#: ../functions.php:3894 ../functions.php:3933 ../functions.php:4017
-#: ../functions.php:4056 ../functions.php:4103 ../functions.php:4142
-#: ../functions.php:4188 ../functions.php:4208 ../functions.php:4294
-#: ../functions.php:4314 ../functions.php:4399 ../functions.php:4438
-#: ../functions.php:4496 ../functions.php:4543 ../functions.php:4708
-#: ../functions.php:4747 ../functions.php:4813 ../functions.php:4852
-#: ../functions.php:4899 ../functions.php:4938 ../functions.php:4985
-#: ../functions.php:5024 ../functions.php:5063 ../functions.php:5102
-#: ../functions.php:5149 ../functions.php:5196 ../functions.php:5262
-#: ../functions.php:5301
+#: ../functions.php:741 ../functions.php:814 ../functions.php:1205
+#: ../functions.php:1549 ../functions.php:1633 ../functions.php:2083
+#: ../functions.php:2138 ../functions.php:2267 ../functions.php:2331
+#: ../functions.php:2510 ../functions.php:2789 ../functions.php:2828
+#: ../functions.php:2902 ../functions.php:2988 ../functions.php:3027
+#: ../functions.php:3055 ../functions.php:3075 ../functions.php:3179
+#: ../functions.php:3218 ../functions.php:3257 ../functions.php:3304
+#: ../functions.php:3370 ../functions.php:3409 ../functions.php:3456
+#: ../functions.php:3522 ../functions.php:3616 ../functions.php:3655
+#: ../functions.php:3730 ../functions.php:3769 ../functions.php:3808
+#: ../functions.php:3855 ../functions.php:3894 ../functions.php:3978
+#: ../functions.php:4017 ../functions.php:4064 ../functions.php:4103
+#: ../functions.php:4149 ../functions.php:4169 ../functions.php:4255
+#: ../functions.php:4275 ../functions.php:4360 ../functions.php:4399
+#: ../functions.php:4457 ../functions.php:4504 ../functions.php:4669
+#: ../functions.php:4708 ../functions.php:4774 ../functions.php:4813
+#: ../functions.php:4860 ../functions.php:4899 ../functions.php:4946
+#: ../functions.php:4985 ../functions.php:5024 ../functions.php:5063
+#: ../functions.php:5110 ../functions.php:5157 ../functions.php:5223
+#: ../functions.php:5262
 msgid "Underline"
 msgstr "Aláhúzott"
 
-#: ../functions.php:827 ../functions.php:1218 ../functions.php:1291
-#: ../functions.php:1309 ../functions.php:2097
+#: ../functions.php:753 ../functions.php:1144 ../functions.php:1217
+#: ../functions.php:1235 ../functions.php:2058
 msgid "Header Text Size"
-msgstr "Fejléc betûméret"
+msgstr "Fejléc betűméret"
 
-#: ../functions.php:845 ../functions.php:1254
+#: ../functions.php:771 ../functions.php:1180
 msgid "Header Line Height"
 msgstr "Fejléc sorköz"
 
-#: ../functions.php:863 ../functions.php:1236
+#: ../functions.php:789 ../functions.php:1162
 msgid "Header Letter Spacing"
-msgstr "Fejléc betûtávolság"
+msgstr "Fejléc betűtávolság"
 
-#: ../functions.php:881 ../functions.php:1272 ../functions.php:2115
-#: ../functions.php:3020 ../functions.php:3211 ../functions.php:3336
-#: ../functions.php:3402 ../functions.php:3488 ../functions.php:3554
-#: ../functions.php:4392 ../functions.php:5142 ../functions.php:5255
+#: ../functions.php:807 ../functions.php:1198 ../functions.php:2076
+#: ../functions.php:2981 ../functions.php:3172 ../functions.php:3297
+#: ../functions.php:3363 ../functions.php:3449 ../functions.php:3515
+#: ../functions.php:4353 ../functions.php:5103 ../functions.php:5216
 msgid "Header Font Style"
-msgstr "Fejléc betûstílus"
+msgstr "Fejléc betűstílus"
 
-#: ../functions.php:899
+#: ../functions.php:825
 msgid "Enable Boxed Layout"
-msgstr "Keretes elrendezés bekapcsolása"
+msgstr "Keretes elrendezés"
 
-#: ../functions.php:912
+#: ../functions.php:838
 msgid "Website Content Width"
 msgstr "Weboldal tartalom szélesség"
 
-#: ../functions.php:930
+#: ../functions.php:856
 msgid "Website Gutter Width"
 msgstr "Weboldal oszloptávolság"
 
-#: ../functions.php:947
+#: ../functions.php:873
 msgid "Use Custom Sidebar Width"
-msgstr ""
+msgstr "Egyéni oldalsáv szélesség"
 
-#: ../functions.php:960
+#: ../functions.php:886
 msgid "Sidebar Width"
 msgstr "Oldalsáv szélesség"
 
-#: ../functions.php:978 ../functions.php:996 ../functions.php:1014
+#: ../functions.php:904 ../functions.php:922 ../functions.php:940
 msgid "Section Height"
-msgstr "Szekció magasság"
+msgstr "Szakasz magasság"
 
-#: ../functions.php:1032 ../functions.php:1050 ../functions.php:1068
+#: ../functions.php:958 ../functions.php:976 ../functions.php:994
 msgid "Row Height"
 msgstr "Sormagasság"
 
-#: ../functions.php:1086
+#: ../functions.php:1012
 msgid "Stretch Background Image"
 msgstr "Háttérkép nyújtása"
 
-#: ../functions.php:1093 ../functions.php:1748 ../functions.php:1819
-#: ../functions.php:1832 ../functions.php:2337 ../functions.php:2462
-#: ../functions.php:2668
+#: ../functions.php:1019 ../functions.php:1696 ../functions.php:1767
+#: ../functions.php:1780 ../functions.php:2298 ../functions.php:2423
+#: ../functions.php:2629
 msgid "Background Color"
 msgstr "Háttérszín"
 
-#: ../functions.php:1100
+#: ../functions.php:1026
 msgid "Background Image"
-msgstr "Háttérkép:"
+msgstr "Háttérkép"
 
-#: ../functions.php:1106
+#: ../functions.php:1032
 msgid "Background Repeat"
 msgstr "Háttér ismétlése"
 
-#: ../functions.php:1110
+#: ../functions.php:1036
 msgid "No Repeat"
 msgstr "Nincs ismétlés"
 
-#: ../functions.php:1111
+#: ../functions.php:1037
 msgid "Tile"
-msgstr "Csempe"
+msgstr "Mozaik"
 
-#: ../functions.php:1112
+#: ../functions.php:1038
 msgid "Tile Horizontally"
-msgstr "Csempe vízszintesen"
+msgstr "Mozaik vízszintesen"
 
-#: ../functions.php:1113
+#: ../functions.php:1039
 msgid "Tile Vertically"
-msgstr "Csempe függõlegesen"
+msgstr "Mozaik függőlegesen"
 
-#: ../functions.php:1118 ../functions.php:1129
+#: ../functions.php:1044 ../functions.php:1055
 msgid "Background Position"
 msgstr "Háttér pozíció"
 
-#: ../functions.php:1122 ../functions.php:2626
+#: ../functions.php:1048 ../functions.php:2587
 msgid "Left"
 msgstr "Bal"
 
-#: ../functions.php:1123
+#: ../functions.php:1049
 msgid "Center"
 msgstr "Közép"
 
-#: ../functions.php:1124 ../functions.php:2625
+#: ../functions.php:1050 ../functions.php:2586
 msgid "Right"
 msgstr "Jobb"
 
-#: ../functions.php:1133
+#: ../functions.php:1059
 msgid "Scroll"
 msgstr "Görgetés"
 
-#: ../functions.php:1134
+#: ../functions.php:1060
 msgid "Fixed"
-msgstr "Meghatározott"
+msgstr "Fix"
 
-#: ../functions.php:1146 ../functions.php:1182 ../functions.php:1200
+#: ../functions.php:1072 ../functions.php:1108 ../functions.php:1126
 msgid "Body Text Size"
-msgstr "Törzsszöveg betûméret"
+msgstr "Törzsszöveg betűméret"
 
-#: ../functions.php:1164
+#: ../functions.php:1090
 msgid "Body Line Height"
 msgstr "Törzsszöveg sorköz"
 
-#: ../functions.php:1328
+#: ../functions.php:1254
 msgid "Header Font"
-msgstr "Fejléc betűtípusa"
+msgstr "Fejléc betűtípus"
 
-#: ../functions.php:1343
+#: ../functions.php:1269
 msgid "Body Font"
-msgstr "Test betűtípusa"
+msgstr "Törzsszöveg betűtípus"
 
-#: ../functions.php:1359
+#: ../functions.php:1285
 msgid "Body Link Color"
-msgstr "Törzsszöveg link szín"
+msgstr "Törzsszöveg hivatkozás szín"
 
-#: ../functions.php:1372
+#: ../functions.php:1298
 msgid "Body Text Color"
-msgstr "Törzsszöveg betûszín"
+msgstr "Törzsszöveg szövegszín"
 
-#: ../functions.php:1385
+#: ../functions.php:1311
 msgid "Header Text Color"
-msgstr "Fejléc betûszín"
+msgstr "Fejléc szövegszín"
 
-#: ../functions.php:1398
+#: ../functions.php:1324
 msgid "Theme Accent Color"
-msgstr "Téma fõszín"
+msgstr "Téma főszín"
 
-#: ../functions.php:1416 ../functions.php:1436 ../functions.php:5474
+#: ../functions.php:1342 ../functions.php:1362 ../functions.php:5435
 msgid "Default"
 msgstr "Alapértelmezett"
 
-#: ../functions.php:1417
+#: ../functions.php:1343
 msgid "Green"
 msgstr "Zöld"
 
-#: ../functions.php:1418
+#: ../functions.php:1344
 msgid "Orange"
 msgstr "Narancssárga"
 
-#: ../functions.php:1419
+#: ../functions.php:1345
 msgid "Pink"
 msgstr "Rózsaszín"
 
-#: ../functions.php:1420
+#: ../functions.php:1346
 msgid "Red"
 msgstr "Piros"
 
-#: ../functions.php:1432
+#: ../functions.php:1358
 msgid "Header Style"
 msgstr "Fejléc stílusa"
 
-#: ../functions.php:1437
+#: ../functions.php:1363
 msgid "Centered"
-msgstr "Középre igazít"
+msgstr "Középre igazított"
 
-#: ../functions.php:1438
+#: ../functions.php:1364
 msgid "Centered Inline Logo"
-msgstr "Középre igazított logo"
+msgstr "Középre igazított logó"
 
-#: ../functions.php:1449
+#: ../functions.php:1375
 msgid "Enable Vertical Navigation"
-msgstr "Függõleges navigáció engedélyezése"
+msgstr "Függőleges navigáció"
 
-#: ../functions.php:1461
+#: ../functions.php:1389
 msgid "Hide Navigation Until Scroll"
-msgstr "Navigáció elrejtése görgetés elõtt"
+msgstr "Navigáció elrejtése görgetésig"
 
-#: ../functions.php:1473 ../functions.php:2045
+#: ../functions.php:1403 ../functions.php:2006
 msgid "Show Social Icons"
-msgstr "Közösségi ikonok mutatása"
+msgstr "Közösségi ikonok megjelenítése"
 
-#: ../functions.php:1486
+#: ../functions.php:1416
 msgid "Show Search Icon"
 msgstr "Keresés ikon megjelenítése"
 
-#: ../functions.php:1498 ../functions.php:1619
+#: ../functions.php:1428 ../functions.php:1567
 msgid "Make Full Width"
-msgstr "Tegye teljes szélességre"
+msgstr "Legyen teljes szélességű"
 
-#: ../functions.php:1510 ../functions.php:1709 ../functions.php:1919
+#: ../functions.php:1440 ../functions.php:1657 ../functions.php:1867
 msgid "Hide Logo Image"
-msgstr "Logo kép elrejtése"
+msgstr "Logó elrejtése"
 
-#: ../functions.php:1523
-msgid "Menu/Logo Height"
-msgstr "Menü/Logo magasság"
+#: ../functions.php:1453
+msgid "Menu Height"
+msgstr "Menü Magasság"
 
-#: ../functions.php:1541 ../functions.php:1625 ../functions.php:1950
-#: ../functions.php:2431
+#: ../functions.php:1471
+msgid "Logo Max Height"
+msgstr "Logo Max magasság"
+
+#: ../functions.php:1489 ../functions.php:1573 ../functions.php:1898
+#: ../functions.php:2392
 msgid "Text Size"
-msgstr "Betûméret"
+msgstr "Betűméret"
 
-#: ../functions.php:1559 ../functions.php:1643 ../functions.php:2281
-#: ../functions.php:2524 ../functions.php:2712
+#: ../functions.php:1507 ../functions.php:1591 ../functions.php:2242
+#: ../functions.php:2485 ../functions.php:2673
 msgid "Letter Spacing"
-msgstr "Betûtávolság"
+msgstr "Betűtávolság"
 
-#: ../functions.php:1578 ../functions.php:1662
+#: ../functions.php:1526 ../functions.php:1610
 msgid "Font"
-msgstr "Betûtípus"
+msgstr "Betűtípus"
 
-#: ../functions.php:1594 ../functions.php:1678 ../functions.php:2299
-#: ../functions.php:2363
+#: ../functions.php:1542 ../functions.php:1626 ../functions.php:2260
+#: ../functions.php:2324
 msgid "Font Style"
-msgstr "Betûtípus"
+msgstr "Betűstílus"
 
-#: ../functions.php:1735
+#: ../functions.php:1683
 msgid "Active Link Color"
-msgstr "Aktív link szín"
+msgstr "Aktív hivatkozás szín"
 
-#: ../functions.php:1761 ../functions.php:1858
+#: ../functions.php:1709 ../functions.php:1806
 msgid "Dropdown Menu Background Color"
-msgstr "Legördülõ menü háttérszín"
+msgstr "Legördülő menü háttérszín"
 
-#: ../functions.php:1774
+#: ../functions.php:1722
 msgid "Dropdown Menu Line Color"
-msgstr "Legördülõ menü vonalszín"
+msgstr "Legördülő menü vonalszín"
 
-#: ../functions.php:1787 ../functions.php:1871
+#: ../functions.php:1735 ../functions.php:1819
 msgid "Dropdown Menu Text Color"
-msgstr "Legördülõ menü betûszín"
+msgstr "Legördülő menü szövegszín"
 
-#: ../functions.php:1800 ../functions.php:1884
+#: ../functions.php:1748 ../functions.php:1832
 msgid "Dropdown Menu Animation"
-msgstr "Legördülõ menü animáció"
+msgstr "Legördülő menü animáció"
 
-#: ../functions.php:1804 ../functions.php:1888
+#: ../functions.php:1752 ../functions.php:1836
 msgid "Fade"
-msgstr "Elhomályosul"
+msgstr "Áttűnés"
 
-#: ../functions.php:1805 ../functions.php:1889
+#: ../functions.php:1753 ../functions.php:1837
 msgid "Expand"
-msgstr "Kitágul"
+msgstr "Kibontás"
 
-#: ../functions.php:1806 ../functions.php:1890
+#: ../functions.php:1754 ../functions.php:1838
 msgid "Slide"
-msgstr "Dia"
+msgstr "Csúszik"
 
-#: ../functions.php:1807 ../functions.php:1891
+#: ../functions.php:1755 ../functions.php:1839
 msgid "Flip"
 msgstr "Átfordul"
 
-#: ../functions.php:1932
-msgid "Fixed Menu/Logo Height"
-msgstr "Meghatározott Menü/Logo magasság"
+#: ../functions.php:1880
+msgid "Fixed Menu Height"
+msgstr "Fix menü Magasság"
 
-#: ../functions.php:1968
+#: ../functions.php:1916
 msgid "Primary Menu Background Color"
-msgstr "Elsõdleges menü háttérszín"
+msgstr "Elsődleges menü háttérszín"
 
-#: ../functions.php:1981
+#: ../functions.php:1929
 msgid "Secondary Menu Background Color"
 msgstr "Másodlagos menü háttérszín"
 
-#: ../functions.php:1994
-msgid "Menu Link Color"
-msgstr "Menü link szín"
+#: ../functions.php:1942
+msgid "Primary Menu Link Color"
+msgstr "Elsődleges menühivatkozás Szín"
 
-#: ../functions.php:2007
-msgid "Active Menu Link Color"
-msgstr "Aktív menü link színe"
+#: ../functions.php:1955
+msgid "Secondary Menu Link Color"
+msgstr "Másodlagos menü Link színe"
 
-#: ../functions.php:2020
+#: ../functions.php:1968
+msgid "Active Primary Menu Link Color"
+msgstr "Aktív Elsődleges menühivatkozás Szín"
+
+#: ../functions.php:1981
 msgid "Phone Number"
 msgstr "Telefonszám"
 
-#: ../functions.php:2032
+#: ../functions.php:1993
 msgid "Email"
-msgstr "Email"
+msgstr "Email cím"
 
-#: ../functions.php:2058
+#: ../functions.php:2019
 msgid "Column Layout"
 msgstr "Oszlop elrendezés"
 
-#: ../functions.php:2063 ../functions.php:2064 ../functions.php:2065
-#: ../functions.php:2067 ../functions.php:2068 ../functions.php:2069
-#: ../functions.php:2070 ../functions.php:2071 ../functions.php:2072
+#: ../functions.php:2024 ../functions.php:2025 ../functions.php:2026
+#: ../functions.php:2028 ../functions.php:2029 ../functions.php:2030
+#: ../functions.php:2031 ../functions.php:2032 ../functions.php:2033
 #, php-format
 msgid "%1$s Columns"
-msgstr "%1$s Oszlopok"
+msgstr "%1$s oszlop"
 
-#: ../functions.php:2066
+#: ../functions.php:2027
 msgid "1 Column"
-msgstr "1 Oszlop"
+msgstr "1 oszlop"
 
-#: ../functions.php:2084
+#: ../functions.php:2045
 msgid "Footer Background Color"
-msgstr "Lábléc háttérszíne"
+msgstr "Lábléc háttérszín"
 
-#: ../functions.php:2134
+#: ../functions.php:2095
 msgid "Body/Link Text Size"
-msgstr "Törzsszöveg/ Link betûméret"
+msgstr "Törzsszöveg/Hivatkozás betűméret"
 
-#: ../functions.php:2152
+#: ../functions.php:2113
 msgid "Body/Link Line Height"
-msgstr "Törzsszöveg/ Link sorköz"
+msgstr "Törzsszöveg/Hivatkozás sorköz"
 
-#: ../functions.php:2170
+#: ../functions.php:2131
 msgid "Body Font Style"
-msgstr "Törzsszöveg betûtípus"
+msgstr "Törzsszöveg betűtípus"
 
-#: ../functions.php:2189
+#: ../functions.php:2150
 msgid "Widget Text Color"
-msgstr "Widget betûszín"
+msgstr "Widget szövegszín"
 
-#: ../functions.php:2202
+#: ../functions.php:2163
 msgid "Widget Link Color"
-msgstr "Widget link szín"
+msgstr "Widget hivatkozás szín"
 
-#: ../functions.php:2215
+#: ../functions.php:2176
 msgid "Widget Header Color"
 msgstr "Widget fejléc szín"
 
-#: ../functions.php:2228
+#: ../functions.php:2189
 msgid "Widget Bullet Color"
 msgstr "Widget pont szín"
 
-#: ../functions.php:2242
+#: ../functions.php:2203
 msgid "Footer Menu Background Color"
 msgstr "Lábléc menü háttérszín"
 
-#: ../functions.php:2255
+#: ../functions.php:2216
 msgid "Footer Menu Text Color"
-msgstr "Lábléc menü betûszín"
+msgstr "Lábléc menü szövegszín"
 
-#: ../functions.php:2268
+#: ../functions.php:2229
 msgid "Footer Menu Active Link Color"
-msgstr "Lábléc menü aktív link szín"
+msgstr "Lábléc menü aktív hivatkozás szín"
 
-#: ../functions.php:2318 ../functions.php:2382
+#: ../functions.php:2279 ../functions.php:2343
 msgid "Font Size"
-msgstr "Betûméret"
+msgstr "Betűméret"
 
-#: ../functions.php:2400
+#: ../functions.php:2361
 msgid "Social Icon Size"
 msgstr "Közösségi ikon méret"
 
-#: ../functions.php:2418
+#: ../functions.php:2379
 msgid "Social Icon Color"
 msgstr "Közösségi ikon szín"
 
-#: ../functions.php:2475
+#: ../functions.php:2436
 msgid "Border Width"
 msgstr "Szegély szélesség"
 
-#: ../functions.php:2493 ../functions.php:2681
+#: ../functions.php:2454 ../functions.php:2642
 msgid "Border Color"
 msgstr "Szegély szín"
 
-#: ../functions.php:2506 ../functions.php:2694
+#: ../functions.php:2467 ../functions.php:2655
 msgid "Border Radius"
 msgstr "Szegély sugár"
 
-#: ../functions.php:2542 ../functions.php:5189
+#: ../functions.php:2503 ../functions.php:5150
 msgid "Button Font Style"
-msgstr "Gomb betûstílus"
+msgstr "Gomb betűstílus"
 
-#: ../functions.php:2562
+#: ../functions.php:2523
 msgid "Buttons Font"
-msgstr "Gomb betûtípus"
+msgstr "Gomb betűtípus"
 
-#: ../functions.php:2578
+#: ../functions.php:2539
 msgid "Add Button Icon"
 msgstr "Gomb ikon hozzáadása"
 
-#: ../functions.php:2582 ../functions.php:2642
+#: ../functions.php:2543 ../functions.php:2603
 msgid "Yes"
 msgstr "Igen"
 
-#: ../functions.php:2583 ../functions.php:2643
+#: ../functions.php:2544 ../functions.php:2604
 msgid "No"
 msgstr "Nem"
 
-#: ../functions.php:2595
+#: ../functions.php:2556
 msgid "Select Icon"
 msgstr "Ikon kiválasztása"
 
-#: ../functions.php:2608
+#: ../functions.php:2569
 msgid "Icon Color"
 msgstr "Ikon szín"
 
-#: ../functions.php:2621
+#: ../functions.php:2582
 msgid "Icon Placement"
 msgstr "Ikon elhelyezés"
 
-#: ../functions.php:2638
+#: ../functions.php:2599
 msgid "Only Show Icon on Hover"
-msgstr "Ikon mutatása csak áthúzáskor"
+msgstr "Ikon mutatása csak egérmutató alatt"
 
-#: ../functions.php:2727
+#: ../functions.php:2688
 msgid "Left to Right"
 msgstr "Balról jobbra"
 
-#: ../functions.php:2728
+#: ../functions.php:2689
 msgid "Right to Left"
 msgstr "Jobbról balra"
 
-#: ../functions.php:2729
+#: ../functions.php:2690
 msgid "Top to Bottom"
-msgstr "Fentrõl lefelé"
+msgstr "Fentről lefelé"
 
-#: ../functions.php:2730
+#: ../functions.php:2691
 msgid "Bottom to Top"
-msgstr "Lentrõl felfelé"
+msgstr "Lentről felfelé"
 
-#: ../functions.php:2731
+#: ../functions.php:2692
 msgid "Fade In"
-msgstr "Beolvadás"
+msgstr "Előtűnés"
 
-#: ../functions.php:2732
+#: ../functions.php:2693
 msgid "No Animation"
 msgstr "Nincs animáció"
 
-#: ../functions.php:2739 ../includes/widgets/widget-about.php:50
+#: ../functions.php:2700 ../includes/widgets/widget-about.php:50
 #: ../includes/widgets/widget-ads.php:180
 #: ../includes/widgets/widget-ads.php:188
 #: ../includes/widgets/widget-ads.php:196
@@ -2407,563 +2278,454 @@ msgstr "Nincs animáció"
 msgid "Image"
 msgstr "Kép"
 
-#: ../functions.php:2740
+#: ../functions.php:2701
 msgid "Image Module Settings"
 msgstr "Képmodul beállítások"
 
-#: ../functions.php:2750
+#: ../functions.php:2711
 msgid "Animation"
 msgstr "Animáció"
 
-#: ../functions.php:2751
+#: ../functions.php:2712
 msgid "This controls default direction of the lazy-loading animation."
-msgstr "Ez határozza meg a lassan töltõdõ animációk alapértelmezett irányát."
+msgstr "Ez határozza meg a lassan betöltődő animációk alapértelmezett irányát."
 
-#: ../functions.php:2761
+#: ../functions.php:2722
 msgid "Gallery"
 msgstr "Galéria"
 
-#: ../functions.php:2774 ../functions.php:3601 ../functions.php:3715
+#: ../functions.php:2735 ../functions.php:3562 ../functions.php:3676
 msgid "Zoom Icon Color"
 msgstr "Zoom ikon szín"
 
-#: ../functions.php:2788 ../functions.php:3615 ../functions.php:3729
+#: ../functions.php:2749 ../functions.php:3576 ../functions.php:3690
 msgid "Hover Overlay Color"
-msgstr "Borítás színe áthúzáskor"
+msgstr "Átfedés színe egérmutató alatt"
 
-#: ../functions.php:2802 ../functions.php:2915 ../functions.php:3629
-#: ../functions.php:3743 ../functions.php:4030 ../functions.php:4116
-#: ../functions.php:4162 ../functions.php:4268
+#: ../functions.php:2763 ../functions.php:2876 ../functions.php:3590
+#: ../functions.php:3704 ../functions.php:3991 ../functions.php:4077
+#: ../functions.php:4123 ../functions.php:4229
 msgid "Title Font Size"
-msgstr "Cím betûméret"
+msgstr "Cím betűméret"
 
-#: ../functions.php:2821 ../functions.php:2934 ../functions.php:3648
-#: ../functions.php:3762 ../functions.php:4049 ../functions.php:4135
-#: ../functions.php:4806 ../functions.php:4892
+#: ../functions.php:2782 ../functions.php:2895 ../functions.php:3609
+#: ../functions.php:3723 ../functions.php:4010 ../functions.php:4096
+#: ../functions.php:4767 ../functions.php:4853
 msgid "Title Font Style"
-msgstr "Cím betûstílus"
+msgstr "Cím betűstílus"
 
-#: ../functions.php:2841 ../functions.php:3668 ../functions.php:3782
+#: ../functions.php:2802 ../functions.php:3629 ../functions.php:3743
 msgid "Caption Font Size"
-msgstr "Fejléc betûméret"
+msgstr "Képaláírás betűméret"
 
-#: ../functions.php:2860 ../functions.php:3687 ../functions.php:3801
+#: ../functions.php:2821 ../functions.php:3648 ../functions.php:3762
 msgid "Caption Font Style"
-msgstr "Fejléc betûstílus"
+msgstr "Képaláírás betűstílus"
 
-#: ../functions.php:2875
+#: ../functions.php:2836
 msgid "Blurb"
 msgstr "Fülszöveg"
 
-#: ../functions.php:2888 ../functions.php:3001 ../functions.php:3192
-#: ../functions.php:3317 ../functions.php:3383 ../functions.php:3469
-#: ../functions.php:3535 ../functions.php:4373 ../functions.php:5123
-#: ../functions.php:5236
+#: ../functions.php:2849 ../functions.php:2962 ../functions.php:3153
+#: ../functions.php:3278 ../functions.php:3344 ../functions.php:3430
+#: ../functions.php:3496 ../functions.php:4334 ../functions.php:5084
+#: ../functions.php:5197
 msgid "Header Font Size"
-msgstr "Fejléc betûméret"
+msgstr "Fejléc betűméret"
 
-#: ../functions.php:2902
+#: ../functions.php:2863
 msgid "Tabs"
-msgstr "Lapok"
+msgstr "Fülek"
 
-#: ../functions.php:2955 ../functions.php:3356 ../functions.php:3508
-#: ../functions.php:3574
+#: ../functions.php:2916 ../functions.php:3317 ../functions.php:3469
+#: ../functions.php:3535
 msgid "Padding"
 msgstr "Kitöltés"
 
-#: ../functions.php:2969
+#: ../functions.php:2930
 msgid "Slider"
 msgstr "Lapozó"
 
-#: ../functions.php:2982 ../functions.php:5217
+#: ../functions.php:2943 ../functions.php:5178
 msgid "Top & Bottom Padding"
-msgstr "Kitöltés lent&fent"
+msgstr "Kitöltés lent és fent"
 
-#: ../functions.php:3040 ../functions.php:5275
+#: ../functions.php:3001 ../functions.php:5236
 msgid "Content Font Size"
-msgstr "Tartalom betûméret"
+msgstr "Tartalom betűméret"
 
-#: ../functions.php:3059 ../functions.php:5294
+#: ../functions.php:3020 ../functions.php:5255
 msgid "Content Font Style"
-msgstr "Tartalom betûstílus"
+msgstr "Tartalom betűstílus"
 
-#: ../functions.php:3074
+#: ../functions.php:3035
 msgid "Testimonial"
-msgstr "Referencia"
+msgstr "Ajánlás"
 
-#: ../functions.php:3087 ../functions.php:4701
+#: ../functions.php:3048 ../functions.php:4662
 msgid "Name Font Style"
-msgstr "Név betûstílus"
+msgstr "Név betűstílus"
 
-#: ../functions.php:3107
+#: ../functions.php:3068
 msgid "Details Font Style"
-msgstr "Részletek betûstílus"
+msgstr "Részletek betűstílus"
 
-#: ../functions.php:3127
+#: ../functions.php:3088
 msgid "Portrait Border Radius"
-msgstr "Portré szegély sugár"
+msgstr "Arckép szegély sugár"
 
-#: ../functions.php:3179
+#: ../functions.php:3140
 msgid "Pricing Table"
 msgstr "Ártáblázat"
 
-#: ../functions.php:3231 ../functions.php:3422 ../functions.php:4721
+#: ../functions.php:3192 ../functions.php:3383 ../functions.php:4682
 msgid "Subheader Font Size"
-msgstr "Alcím betûméret"
+msgstr "Alcím betűméret"
 
-#: ../functions.php:3250 ../functions.php:3441 ../functions.php:4740
+#: ../functions.php:3211 ../functions.php:3402 ../functions.php:4701
 msgid "Subheader Font Style"
-msgstr "Alcím betûstílus"
+msgstr "Alcím betűstílus"
 
-#: ../functions.php:3270 ../functions.php:5037
+#: ../functions.php:3231 ../functions.php:4998
 msgid "Price Font Size"
-msgstr "Ár betûméret"
+msgstr "Ár betűméret"
 
-#: ../functions.php:3289
+#: ../functions.php:3250
 msgid "Pricing Font Style"
-msgstr "Ár betûstílus"
+msgstr "Ár betűstílus"
 
-#: ../functions.php:3304
+#: ../functions.php:3265
 msgid "Call To Action"
-msgstr "Akcióra hívás"
+msgstr "Cselekvésre felhívás"
 
-#: ../functions.php:3370
+#: ../functions.php:3331
 msgid "Audio"
-msgstr "Audio"
+msgstr "Audió"
 
-#: ../functions.php:3456
-msgid "Subscribe"
-msgstr "Feliratkozás"
+#: ../functions.php:3417
+msgid "Email Optin"
+msgstr "E-mail Optin"
 
-#: ../functions.php:3588
+#: ../functions.php:3549
 msgid "Portfolio"
 msgstr "Portfólió"
 
-#: ../functions.php:3702
+#: ../functions.php:3663
 msgid "Filterable Portfolio"
-msgstr "Szûrhetõ portfólió"
+msgstr "Szűrhető portfólió"
 
-#: ../functions.php:3821
+#: ../functions.php:3782
 msgid "Filters Font Size"
-msgstr "Filterek betûméret"
+msgstr "Szűrő betűméret"
 
-#: ../functions.php:3840
+#: ../functions.php:3801
 msgid "Filters Font Style"
-msgstr "Filterek betûstílus"
+msgstr "Szűrő betűstílus"
 
-#: ../functions.php:3855
+#: ../functions.php:3816
 msgid "Bar Counter"
-msgstr "Számláló oszlop"
+msgstr "Sáv számláló"
+
+#: ../functions.php:3829
+msgid "Label Font Size"
+msgstr "Címke betűméret"
+
+#: ../functions.php:3848
+msgid "Label Font Style"
+msgstr "Címke betűstílus"
 
 #: ../functions.php:3868
-msgid "Label Font Size"
-msgstr "Címke betûméret"
+msgid "Percent Font Size"
+msgstr "Százalék betűméret"
 
 #: ../functions.php:3887
-msgid "Label Font Style"
-msgstr "Címke betûstílus"
+msgid "Percent Font Style"
+msgstr "Százalék betűstílus"
 
 #: ../functions.php:3907
-msgid "Percent Font Size"
-msgstr "Százalék betûméret"
+msgid "Bar Padding"
+msgstr "Sáv kitöltés"
 
 #: ../functions.php:3926
-msgid "Percent Font Style"
-msgstr "Százalék betûstílus"
-
-#: ../functions.php:3946
-msgid "Bar Padding"
-msgstr "Sor kitöltés"
-
-#: ../functions.php:3965
 msgid "Bar Border Radius"
-msgstr "Sork kitöltés sugara"
+msgstr "Sáv sugara"
 
-#: ../functions.php:3979
+#: ../functions.php:3940
 msgid "Circle Counter"
-msgstr "Körszámláló"
+msgstr "Kör számláló"
 
-#: ../functions.php:3991 ../functions.php:4077
+#: ../functions.php:3952 ../functions.php:4038
 msgid "Number Font Size"
-msgstr "Szám betûméret"
+msgstr "Szám betűméret"
 
-#: ../functions.php:4010 ../functions.php:4096
+#: ../functions.php:3971 ../functions.php:4057
 msgid "Number Font Style"
-msgstr "Szám betûstílus"
+msgstr "Szám betűstílus"
 
-#: ../functions.php:4064
+#: ../functions.php:4025
 msgid "Number Counter"
 msgstr "Számláló"
 
-#: ../functions.php:4150
+#: ../functions.php:4111
 msgid "Accordion"
 msgstr "Harmonika"
 
-#: ../functions.php:4181 ../functions.php:4287
+#: ../functions.php:4142 ../functions.php:4248
 msgid "Opened Title Font Style"
-msgstr "Megnyitott cím betûstílus"
+msgstr "Nyitott cím betűstílus"
 
-#: ../functions.php:4201 ../functions.php:4307
+#: ../functions.php:4162 ../functions.php:4268
 msgid "Closed Title Font Style"
-msgstr "Bezárt cím betûstílus"
+msgstr "Zárt cím betűstílus"
 
-#: ../functions.php:4221 ../functions.php:4327
+#: ../functions.php:4182 ../functions.php:4288
 msgid "Toggle Icon Size"
-msgstr "Mûveletkapcsoló ikon méret"
+msgstr "Kapcsoló ikon méret"
 
-#: ../functions.php:4241 ../functions.php:4346
+#: ../functions.php:4202 ../functions.php:4307
 msgid "Toggle Padding"
-msgstr "Mûveletkapcsoló kitöltés"
+msgstr "Kapcsoló kitöltés"
 
-#: ../functions.php:4255
+#: ../functions.php:4216
 msgid "Toggle"
-msgstr "Toggle"
+msgstr "Kapcsoló"
 
-#: ../functions.php:4360
+#: ../functions.php:4321
 msgid "Contact Form"
-msgstr "Kapcsolatfelvétel"
+msgstr "Kapcsolat űrlap"
+
+#: ../functions.php:4373
+msgid "Input Font Size"
+msgstr "Beviteli mező betűméret"
+
+#: ../functions.php:4392
+msgid "Input Font Style"
+msgstr "Beviteli mező betűstílus"
 
 #: ../functions.php:4412
-msgid "Input Font Size"
-msgstr "Beírási betûméret"
+msgid "Input Field Padding"
+msgstr "Beviteli mező kitöltés"
 
 #: ../functions.php:4431
-msgid "Input Font Style"
-msgstr "Beírási betûstílus"
-
-#: ../functions.php:4451
-msgid "Input Field Padding"
-msgstr "Beírási mezõ kitöltés"
-
-#: ../functions.php:4470
 msgid "Captcha Font Size"
-msgstr "Captcha betûméret"
+msgstr "Captcha betűméret"
 
-#: ../functions.php:4489
+#: ../functions.php:4450
 msgid "Captcha Font Style"
-msgstr "Captcha betûstílus"
+msgstr "Captcha betűstílus"
 
-#: ../functions.php:4504 ../includes/functions/sidebars.php:4
+#: ../functions.php:4465 ../includes/functions/sidebars.php:4
 msgid "Sidebar"
 msgstr "Oldalsáv"
 
-#: ../functions.php:4517
+#: ../functions.php:4478
 msgid "Widget Header Font Size"
-msgstr "Widget fejléc betûméret"
+msgstr "Widget fejléc betűméret"
 
-#: ../functions.php:4536
+#: ../functions.php:4497
 msgid "Widget Header Font Style"
-msgstr "Widget fejléc betûstílus"
+msgstr "Widget fejléc betűstílus"
 
-#: ../functions.php:4556
+#: ../functions.php:4517
 msgid "Remove Vertical Divider"
-msgstr "Függõleges elválasztó eltávolítása"
+msgstr "Függőleges elválasztó eltávolítása"
 
-#: ../functions.php:4565
+#: ../functions.php:4526
 msgid "Divider"
 msgstr "Elválasztó"
 
-#: ../functions.php:4577
+#: ../functions.php:4538
 msgid "Show Divider"
 msgstr "Elválasztó megjelenítése"
 
-#: ../functions.php:4591
+#: ../functions.php:4552
 msgid "Divider Style"
 msgstr "Elválasztó stílus"
 
-#: ../functions.php:4596
+#: ../functions.php:4557
 msgid "Solid"
-msgstr "Szilárd"
+msgstr "Folytonos"
 
-#: ../functions.php:4597
+#: ../functions.php:4558
 msgid "Dotted"
 msgstr "Pontozott"
 
-#: ../functions.php:4598
+#: ../functions.php:4559
 msgid "Dashed"
 msgstr "Szaggatott"
 
-#: ../functions.php:4599
+#: ../functions.php:4560
 msgid "Double"
 msgstr "Dupla"
 
-#: ../functions.php:4600
+#: ../functions.php:4561
 msgid "Groove"
 msgstr "Barázda"
 
-#: ../functions.php:4601
+#: ../functions.php:4562
 msgid "Ridge"
 msgstr "Borda"
 
-#: ../functions.php:4602
+#: ../functions.php:4563
 msgid "Inset"
 msgstr "Szegély belül"
 
-#: ../functions.php:4603
+#: ../functions.php:4564
 msgid "Outset"
 msgstr "Szegély kívül"
 
-#: ../functions.php:4616
+#: ../functions.php:4577
 msgid "Divider Weight"
-msgstr "Elválasztó Súly"
+msgstr "Elválasztó vastagság"
 
-#: ../functions.php:4635
+#: ../functions.php:4596
 msgid "Divider Height"
 msgstr "Elválasztó magasság"
 
-#: ../functions.php:4654
+#: ../functions.php:4615
 msgid "Divider Position"
 msgstr "Elválasztó pozíció"
 
-#: ../functions.php:4659
+#: ../functions.php:4620
 msgid "Top"
 msgstr "Fent"
 
-#: ../functions.php:4660
+#: ../functions.php:4621
 msgid "Vertically Centered"
-msgstr "Függõlegesen középen"
+msgstr "Függőlegesen középre"
 
-#: ../functions.php:4661
+#: ../functions.php:4622
 msgid "Bottom"
 msgstr "Lent"
 
-#: ../functions.php:4669
+#: ../functions.php:4630
 msgid "Person"
 msgstr "Személy"
 
-#: ../functions.php:4682
+#: ../functions.php:4643
 msgid "Name Font Size"
-msgstr "Név betûméret"
+msgstr "Név betűméret"
 
-#: ../functions.php:4760
+#: ../functions.php:4721
 msgid "Social Network Icon Size"
 msgstr "Közösségi hálózat ikonméret"
 
-#: ../functions.php:4787 ../functions.php:4873
+#: ../functions.php:4748 ../functions.php:4834
 msgid "Post Title Font Size"
-msgstr "Pszt cím betûméret"
+msgstr "Bejegyzés cím betűméret"
 
-#: ../functions.php:4826 ../functions.php:4912
+#: ../functions.php:4787 ../functions.php:4873
 msgid "Meta Font Size"
-msgstr "Metaadat betûméret"
+msgstr "Meta betűméret"
 
-#: ../functions.php:4860
-msgid "Masonry Blog"
-msgstr "Modulhálós elrendezésû blog"
+#: ../functions.php:4821
+msgid "Blog Grid"
+msgstr "Blog Rács"
 
-#: ../functions.php:4946
+#: ../functions.php:4907
 msgid "Shop"
 msgstr "Áruház"
 
-#: ../functions.php:4959
+#: ../functions.php:4920
 msgid "Product Name Font Size"
-msgstr "Terméknév betûméret"
+msgstr "Terméknév betűméret"
+
+#: ../functions.php:4939
+msgid "Product Name Font Style"
+msgstr "Terméknév betűstílus"
+
+#: ../functions.php:4959
+msgid "Sale Badge Font Size"
+msgstr "Akciós címke betűméret"
 
 #: ../functions.php:4978
-msgid "Product Name Font Style"
-msgstr "Terméknév betûstílus"
-
-#: ../functions.php:4998
-msgid "Sale Badge Font Size"
-msgstr "Akciós jelzõ betûméret"
+msgid "Sale Badge Font Style"
+msgstr "Akciós címke betűstílus"
 
 #: ../functions.php:5017
-msgid "Sale Badge Font Style"
-msgstr "Akciós jelzõ betûstílus"
+msgid "Price Font Style"
+msgstr "Ár betűstílus"
+
+#: ../functions.php:5037
+msgid "Sale Price Font Size"
+msgstr "Akciós ár betűméret"
 
 #: ../functions.php:5056
-msgid "Price Font Style"
-msgstr "Ár betûstílus"
-
-#: ../functions.php:5076
-msgid "Sale Price Font Size"
-msgstr "Akciós ár betûméret"
-
-#: ../functions.php:5095
 msgid "Sale Price Font Style"
-msgstr "Akciós ár betûstílus"
+msgstr "Akciós ár betűstílus"
 
-#: ../functions.php:5110
+#: ../functions.php:5071
 msgid "Countdown"
 msgstr "Visszaszámláls"
 
-#: ../functions.php:5157
+#: ../functions.php:5118
 msgid "Social Follow"
 msgstr "Közösségi követés"
 
-#: ../functions.php:5170
+#: ../functions.php:5131
 msgid "Follow Font & Icon Size"
-msgstr "Követés betû & ikonméret"
+msgstr "Követés betű és ikonméret"
 
-#: ../functions.php:5204
-msgid "Full Width Slider"
-msgstr "Teljes szélességû csúszka"
+#: ../functions.php:5165
+msgid "Fullwidth Slider"
+msgstr "Teljes szélességű csúszka"
 
-#: ../functions.php:7875
+#: ../functions.php:7469
 msgid "0 comments"
 msgstr "Nincsenek hozzászólások"
 
-#: ../functions.php:7875
+#: ../functions.php:7469
 msgid "1 comment"
 msgstr "1 hozzászólás"
 
-#: ../functions.php:7875
+#: ../functions.php:7469
 msgid "comments"
-msgstr "Hozzászólások"
+msgstr "hozzászólás"
 
-#: ../functions.php:8026
-msgid "No Gallery Found"
-msgstr ""
-
-#: ../functions.php:8028
-msgid "No items found"
-msgstr ""
-
-#: ../functions.php:8170
+#: ../functions.php:7542
 msgid "Password Protected"
 msgstr "Jelszóval védett"
 
-#: ../functions.php:8171
+#: ../functions.php:7543
 msgid "To view this protected post, enter the password below"
-msgstr "A védett bejegyzés megtekintéséhez adja meg a lenti jelszót"
+msgstr "A bejegyzés megtekintéséhez adja meg lent a jelszót"
 
-#: ../functions.php:8174
+#: ../functions.php:7546
 msgid "Password"
 msgstr "Jelszó"
 
-#: ../functions.php:8175
+#: ../functions.php:7547
 msgid "Submit"
-msgstr "Elküld"
+msgstr "Küldés"
 
-#: ../functions.php:8347
+#: ../functions.php:7727
 #, php-format
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
 
-#: ../functions.php:8349
+#: ../functions.php:7729
 msgid "Item"
-msgstr "Tétel"
+msgstr "Elem"
 
-#: ../functions.php:8349
+#: ../functions.php:7729
 msgid "Items"
-msgstr "Tételek"
+msgstr "Elemek"
 
-#: ../functions.php:8524
-msgid "Connecting..."
-msgstr "Kapcsolódás..."
-
-#: ../functions.php:8525
-msgid "Connection failed"
-msgstr "Kapcsolódás sikertelen"
-
-#: ../functions.php:8526
-msgid "Removing connection..."
-msgstr "Kapcsolat eltávolítása..."
-
-#: ../functions.php:8527
-msgid "Done"
-msgstr "Kész"
-
-#: ../functions.php:8556
-#, php-format
-msgid ""
-"Step 1: <a href=\"%1$s\" target=\"_blank\">Generate authorization code</a>"
-msgstr ""
-"1. lépés: <a href=\"%1$s\" target=\"_blank\">Engedélyező kód létrehozása</a>"
-
-#: ../functions.php:8557
-msgid ""
-"Step 2: Paste in the authorization code and click \"Make a connection\" "
-"button: "
-msgstr ""
-"2. lépés: Másolja be az engedélyező kódot és kattintson a \"Kapcsolat "
-"létrehozása\" gombra: "
-
-#: ../functions.php:8558
-msgid "Make a connection"
-msgstr "Kapcsolat létrehozása"
-
-#: ../functions.php:8561
-msgid "Aweber is set up properly. You can remove connection here if you wish."
-msgstr "Az Aweber be van állítva. A kapcsolatot eltávolíthatja itt."
-
-#: ../functions.php:8562
-msgid "Remove the connection"
-msgstr "Kapcsolat eltávolítása"
-
-#: ../functions.php:8570
-msgid "Nonce failed."
-msgstr "Nonce sikertelen."
-
-#: ../functions.php:8576
-msgid "Authorization code is empty."
-msgstr "Az engedélyező kód mezője üres!"
-
-#: ../functions.php:8587
-msgid ""
-"Authorization code is invalid. Try regenerating it and paste in the new code."
-msgstr ""
-"Az engedélyező kód érvénytelen. Próbálja újragenerálni és az új kódot "
-"bemásolni!"
-
-#: ../functions.php:8609
-msgid "Aweber API Exception"
-msgstr "Aweber API kivétel"
-
-#: ../functions.php:8611
-msgid "Message"
-msgstr "Üzenet"
-
-#: ../functions.php:8622
-msgid "Nonce failed"
-msgstr "Nonce sikertelen"
-
-#: ../functions.php:8717
-msgid "Read more"
-msgstr "Tovább"
-
-#: ../functions.php:8845
-msgid "Configuration error"
-msgstr "Konfigurációs hiba"
-
-#: ../functions.php:8855
-msgid "Please enter first name"
-msgstr "Kérem, írja be utónevét"
-
-#: ../functions.php:8857
-msgid "Incorrect email"
-msgstr "Hibás email"
-
-#: ../functions.php:8859
-msgid "Configuration error: List is not defined"
-msgstr "Konfigurációs hiba: nincs megadva lista"
-
-#: ../functions.php:8861
-msgid ""
-"<h2 class=\"et_pb_subscribed\">Subscribed - look for the confirmation email!"
-"</h2>"
-msgstr ""
-"<h2 class=\"et_pb_subscribed\">Feliratkozva - várja a jóváhagyó emailt!</h2>"
-
-#: ../functions.php:8873
-msgid "Configuration error: api key is not defined"
-msgstr "Konfigurációs hiba: nincs megadva API kulcs"
-
-#: ../functions.php:8910
-msgid "Aweber: Wrong configuration data"
-msgstr "Aweber: Hibás konfigurációs adat"
-
-#: ../functions.php:8940 ../functions.php:8961
+#: ../functions.php:7907 ../functions.php:7942
 msgid "Theme Customizer"
 msgstr "Téma testreszabás"
 
-#: ../functions.php:8941 ../functions.php:8971
+#: ../functions.php:7911 ../functions.php:7955
 msgid "Module Customizer"
 msgstr "Modul testreszabás"
 
-#: ../functions.php:8942
+#: ../functions.php:7913
+msgid "Role Editor"
+msgstr "Szerep Szerkesztő"
+
+#: ../functions.php:7916
 msgid "Divi Library"
-msgstr "Divi Könyvtár"
+msgstr "Divi könyvtár"
 
 #: ../header.php:176
 msgid "Search &hellip;"
@@ -2977,7 +2739,7 @@ msgstr "Keresés erre:"
 #: ../includes/functions/comments.php:15
 #, php-format
 msgid "on %1$s at %2$s"
-msgstr "%1$s-án %2$s-kor"
+msgstr "@ %1$s %2$s"
 
 #: ../includes/functions/comments.php:18
 msgid "(Edit)"
@@ -2985,11 +2747,11 @@ msgstr "(Szerkesztés)"
 
 #: ../includes/functions/comments.php:21
 msgid "Reply"
-msgstr "Válaszol"
+msgstr "Válasz"
 
 #: ../includes/functions/comments.php:30
 msgid "Your comment is awaiting moderation."
-msgstr "A hozzászólása moderációra vár."
+msgstr "A hozzászólás moderálásra vár."
 
 #: ../includes/functions/installation.php:1
 msgid "Read Divi Documentation"
@@ -2998,7 +2760,7 @@ msgstr "Olvassa el a Divi dokumentációt"
 #: ../includes/functions/sidebars.php:13 ../includes/functions/sidebars.php:22
 #: ../includes/functions/sidebars.php:31 ../includes/functions/sidebars.php:40
 msgid "Footer Area"
-msgstr "Lábléc mezõ terület"
+msgstr "Lábléc terület"
 
 #: ../includes/functions/tutorials.php:1
 msgid "Watch video tutorials"
@@ -3021,7 +2783,7 @@ msgid ""
 "The page you requested could not be found. Try refining your search, or use "
 "the navigation above to locate the post."
 msgstr ""
-"A keresett oldal nem található. Próbálja újra más keresendővel vagy "
+"A keresett oldal nem található. Próbálja meg finomítani a keresést vagy "
 "használja a fenti navigációt, hogy megtalálja a bejegyzést."
 
 #: ../includes/social_icons.php:6
@@ -3046,7 +2808,7 @@ msgstr "Megjeleníti a Rólam információkat"
 
 #: ../includes/widgets/widget-about.php:6
 msgid "ET About Me Widget"
-msgstr "Rólam minialkalmazás"
+msgstr "ET Rólam widget"
 
 #: ../includes/widgets/widget-about.php:12
 #: ../includes/widgets/widget-about.php:41
@@ -3073,7 +2835,7 @@ msgstr "Szöveg"
 
 #: ../includes/widgets/widget-ads.php:4
 msgid "Displays Advertisements"
-msgstr "Megjeleníti a Rólam információkat"
+msgstr "Megjeleníti a reklámokat"
 
 #: ../includes/widgets/widget-ads.php:6
 msgid "ET Advertisement"
@@ -3086,7 +2848,7 @@ msgstr "Reklám"
 
 #: ../includes/widgets/widget-ads.php:175
 msgid "Use Relative Image Paths"
-msgstr "Relatív kép utak használata"
+msgstr "Relatív kép útvonalak használata"
 
 #: ../includes/widgets/widget-ads.php:177
 msgid "Open in a new window"
@@ -3136,7 +2898,7 @@ msgstr "Banner"
 #: ../includes/widgets/widget-ads.php:230
 #: ../includes/widgets/widget-ads.php:238
 msgid "Url"
-msgstr "URL"
+msgstr "Webcím"
 
 #: ../includes/widgets/widget-ads.php:186
 #: ../includes/widgets/widget-ads.php:194
@@ -3147,13 +2909,14 @@ msgstr "URL"
 #: ../includes/widgets/widget-ads.php:234
 #: ../includes/widgets/widget-ads.php:242
 msgid "Alt"
-msgstr "Alt"
+msgstr "Alternatív szöveg"
 
 #: ../includes/widgets/widget-ads.php:243
 msgid ""
 "If you don't want to display some banners - leave approptiate fields blank"
 msgstr ""
-"Ha nem szeretne bannereket megjeleníteni - hagyja a megfelelõ mezõket üresen"
+"Ha nem szeretne néhány bannert megjeleníteni - hagyja a megfelelő mezőket "
+"üresen"
 
 #: ../includes/widgets/widget-adsense.php:4
 msgid "Displays Adsense Ads"
@@ -3161,7 +2924,7 @@ msgstr "Megjeleníti az Adsense reklámokat"
 
 #: ../includes/widgets/widget-adsense.php:6
 msgid "ET Adsense Widget"
-msgstr "Adsense minialkalmazás"
+msgstr "ET Adsense widget"
 
 #: ../includes/widgets/widget-adsense.php:12
 #: ../includes/widgets/widget-adsense.php:40
@@ -3184,6 +2947,250 @@ msgstr "&larr;"
 #: ../single-project.php:63
 msgid "&rarr;"
 msgstr "&rarr;"
+
+#~ msgid ""
+#~ "By default, MailChimp lists are cached for one day. If you added new "
+#~ "list, but it doesn't appear within the SignUp module settings, activate "
+#~ "this option. Don't forget to disable it once the list has been "
+#~ "regenerated."
+#~ msgstr ""
+#~ "Alapértelmezetten a MailChimp listák egy napig vannak gyorsítótárban. Ha "
+#~ "új listát adott hozzá, de az nem jelenik meg a Feliratkozás modul "
+#~ "beállításai között, aktiválja ezt az opciót. Ne felejtse el kikapcsolni, "
+#~ "ha a lista újragenerálódott."
+
+#~ msgid ""
+#~ "By default, Aweber lists are cached for one day. If you added new list, "
+#~ "but it doesn't appear within the SignUp module settings, activate this "
+#~ "option. Don't forget to disable it once the list has been regenerated."
+#~ msgstr ""
+#~ "Alapértelmezetten az Aweber listák egy napig vannak gyorsítótárban. Ha új "
+#~ "listát adott hozzá, de az nem jelenik meg a Feliratkozás modul "
+#~ "beállításai között, aktiválja ezt az opciót. Ne felejtse el kikapcsolni, "
+#~ "ha a lista újragenerálódott."
+
+#~ msgid ""
+#~ "Please, check the fields below to make sure you entered the correct "
+#~ "information."
+#~ msgstr ""
+#~ "Kérjük, ellenőrizze az alábbi mezőket, hogy helyes adatokat adott meg."
+
+#~ msgid "Fill"
+#~ msgstr "Kitöltése kötelező:"
+
+#~ msgid "field"
+#~ msgstr "mező"
+
+#~ msgid "Invalid email"
+#~ msgstr "Érvénytelen email cím"
+
+#~ msgid "Captcha"
+#~ msgstr "Captcha"
+
+#~ msgid "Prev"
+#~ msgstr "Előző"
+
+#~ msgid "Projects"
+#~ msgstr "Projektek"
+
+#~ msgid "Project"
+#~ msgstr "Projekt"
+
+#~ msgid "Add New"
+#~ msgstr "Új hozzáadása"
+
+#~ msgid "Add New Project"
+#~ msgstr "Új projekt hozzáadása"
+
+#~ msgid "Edit Project"
+#~ msgstr "Projekt szerkesztése"
+
+#~ msgid "New Project"
+#~ msgstr "Új projekt"
+
+#~ msgid "All Projects"
+#~ msgstr "Összes projekt"
+
+#~ msgid "View Project"
+#~ msgstr "Projekt megtekintése"
+
+#~ msgid "Search Projects"
+#~ msgstr "Projektek keresése"
+
+#~ msgid "Nothing found"
+#~ msgstr "Nincs találat"
+
+#~ msgid "Nothing found in Trash"
+#~ msgstr "Semmi nem található a lomtárban"
+
+#~ msgid "Category"
+#~ msgstr "Kategória"
+
+#~ msgid "Search Categories"
+#~ msgstr "Kategóriák keresése"
+
+#~ msgid "All Categories"
+#~ msgstr "Összes kategória"
+
+#~ msgid "Parent Category"
+#~ msgstr "Szülőkategória"
+
+#~ msgid "Parent Category:"
+#~ msgstr "Szülőkategória:"
+
+#~ msgid "Edit Category"
+#~ msgstr "Kategória szerkesztése"
+
+#~ msgid "Update Category"
+#~ msgstr "Kategória frissítése"
+
+#~ msgid "Add New Category"
+#~ msgstr "Új kategória hozzáadása"
+
+#~ msgid "New Category Name"
+#~ msgstr "Új kategória neve"
+
+#~ msgid "Tags"
+#~ msgstr "Címkék"
+
+#~ msgid "Tag"
+#~ msgstr "Címke"
+
+#~ msgid "Search Tags"
+#~ msgstr "Címkék keresése"
+
+#~ msgid "All Tags"
+#~ msgstr "Összes címke"
+
+#~ msgid "Parent Tag"
+#~ msgstr "Szülőcímke"
+
+#~ msgid "Parent Tag:"
+#~ msgstr "Szülőcímke:"
+
+#~ msgid "Edit Tag"
+#~ msgstr "Címke szerkesztése"
+
+#~ msgid "Update Tag"
+#~ msgstr "Címke frissítése"
+
+#~ msgid "Add New Tag"
+#~ msgstr "Új címke hozzáadása"
+
+#~ msgid "New Tag Name"
+#~ msgstr "Új címke neve"
+
+#~ msgid "Menu/Logo Height"
+#~ msgstr "Menü/Logó magasság"
+
+#~ msgid "Fixed Menu/Logo Height"
+#~ msgstr "Fix Menü/Logó magasság"
+
+#~ msgid "Menu Link Color"
+#~ msgstr "Menühivatkozás szín"
+
+#~ msgid "Active Menu Link Color"
+#~ msgstr "Aktív menühivatkozás szín"
+
+#~ msgid "Subscribe"
+#~ msgstr "Feliratkozás"
+
+#~ msgid "Masonry Blog"
+#~ msgstr "Rács elrendezésű blog"
+
+#~ msgid "Full Width Slider"
+#~ msgstr "Teljes szélességű lapozó"
+
+#~ msgid "No Gallery Found"
+#~ msgstr "Galéria nem található"
+
+#~ msgid "No items found"
+#~ msgstr "Elem nem található"
+
+#~ msgid "Connecting..."
+#~ msgstr "Kapcsolódás..."
+
+#~ msgid "Connection failed"
+#~ msgstr "Kapcsolódás sikertelen"
+
+#~ msgid "Removing connection..."
+#~ msgstr "Kapcsolat eltávolítása..."
+
+#~ msgid "Done"
+#~ msgstr "Kész"
+
+#~ msgid ""
+#~ "Step 1: <a href=\"%1$s\" target=\"_blank\">Generate authorization code</a>"
+#~ msgstr ""
+#~ "1. lépés: <a href=\"%1$s\" target=\"_blank\">Engedélyező kód létrehozása</"
+#~ "a>"
+
+#~ msgid ""
+#~ "Step 2: Paste in the authorization code and click \"Make a connection\" "
+#~ "button: "
+#~ msgstr ""
+#~ "2. lépés: Másolja be az engedélyező kódot és kattintson a \"Kapcsolat "
+#~ "létrehozása\" gombra: "
+
+#~ msgid "Make a connection"
+#~ msgstr "Kapcsolat létrehozása"
+
+#~ msgid ""
+#~ "Aweber is set up properly. You can remove connection here if you wish."
+#~ msgstr "Aweber megfelelően van beállítva. A kapcsolatot itt eltávolíthatja."
+
+#~ msgid "Remove the connection"
+#~ msgstr "Kapcsolat eltávolítása"
+
+#~ msgid "Nonce failed."
+#~ msgstr "Sikertelen."
+
+#~ msgid "Authorization code is empty."
+#~ msgstr "Az engedélyező kód üres."
+
+#~ msgid ""
+#~ "Authorization code is invalid. Try regenerating it and paste in the new "
+#~ "code."
+#~ msgstr ""
+#~ "Az engedélyező kód érvénytelen. Próbálja újragenerálni és az új kódot "
+#~ "bemásolni."
+
+#~ msgid "Aweber API Exception"
+#~ msgstr "Aweber API kivétel"
+
+#~ msgid "Message"
+#~ msgstr "Üzenet"
+
+#~ msgid "Nonce failed"
+#~ msgstr "Sikertelen"
+
+#~ msgid "Read more"
+#~ msgstr "Bővebben"
+
+#~ msgid "Configuration error"
+#~ msgstr "Konfigurációs hiba"
+
+#~ msgid "Please enter first name"
+#~ msgstr "Kérjük, írja be keresztnevét"
+
+#~ msgid "Incorrect email"
+#~ msgstr "Helytelen email cím"
+
+#~ msgid "Configuration error: List is not defined"
+#~ msgstr "Konfigurációs hiba: nincs megadva lista"
+
+#~ msgid ""
+#~ "<h2 class=\"et_pb_subscribed\">Subscribed - look for the confirmation "
+#~ "email!</h2>"
+#~ msgstr ""
+#~ "<h2 class=\"et_pb_subscribed\">Feliratkozva - várja a megerősítő emailt!</"
+#~ "h2>"
+
+#~ msgid "Configuration error: api key is not defined"
+#~ msgstr "Konfigurációs hiba: nincs megadva API kulcs"
+
+#~ msgid "Aweber: Wrong configuration data"
+#~ msgstr "Aweber: Hibás konfigurációs adat"
 
 #~ msgid ""
 #~ "Welcome to Divi! Before diving in to your new theme, please visit the <a "

@@ -114,13 +114,13 @@ $options = array (
                    "id" => $shortname."_regenerate_mailchimp_lists",
                    "type" => "checkbox",
                    "std" => "false",
-                   "desc" => __( "By default, MailChimp lists are cached for one day. If you added new list, but it doesn't appear within the SignUp module settings, activate this option. Don't forget to disable it once the list has been regenerated.",$themename ) ),
+                   "desc" => __( "By default, MailChimp lists are cached for one day. If you added new list, but it doesn't appear within the Email Optin module settings, activate this option. Don't forget to disable it once the list has been regenerated.",$themename ) ),
 
 			array( "name" => __( "Regenerate Aweber Lists", $themename ),
                    "id" => $shortname."_regenerate_aweber_lists",
                    "type" => "checkbox2",
                    "std" => "false",
-                   "desc" => __( "By default, Aweber lists are cached for one day. If you added new list, but it doesn't appear within the SignUp module settings, activate this option. Don't forget to disable it once the list has been regenerated.", $themename ) ),
+                   "desc" => __( "By default, Aweber lists are cached for one day. If you added new list, but it doesn't appear within the Email Optin module settings, activate this option. Don't forget to disable it once the list has been regenerated.", $themename ) ),
 
 			array( "type" => "clearfix",),
 

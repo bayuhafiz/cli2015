@@ -1,5 +1,7 @@
 var ET_PageBuilder = ET_PageBuilder || {};
 
+window.wp = window.wp || {};
+
 ( function($) {
 
 	$( document ).ready( function() {
@@ -24,6 +26,50 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				layout_type : '',
 				module_type : '',
 				categories : []
+			}
+
+		} );
+
+		ET_PageBuilder.History = Backbone.Model.extend( {
+
+			defaults : {
+				timestamp : _.now(),
+				shortcode : '',
+				current_active_history : false,
+				verb : 'did',
+				noun : 'something'
+			},
+
+			max_history_limit : 100,
+
+			validate : function( attributes, options ) {
+				var histories_count = options.collection.length,
+					active_history_model = options.collection.findWhere({ current_active_history : true }),
+					shortcode            = attributes.shortcode,
+					last_model           = _.isUndefined( active_history_model ) ? options.collection.at( ( options.collection.length - 1 ) ) : active_history_model,
+					last_shortcode       = _.isUndefined( last_model ) ? false : last_model.get( 'shortcode' ),
+					previous_active_histories;
+
+				if ( shortcode === last_shortcode ) {
+					return 'duplicate';
+				}
+
+				// Turn history tracking off
+				ET_PageBuilder_App.enable_history = false;
+
+				// Limit number of history limit
+				var histories_count = options.collection.models.length,
+					remove_limit = histories_count - ( this.max_history_limit - 1 ),
+					ranges,
+					deleted_model;
+
+				// Some models are need to be removed
+				if ( remove_limit > 0 ) {
+					// Loop and shift (remove first model in collection) n-times
+					for (var i = 1; i <= remove_limit; i++) {
+						options.collection.shift();
+					};
+				}
 			}
 
 		} );
@@ -70,6 +116,60 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				} );
 
 				return child_views;
+			},
+
+			getChildrenViews : function( parent_id ) {
+				var this_el = this,
+					views = this_el.get( 'views' ),
+					child_views = {},
+					grand_children;
+
+				_.each( views, function( view, key ) {
+					if ( view['model']['attributes']['parent'] === parent_id ) {
+						grand_children = this_el.getChildrenViews( view['model']['attributes']['cid'] );
+
+						if ( ! _.isEmpty( grand_children ) ) {
+							_.extend( child_views, grand_children );
+						}
+
+						child_views[key] = view;
+					}
+
+				} );
+
+				return child_views;
+			},
+
+			getParentViews : function( parent_cid ) {
+				var parent_view = this.getView( parent_cid ),
+					parent_views = {};
+
+				while( ! _.isUndefined( parent_view ) ) {
+
+					parent_views[parent_view['model']['attributes']['cid']] = parent_view;
+					parent_view = this.getView( parent_view['model']['attributes']['parent'] );
+				}
+
+				return parent_views;
+			},
+
+			getSectionView : function( parent_cid ) {
+				var views = this.getParentViews( parent_cid ),
+					section_view;
+
+				section_view = _.filter( views, function( item ) {
+					if ( item.model.attributes.type === "section" ) {
+						return true;
+					} else {
+						return false;
+					}
+				} );
+
+				if ( _.isUndefined( section_view[0] ) ) {
+					return false;
+				} else {
+					return section_view[0];
+				}
 			},
 
 			setNewParentID : function( cid, new_parent_id ) {
@@ -154,12 +254,24 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				return 'on' === _.findWhere( modules, { label : module_type } )['fullwidth_only'] ? true : false;
 			},
 
+			isChildrenLocked : function ( module_cid ) {
+				var children_views = this.getChildrenViews( module_cid ),
+					children_locked = false;
+
+				_.each( children_views, function( child ) {
+					if ( child.model.get( 'et_pb_locked' ) === 'on' || child.model.get( 'et_pb_parent_locked' ) === 'on' ) {
+						children_locked = true;
+					}
+				} );
+
+				return children_locked;
+			},
+
 			addAdminLabel : function ( optionsNames ) {
 				return _.union( optionsNames, ['admin_label'] );
 			}
 
 		} );
-
 
 		// Collections
 
@@ -172,6 +284,12 @@ var ET_PageBuilder = ET_PageBuilder || {};
 		ET_PageBuilder.SavedTemplates = Backbone.Collection.extend( {
 
 			model : ET_PageBuilder.SavedTemplate
+
+		} );
+
+		ET_PageBuilder.Histories = Backbone.Collection.extend( {
+
+			model : ET_PageBuilder.History
 
 		} );
 
@@ -233,7 +351,8 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					shortcode          = this.model.get( 'shortcode' ),
 					update_global      = false,
 					global_holder_id   = 'row' === this.model.get( 'layout_type' ) ? current_row : parent_id,
-					global_holder_view = ET_PageBuilder_Layout.getView( global_holder_id );
+					global_holder_view = ET_PageBuilder_Layout.getView( global_holder_id ),
+					history_noun       = this.options.model.get( 'layout_type' ) === 'row_inner' ? 'saved_row' : 'saved_' + this.options.model.get( 'layout_type' );
 
 					if ( 'on' === specialty_row ) {
 						global_holder_id = global_holder_view.model.get( 'parent' );
@@ -243,6 +362,9 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					if ( 'section' !== this.model.get( 'layout_type' ) && ( ( typeof global_holder_view.model.get( 'global_parent_cid' ) !== 'undefined' && '' !== global_holder_view.model.get( 'global_parent_cid' ) ) || ( typeof global_holder_view.model.get( 'et_pb_global_module' ) !== 'undefined' && '' !== global_holder_view.model.get( 'et_pb_global_module' ) ) ) ) {
 						update_global = true;
 					}
+
+				// Enable history saving and set meta for history
+				ET_PageBuilder_App.allowHistorySaving( 'added', history_noun );
 
 				event.preventDefault();
 				ET_PageBuilder_App.createLayoutFromContent( shortcode , parent_id, '', { ignore_template_tag : 'ignore_template', current_row_cid : current_row, global_id : global_id, after_section : parent_id, is_reinit : 'reinit' } );
@@ -292,15 +414,25 @@ var ET_PageBuilder = ET_PageBuilder || {};
 			events: {
 				'click .et-pb-settings-section' : 'showSettings',
 				'click .et-pb-clone-section' : 'cloneSection',
-				'click .et-pb-remove' : 'removeSection',
+				'click .et-pb-remove-section' : 'removeSection',
 				'click .et-pb-section-add-main' : 'addSection',
 				'click .et-pb-section-add-fullwidth' : 'addFullwidthSection',
 				'click .et-pb-section-add-specialty' : 'addSpecialtySection',
 				'click .et-pb-section-add-saved' : 'addSavedSection',
+				'click .et-pb-expand' : 'expandSection',
+				'contextmenu .et-pb-section-add' : 'showRightClickOptions',
+				'click.et_pb_section > .et-pb-controls .et-pb-unlock' : 'unlockSection',
+				'contextmenu.et_pb_section > .et-pb-controls' : 'showRightClickOptions',
+				'contextmenu.et_pb_row > .et-pb-right-click-trigger-overlay' : 'showRightClickOptions',
+				'click.et_pb_section > .et-pb-controls' : 'hideRightClickOptions',
+				'click.et_pb_row > .et-pb-right-click-trigger-overlay' : 'hideRightClickOptions',
+				'click > .et-pb-locked-overlay' : 'showRightClickOptions',
+				'contextmenu > .et-pb-locked-overlay' : 'showRightClickOptions',
 			},
 
 			initialize : function() {
 				this.child_views = [];
+				this.listenTo( this.model, 'change:admin_label', this.renameModule );
 			},
 
 			render : function() {
@@ -318,6 +450,18 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					this.$el.addClass( 'et_pb_global' );
 				}
 
+				if ( typeof this.model.get( 'et_pb_disabled' ) !== 'undefined' && this.model.get( 'et_pb_disabled' ) === 'on' ) {
+					this.$el.addClass( 'et_pb_disabled' );
+				}
+
+				if ( typeof this.model.get( 'et_pb_locked' ) !== 'undefined' && this.model.get( 'et_pb_locked' ) === 'on' ) {
+					this.$el.addClass( 'et_pb_locked' );
+				}
+
+				if ( typeof this.model.get( 'et_pb_collapsed' ) !== 'undefined' && this.model.get( 'et_pb_collapsed' ) === 'on' ) {
+					this.$el.addClass( 'et_pb_collapsed' );
+				}
+
 				this.makeRowsSortable();
 
 				return this;
@@ -331,10 +475,16 @@ var ET_PageBuilder = ET_PageBuilder || {};
 						collection : this.collection,
 						attributes : {
 							'data-open_view' : 'module_settings'
-						}
+						},
+						triggered_by_right_click : this.triggered_by_right_click,
+						do_preview : this.do_preview
 					};
 
 				event.preventDefault();
+
+				if ( this.isSectionLocked() ) {
+					return;
+				}
 
 				if ( $current_target.closest( '.et_pb_section_specialty' ).length ) {
 					var $specialty_section_columns = $current_target.closest( '.et_pb_section_specialty' ).find( '.et-pb-section-content > .et-pb-column' ),
@@ -374,6 +524,11 @@ var ET_PageBuilder = ET_PageBuilder || {};
 
 				event.preventDefault();
 
+				et_pb_close_all_right_click_options();
+
+				// Enable history saving and set meta for history
+				ET_PageBuilder_App.allowHistorySaving( 'added', 'section' );
+
 				this.collection.add( [ {
 					type : 'section',
 					module_type : 'section',
@@ -381,14 +536,20 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					et_pb_specialty : 'off',
 					cid : module_id,
 					view : this,
-					created : 'auto'
-				} ], { update_shortcodes : 'false' } );
+					created : 'auto',
+					admin_label : et_pb_options.noun['section']
+				} ] );
 			},
 
 			addFullwidthSection : function( event ) {
 				var module_id = ET_PageBuilder_Layout.generateNewId();
 
 				event.preventDefault();
+
+				et_pb_close_all_right_click_options();
+
+				// Enable history saving and set meta for history
+				ET_PageBuilder_App.allowHistorySaving( 'added', 'fullwidth_section' );
 
 				this.collection.add( [ {
 					type : 'section',
@@ -397,7 +558,8 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					et_pb_specialty : 'off',
 					cid : module_id,
 					view : this,
-					created : 'auto'
+					created : 'auto',
+					admin_label : et_pb_options.noun['section']
 				} ] );
 			},
 
@@ -406,8 +568,12 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					$event_target = $(event.target),
 					template_type = typeof $event_target !== 'undefined' && typeof $event_target.data( 'is_template' ) !== 'undefined' ? 'section' : '';
 
-
 				event.preventDefault();
+
+				et_pb_close_all_right_click_options();
+
+				// Enable history saving and set meta for history
+				ET_PageBuilder_App.allowHistorySaving( 'added', 'specialty_section' );
 
 				this.collection.add( [ {
 					type : 'section',
@@ -417,7 +583,8 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					cid : module_id,
 					template_type : template_type,
 					view : this,
-					created : 'auto'
+					created : 'auto',
+					admin_label : et_pb_options.noun['section']
 				} ] );
 			},
 
@@ -432,11 +599,63 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					},
 					main_view = new ET_PageBuilder.ModalView( view_settings );
 
+				et_pb_close_all_right_click_options();
+
 				$( 'body' ).append( main_view.render().el );
 
 				generate_templates_view( 'include_global', '', 'section', $( '.et-pb-saved-modules-tab' ), 'regular', 0, 'all' );
 
 				event.preventDefault();
+			},
+
+			expandSection : function( event ) {
+				event.preventDefault();
+
+				var $parent = this.$el.closest('.et_pb_section');
+
+				$parent.removeClass('et_pb_collapsed');
+
+				// Add attribute to shortcode
+				this.options.model.attributes.et_pb_collapsed = 'off';
+
+				// Enable history saving and set meta for history
+				ET_PageBuilder_App.allowHistorySaving( 'expanded', 'section' );
+
+				// Rebuild shortcodes
+				ET_PageBuilder_App.saveAsShortcode();
+			},
+
+			unlockSection : function( event ) {
+				event.preventDefault();
+
+				var this_el = this,
+					$parent = this_el.$el.closest('.et_pb_section'),
+					request = et_pb_user_lock_permissions(),
+					children_views;
+
+				request.done( function ( response ) {
+					if ( true === response ) {
+						$parent.removeClass('et_pb_locked');
+
+						// Add attribute to shortcode
+						this_el.options.model.attributes.et_pb_locked = 'off';
+
+						children_views = ET_PageBuilder_Layout.getChildrenViews( this_el.model.get('cid') );
+
+						_.each( children_views, function( view, key ) {
+							view.$el.removeClass('et_pb_parent_locked');
+							view.model.set( 'et_pb_parent_locked', 'off', { silent : true } );
+						} );
+
+						// Enable history saving and set meta for history
+						ET_PageBuilder_App.allowHistorySaving( 'unlocked', 'section' );
+
+						// Rebuild shortcodes
+						ET_PageBuilder_App.saveAsShortcode();
+					} else {
+						alert( et_pb_options.locked_section_permission_alert );
+					}
+				});
 			},
 
 			addRow : function( appendAfter ) {
@@ -453,7 +672,8 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					view : this,
 					appendAfter : appendAfter,
 					et_pb_global_parent : global_parent,
-					global_parent_cid : global_parent_cid
+					global_parent_cid : global_parent_cid,
+					admin_label : et_pb_options.noun['row']
 				} ] );
 				new_row_view = ET_PageBuilder_Layout.getView( module_id );
 				new_row_view.displayColumnsOptions();
@@ -462,27 +682,43 @@ var ET_PageBuilder = ET_PageBuilder || {};
 			cloneSection : function( event ) {
 				event.preventDefault();
 
+				if ( this.isSectionLocked() ) {
+					return;
+				}
+
 				var $cloned_element = this.$el.clone(),
-					content;
+					content,
+					clone_section,
+					view_settings = {
+						model      : this.model,
+						view       : this.$el,
+						view_event : event
+					};
 
-				this.$el.after( $cloned_element );
+				clone_section = new ET_PageBuilder.RightClickOptionsView( view_settings, true );
 
-				et_reinitialize_builder_layout();
+				// Enable history saving and set meta for history
+				ET_PageBuilder_App.allowHistorySaving( 'cloned', 'section' );
+
+				clone_section.copy( event );
+
+				clone_section.pasteAfter( event );
 			},
 
 			makeRowsSortable : function() {
 				var this_el = this,
 					sortable_el = this_el.model.get( 'et_pb_fullwidth' ) !== 'on'
 						? '.et-pb-section-content'
-						: '.et_pb_fullwidth_sortable_area';
+						: '.et_pb_fullwidth_sortable_area',
+					connectWith = ':not(.et_pb_locked) > ' + sortable_el;
 
 				if ( this_el.model.get( 'et_pb_specialty' ) === 'on' ) {
 					return;
 				}
 
 				this_el.$el.find( sortable_el ).sortable( {
-					connectWith: sortable_el,
-					cancel : '.et-pb-settings, .et-pb-clone, .et-pb-remove, .et-pb-row-add, .et-pb-insert-module, .et-pb-insert-column',
+					connectWith: connectWith,
+					cancel : '.et-pb-settings, .et-pb-clone, .et-pb-remove, .et-pb-row-add, .et-pb-insert-module, .et-pb-insert-column, .et_pb_locked, .et-pb-disable-sort',
 					update : function( event, ui ) {
 						if ( ! $( ui.item ).closest( event.target ).length ) {
 
@@ -492,6 +728,10 @@ var ET_PageBuilder = ET_PageBuilder || {};
 								alert( et_pb_options.section_only_row_dragged_away );
 							}
 
+							// do not allow to drag rows into sections where sorting is disabled
+							if ( $( ui.item ).closest( '.et-pb-disable-sort').length ) {
+								$( event.target ).sortable( 'cancel' );
+							}
 							// makes sure the code runs one time, if row is dragged into another section
 							return;
 
@@ -538,7 +778,33 @@ var ET_PageBuilder = ET_PageBuilder || {};
 
 						ET_PageBuilder_Layout.setNewParentID( ui.item.find( '.et-pb-row-content' ).data( 'cid' ), this_el.model.attributes.cid );
 
+						// Enable history saving and set meta for history
+						ET_PageBuilder_App.allowHistorySaving( 'moved', 'row' );
+
 						ET_PageBuilder_Events.trigger( 'et-sortable:update' );
+
+						// Prepare collection sorting based on layout position
+						var section_cid       = parseInt( $(this).attr( 'data-cid') ),
+							sibling_row_index = 0;
+
+						// Loop row block based on DOM position to ensure its index order
+						$(this).find('.et-pb-row-content').each(function(){
+							sibling_row_index++;
+
+							var sibling_row_cid = parseInt( $(this).data('cid') ),
+								layout_index    = section_cid + sibling_row_index,
+								sibling_model   = ET_PageBuilder_Modules.findWhere({ cid : sibling_row_cid });
+
+							// Set layout_index
+							sibling_model.set({ layout_index : layout_index });
+						});
+
+						// Sort collection based on layout_index
+						ET_PageBuilder_Modules.comparator = 'layout_index';
+						ET_PageBuilder_Modules.sort();
+					},
+					start : function( event, ui ) {
+						et_pb_close_all_right_click_options();
 					}
 				} );
 			},
@@ -556,11 +822,15 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				} );
 			},
 
-			removeSection : function( event ) {
+			removeSection : function( event, remove_all ) {
 				var rows,
 					remove_last_specialty_section = false;
 
 				if ( event ) event.preventDefault();
+
+				if ( this.isSectionLocked() || ET_PageBuilder_Layout.isChildrenLocked( this.model.get( 'cid' ) ) ) {
+					return;
+				}
 
 				if ( this.model.get( 'et_pb_fullwidth' ) === 'on' ) {
 					this.removeChildViews();
@@ -600,9 +870,48 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					return;
 				}
 
+				// Enable history saving and set meta for history
+				if ( _.isUndefined( remove_all ) ) {
+					ET_PageBuilder_App.allowHistorySaving( 'removed', 'section' );
+				} else {
+					ET_PageBuilder_App.allowHistorySaving( 'cleared', 'layout' );
+				}
+
 				// trigger remove event if the row was removed manually ( using a button )
-				if ( event )
+				if ( event ) {
 					ET_PageBuilder_Events.trigger( 'et-module:removed' );
+				}
+			},
+
+			isSectionLocked : function() {
+				if ( 'on' === this.model.get( 'et_pb_locked' ) ) {
+					return true;
+				}
+
+				return false;
+			},
+
+			showRightClickOptions : function( event ) {
+				event.preventDefault();
+
+				var et_right_click_options_view,
+					view_settings = {
+						model      : this.model,
+						view       : this.$el,
+						view_event : event
+					};
+
+				et_right_click_options_view = new ET_PageBuilder.RightClickOptionsView( view_settings );
+			},
+
+			hideRightClickOptions : function( event ) {
+				event.preventDefault();
+
+				et_pb_close_all_right_click_options();
+			},
+
+			renameModule : function() {
+				this.$( '.et-pb-section-title' ).html( this.model.get( 'admin_label' ) );
 			}
 		} );
 
@@ -616,15 +925,27 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				'click .et-pb-insert-column' : 'displayColumnsOptions',
 				'click .et-pb-clone-row' : 'cloneRow',
 				'click .et-pb-row-add' : 'addNewRow',
-				'click .et-pb-remove' : 'removeRow',
-				'click .et-pb-change-structure' : 'changeStructure'
+				'click .et-pb-remove-row' : 'removeRow',
+				'click .et-pb-change-structure' : 'changeStructure',
+				'click .et-pb-expand' : 'expandRow',
+				'contextmenu .et-pb-row-add' : 'showRightClickOptions',
+				'click.et_pb_row > .et-pb-controls .et-pb-unlock' : 'unlockRow',
+				'contextmenu.et_pb_row > .et-pb-controls' : 'showRightClickOptions',
+				'contextmenu.et_pb_row > .et-pb-right-click-trigger-overlay' : 'showRightClickOptions',
+				'click.et_pb_row > .et-pb-controls' : 'hideRightClickOptions',
+				'click.et_pb_row > .et-pb-right-click-trigger-overlay' : 'hideRightClickOptions',
+				'click > .et-pb-locked-overlay' : 'showRightClickOptions',
+				'contextmenu > .et-pb-locked-overlay' : 'showRightClickOptions',
 			},
 
 			initialize : function() {
 				this.listenTo( ET_PageBuilder_Events, 'et-add:columns', this.toggleInsertColumnButton );
+				this.listenTo( this.model, 'change:admin_label', this.renameModule );
 			},
 
 			render : function() {
+				var parent_views = ET_PageBuilder_Layout.getParentViews( this.model.get( 'parent' ) );
+
 				if ( typeof this.model.get( 'view' ) !== 'undefined' && typeof this.model.get( 'view' ).model.get( 'layout_specialty' ) !== 'undefined' ) {
 					this.model.set( 'specialty_row', '1', { silent : true } );
 				}
@@ -633,6 +954,26 @@ var ET_PageBuilder = ET_PageBuilder || {};
 
 				if ( typeof this.model.get( 'et_pb_global_module' ) !== 'undefined' || ( typeof this.model.get( 'et_pb_template_type' ) !== 'undefined' && 'row' === this.model.get( 'et_pb_template_type' ) && 'global' === et_pb_options.is_global_template ) ) {
 					this.$el.addClass( 'et_pb_global' );
+				}
+
+				if ( typeof this.model.get( 'et_pb_disabled' ) !== 'undefined' && this.model.get( 'et_pb_disabled' ) === 'on' ) {
+					this.$el.addClass( 'et_pb_disabled' );
+				}
+
+				if ( typeof this.model.get( 'et_pb_locked' ) !== 'undefined' && this.model.get( 'et_pb_locked' ) === 'on' ) {
+					this.$el.addClass( 'et_pb_locked' );
+
+					_.each( parent_views, function( parent ) {
+						parent.$el.addClass( 'et_pb_children_locked' );
+					} );
+				}
+
+				if ( typeof this.model.get( 'et_pb_parent_locked' ) !== 'undefined' && this.model.get( 'et_pb_parent_locked' ) === 'on' ) {
+					this.$el.addClass( 'et_pb_parent_locked' );
+				}
+
+				if ( typeof this.model.get( 'et_pb_collapsed' ) !== 'undefined' && this.model.get( 'et_pb_collapsed' ) === 'on' ) {
+					this.$el.addClass( 'et_pb_collapsed' );
 				}
 
 				return this;
@@ -645,10 +986,16 @@ var ET_PageBuilder = ET_PageBuilder || {};
 						collection : this.collection,
 						attributes : {
 							'data-open_view' : 'module_settings'
-						}
+						},
+						triggered_by_right_click : this.triggered_by_right_click,
+						do_preview : this.do_preview
 					};
 
 				event.preventDefault();
+
+				if ( this.isRowLocked() ) {
+					return;
+				}
 
 				modal_view = new ET_PageBuilder.ModalView( view_settings );
 				$('body').append( modal_view.render().el );
@@ -666,6 +1013,10 @@ var ET_PageBuilder = ET_PageBuilder || {};
 			displayColumnsOptions : function( event ) {
 				if ( event ) {
 					event.preventDefault();
+				}
+
+				if ( this.isRowLocked() ) {
+					return;
 				}
 
 				var view,
@@ -693,6 +1044,10 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				var view,
 					this_view = this;
 
+				if ( this.isRowLocked() ) {
+					return;
+				}
+
 				this.model.set( 'change_structure', 'true', { silent : true } );
 
 				this.model.set( 'open_view', 'column_settings', { silent : true } );
@@ -708,6 +1063,65 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				} );
 
 				$('body').append( view.render().el );
+			},
+
+			expandRow : function( event ) {
+				event.preventDefault();
+
+				var $parent = this.$el.closest('.et_pb_row');
+
+				$parent.removeClass('et_pb_collapsed');
+
+				// Add attribute to shortcode
+				this.options.model.attributes.et_pb_collapsed = 'off';
+
+				// Enable history saving and set meta for history
+				ET_PageBuilder_App.allowHistorySaving( 'expanded', 'row' );
+
+				// Rebuild shortcodes
+				ET_PageBuilder_App.saveAsShortcode();
+			},
+
+			unlockRow : function( event ) {
+				event.preventDefault();
+
+				var this_el = this,
+					$parent = this_el.$el.closest('.et_pb_row'),
+					request = et_pb_user_lock_permissions(),
+					children_views,
+					parent_views;
+
+				request.done( function ( response ) {
+					if ( true === response ) {
+						$parent.removeClass('et_pb_locked');
+
+						// Add attribute to shortcode
+						this_el.options.model.attributes.et_pb_locked = 'off';
+
+						children_views = ET_PageBuilder_Layout.getChildrenViews( this_el.model.get('cid') );
+
+						_.each( children_views, function( view, key ) {
+							view.$el.removeClass('et_pb_parent_locked');
+							view.model.set( 'et_pb_parent_locked', 'off', { silent : true } );
+						} );
+
+						parent_views = ET_PageBuilder_Layout.getParentViews( this_el.model.get('parent') );
+
+						_.each( parent_views, function( view, key ) {
+							if ( ! ET_PageBuilder_Layout.isChildrenLocked( view.model.get( 'cid' ) ) ) {
+								view.$el.removeClass('et_pb_children_locked');
+							}
+						} );
+
+						// Enable history saving and set meta for history
+						ET_PageBuilder_App.allowHistorySaving( 'unlocked', 'row' );
+
+						// Rebuild shortcodes
+						ET_PageBuilder_App.saveAsShortcode();
+					} else {
+						alert( et_pb_options.locked_row_permission_alert );
+					}
+				});
 			},
 
 			toggleInsertColumnButton : function() {
@@ -733,27 +1147,49 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					parent_view_cid = $current_target.closest( '.et-pb-column-specialty' ).length ? $current_target.closest( '.et-pb-column-specialty' ).data( 'cid' ) : $parent_section.data( 'cid' ),
 					parent_view = ET_PageBuilder_Layout.getView( parent_view_cid );
 
+				event.preventDefault();
+
+				et_pb_close_all_right_click_options();
+
+				if ( 'on' === this.model.get( 'et_pb_parent_locked' ) ) {
+					return;
+				}
+
+				// Enable history saving and set meta for history
+				ET_PageBuilder_App.allowHistorySaving( 'added', 'row' );
+
 				parent_view.addRow( this.$el );
 
-				event.preventDefault();
 			},
 
 			cloneRow : function( event ) {
 				var global_module_cid = '',
-					parent_view = ET_PageBuilder_Layout.getView( this.model.get( 'parent' ) );
+					parent_view = ET_PageBuilder_Layout.getView( this.model.get( 'parent' ) ),
+					clone_row,
+					view_settings = {
+						model      : this.model,
+						view       : this.$el,
+						view_event : event
+					};
 
 				event.preventDefault();
+
+				if ( this.isRowLocked() ) {
+					return;
+				}
 
 				if ( this.$el.closest( '.et_pb_section.et_pb_global' ).length && typeof parent_view.model.get( 'et_pb_template_type' ) === 'undefined' ) {
 					global_module_cid = this.model.get( 'global_parent_cid' );
 				}
 
-				var $cloned_element = this.$el.clone(),
-					content;
+				clone_row = new ET_PageBuilder.RightClickOptionsView( view_settings, true );
 
-				this.$el.after( $cloned_element );
+				// Enable history saving and set meta for history
+				ET_PageBuilder_App.allowHistorySaving( 'cloned', 'row' );
 
-				et_reinitialize_builder_layout();
+				clone_row.copy( event );
+
+				clone_row.pasteAfter( event );
 
 				if ( '' !== global_module_cid ) {
 					et_pb_update_global_template( global_module_cid );
@@ -764,6 +1200,10 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				var columns,
 					global_module_cid = '',
 					parent_view = ET_PageBuilder_Layout.getView( this.model.get( 'parent' ) );
+
+				if ( this.isRowLocked() || ET_PageBuilder_Layout.isChildrenLocked( this.model.get( 'cid' ) ) ) {
+					return;
+				}
 
 				if ( event ) {
 					event.preventDefault();
@@ -798,13 +1238,48 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					this.$( '.et-pb-change-structure' ).hide();
 				}
 
+				// Enable history saving and set meta for history
+				ET_PageBuilder_App.allowHistorySaving( 'removed', 'row' );
+
 				// trigger remove event if the row was removed manually ( using a button )
-				if ( event )
+				if ( event ) {
 					ET_PageBuilder_Events.trigger( 'et-module:removed' );
+				}
 
 				if ( '' !== global_module_cid ) {
 					et_pb_update_global_template( global_module_cid );
 				}
+			},
+
+			isRowLocked : function() {
+				if ( 'on' === this.model.get( 'et_pb_locked' ) || 'on' === this.model.get( 'et_pb_parent_locked' ) ) {
+					return true;
+				}
+
+				return false;
+			},
+
+			showRightClickOptions : function( event ) {
+				event.preventDefault();
+
+				var et_right_click_options_view,
+					view_settings = {
+						model      : this.model,
+						view       : this.$el,
+						view_event : event
+					};
+
+				et_right_click_options_view = new ET_PageBuilder.RightClickOptionsView( view_settings );
+			},
+
+			hideRightClickOptions : function( event ) {
+				event.preventDefault();
+
+				et_pb_close_all_right_click_options();
+			},
+
+			renameModule : function() {
+				this.$( '.et-pb-row-title' ).html( this.model.get( 'admin_label' ) );
 			}
 		} );
 
@@ -816,6 +1291,10 @@ var ET_PageBuilder = ET_PageBuilder || {};
 
 			events : {
 				'click .et-pb-modal-save' : 'saveSettings',
+				'click .et-pb-modal-preview-template' : 'preview',
+				'click .et-pb-preview-mobile' : 'resizePreviewScreen',
+				'click .et-pb-preview-tablet' : 'resizePreviewScreen',
+				'click .et-pb-preview-desktop' : 'resizePreviewScreen',
 				'click .et-pb-modal-close' : 'closeModal',
 				'click .et-pb-modal-save-template' : 'saveTemplate',
 				'change #et_pb_select_category' : 'applyFilter'
@@ -980,15 +1459,22 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				}
 			},
 
-			saveSettings : function( event ) {
+			saveSettings : function( event, close_modal ) {
 				var that = this,
 					global_module_cid = '',
 					this_parent_view = typeof that.model.get( 'parent' ) !== 'undefined' ? ET_PageBuilder_Layout.getView( that.model.get( 'parent' ) ) : '',
 					global_holder_view = '' !== this_parent_view && ( typeof that.model.get( 'et_pb_global_module' ) === 'undefined' || '' === that.model.get( 'et_pb_global_module' ) ) ? this_parent_view : ET_PageBuilder_Layout.getView( that.model.get( 'cid' ) ),
-					update_template_only = false;
+					update_template_only = false,
+					close_modal = _.isUndefined( close_modal ) ? true : close_modal;
 
 
 				event.preventDefault();
+
+				// Disabling state and mark it. It takes a while for generating shortcode,
+				// so ensure that user doesn't update the page before shortcode generation has completed
+				$('#publish').addClass( 'disabled' );
+
+				ET_PageBuilder_App.disable_publish = true;
 
 				if ( ( typeof global_holder_view.model.get( 'global_parent_cid' ) !== 'undefined' && '' !== global_holder_view.model.get( 'global_parent_cid' ) ) || ( typeof global_holder_view.model.get( 'et_pb_global_module' ) !== 'undefined' && '' !== global_holder_view.model.get( 'et_pb_global_module' ) ) ) {
 					global_module_cid = typeof global_holder_view.model.get( 'global_parent_cid' ) !== 'undefined' ? global_holder_view.model.get( 'global_parent_cid' ) : global_holder_view.model.get( 'cid' );
@@ -1042,6 +1528,14 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					that.performSaving();
 				}
 
+				// Enable history saving and set meta for history
+				ET_PageBuilder_App.allowHistorySaving( 'edited', that.model.get( 'type' ), that.model.get( 'admin_label' ) );
+
+				// In some contexts, closing modal view isn't needed & only settings saving needed
+				if ( ! close_modal ) {
+					return;
+				}
+
 				et_pb_tinymce_remove_control( 'et_pb_content_new' );
 
 				et_pb_hide_active_color_picker( that );
@@ -1051,6 +1545,118 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				ET_PageBuilder_Events.trigger( 'et-modal-view-removed' );
 
 				that.removeOverlay();
+			},
+
+			preview : function( event ) {
+				var cid          = this.model.get( 'cid' ) ,
+					shortcode,
+					$button      = $( event.target ).is( 'a' ) ? $( event.target ) : $( event.target ).parent( 'a' ),
+					$container   = $( event.target ).parents( '.et-pb-modal-container' ),
+					request_data,
+					section_view,
+					msie         = document.documentMode;
+
+				event.preventDefault();
+
+				// Save modified settings, if it is necesarry. Direct preview from right click doesn't need to be saved
+				if ( _.isUndefined( this.options.triggered_by_right_click ) ) {
+					this.saveSettings( event, false );
+				} else {
+					// Triggered by right click is one time thing. Remove it as soon as it has been used
+					delete this.options.triggered_by_right_click;
+				}
+
+				if ( ! _.isUndefined( this.options.do_preview ) ) {
+					// Do preview is one time thing. Remove it as soon as it has been used
+					delete this.options.do_preview;
+				}
+
+				if ( et_pb_options.is_divi_library === "1" && $.inArray( et_pb_options.layout_type, [ "row", "module" ] ) > -1 ) {
+					// Divi Library's layout editor auto generates section and row in module and row layout type
+					// The auto generates item cause cause an issue during shortcode generation
+					// Removing its cid will force ET_PageBuilder_App.generateCompleteShortcode to generate the whole page's layout shortcode which solves the preview issue
+					cid = undefined;
+				} else if ( this.model.get( 'type' ) !== 'section' ) {
+					// Module's layout depends on the column it belongs. Hence, always preview the item in context of section
+					section_view = ET_PageBuilder_Layout.getSectionView( this.model.get( 'parent' ) );
+
+					if ( ! _.isUndefined( section_view ) ) {
+						cid = section_view.model.attributes.cid;
+					}
+				}
+
+				// Get shortcode based on section's cid
+				shortcode = ET_PageBuilder_App.generateCompleteShortcode( cid );
+
+				request_data = {
+					et_pb_preview_nonce : et_pb_options.et_pb_preview_nonce,
+					shortcode           : shortcode,
+					post_title          : $('#title').val()
+				};
+
+				// Toggle button state
+				$button.toggleClass( 'active' );
+
+				// Toggle container state
+				$container.toggleClass( 'et-pb-item-previewing' );
+
+				if ( $button.hasClass( 'active' ) ) {
+					// Create the iFrame on the fly. This will speed up modalView init
+					var $iframe = $('<iframe />', {
+								 	id : 'et-pb-preview-screen',
+								 	src : et_pb_options.preview_url + '&et_pb_preview_nonce=' + et_pb_options.et_pb_preview_nonce
+								 } ),
+						has_render_page = false;
+
+					// Add the iframe into preview tab
+					 $('.et-pb-preview-tab' ).html( $iframe );
+
+					 // Pass the item's setup to the screen
+					 $('#et-pb-preview-screen').load( function(){
+					 	if ( has_render_page ) {
+					 		return;
+					 	}
+
+					 	// Get iFrame
+						preview = document.getElementById( 'et-pb-preview-screen' );
+
+						// IE9 below fix. They have postMessage, but it has to be in string
+						if ( ! _.isUndefined( msie ) && msie < 10 ) {
+							request_data = JSON.stringify( request_data );
+						}
+
+						// Pass shortcode structure to iFrame to be displayed
+						preview.contentWindow.postMessage( request_data, et_pb_options.preview_url );
+
+						has_render_page = true;
+					 });
+				} else {
+					$( '.et-pb-preview-tab' ).empty();
+
+					// Reset active state
+					$('.et-pb-preview-screensize-switcher a').removeClass( 'active' );
+
+					// Set desktop as active
+					$('.et-pb-preview-desktop').addClass( 'active' );
+				}
+			},
+
+			resizePreviewScreen : function( event ) {
+				event.preventDefault();
+
+				var $link = $( event.target ),
+					width = _.isUndefined( $link.data( 'width' ) ) ? '100%' : $link.data( 'width' );
+
+				// Reset active state
+				$('.et-pb-preview-screensize-switcher a').removeClass( 'active' );
+
+				// Set current as active
+				$link.addClass( 'active' );
+
+				// Set iFrame width
+				$('#et-pb-preview-screen').animate({
+					'width' : width
+				});
 			},
 
 			performSaving : function( option_tabs_selector ) {
@@ -1090,8 +1696,8 @@ var ET_PageBuilder = ET_PageBuilder || {};
 						name = $this_el.attr('name');
 					}
 
-					if ( typeof name === 'undefined' ) {
-						// settings should have an ID in order to be saved
+					if ( typeof name === 'undefined' || ( -1 !== name.indexOf( 'qt_' ) && 'button' === $this_el.attr( 'type' ) ) ) {
+						// settings should have an ID and shouldn't be a Quick Tag button from the tinyMCE in order to be saved
 						return true;
 					}
 
@@ -1106,6 +1712,11 @@ var ET_PageBuilder = ET_PageBuilder || {};
 						return true;
 					}
 
+					// Validate colorpicker - if invalid color given, return to default color
+					if ( $this_el.hasClass( 'et-pb-color-picker-hex' ) && new Color( $this_el.val() ).error ) {
+						$this_el.val( $this_el.data( 'selected-value') );
+					}
+
 					// Process all checkboxex for the current setting at once
 					if ( $this_el.is( ':checkbox' ) && typeof attributes[name] === 'undefined' ) {
 						$this_el.closest( '.et-pb-option-container' ).find( '[name="' + name + '"]:checked' ).each( function() {
@@ -1117,6 +1728,9 @@ var ET_PageBuilder = ET_PageBuilder || {};
 						// Process main content
 
 						setting_value = $this_el.html();
+
+						// Replace temporary ^^ signs with double quotes
+						setting_value = setting_value.replace( /\^\^/g, '%22' );
 					} else if ( $this_el.closest( '.et-pb-custom-css-option' ).length ) {
 						// Custom CSS settings content should be modified before it is added to the shortcode attribute
 
@@ -1166,6 +1780,21 @@ var ET_PageBuilder = ET_PageBuilder || {};
 
 					$( 'body' ).removeClass( 'et_pb_stop_scroll' );
 				}
+
+				// Check for existence of disable_publish element, don't do auto enable publish
+				// if not necesarry. Example: opening Modal View, then close it without further action
+				if ( ! _.isUndefined( ET_PageBuilder_App.disable_publish ) ) {
+					var auto_enable_publishing = setTimeout( function() {
+
+						// Check for disable_publish state, auto enable after three seconds
+						// This means no et_pb_set_content triggered
+						if ( ! _.isUndefined( ET_PageBuilder_App.disable_publish ) ) {
+							$('#publish').removeClass( 'disabled' );
+
+							delete ET_PageBuilder_App.disable_publish;
+						}
+					}, 3000 );
+				}
 			},
 
 			applyFilter : function() {
@@ -1182,7 +1811,8 @@ var ET_PageBuilder = ET_PageBuilder || {};
 			template : _.template( $('#et-builder-column-template').html() ),
 
 			events : {
-				'click .et-pb-insert-module' : 'addModule'
+				'click .et-pb-insert-module' : 'addModule',
+				'contextmenu > .et-pb-insert-module' : 'showRightClickOptions'
 			},
 
 			initialize : function() {
@@ -1192,7 +1822,7 @@ var ET_PageBuilder = ET_PageBuilder || {};
 			render : function() {
 				var this_el = this,
 					is_fullwidth_section = this.model.get( 'module_type' ) === 'section' && this.model.get( 'et_pb_fullwidth' ) === 'on',
-					connect_with = ( ! is_fullwidth_section ? ".et-pb-column:not(.et-pb-column-specialty)" : ".et_pb_fullwidth_sortable_area" );
+					connect_with = ( ! is_fullwidth_section ? ".et-pb-column:not(.et-pb-column-specialty, .et_pb_parent_locked)" : ".et_pb_fullwidth_sortable_area" );
 
 				this.$el.html( this.template( this.model.toJSON() ) );
 
@@ -1200,15 +1830,20 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					this.$el.addClass( 'et_pb_fullwidth_sortable_area' );
 
 				if ( this.model.get( 'layout_specialty' ) === '1' ) {
-					connect_with = '.et-pb-column-specialty';
+					connect_with = '.et-pb-column-specialty:not(.et_pb_parent_locked)';
 				}
 
 				if ( this.model.get( 'created' ) === 'manually' && ! _.isUndefined( this.model.get( 'et_pb_specialty_columns' ) ) ) {
 					this.$el.addClass( 'et-pb-column-specialty' );
 				}
 
+				if ( this.isColumnParentLocked( this.model.get( 'parent' ) ) ) {
+					this.$el.addClass( 'et_pb_parent_locked' );
+					this.model.set( 'et_pb_parent_locked', 'on', { silent : true } );
+				}
+
 				this.$el.sortable( {
-					cancel : '.et-pb-settings, .et-pb-clone, .et-pb-remove, .et-pb-insert-module, .et-pb-insert-column',
+					cancel : '.et-pb-settings, .et-pb-clone, .et-pb-remove, .et-pb-insert-module, .et-pb-insert-column, .et_pb_locked, .et-pb-disable-sort',
 					connectWith: connect_with,
 					items : ( this.model.get( 'layout_specialty' ) !== '1' ? '.et_pb_module_block' : '.et_pb_row' ),
 					receive: function(event, ui) {
@@ -1231,6 +1866,11 @@ var ET_PageBuilder = ET_PageBuilder || {};
 									cancel_action = true;
 								}
 							}
+						}
+
+						// do not allow to drag modules into sections and rows where sorting is disabled
+						if ( $( ui.item ).closest( '.et-pb-disable-sort').length ) {
+							cancel_action = true;
 						}
 
 						if ( ( $( ui.item ).closest( '.et_pb_section.et_pb_global' ).length || $( ui.item ).closest( '.et_pb_row.et_pb_global' ).length ) && $( ui.item ).hasClass( 'et_pb_global' ) ) {
@@ -1290,14 +1930,22 @@ var ET_PageBuilder = ET_PageBuilder || {};
 							module_cid = $module_block.data( 'cid' );
 						}
 
-						// if the column doesn't have modules, add the dragged module before 'Insert Module' button
+						// if the column doesn't have modules, add the dragged module before 'Insert Module' button or append to column
 						if ( ! $(event.target).is('.et-pb-column-specialty') && $( ui.item ).closest( event.target ).length && $( event.target ).find( '.et_pb_module_block' ).length === 1 ) {
-							$module_block.insertBefore( $( event.target ).find( '.et-pb-insert-module' ) );
+							// if .et-pb-insert-module button exists, then add the module before that button. Otherwise append to column
+							if ( $( event.target ).find( '.et-pb-insert-module' ).length ) {
+								$module_block.insertBefore( $( event.target ).find( '.et-pb-insert-module' ) );
+							} else {
+								$( event.target ).append( $module_block );
+							}
 						}
 
 						model = this_el.collection.find( function( model ) {
 							return model.get('cid') == module_cid;
 						} );
+
+						// Enable history saving and set meta for history
+						ET_PageBuilder_App.allowHistorySaving( 'moved', 'module', model.get( 'admin_label' ) );
 
 						if ( model.get( 'parent' ) === this_el.model.attributes.cid && $( ui.item ).closest( event.target ).length ) {
 							// order of items have been changed within the same row
@@ -1306,6 +1954,29 @@ var ET_PageBuilder = ET_PageBuilder || {};
 						} else {
 							model.set( 'parent', this_el.model.attributes.cid );
 						}
+
+						// Prepare collection sorting based on layout position
+						var column_cid             = parseInt( $(this).attr( 'data-cid') ),
+							sibling_module_index   = 0;
+
+						// Loop module block based on DOM position to ensure its index order
+						$(this).find('.et_pb_module_block').each(function(){
+							sibling_module_index++;
+
+							var sibling_module_cid = parseInt( $(this).data('cid') ),
+								layout_index       = column_cid + sibling_module_index,
+								sibling_model      = ET_PageBuilder_Modules.findWhere({ cid : sibling_module_cid });
+
+							// Set layout_index
+							sibling_model.set({ layout_index : layout_index });
+						});
+
+						// Sort collection based on layout_index
+						ET_PageBuilder_Modules.comparator = 'layout_index';
+						ET_PageBuilder_Modules.sort();
+					},
+					start : function( event, ui ) {
+						et_pb_close_all_right_click_options();
 					}
 				} );
 
@@ -1319,9 +1990,14 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				event.preventDefault();
 				event.stopPropagation();
 
+				if ( this.isColumnLocked() )
+					return;
+
 				if ( ! $add_module_button.parent().is( event.delegateTarget ) ) {
 					return;
 				}
+
+				et_pb_close_all_right_click_options();
 
 				var view;
 
@@ -1344,6 +2020,10 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					global_parent_cid = '' !== global_parent ? this.model.get( 'global_parent_cid' ) : '',
 					new_row_view;
 
+				if ( this.isColumnLocked() ) {
+					return;
+				}
+
 				this.collection.add( [ {
 					type : 'row',
 					module_type : 'row',
@@ -1352,7 +2032,8 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					view : this,
 					appendAfter : appendAfter,
 					et_pb_global_parent : global_parent,
-					global_parent_cid : global_parent_cid
+					global_parent_cid : global_parent_cid,
+					admin_label : et_pb_options.noun['row']
 				} ] );
 
 				new_row_view = ET_PageBuilder_Layout.getView( module_id );
@@ -1377,6 +2058,43 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				this.model.destroy();
 
 				this.remove();
+			},
+
+			isColumnLocked : function() {
+				if ( 'on' === this.model.get( 'et_pb_locked' ) || 'on' === this.model.get( 'et_pb_parent_locked' ) ) {
+					return true;
+				}
+
+				return false;
+			},
+
+			isColumnParentLocked : function( cid ) {
+				var parent_view = ET_PageBuilder_Layout.getView( cid );
+
+				if ( ! _.isUndefined( parent_view ) && ( 'on' === parent_view.model.get('et_pb_locked' ) || 'on' === parent_view.model.get('et_pb_parent_locked' ) ) ) {
+					return true;
+				}
+
+				return false;
+			},
+
+			showRightClickOptions : function( event ) {
+				event.preventDefault();
+
+				var et_right_click_options_view,
+					view_settings = {
+						model      : this.model,
+						view       : this.$el,
+						view_event : event
+					};
+
+				// Fullwidth and regular section uses different type for column ( section vs column )
+				// Add marker so it can be identified
+				view_settings.model.attributes.is_insert_module = true;
+
+				et_right_click_options_view = new ET_PageBuilder.RightClickOptionsView( view_settings );
+
+				return;
 			}
 		} );
 
@@ -1513,6 +2231,9 @@ var ET_PageBuilder = ET_PageBuilder || {};
 						} );
 					}
 
+					// Enable history saving and set meta for history
+					ET_PageBuilder_App.allowHistorySaving( 'edited', 'column' );
+
 					et_reinitialize_builder_layout();
 				}
 
@@ -1527,6 +2248,9 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				if ( typeof global_module_cid !== 'undefined' && '' !== global_module_cid ) {
 					et_pb_update_global_template( global_module_cid );
 				}
+
+				// Enable history saving and set meta for history
+				ET_PageBuilder_App.allowHistorySaving( 'added', 'column' );
 
 				ET_PageBuilder_Events.trigger( 'et-add:columns' );
 			},
@@ -1670,7 +2394,11 @@ var ET_PageBuilder = ET_PageBuilder || {};
 
 						ET_PageBuilder_App.removeAllSections();
 
-						ET_PageBuilder_App.createNewLayout( content );
+						if ( content !== '' ) {
+							ET_PageBuilder_App.allowHistorySaving( 'loaded', 'layout' );
+						}
+
+						ET_PageBuilder_App.createNewLayout( content, 'load_layout' );
 					}
 				} );
 			},
@@ -1725,6 +2453,9 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				if ( typeof this.model.get( 'et_pb_global_parent' ) !== 'undefined' && typeof this.model.get( 'et_pb_global_parent' ) !== '' ) {
 					global_module_cid = this.model.get( 'global_parent_cid' );
 				}
+
+				// Enable history saving and set meta for history
+				ET_PageBuilder_App.allowHistorySaving( 'added', 'module', label );
 
 				this.collection.add( [ {
 					type : 'module',
@@ -1790,6 +2521,14 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					$et_affect_fields,
 					$et_form_validation;
 
+				// Replace encoded double quotes with normal quotes,
+				// escaping is applied in modules templates
+				_.each( this.model.attributes, function( value, key, list ) {
+					if ( typeof value === 'string' && key !== 'et_pb_content_new' && key !== 'et_pb_font_icon' ) {
+						return list[ key ] = value.replace( /%22/g, '"' );
+					}
+				} );
+
 				this.$el.html( this.template( this.model.attributes ) );
 
 				$content_textarea = this.$el.find( '#et_pb_content_new' );
@@ -1845,6 +2584,9 @@ var ET_PageBuilder = ET_PageBuilder || {};
 							} else {
 								$reset_button.hide();
 							}
+						},
+						clear: function() {
+							$(this).val( et_pb_options.invalid_color );
 						}
 					});
 				}
@@ -2071,10 +2813,14 @@ var ET_PageBuilder = ET_PageBuilder || {};
 						geocoder.geocode( { 'address': address}, function(results, status) {
 							if (status == google.maps.GeocoderStatus.OK) {
 								var result = results[0];
-								$address.val( result.formatted_address);
-								$address_lat.val(result.geometry.location.lat());
-								$address_lng.val(result.geometry.location.lng());
-								update_center( result.geometry.location );
+								if ( ! isNaN( result.geometry.location.lat() ) && ! isNaN( result.geometry.location.lng() ) ) {
+									$address.val( result.formatted_address);
+									$address_lat.val(result.geometry.location.lat());
+									$address_lng.val(result.geometry.location.lng());
+									update_center( result.geometry.location );
+								} else {
+									alert( et_pb_options.map_pin_address_invalid );
+								}
 							} else {
 								alert( et_pb_options.geocode_error + ': ' + status);
 							}
@@ -2116,6 +2862,11 @@ var ET_PageBuilder = ET_PageBuilder || {};
 							if ( _.size( map_pins ) ) {
 								_.each( map_pins, function( map_pin, key ) {
 
+									// Skip current map pin if it has no lat or lng, as it will trigger maximum call stack exceeded
+									if ( _.isUndefined( map_pin.model.get('et_pb_pin_address_lat') ) || _.isUndefined( map_pin.model.get('et_pb_pin_address_lng') ) ) {
+										return;
+									}
+
 									var position = new google.maps.LatLng( parseFloat( map_pin.model.get('et_pb_pin_address_lat') ) , parseFloat( map_pin.model.get('et_pb_pin_address_lng') ) );
 
 									markers[key] = new google.maps.Marker({
@@ -2129,7 +2880,7 @@ var ET_PageBuilder = ET_PageBuilder || {};
 									bounds.extend( position );
 								});
 
-								if ( typeof $map.map.getBounds() !== 'undefined') {
+								if ( ! _.isUndefined( $map.map.getBounds() ) && ! _.isNull( $map.map.getBounds() ) ) {
 									bounds.extend( $map.map.getBounds().getNorthEast() );
 									bounds.extend( $map.map.getBounds().getSouthWest() );
 								}
@@ -2236,6 +2987,9 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					content += ET_PageBuilder_App.generateModuleShortcode( $this_el, false );
 				} );
 
+				// Replace double quotes with ^^ in temporary shortcodes
+				content = content.replace( /%22/g, '^^' );
+
 				this.$content_textarea.html( content );
 
 				if ( ! this.$sortable_options.find( 'li' ).length )
@@ -2278,12 +3032,18 @@ var ET_PageBuilder = ET_PageBuilder || {};
 
 					if ( _.isObject( shortcode_attributes['named'] ) ) {
 						for ( var key in shortcode_attributes['named'] ) {
-							var prefixed_key = key !== 'admin_label' ? 'et_pb_' + key : key;
+							var prefixed_key = key !== 'admin_label' ? 'et_pb_' + key : key,
+								setting_value;
 
 							if ( shortcode_name === 'column' && prefixed_key === 'et_pb_type' )
 								prefixed_key = 'layout';
 
-							prefixed_attributes[prefixed_key] = shortcode_attributes['named'][key];
+							setting_value = shortcode_attributes['named'][key];
+
+							// Replace temporary ^^ signs with double quotes
+							setting_value = setting_value.replace( /\^\^/g, '"' );
+
+							prefixed_attributes[prefixed_key] = setting_value;
 						}
 
 						module_settings['et_pb_content_new'] = shortcode_content;
@@ -2387,6 +3147,11 @@ var ET_PageBuilder = ET_PageBuilder || {};
 
 			render : function() {
 				var view;
+
+				// If admin label is empty, delete it so builder will use heading value instead
+				if ( ! _.isUndefined( this.model.attributes.et_pb_admin_title ) && this.model.attributes.et_pb_admin_title === '' ) {
+					delete this.model.attributes.et_pb_admin_title;
+				}
 
 				this.$el.html( this.template( this.model.attributes ) );
 
@@ -2540,10 +3305,14 @@ var ET_PageBuilder = ET_PageBuilder || {};
 						geocoder.geocode( { 'address': address}, function(results, status) {
 							if (status == google.maps.GeocoderStatus.OK) {
 								var result = results[0];
-								$address.val( result.formatted_address);
-								$address_lat.val(result.geometry.location.lat());
-								$address_lng.val(result.geometry.location.lng());
-								update_map( result.geometry.location );
+								if ( ! isNaN( result.geometry.location.lat() ) && ! isNaN( result.geometry.location.lng() ) ) {
+									$address.val( result.formatted_address);
+									$address_lat.val(result.geometry.location.lat());
+									$address_lng.val(result.geometry.location.lng());
+									update_map( result.geometry.location );
+								} else {
+									alert( et_pb_options.map_pin_address_invalid );
+								}
 							} else {
 								alert( et_pb_options.geocode_error + ': ' + status);
 							}
@@ -2737,7 +3506,8 @@ var ET_PageBuilder = ET_PageBuilder || {};
 						/*checked_values = [],
 						name = $this_el.is('#et_pb_content_main') ? 'et_pb_content_new' : $this_el.attr('id');*/
 
-					if ( typeof id === 'undefined' ) {
+					if ( typeof id === 'undefined' || ( -1 !== id.indexOf( 'qt_' ) && 'button' === $this_el.attr( 'type' ) ) ) {
+						// settings should have an ID and shouldn't be a Quick Tag button from the tinyMCE in order to be saved
 						return true;
 					}
 
@@ -2749,6 +3519,16 @@ var ET_PageBuilder = ET_PageBuilder || {};
 
 					attributes[ id ] = setting_value;
 				} );
+
+				// Check if this is map module's pin view
+				if ( ! _.isUndefined( attributes.et_pb_pin_address ) && ! _.isUndefined( attributes.et_pb_pin_address_lat ) && ! _.isUndefined( attributes.et_pb_pin_address_lng ) ) {
+					// None of et_pb_pin_address, et_pb_pin_address_lat, and et_pb_pin_address_lng fields can be empty
+					// If one of them is empty, it'll trigger Uncaught RangeError: Maximum call stack size exceeded message
+					if ( attributes.et_pb_pin_address === '' || attributes.et_pb_pin_address_lat === '' || attributes.et_pb_pin_address_lng === '' ) {
+						alert( et_pb_options.map_pin_address_error );
+						return;
+					}
+				}
 
 				this.model.set( attributes, { silent : true } );
 
@@ -2813,7 +3593,15 @@ var ET_PageBuilder = ET_PageBuilder || {};
 
 		ET_PageBuilder.BlockModuleView = window.wp.Backbone.View.extend( {
 
-			className : 'et_pb_module_block',
+			className : function() {
+				var className = 'et_pb_module_block';
+
+				if ( typeof this.model.attributes.className !== 'undefined' ) {
+					className += this.model.attributes.className;
+				}
+
+				return className;
+			},
 
 			template : _.template( $( '#et-builder-block-module-template' ).html() ),
 
@@ -2825,14 +3613,29 @@ var ET_PageBuilder = ET_PageBuilder || {};
 			events : {
 				'click .et-pb-settings' : 'showSettings',
 				'click .et-pb-clone-module' : 'cloneModule',
-				'click .et-pb-remove' : 'removeModule'
+				'click .et-pb-remove-module' : 'removeModule',
+				'click .et-pb-unlock' : 'unlockModule',
+				'contextmenu' : 'showRightClickOptions',
+				'click' : 'hideRightClickOptions',
 			},
 
 			render : function() {
+				var parent_views = ET_PageBuilder_Layout.getParentViews( this.model.get( 'parent' ) );
+
 				this.$el.html( this.template( this.model.attributes ) );
 
 				if ( typeof this.model.attributes.et_pb_global_module !== 'undefined' || ( typeof this.model.attributes.et_pb_template_type !== 'undefined' && 'module' === this.model.attributes.et_pb_template_type && 'global' === et_pb_options.is_global_template ) ) {
 					this.$el.addClass( 'et_pb_global' );
+				}
+
+				if ( typeof this.model.get( 'et_pb_locked' ) !== 'undefined' && this.model.get( 'et_pb_locked' ) === 'on' ) {
+					_.each( parent_views, function( parent ) {
+						parent.$el.addClass( 'et_pb_children_locked' );
+					} );
+				}
+
+				if ( typeof this.model.get( 'et_pb_parent_locked' ) !== 'undefined' && this.model.get( 'et_pb_parent_locked' ) === 'on' ) {
+					this.$el.addClass( 'et_pb_parent_locked' );
 				}
 
 				if ( ET_PageBuilder_Layout.isModuleFullwidth( this.model.get( 'module_type' ) ) )
@@ -2842,20 +3645,32 @@ var ET_PageBuilder = ET_PageBuilder || {};
 			},
 
 			cloneModule : function( event ) {
-				var global_module_cid = '';
+				var global_module_cid = '',
+					clone_module,
+					view_settings = {
+						model      : this.model,
+						view       : this.$el,
+						view_event : event
+					};
 
 				event.preventDefault();
 
-				if ( ( this.$el.closest( '.et_pb_section.et_pb_global' ).length || this.$el.closest( '.et_pb_row.et_pb_global' ).length ) && '' === et_pb_options.template_post_id ) {
-					global_module_cid = this.model.get( 'global_parent_cid' );
+				if ( this.isModuleLocked() ) {
+					return;
 				}
 
-				var module_attributes = _.clone( this.model.attributes );
+				if ( typeof this.model.get( 'et_pb_global_module' ) !== 'undefined' ) {
+					global_module_cid = this.model.get( 'cid' );
+				}
 
-				module_attributes.created = 'manually';
-				module_attributes.cid = ET_PageBuilder_Layout.generateNewId();
+				clone_module = new ET_PageBuilder.RightClickOptionsView( view_settings, true );
 
-				ET_PageBuilder_App.collection.add( module_attributes );
+				// Enable history saving and set meta for history
+				ET_PageBuilder_App.allowHistorySaving( 'cloned', 'module', this.model.get( 'admin_label' ) );
+
+				clone_module.copy( event );
+
+				clone_module.pasteAfter( event );
 
 				if ( '' !== global_module_cid ) {
 					et_pb_update_global_template( global_module_cid );
@@ -2867,6 +3682,10 @@ var ET_PageBuilder = ET_PageBuilder || {};
 			},
 
 			removeGlobal : function() {
+				if ( this.isModuleLocked() ) {
+					return;
+				}
+
 				if ( typeof this.model.get( 'et_pb_global_module' ) === 'undefined' ) {
 					this.$el.removeClass( 'et_pb_global' );
 				}
@@ -2879,13 +3698,23 @@ var ET_PageBuilder = ET_PageBuilder || {};
 						collection : this.collection,
 						attributes : {
 							'data-open_view' : 'module_settings'
-						}
+						},
+						triggered_by_right_click : this.triggered_by_right_click,
+						do_preview : this.do_preview
 					};
 
 				event.preventDefault();
 
+				if ( this.isModuleLocked() ) {
+					return;
+				}
+
 				if ( typeof this.model.get( 'et_pb_global_module' ) !== 'undefined' && '' !== this.model.get( 'et_pb_global_module' ) ) {
 					et_builder_get_global_module( view_settings );
+
+					// Set marker variable to undefined after being used to prevent unwanted preview
+					this.triggered_by_right_click = undefined;
+					this.do_preview = undefined;
 				} else {
 					modal_view = new ET_PageBuilder.ModalView( view_settings );
 					$('body').append( modal_view.render().el );
@@ -2907,6 +3736,10 @@ var ET_PageBuilder = ET_PageBuilder || {};
 			removeModule : function( event ) {
 				var global_module_cid = '';
 
+				if ( this.isModuleLocked() ) {
+					return;
+				}
+
 				if ( event ) {
 					event.preventDefault();
 
@@ -2917,19 +3750,973 @@ var ET_PageBuilder = ET_PageBuilder || {};
 
 				this.model.destroy();
 
+				// Enable history saving and set meta for history
+				ET_PageBuilder_App.allowHistorySaving( 'removed', 'module', this.model.get( 'admin_label' ) );
+
 				ET_PageBuilder_Layout.removeView( this.model.get('cid') );
 
 				this.remove();
 
 				// if single module is removed from the builder
-				if ( event )
+				if ( event ) {
 					ET_PageBuilder_Events.trigger( 'et-module:removed' );
+				}
 
 				if ( '' !== global_module_cid ) {
 					et_pb_update_global_template( global_module_cid );
 				}
-			}
+			},
 
+			unlockModule : function( event ) {
+				event.preventDefault();
+
+				var this_el = this,
+					$parent = this_el.$el.closest('.et_pb_module_block'),
+					request = et_pb_user_lock_permissions(),
+					parent_views;
+
+				request.done( function ( response ) {
+					if ( true === response ) {
+						$parent.removeClass('et_pb_locked');
+
+						// Add attribute to shortcode
+						this_el.options.model.attributes.et_pb_locked = 'off';
+
+						parent_views = ET_PageBuilder_Layout.getParentViews( this_el.model.get('parent') );
+
+						_.each( parent_views, function( view, key ) {
+							if ( ! ET_PageBuilder_Layout.isChildrenLocked( view.model.get( 'cid' ) ) ) {
+								view.$el.removeClass('et_pb_children_locked');
+							}
+						} );
+
+						// Enable history saving and set meta for history
+						ET_PageBuilder_App.allowHistorySaving( 'unlocked', 'module', this_el.options.model.get( 'admin_label' ) );
+
+						// Rebuild shortcodes
+						ET_PageBuilder_App.saveAsShortcode();
+					} else {
+						alert( et_pb_options.locked_module_permission_alert );
+					}
+				});
+			},
+
+			isModuleLocked : function() {
+				if ( 'on' === this.model.get( 'et_pb_locked' ) || 'on' === this.model.get( 'et_pb_parent_locked' ) ) {
+					return true;
+				}
+
+				return false;
+			},
+
+			showRightClickOptions : function( event ) {
+				event.preventDefault();
+
+				var et_right_click_options_view,
+					view_settings = {
+						model      : this.model,
+						view       : this.$el,
+						view_event : event
+					};
+
+				et_right_click_options_view = new ET_PageBuilder.RightClickOptionsView( view_settings );
+			},
+
+			hideRightClickOptions : function( event ) {
+				event.preventDefault();
+
+				et_pb_close_all_right_click_options();
+			}
+		} );
+
+		ET_PageBuilder.RightClickOptionsView = window.wp.Backbone.View.extend( {
+
+			tagName : 'div',
+
+			id : 'et-builder-right-click-controls',
+
+			template : _.template( $('#et-builder-right-click-controls-template').html() ),
+
+			events : {
+				'click .et-pb-right-click-rename' : 'rename',
+				'click .et-pb-right-click-save-to-library' : 'saveToLibrary',
+				'click .et-pb-right-click-undo' : 'undo',
+				'click .et-pb-right-click-redo' : 'redo',
+				'click .et-pb-right-click-disable' : 'disable',
+				'click .et-pb-right-click-lock' : 'lock',
+				'click .et-pb-right-click-collapse' : 'collapse',
+				'click .et-pb-right-click-copy' : 'copy',
+				'click .et-pb-right-click-paste-after' : 'pasteAfter',
+				'click .et-pb-right-click-paste-app' : 'pasteApp',
+				'click .et-pb-right-click-paste-column' : 'pasteColumn',
+				'click .et-pb-right-click-preview' : 'preview'
+			},
+
+			initialize : function( attributes, skip_render ) {
+				var skip_render                       = _.isUndefined( skip_render ) ? false : skip_render,
+					allowed_library_clipboard_content;
+
+				this.type                             = this.options.model.attributes.type;
+				this.et_pb_has_storage_support        = et_pb_has_storage_support();
+				this.has_compatible_clipboard_content = ET_PB_Clipboard.get( this.getClipboardType() );
+				this.history_noun                     = this.type === 'row_inner' ? 'row' : this.type;
+
+				// Divi Library adjustment
+				if ( et_pb_options.is_divi_library === '1' && this.has_compatible_clipboard_content !== false ) {
+					// There are four recognized layout type: layout, section, row, module
+					switch( et_pb_options.layout_type ) {
+						case 'module' :
+							allowed_library_clipboard_content = [];
+							break;
+						case 'row' :
+							allowed_library_clipboard_content = ['module'];
+							break;
+						case 'section' :
+							allowed_library_clipboard_content = ['module', 'row'];
+							break;
+						default :
+							allowed_library_clipboard_content = ['module', 'row', 'section'];
+							break;
+					}
+
+					// If current clipboard type isn't allowed, disable pasteAfter
+					if ( $.inArray( this.type, allowed_library_clipboard_content ) == -1 ) {
+						this.has_compatible_clipboard_content = false;
+					}
+				}
+
+				// Enable right options control rendering to be skipped
+				if ( skip_render === false ) {
+					this.render();
+				}
+			},
+
+			render : function() {
+				var $parent = $( this.options.view ),
+					$options_wrap = this.$el.html( this.template() ),
+					view_offset = this.options.view.offset(),
+					parent_offset_x = this.options.view_event.pageX - view_offset.left - 100,
+					parent_offset_y = this.options.view_event.pageY - view_offset.top;
+
+				// close other options, if there's any
+				this.closeAllRightClickOptions();
+
+				// Prevent recursive right click options
+				if ( $( this.options.view_event.toElement ).is('#et-builder-right-click-controls a')  ) {
+					return;
+				}
+
+				// Don't display empty right click options
+				if ( $options_wrap.find('li').length < 1 ) {
+					return;
+				}
+
+				// Append options to the page
+				$parent.append( $options_wrap );
+
+				// Fixing options' position and animating it
+				$options_wrap.find('.options').css({
+					'top' : parent_offset_y,
+					'left' : parent_offset_x,
+					'margin-top': ( 0 - $options_wrap.find('.options').height() - 40 ),
+				}).animate({
+					'margin-top': ( 0 - $options_wrap.find('.options').height() - 10 ),
+					'opacity' : 1
+				}, 300 );
+
+				// Add full screen page overlay (right/left click anywhere outside builder to close options)
+				$('#et_pb_layout').prepend('<div id="et_pb_layout_right_click_overlay" />');
+			},
+
+			closeAllRightClickOptions : function() {
+				et_pb_close_all_right_click_options();
+
+				return false;
+			},
+
+			rename : function( event ) {
+				event.preventDefault();
+
+				var $parent = this.$el.parent(),
+					cid = this.options.model.attributes.cid;
+
+				et_pb_create_prompt_modal( 'rename_admin_label', cid );
+
+				// close the click right options
+				this.closeAllRightClickOptions();
+			},
+
+			saveToLibrary : function ( event ) {
+				event.preventDefault();
+
+				var model          = this.options.model,
+					view_settings  = {
+						model : model,
+						collection : ET_PageBuilder_Modules,
+						attributes : {
+							'data-open_view' : 'module_settings'
+						}
+					};
+
+				// Close right click options UI
+				this.closeAllRightClickOptions();
+
+				if ( this.type === 'app' ) {
+					// Init save current page to library modal view
+					et_pb_create_prompt_modal( 'save_layout' );
+				} else {
+					// Init modal view
+					modal_view = new ET_PageBuilder.ModalView( view_settings );
+
+					// Append modal view
+					$('body').append( modal_view.render().el );
+
+					// set initial active tab for partially saved module templates.
+					et_pb_open_current_tab();
+
+					// Init save template modal view
+					modal_view.saveTemplate( event );
+				}
+			},
+
+			undo : function( event ) {
+				event.preventDefault();
+
+				// Undoing...
+				ET_PageBuilder_App.undo( event );
+
+				// Close right click options UI
+				this.closeAllRightClickOptions();
+			},
+
+			redo : function( event ) {
+				event.preventDefault();
+
+				// Redoing...
+				ET_PageBuilder_App.redo( event );
+
+				// Close right click options UI
+				this.closeAllRightClickOptions();
+			},
+
+			disable : function( event ) {
+				event.preventDefault();
+
+				var $parent = this.$el.parent(),
+					cid = this.options.model.attributes.cid,
+					history_verb;
+
+				// toggle et_pb_disabled class
+				if ( $parent.hasClass('et_pb_disabled') ) {
+					$parent.removeClass( 'et_pb_disabled' );
+
+					// Remove attribute to shortcode
+					this.options.model.attributes.et_pb_disabled = 'off';
+					history_verb = 'enabled';
+				} else {
+					parent_background_color = $parent.css('backgroundColor');
+
+					$parent.addClass('et_pb_disabled');
+
+					// Add attribute to shortcode
+					this.options.model.attributes.et_pb_disabled = 'on';
+					history_verb = 'disabled';
+				}
+
+				// Update global module
+				this.updateGlobalModule();
+
+				// close the click right options
+				this.closeAllRightClickOptions();
+
+				// Enable history saving and set meta for history
+				ET_PageBuilder_App.allowHistorySaving( history_verb, this.history_noun );
+
+				// Rebuild shortcodes
+				ET_PageBuilder_App.saveAsShortcode();
+			},
+
+			lock : function( event ) {
+				event.preventDefault();
+
+				var $parent = this.$el.parent();
+
+				// toggle et_pb_locked class
+				if ( $parent.hasClass('et_pb_locked') ) {
+					this.unlockItem();
+
+					// Enable history saving and set meta for history
+					ET_PageBuilder_App.allowHistorySaving( 'unlocked', this.history_noun );
+				} else {
+					this.lockItem();
+
+					// Enable history saving and set meta for history
+					ET_PageBuilder_App.allowHistorySaving( 'locked', this.history_noun );
+				}
+
+				// Update global module
+				this.updateGlobalModule();
+
+				// close the click right options
+				this.closeAllRightClickOptions();
+
+				// Rebuild shortcodes
+				ET_PageBuilder_App.saveAsShortcode();
+			},
+
+			unlockItem : function() {
+				var this_el = this,
+					$parent = this_el.$el.parent(),
+					request = et_pb_user_lock_permissions(),
+					children_views,
+					parent_views;
+
+				request.done( function ( response ) {
+					if ( true === response ) {
+						$parent.removeClass('et_pb_locked');
+
+						// Add attribute to shortcode
+						this_el.options.model.attributes.et_pb_locked = 'off';
+
+						if ( 'module' !== this_el.options.model.get( 'type' ) ) {
+							children_views = ET_PageBuilder_Layout.getChildrenViews( this_el.model.get('cid') );
+
+							_.each( children_views, function( view, key ) {
+								view.$el.removeClass('et_pb_parent_locked');
+								view.model.set( 'et_pb_parent_locked', 'off', { silent : true } );
+							} );
+						}
+
+						if ( 'section' !== this_el.options.model.get( 'type' ) ) {
+							parent_views = ET_PageBuilder_Layout.getParentViews( this_el.model.get( 'parent' ) );
+
+							_.each( parent_views, function( view, key ) {
+								if ( ! ET_PageBuilder_Layout.isChildrenLocked( view.model.get( 'cid' ) ) ) {
+									view.$el.removeClass('et_pb_children_locked');
+								}
+							} );
+						}
+
+						// Enable history saving and set meta for history
+						ET_PageBuilder_App.allowHistorySaving( 'unlocked', this_el.history_noun );
+
+						// Rebuild shortcodes
+						ET_PageBuilder_App.saveAsShortcode();
+					} else {
+						alert( et_pb_options.locked_item_permission_alert );
+					}
+				});
+			},
+
+			lockItem : function() {
+				var this_el = this,
+					$parent = this_el.$el.parent(),
+					request = et_pb_user_lock_permissions(),
+					children_views,
+					parent_views;
+
+				request.done( function ( response ) {
+					if ( true === response ) {
+						$parent.addClass('et_pb_locked');
+
+						// Add attribute to shortcode
+						this_el.options.model.attributes.et_pb_locked = 'on';
+
+						if ( 'module' !== this_el.options.model.get( 'type' ) ) {
+							children_views = ET_PageBuilder_Layout.getChildrenViews( this_el.model.get('cid') );
+
+							_.each( children_views, function( view, key ) {
+								view.$el.addClass('et_pb_parent_locked');
+								view.model.set( 'et_pb_parent_locked', 'on', { silent : true } );
+							} );
+						}
+
+						if ( 'section' !== this_el.options.model.get( 'type' ) ) {
+							parent_views = ET_PageBuilder_Layout.getParentViews( this_el.model.get( 'parent' ) );
+
+							_.each( parent_views, function( view, key ) {
+								view.$el.addClass( 'et_pb_children_locked' );
+							} );
+						}
+
+						// Enable history saving and set meta for history
+						ET_PageBuilder_App.allowHistorySaving( 'locked', this_el.history_noun );
+
+						// Rebuild shortcodes
+						ET_PageBuilder_App.saveAsShortcode();
+					} else {
+						alert( et_pb_options.locked_item_permission_alert );
+					}
+				});
+			},
+
+			collapse : function( event ) {
+				event.preventDefault();
+
+				var $parent = this.$el.parent(),
+					cid = this.options.model.attributes.cid,
+					history_verb;
+
+				$parent.toggleClass('et_pb_collapsed');
+
+				if ( $parent.hasClass('et_pb_collapsed') ) {
+					// Add attribute to shortcode
+					this.options.model.attributes.et_pb_collapsed = 'on';
+					history_verb = 'collapsed';
+				} else {
+					// Add attribute to shortcode
+					this.options.model.attributes.et_pb_collapsed = 'off';
+					history_verb = 'expanded';
+				}
+
+				// Update global module
+				this.updateGlobalModule();
+
+				// close the click right options
+				this.closeAllRightClickOptions();
+
+				// Enable history saving and set meta for history
+				ET_PageBuilder_App.allowHistorySaving( history_verb, this.history_noun );
+
+				// Rebuild shortcodes
+				ET_PageBuilder_App.saveAsShortcode();
+			},
+
+			copy : function( event ) {
+				event.preventDefault();
+
+				var module_attributes = _.clone( this.model.attributes ),
+					type              = module_attributes.type,
+					clipboard_content;
+
+				// Normalize row_inner as row. Specialty's section row is detected as row_inner
+				// but selector-wise, there's no .et_pb_row_inner. It uses the same .et_pb_row
+				if ( type === 'row_inner' ) {
+					type = 'row';
+				}
+
+				// Delete circular structure element carried by default by specialty section's row inner
+				if ( ! _.isUndefined( module_attributes.view ) ) {
+					delete module_attributes.view;
+				}
+
+				// Delete appendAfter element, its leftover can cause misunderstanding on rendering UI
+				if ( ! _.isUndefined( module_attributes.appendAfter ) ) {
+					delete module_attributes.appendAfter;
+				}
+
+				// append childview's data to mobile_attributes for row and section
+				if ( type === 'row' || type === 'section' ) {
+					module_attributes.childviews = this.getChildViews( module_attributes.cid );
+				}
+
+				module_attributes.created = 'manually';
+
+				// Set clipboard content
+				clipboard_content = JSON.stringify( module_attributes );
+
+				// Save content to clipboard
+				ET_PB_Clipboard.set( this.getClipboardType(), clipboard_content );
+
+				// close the click right options
+				this.closeAllRightClickOptions();
+			},
+
+			pasteAfter : function( event, parent, clipboard_type, has_cloned_cid ) {
+				event.preventDefault();
+
+				var parent            = _.isUndefined( parent ) ? this.model.get( 'parent' ) : parent,
+					clipboard_type    = _.isUndefined( clipboard_type ) ? this.getClipboardType() : clipboard_type,
+					clipboard_content,
+					has_cloned_cid    = _.isUndefined( has_cloned_cid ) ? true : has_cloned_cid;
+
+				// Get clipboard content
+				clipboard_content = ET_PB_Clipboard.get( clipboard_type );
+				clipboard_content = JSON.parse( clipboard_content );
+
+				if ( has_cloned_cid ) {
+					clipboard_content.cloned_cid = this.model.get( 'cid' );
+				}
+
+				// Paste views recursively
+				this.setPasteViews( clipboard_content, parent );
+
+				// Trigger events
+				ET_PageBuilder_Events.trigger( 'et-advanced-module:updated' );
+				ET_PageBuilder_Events.trigger( 'et-advanced-module:saved' );
+
+				// Update global module
+				this.updateGlobalModule();
+
+				// close the click right options
+				this.closeAllRightClickOptions();
+
+				// Enable history saving and set meta for history
+				// pasteAfter can be used for clone, so only use copied if history verb being used is default
+				if ( ET_PageBuilder_Visualize_Histories.verb === 'did' ) {
+					ET_PageBuilder_App.allowHistorySaving( 'copied', this.history_noun );
+				}
+
+				// Rebuild shortcodes
+				ET_PageBuilder_App.saveAsShortcode();
+			},
+
+			pasteApp : function( event ) {
+				event.preventDefault();
+
+				// Get last' section model
+				var sections     = ET_PageBuilder_Modules.where({ 'type' : 'section' }),
+					last_section = _.last( sections );
+
+				// Set last section as this.model and this.options.model so setPasteViews() can parse the clipboard correctly
+				this.model = last_section;
+				this.options.model = last_section;
+
+				// Paste Item
+				this.pasteAfter( event, undefined, 'et_pb_clipboard_section', false );
+			},
+
+			pasteColumn : function( event ) {
+				event.preventDefault();
+
+				var parent         = this.model.get( 'cid' ),
+					clipboard_type = this.model.get('type') === 'section' ? 'et_pb_clipboard_module_fullwidth' : 'et_pb_clipboard_module';
+
+				// Paste item
+				this.pasteAfter( event, parent, clipboard_type, false );
+			},
+
+			getClipboardType : function() {
+				var type              = this.model.attributes.type,
+					module_type        = _.isUndefined( this.model.attributes.module_type ) ? this.model.attributes.type : this.model.attributes.module_type,
+					clipboard_key     = 'et_pb_clipboard_' + type,
+					fullwidth_prefix  = 'et_pb_fullwidth';
+
+				// Added fullwidth prefix
+				if ( module_type.substr( 0, fullwidth_prefix.length ) === fullwidth_prefix ) {
+					clipboard_key += '_fullwidth';
+				}
+
+				return clipboard_key;
+			},
+
+			getChildViews : function( parent ) {
+				var this_el = this,
+					views = ET_PageBuilder_Modules.models,
+					child_attributes,
+					child_views = [];
+
+				_.each( views, function( view, key ) {
+					if ( view.attributes.parent === parent ) {
+						child_attributes = view.attributes;
+
+						// Delete circular structure element carried by default by specialty section's row inner
+						if ( ! _.isUndefined( child_attributes.view ) ) {
+							delete child_attributes.view;
+						}
+
+						// Delete appendAfter element, its leftover can cause misunderstanding on rendering UI
+						if ( ! _.isUndefined( child_attributes.appendAfter ) ) {
+							delete child_attributes.appendAfter;
+						}
+
+						child_attributes.created = 'manually';
+
+						// Append grand child views, if there's any
+						child_attributes.childviews = this_el.getChildViews( view.attributes.cid );
+						child_views.push( child_attributes );
+					}
+				} );
+
+				return child_views;
+			},
+
+			setPasteViews : function( view, parent ) {
+				var this_el    = this,
+					cid        = ET_PageBuilder_Layout.generateNewId(),
+					view_index = this.model.collection.indexOf( this.model ),
+					childviews = ( ! _.isUndefined( view.childviews ) && _.isArray( view.childviews ) ) ? view.childviews : false,
+					global_module_elements = [ 'et_pb_global_parent', 'global_parent_cid' ];
+
+				// Add newly generated cid and parent to the pasted view
+				view.cid    = cid;
+				view.parent = parent;
+
+				// Set new global_parent_cid for pasted element
+				if ( ! _.isUndefined( view.et_pb_global_module ) && _.isUndefined( view.global_parent_cid ) && _.isUndefined( this.set_global_parent_cid ) ) {
+					this.global_parent_cid = cid;
+					this.set_global_parent_cid = true;
+				}
+
+				if ( ! _.isUndefined( view.global_parent_cid ) ) {
+					view.global_parent_cid = this.global_parent_cid;
+				}
+
+				// If the view is pasted inside global module, inherit its global module child attributes
+				_.each( global_module_elements, function( global_module_element ) {
+					if ( ! _.isUndefined( this_el.options.model.get( global_module_element ) ) && _.isUndefined( view[ global_module_element ] ) ) {
+						view[ global_module_element ] = this_el.options.model.get( global_module_element );
+					}
+				} );
+
+				// Remove template type leftover. Template type is used by Divi Library to remove item's settings and clone button
+				if ( ! _.isUndefined( view.et_pb_template_type ) ) {
+					delete view.et_pb_template_type;
+				}
+
+				// Delete unused childviews
+				delete view.childviews;
+
+				// Add view to collections
+				this.model.collection.add( view, { at : view_index } );
+
+				// If current view has childviews (row & module), repeat the process above recursively
+				if ( childviews ) {
+					_.each( childviews, function( childview ){
+						this_el.setPasteViews( childview, cid );
+					});
+				};
+			},
+
+			updateGlobalModule : function () {
+				var global_module_cid;
+
+				if ( ! _.isUndefined( this.options.model.get( 'et_pb_global_module' ) ) ) {
+					global_module_cid = this.options.model.get( 'cid' );
+				} else if ( ! _.isUndefined( this.options.model.get( 'et_pb_global_parent' ) ) ) {
+					global_module_cid = this.options.model.get( 'global_parent_cid' );
+				}
+
+				if ( ! _.isUndefined( global_module_cid ) ) {
+					et_pb_update_global_template( global_module_cid );
+				}
+			},
+
+			hasOption : function( option_name ) {
+				var has_option = false;
+
+				switch( option_name ) {
+					case "rename" :
+							if ( this.hasOptionSupport( [ "module", "section", "row_inner", "row" ] ) &&
+								 this.options.model.attributes.et_pb_locked !== "on" ) {
+								has_option = true;
+							}
+						break;
+					case "save-to-library" :
+							if ( this.hasOptionSupport( [ "app", "section", "row_inner", "row", "module" ] ) &&
+								 _.isUndefined( this.options.model.attributes.et_pb_global_module ) &&
+								 _.isUndefined( this.options.model.attributes.et_pb_global_parent ) &&
+								 this.options.model.attributes.et_pb_locked !== "on" &&
+								 et_pb_options.is_divi_library !== "1" ) {
+								has_option = true;
+							}
+						break;
+					case "undo" :
+							if ( this.hasOptionSupport( [ "app", "section", "row_inner", "row", "column", "column_inner", "module" ] ) &&
+								 this.hasUndo() ) {
+								has_option = true;
+							}
+						break;
+					case "redo" :
+							if ( this.hasOptionSupport( [ "app", "section", "row_inner", "row", "column", "column_inner", "module" ] ) &&
+								 this.hasRedo() ) {
+								has_option = true;
+							}
+						break;
+					case "disable" :
+							if ( this.hasOptionSupport( [ "section", "row_inner", "row", "module" ] ) &&
+								 this.options.model.attributes.et_pb_locked !== "on" &&
+								 this.hasDisabledParent() === false &&
+								 _.isUndefined( this.model.attributes.et_pb_skip_module ) ) {
+								has_option = true;
+							}
+						break;
+					case "lock" :
+							if ( this.hasOptionSupport( [ "section", "row_inner", "row", "module" ] ) &&
+								 _.isUndefined( this.model.attributes.et_pb_skip_module ) ) {
+								has_option = true;
+							}
+						break;
+					case "collapse" :
+							if ( this.hasOptionSupport( [ "section", "row_inner", "row" ] ) &&
+								 this.options.model.attributes.et_pb_locked !== "on" &&
+								 _.isUndefined( this.model.attributes.et_pb_skip_module ) ) {
+								has_option = true;
+							}
+						break;
+					case "copy" :
+							if ( this.hasOptionSupport( [ "section", "row_inner", "row", "module" ] ) &&
+								 this.et_pb_has_storage_support &&
+								 this.options.model.attributes.et_pb_locked !== "on" &&
+								 _.isUndefined( this.model.attributes.et_pb_skip_module ) ) {
+								has_option = true;
+							}
+						break;
+					case "paste-after" :
+							if ( this.hasOptionSupport( [ "section", "row_inner", "row", "module" ] ) &&
+								 this.et_pb_has_storage_support &&
+								 this.has_compatible_clipboard_content &&
+								 this.options.model.attributes.et_pb_locked !== "on" ) {
+								has_option = true;
+							}
+						break;
+					case "paste-app" :
+							if ( this.hasOptionSupport( [ "app" ] ) &&
+								 this.et_pb_has_storage_support &&
+								 ET_PB_Clipboard.get( "et_pb_clipboard_section" ) ) {
+								has_option = true;
+							}
+						break;
+					case "paste-column" :
+							if ( ! _.isUndefined( this.model.attributes.is_insert_module ) &&
+								( ( ( this.type === "column" || this.type == "column_inner" ) && ET_PB_Clipboard.get( "et_pb_clipboard_module" ) ) || ( this.type === "section" && ET_PB_Clipboard.get( "et_pb_clipboard_module_fullwidth" ) ) ) &&
+								this.et_pb_has_storage_support ) {
+								has_option = true;
+							}
+						break;
+					case "preview" :
+							if ( this.hasOptionSupport( [ "section", "row_inner", "row", "module" ] ) &&
+								this.options.model.attributes.et_pb_locked !== "on" ) {
+								has_option = true;
+							}
+						break;
+				}
+
+				return has_option;
+			},
+
+			hasOptionSupport : function( whitelisted_types ) {
+				if ( _.isUndefined( _.findWhere( whitelisted_types, this.type ) ) ) {
+					return false;
+				}
+
+				return true;
+			},
+
+			hasUndo : function() {
+				return ET_PageBuilder_App.hasUndo();
+			},
+
+			hasRedo : function() {
+				return ET_PageBuilder_App.hasRedo();
+			},
+
+			hasDisabledParent : function() {
+				var parent_view = ET_PageBuilder_Layout.getView( this.model.attributes.parent ),
+					parent_views = {},
+					has_disabled_parents = false;
+
+				// Loop until parent_view is undefined (reaches section)
+				while ( ! _.isUndefined( parent_view  ) ) {
+					// Check whether current parent is disabled or not
+					if ( ! _.isUndefined( parent_view.model.attributes.et_pb_disabled ) && parent_view.model.attributes.et_pb_disabled === "on" ) {
+						has_disabled_parents = true;
+					}
+
+					// Append views to object
+					parent_views[parent_view.model.attributes.cid] = parent_view;
+
+					// Refresh parent_view for new loop
+					parent_view = ET_PageBuilder_Layout.getView( parent_view.model.attributes.parent );
+				}
+
+				return has_disabled_parents;
+			},
+
+			preview : function( event ) {
+				event.preventDefault();
+
+				// Get item's view
+				var view = ET_PageBuilder_Layout.getView( this.model.get( 'cid' ) );
+
+				// Close all right click options
+				this.closeAllRightClickOptions();
+
+				// Tell view that it is initiated from right click options so it can tell modalView
+				view.triggered_by_right_click = true;
+
+				// Tell modal view that this instance is intended for previewing
+				// This is specifically needed for global module
+				view.do_preview = true;
+
+				// Display ModalView
+				view.showSettings( event );
+
+				// Emulate preview clicking
+				$('.et-pb-modal-preview-template').trigger( 'click' );
+			}
+		} );
+
+		ET_PageBuilder.visualizeHistoriesView = window.wp.Backbone.View.extend( {
+
+			el : '#et-pb-histories-visualizer',
+
+			template : _.template( $('#et-builder-histories-visualizer-item-template').html() ),
+
+			events : {
+				'click li' : 'rollback'
+			},
+
+			verb : 'did',
+
+			noun : 'module',
+
+			noun_alias : undefined,
+
+			getItemID : function( model ) {
+				return '#et-pb-history-' + model.get( 'timestamp' );
+			},
+
+			getVerb : function() {
+				var verb = this.verb;
+
+				if ( ! _.isUndefined( et_pb_options.verb[verb] ) ) {
+					verb = et_pb_options.verb[verb];
+				}
+
+				return verb;
+			},
+
+			getNoun : function() {
+				var noun = this.noun;
+
+				if ( ! _.isUndefined( this.noun_alias ) ) {
+					noun = this.noun_alias;
+				} else if ( ! _.isUndefined( et_pb_options.noun[noun] ) ) {
+					noun = et_pb_options.noun[noun];
+				}
+
+				return noun;
+			},
+
+			addItem : function( model ) {
+				// Setting the passed model as class' options so the template can be rendered correctly
+				this.options = model;
+
+				// Prepend history item to container
+				this.$el.prepend( this.template() );
+
+				// Fix max-height for history visualizer
+				this.setHistoriesHeight();
+			},
+
+			changeItem : function( model ) {
+				var item_id      = this.getItemID( model ),
+					$item        = $( item_id ),
+					active_model = model.collection.findWhere({ current_active_history : true }),
+					active_index = model.collection.indexOf( active_model ),
+					item_index   = model.collection.indexOf( model );
+
+				// Setting the passed model as class' options so the template can be rendered correctly
+				this.options = model;
+
+				// Remove all class related to changed item
+				this.$el.find('li').removeClass( 'undo redo active' );
+
+				// Update currently item class, relative to current index
+				// Use class change instead of redraw the whole index using template() because verb+noun changing is too tricky
+				if ( active_index === item_index ) {
+					$item.addClass( 'active' );
+
+					this.$el.find('li:lt('+ $item.index() +')').addClass( 'redo' );
+
+					this.$el.find('li:gt('+ $item.index() +')').addClass( 'undo' );
+				} else {
+					// Change upon history is tricky because there is no active model found. Assume that everything is undo action
+					this.$el.find('li:not( .active, .redo )').addClass( 'undo' );
+				}
+
+				// Fix max-height for history visualizer
+				this.setHistoriesHeight();
+			},
+
+			removeItem : function( model ) {
+				var item_id = this.getItemID( model );
+
+				// Remove model's item from UI
+				this.$el.find( item_id ).remove();
+
+				// Fix max-height for history visualizer
+				this.setHistoriesHeight();
+			},
+
+			setHistoryMeta : function( verb, noun, noun_alias ) {
+				if ( ! _.isUndefined( verb ) ) {
+					this.verb = verb;
+				}
+
+				if ( ! _.isUndefined( noun ) ) {
+					this.noun = noun;
+				}
+
+				if ( ! _.isUndefined( noun_alias ) ) {
+					this.noun_alias = noun_alias;
+				} else {
+					this.noun_alias = undefined;
+				}
+			},
+
+			setHistoriesHeight : function() {
+				var this_el = this;
+
+				// Wait for 200 ms before making change to ensure that $layout has been changed
+				setTimeout( function(){
+					var $layout                = $( '#et_pb_layout' ),
+						$layout_header         = $layout.find( '.hndle' ),
+						$layout_controls       = $( '#et_pb_layout_controls' ),
+						visualizer_height      = $layout.outerHeight() - $layout_header.outerHeight() - $layout_controls.outerHeight();
+
+					this_el.$el.css({ 'max-height' : visualizer_height });
+				}, 200 );
+			},
+
+			rollback : function( event ) {
+				event.preventDefault();
+
+				var this_el     = this,
+					$clicked_el = $( event.target ),
+					$this_el    = $clicked_el.is( 'li' ) ? $clicked_el : $clicked_el.parent('li'),
+					timestamp   = $this_el.data( 'timestamp' ),
+					model       = this.options.collection.findWhere({ timestamp : timestamp }),
+					shortcode   = model.get( 'shortcode' );
+
+				// Turn off other current_active_history
+				ET_PageBuilder_App.resetCurrentActiveHistoryMarker();
+
+				// Update undo model's current_active_history
+				model.set( { current_active_history : true });
+
+				// add loading state
+				ET_PageBuilder_Events.trigger( 'et-pb-loading:started' );
+
+				// Set shortcode to editor
+				et_pb_set_content( 'content', shortcode, 'saving_to_content' );
+
+				// Rebuild the builder
+				setTimeout( function(){
+					var $builder_container = $( '#et_pb_layout' ),
+						builder_height     = $builder_container.innerHeight();
+
+					$builder_container.css( { 'height' : builder_height } );
+
+					ET_PageBuilder_App.removeAllSections();
+
+					ET_PageBuilder_App.$el.find( '.et_pb_section' ).remove();
+
+					// Ensure that no history is added for rollback
+					ET_PageBuilder_App.enable_history = false;
+
+					ET_PageBuilder_App.createLayoutFromContent( et_prepare_template_content( shortcode ), '', '', { is_reinit : 'reinit' } );
+
+					$builder_container.css( { 'height' : 'auto' } );
+
+					// remove loading state
+					ET_PageBuilder_Events.trigger( 'et-pb-loading:ended' );
+
+					// Update undo button state
+					ET_PageBuilder_App.updateHistoriesButtonState();
+				}, 600 );
+			}
 		} );
 
 		ET_PageBuilder.AppView = window.wp.Backbone.View.extend( {
@@ -2943,18 +4730,34 @@ var ET_PageBuilder = ET_PageBuilder || {};
 			events: {
 				'click .et-pb-layout-buttons-save' : 'saveLayout',
 				'click .et-pb-layout-buttons-load' : 'loadLayout',
-				'click .et-pb-layout-buttons-clear' : 'clearLayout'
+				'click .et-pb-layout-buttons-clear' : 'clearLayout',
+				'click .et-pb-layout-buttons-history' : 'toggleHistory',
+				'click #et-pb-histories-visualizer-overlay' : 'closeHistory',
+				'contextmenu #et-pb-histories-visualizer-overlay' : 'closeHistory',
+				'click .et-pb-layout-buttons-redo' : 'redo',
+				'click .et-pb-layout-buttons-undo' : 'undo',
+				'contextmenu .et-pb-layout-buttons-save' : 'showRightClickOptions',
+				'contextmenu .et-pb-layout-buttons-load' : 'showRightClickOptions',
+				'contextmenu .et-pb-layout-buttons-clear' : 'showRightClickOptions',
+				'contextmenu .et-pb-layout-buttons-redo' : 'showRightClickOptions',
+				'contextmenu .et-pb-layout-buttons-undo' : 'showRightClickOptions',
+				'contextmenu #et_pb_main_container_right_click_overlay' : 'showRightClickOptions',
+				'click #et_pb_main_container_right_click_overlay' : 'hideRightClickOptions'
 			},
 
 			initialize : function() {
 				this.listenTo( this.collection, 'add', this.addModule );
-				this.listenTo( ET_PageBuilder_Events, 'et-sortable:update', this.saveAsShortcode );
-				this.listenTo( ET_PageBuilder_Events, 'et-model-changed-position-within-column', this.saveAsShortcode );
-				this.listenTo( ET_PageBuilder_Events, 'et-module:removed', this.saveAsShortcode );
+				this.listenTo( ET_PageBuilder_Histories, 'add', this.addVisualizeHistoryItem );
+				this.listenTo( ET_PageBuilder_Histories, 'change', this.changeVisualizeHistoryItem );
+				this.listenTo( ET_PageBuilder_Histories, 'remove', this.removeVisualizeHistoryItem );
+				this.listenTo( ET_PageBuilder_Events, 'et-sortable:update', _.debounce( this.saveAsShortcode, 128 ) );
+				this.listenTo( ET_PageBuilder_Events, 'et-model-changed-position-within-column', _.debounce( this.saveAsShortcode, 128 ) );
+				this.listenTo( ET_PageBuilder_Events, 'et-module:removed', _.debounce( this.saveAsShortcode, 128 ) );
 				this.listenTo( ET_PageBuilder_Events, 'et-pb-loading:started', this.startLoadingAnimation );
 				this.listenTo( ET_PageBuilder_Events, 'et-pb-loading:ended', this.endLoadingAnimation );
 
 				this.$builder_toggle_button = $( 'body' ).find( '#et_pb_toggle_builder' );
+				this.$builder_toggle_button_wrapper = $( 'body' ).find( '.et_pb_toggle_builder_wrapper' );
 
 				this.render();
 
@@ -2967,6 +4770,12 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				this.makeSectionsSortable();
 
 				this.addLoadingAnimation();
+
+				$('#et_pb_main_container_right_click_overlay').remove();
+
+				this.$el.prepend('<div id="et_pb_main_container_right_click_overlay" />');
+
+				this.updateHistoriesButtonState();
 
 				return this;
 			},
@@ -2994,11 +4803,14 @@ var ET_PageBuilder = ET_PageBuilder || {};
 			},
 
 			pageBuilderIsActive : function() {
-				return this.$builder_toggle_button.hasClass( 'et_pb_builder_is_used' );
+				// check the button wrapper class as well because button may not be added in some cases
+				return this.$builder_toggle_button.hasClass( 'et_pb_builder_is_used' ) || this.$builder_toggle_button_wrapper.hasClass( 'et_pb_builder_is_used' );
 			},
 
 			saveLayout : function( event ) {
 				event.preventDefault();
+
+				et_pb_close_all_right_click_options();
 
 				et_pb_create_prompt_modal( 'save_layout' );
 			},
@@ -3007,6 +4819,8 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				event.preventDefault();
 
 				var view;
+
+				et_pb_close_all_right_click_options();
 
 				view = new ET_PageBuilder.ModalView( {
 					attributes : {
@@ -3021,7 +4835,318 @@ var ET_PageBuilder = ET_PageBuilder || {};
 			clearLayout : function( event ) {
 				event.preventDefault();
 
+				et_pb_close_all_right_click_options();
+
 				et_pb_create_prompt_modal( 'clear_layout' );
+			},
+
+			getHistoriesCount : function() {
+				return this.options.history.length;
+			},
+
+			getHistoriesIndex : function() {
+				var active_model       = this.options.history.findWhere({ current_active_history : true }),
+					active_model_index = _.isUndefined( active_model ) ? ( this.options.history.models.length - 1 ) : this.options.history.indexOf( active_model );
+
+				return active_model_index;
+			},
+
+			enableHistory : function() {
+				if ( _.isUndefined( this.enable_history ) ) {
+					return false;
+				} else {
+					return this.enable_history;
+				}
+			},
+
+			allowHistorySaving : function( verb, noun, noun_alias ) {
+				this.enable_history = true;
+
+				// Enable history saving and set meta for history
+				ET_PageBuilder_Visualize_Histories.setHistoryMeta( verb, noun, noun_alias );
+			},
+
+			reviseHistories : function() {
+				var model,
+					this_el = this;
+
+				if ( this.hasRedo() ) {
+					// Prepare reversed index (deleting unused model using ascending index changes the order of collection)
+					var history_index = _.range( ( this.getHistoriesIndex() + 1 ), this.getHistoriesCount() ).reverse();
+
+					// Loop the reversed index then delete the matched models
+					_.each( history_index, function( index ) {
+						model = this_el.options.history.at( index );
+						this_el.options.history.remove( model );
+					} );
+				}
+
+				// Update undo button state
+				this.updateHistoriesButtonState();
+			},
+
+			resetCurrentActiveHistoryMarker : function() {
+				var current_active_histories = this.options.history.where({ current_active_history : true });
+
+				if ( ! _.isEmpty( current_active_histories ) ) {
+					_.each( current_active_histories, function( current_active_history ) {
+						current_active_history.set({ current_active_history : false });
+					} );
+				}
+
+			},
+
+			hasUndo : function() {
+				return this.getHistoriesIndex() > 0 ? true : false;
+			},
+
+			hasRedo : function() {
+				return ( this.getHistoriesCount() - this.getHistoriesIndex() ) > 1 ? true : false;
+			},
+
+			hasOverlayRendered : function() {
+				if ( $('.et_pb_modal_overlay').length ) {
+					return true;
+				}
+
+				return false;
+			},
+
+			updateHistoriesButtonState : function() {
+				if ( this.hasUndo() ) {
+					$( '.et-pb-layout-buttons-undo' ).removeClass( 'disabled' );
+				} else {
+					$( '.et-pb-layout-buttons-undo' ).addClass( 'disabled' );
+				}
+
+				if ( this.hasRedo() ) {
+					$( '.et-pb-layout-buttons-redo' ).removeClass( 'disabled' );
+				} else {
+					$( '.et-pb-layout-buttons-redo' ).addClass( 'disabled' );
+				}
+
+				if ( this.hasUndo() || this.hasRedo() ) {
+					$( '.et-pb-layout-buttons-history' ).removeClass( 'disabled' );
+				} else {
+					$( '.et-pb-layout-buttons-history' ).addClass( 'disabled' );
+				}
+			},
+
+			getUndoModel : function() {
+				var model = this.options.history.at( this.getHistoriesIndex() - 1 );
+
+				if ( _.isUndefined( model ) ) {
+					return false;
+				} else {
+					return model;
+				}
+			},
+
+			undo : function( event ) {
+				event.preventDefault();
+
+				var this_el = this,
+					undo_model = this.getUndoModel(),
+					undo_content,
+					current_active_histories;
+
+				// Bail if there's no undo histories to be used
+				if ( ! this.hasUndo() ) {
+					return;
+				}
+
+				// Bail if no undo model found
+				if ( _.isUndefined( undo_model ) ) {
+					return;
+				}
+
+				// Bail if there is overlay rendered (usually via hotkeys)
+				if ( this.hasOverlayRendered() ) {
+					return;
+				}
+
+				// Get undo content
+				undo_content     = undo_model.get( 'shortcode' );
+
+				// Turn off other current_active_history
+				this.resetCurrentActiveHistoryMarker();
+
+				// Update undo model's current_active_history
+				undo_model.set( { current_active_history : true });
+
+				// add loading state
+				ET_PageBuilder_Events.trigger( 'et-pb-loading:started' );
+
+				// Set last history's content into main editor
+				et_pb_set_content( 'content', undo_content, 'saving_to_content' );
+
+				// Rebuild the builder
+				setTimeout( function(){
+					var $builder_container = $( '#et_pb_layout' ),
+						builder_height     = $builder_container.innerHeight();
+
+					$builder_container.css( { 'height' : builder_height } );
+
+					ET_PageBuilder_App.removeAllSections();
+
+					ET_PageBuilder_App.$el.find( '.et_pb_section' ).remove();
+
+
+					// Temporarily disable history until new layout has been generated
+					this_el.enable_history = false;
+
+					ET_PageBuilder_App.createLayoutFromContent( et_prepare_template_content( undo_content ), '', '', { is_reinit : 'reinit' } );
+
+					$builder_container.css( { 'height' : 'auto' } );
+
+					// remove loading state
+					ET_PageBuilder_Events.trigger( 'et-pb-loading:ended' );
+
+					// Update undo button state
+					this_el.updateHistoriesButtonState();
+				}, 600 );
+			},
+
+			getRedoModel : function() {
+				var model = this.options.history.at( this.getHistoriesIndex() + 1 );
+
+				if ( _.isUndefined( model ) ) {
+					return false;
+				} else {
+					return model;
+				}
+			},
+
+			toggleHistory : function( event ) {
+				event.preventDefault();
+
+				var $et_pb_history_visualizer = $('#et-pb-histories-visualizer');
+
+				if ( $et_pb_history_visualizer.hasClass( 'active' ) ) {
+					$et_pb_history_visualizer.addClass( 'fadeout' );
+
+					// Remove class after being animated
+					setTimeout( function() {
+						$et_pb_history_visualizer.removeClass( 'fadeout' );
+					}, 500 );
+				}
+
+				$( '.et-pb-layout-buttons-history, #et-pb-histories-visualizer, #et-pb-histories-visualizer-overlay' ).toggleClass( 'active' );
+			},
+
+			closeHistory : function( event ) {
+				event.preventDefault();
+
+				this.toggleHistory( event );
+			},
+
+			redo : function( event ) {
+				event.preventDefault();
+
+				var this_el = this,
+					redo_model = this.getRedoModel(),
+					redo_model_index,
+					redo_content,
+					current_active_histories;
+
+				// Bail if there's no redo histories to be used
+				if ( ! this.hasRedo() ) {
+					return;
+				}
+
+				// Bail if no redo model found
+				if ( _.isUndefined( redo_model ) || ! redo_model ) {
+					return;
+				}
+
+				// Bail if there is overlay rendered (usually via hotkeys)
+				if ( this.hasOverlayRendered() ) {
+					return;
+				}
+
+				redo_model_index = this.options.history.indexOf( redo_model );
+				redo_content     = redo_model.get( 'shortcode' );
+
+				// Turn off other current_active_history
+				this.resetCurrentActiveHistoryMarker();
+
+				// Update redo model's current_active_history
+				redo_model.set( { current_active_history : true });
+
+				// add loading state
+				ET_PageBuilder_Events.trigger( 'et-pb-loading:started' );
+
+				// Set last history's content into main editor
+				et_pb_set_content( 'content', redo_content, 'saving_to_content' );
+
+				// Rebuild the builder
+				setTimeout( function(){
+					var $builder_container = $( '#et_pb_layout' ),
+						builder_height     = $builder_container.innerHeight();
+
+					$builder_container.css( { 'height' : builder_height } );
+
+					ET_PageBuilder_App.removeAllSections();
+
+					ET_PageBuilder_App.$el.find( '.et_pb_section' ).remove();
+
+					// Temporarily disable history until new layout has been generated
+					this_el.enable_history = false;
+
+					ET_PageBuilder_App.createLayoutFromContent( et_prepare_template_content( redo_content ), '', '', { is_reinit : 'reinit' } );
+
+					$builder_container.css( { 'height' : 'auto' } );
+
+					// remove loading state
+					ET_PageBuilder_Events.trigger( 'et-pb-loading:ended' );
+
+					// Update redo button state
+					this_el.updateHistoriesButtonState();
+				}, 600 );
+			},
+
+			addHistory : function( content ) {
+				if ( this.enableHistory() ) {
+					var date = new Date(),
+						hour = date.getHours() > 12 ? date.getHours() - 12 : date.getHours(),
+						minute = date.getMinutes(),
+						datetime_suffix = date.getHours() > 12 ? "PM" : "AM";
+
+					// If there's a redo, remove models after active model
+					if ( this.hasRedo() ) {
+						this.reviseHistories();
+					}
+
+					this.resetCurrentActiveHistoryMarker();
+
+					// Save content to builder history for undo/redo
+					this.options.history.add({
+						timestamp : _.now(),
+						datetime : ( "0" + hour).slice(-2) + ":" + ( "0" + minute ).slice(-2) + " " + datetime_suffix,
+						shortcode : content,
+						current_active_history : true,
+						verb : ET_PageBuilder_Visualize_Histories.verb,
+						noun : ET_PageBuilder_Visualize_Histories.noun
+					}, { validate : true });
+
+					// Return history meta to default. Prevent confusion and for debugging
+					ET_PageBuilder_Visualize_Histories.setHistoryMeta( 'did', 'something' );
+				}
+
+				// Update undo button state
+				this.updateHistoriesButtonState();
+			},
+
+			addVisualizeHistoryItem : function( model ) {
+				ET_PageBuilder_Visualize_Histories.addItem( model );
+			},
+
+			changeVisualizeHistoryItem : function( model ) {
+				ET_PageBuilder_Visualize_Histories.changeItem( model );
+			},
+
+			removeVisualizeHistoryItem : function( model ) {
+				ET_PageBuilder_Visualize_Histories.removeItem( model );
 			},
 
 			maybeGenerateInitialLayout : function() {
@@ -3040,6 +5165,14 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					 */
 					content = et_pb_get_content( 'content', fix_shortcodes );
 
+					// Enable history saving and set meta for history
+					if ( content !== '' ) {
+						this_el.allowHistorySaving( 'loaded', 'page' );
+					}
+
+					// Save page loaded
+					this_el.addHistory( content );
+
 					if  ( this_el.pageBuilderIsActive() ) {
 						if ( -1 === content.indexOf( '[et_pb_') ) {
 							ET_PageBuilder_App.reInitialize();
@@ -3056,7 +5189,7 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					ET_PageBuilder_Events.trigger( 'et-pb-loading:ended' );
 
 					// start listening to any collection events after all modules have been generated
-					this_el.listenTo( this_el.collection, 'change reset add', this_el.saveAsShortcode );
+					this_el.listenTo( this_el.collection, 'change reset add', _.debounce( this_el.saveAsShortcode, 128 ) );
 				}, 1000 );
 			},
 
@@ -3134,13 +5267,16 @@ var ET_PageBuilder = ET_PageBuilder || {};
 						module_settings['after_section'] = additional_options_received.after_section;
 					}
 
-					if ( shortcode_name !== 'section' )
+					if ( shortcode_name !== 'section' ) {
 						module_settings['parent'] = parent_cid;
+					}
 
 					if ( shortcode_name.indexOf( 'et_pb_' ) !== -1 ) {
 						module_settings['type'] = 'module';
 
 						module_settings['admin_label'] = ET_PageBuilder_Layout.getTitleByShortcodeTag( shortcode_name );
+					} else {
+						module_settings['admin_label'] = shortcode_name;
 					}
 
 					if ( _.isObject( shortcode_attributes['named'] ) ) {
@@ -3168,10 +5304,18 @@ var ET_PageBuilder = ET_PageBuilder || {};
 
 					if ( ! found_inner_shortcodes ) {
 						if ( $.inArray( shortcode_name, et_pb_raw_shortcodes ) > -1 ) {
-							module_settings['et_pb_raw_content'] = shortcode_content;
+							module_settings['et_pb_raw_content'] = _.unescape( shortcode_content );
 						} else {
 							module_settings['et_pb_content_new'] = shortcode_content;
 						}
+					}
+
+					if ( ! module_settings['et_pb_disabled'] !== 'undefined' && module_settings['et_pb_disabled'] === 'on' ) {
+						module_settings.className = ' et_pb_disabled';
+					}
+
+					if ( ! module_settings['et_pb_locked'] !== 'undefined' && module_settings['et_pb_locked'] === 'on' ) {
+						module_settings.className = ' et_pb_locked';
 					}
 
 					this_el.collection.add( [ module_settings ] );
@@ -3203,7 +5347,8 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					view_settings = {
 						model : module,
 						collection : ET_PageBuilder_Modules
-					};
+					},
+					cloned_cid = typeof module.get('cloned_cid') !== 'undefined' ? module.get('cloned_cid') : false;
 
 				switch ( module.get( 'type' ) ) {
 					case 'section' :
@@ -3217,6 +5362,8 @@ var ET_PageBuilder = ET_PageBuilder || {};
 							ET_PageBuilder_Layout.getView( module.get( 'after_section' ) ).$el.after( view.render().el );
 						} else if ( typeof module.get( 'current_row' ) !== 'undefined' ) {
 							this.replaceElement( module.get( 'current_row' ), view );
+						} else if ( cloned_cid ) {
+							this.$el.find( 'div[data-cid="' + cloned_cid + '"]' ).closest('.et_pb_section').after( view.render().el );
 						} else {
 							this.$el.append( view.render().el );
 						}
@@ -3267,6 +5414,8 @@ var ET_PageBuilder = ET_PageBuilder || {};
 							this.replaceElement( module.get( 'current_row' ), view );
 						} else if ( ! _.isUndefined( module.get( 'appendAfter' ) ) ) {
 							module.get( 'appendAfter' ).after( view.render().el );
+						} else if ( cloned_cid ) {
+							ET_PageBuilder_Layout.getView( module.get( 'parent' ) ).$el.find( 'div[data-cid="' + cloned_cid + '"]' ).parent().after( view.render().el );
 						} else {
 							if ( ET_PageBuilder_Layout.getView( module.get( 'parent' ) ).$el.find( '.et-pb-section-content' ).length ) {
 								ET_PageBuilder_Layout.getView( module.get( 'parent' ) ).$el.find( '.et-pb-section-content' ).append( view.render().el );
@@ -3318,7 +5467,8 @@ var ET_PageBuilder = ET_PageBuilder || {};
 										module_type : 'row',
 										cid : ET_PageBuilder_Layout.generateNewId(),
 										parent : module.get( 'cid' ),
-										view : view
+										view : view,
+										admin_label : et_pb_options.noun['row']
 									} ] );
 								}
 
@@ -3372,7 +5522,24 @@ var ET_PageBuilder = ET_PageBuilder || {};
 								template_type = ET_PageBuilder_Layout.getView( ET_PageBuilder_Layout.getView( module.get( 'parent' ) ).model.get( 'parent' ) ).model.get( 'et_pb_template_type' );
 							}
 
-							ET_PageBuilder_Layout.getView( module.get( 'parent' ) ).$el.find( '.et-pb-insert-module' ).before( view.render().el );
+							// Append new module in proper position. Clone shouldn't be appended. It should be added after the cloned item
+							if ( cloned_cid ) {
+								ET_PageBuilder_Layout.getView( module.get( 'parent' ) ).$el.find( 'div[data-cid="' + cloned_cid + '"]' ).after( view.render().el );
+							} else {
+								// if .et-pb-insert-module button exists, then add the module before that button. Otherwise append module to the parent
+								if ( ET_PageBuilder_Layout.getView( module.get( 'parent' ) ).$el.find( '.et-pb-insert-module' ).length ) {
+									ET_PageBuilder_Layout.getView( module.get( 'parent' ) ).$el.find( '.et-pb-insert-module' ).before( view.render().el );
+								} else {
+									var parent_view = ET_PageBuilder_Layout.getView( module.get( 'parent' ) );
+
+									// append module to appropriate div if it's a fullwidth section
+									if ( typeof parent_view.model.get( 'et_pb_fullwidth' ) !== 'undefined' && 'on' === parent_view.model.get( 'et_pb_fullwidth' ) ) {
+										parent_view.$el.find( '.et_pb_fullwidth_sortable_area' ).append( view.render().el );
+									} else {
+										parent_view.$el.append( view.render().el );
+									}
+								}
+							}
 
 							ET_PageBuilder_Layout.addView( module.get('cid'), view );
 
@@ -3392,18 +5559,28 @@ var ET_PageBuilder = ET_PageBuilder || {};
 
 						break;
 				}
+
+				// Always unset cloned_cid attribute after adding module.
+				// It prevents module mishandling for module which is cloned multiple time
+				module.unset('cloned_cid');
 			},
 
 			saveAsShortcode : function( et_model, et_collection, et_options ) {
-				var this_el = this;
+				var this_el = this,
+					action_setting = arguments.length > 0 && typeof arguments[0] === 'object' && arguments[0]['et_action'] || '';
 
 				if ( et_options && et_options['update_shortcodes'] == 'false' )
 					return;
 
 				shortcode = this_el.generateCompleteShortcode();
 
+				this.addHistory( shortcode );
+
 				setTimeout( function(){
-					et_pb_set_content( 'content', shortcode );
+					// Save to content is performed each time, except when a layout is being loaded
+					var action = action_setting || '';
+
+					et_pb_set_content( 'content', shortcode, action );
 				}, 500 );
 			},
 
@@ -3430,7 +5607,7 @@ var ET_PageBuilder = ET_PageBuilder || {};
 								shortcode += this_el.generateModuleShortcode( $(this), false, layout_type, ignore_global_tag, '', ignore_global_tabs );
 							}
 						} );
-					} else if ( $this_section.closest( '.et_pb_section' ).hasClass( 'et_pb_section_specialty' ) && ( ( true === include_whole_section || true === all_sections ) && true !== skip_section ) ) {
+					} else if ( $this_section.closest( '.et_pb_section' ).hasClass( 'et_pb_section_specialty' ) && ( ( true === include_whole_section || true === all_sections || 'module' === layout_type || 'row' === layout_type ) && true !== skip_section ) ) {
 						$this_section.find( '> .et-pb-column' ).each( function() {
 							var $this_column = $(this),
 								column_cid = $this_column.data( 'cid' ),
@@ -3438,41 +5615,63 @@ var ET_PageBuilder = ET_PageBuilder || {};
 								specialty_columns = module.get( 'layout_specialty' ) === '1' ? ' specialty_columns="' + module.get( 'specialty_columns' ) + '"' : '',
 								specialty_column_layout = module.get('layout');
 
-							shortcode += '[et_pb_column type="' + specialty_column_layout + '"' + specialty_columns +']';
+							if ( true === include_whole_section || true === all_sections ) {
+								shortcode += '[et_pb_column type="' + specialty_column_layout + '"' + specialty_columns +']';
+							}
 
 							if ( $this_column.hasClass( 'et-pb-column-specialty' ) ) {
 								// choose each row
 								$this_column.find( '.et_pb_row' ).each( function() {
 									var $this_row = $(this),
 										row_cid = $this_row.find( '.et-pb-row-content' ).data( 'cid' ),
-										module = ET_PageBuilder_Modules.findWhere( { cid : row_cid } );
+										module = ET_PageBuilder_Modules.findWhere( { cid : row_cid } ),
+										include_whole_inner_row = false;
 
-									shortcode += this_el.generateModuleShortcode( $(this), true, layout_type, ignore_global_tag, 'row_inner' );
+									if ( true === include_whole_section || true === all_sections || ( 'row' === layout_type && row_cid === cid ) ) {
+										include_whole_inner_row = true;
+										shortcode += this_el.generateModuleShortcode( $(this), true, layout_type, ignore_global_tag, 'row_inner' );
+									}
 
 									$this_row.find( '.et-pb-column' ).each( function() {
 										var $this_column_inner = $(this),
 											column_cid = $this_column_inner.data( 'cid' ),
 											module = ET_PageBuilder_Modules.findWhere( { cid : column_cid } );
 
-										shortcode += '[et_pb_column_inner type="' + module.get('layout') + '" saved_specialty_column_type="' + specialty_column_layout + '"]';
+										if ( true === include_whole_inner_row ) {
+											shortcode += '[et_pb_column_inner type="' + module.get('layout') + '" saved_specialty_column_type="' + specialty_column_layout + '"]';
+										}
 
 										$this_column_inner.find( '.et_pb_module_block' ).each( function() {
-											shortcode += this_el.generateModuleShortcode( $(this), false, '', ignore_global_tag );
+											var inner_module_cid = $( this ).data( 'cid' );
+
+											if ( ( false === all_sections && ( cid === inner_module_cid || true === include_whole_section || true === include_whole_inner_row ) ) || true === all_sections ) {
+												shortcode += this_el.generateModuleShortcode( $(this), false, layout_type, ignore_global_tag, '', ignore_global_tabs );
+											}
 										} );
 
-										shortcode += '[/et_pb_column_inner]';
+										if ( true === include_whole_inner_row ) {
+											shortcode += '[/et_pb_column_inner]';
+										}
 									} );
 
-									shortcode += '[/et_pb_row_inner]';
+									if ( true === include_whole_section || true === all_sections || ( 'row' === layout_type && row_cid === cid ) ) {
+										shortcode += '[/et_pb_row_inner]';
+									}
 								} );
 							} else {
 								// choose each module
 								$this_column.find( '.et_pb_module_block' ).each( function() {
-									shortcode += this_el.generateModuleShortcode( $(this), false, '', ignore_global_tag );
+									var specialty_module_cid = $( this ).data( 'cid' );
+
+									if ( ( false === all_sections && ( cid === specialty_module_cid || true === include_whole_section ) ) || true === all_sections ) {
+										shortcode += this_el.generateModuleShortcode( $(this), false, layout_type, ignore_global_tag, '', ignore_global_tabs );
+									}
 								} );
 							}
 
-							shortcode += '[/et_pb_column]';
+							if ( true === include_whole_section || true === all_sections ) {
+								shortcode += '[/et_pb_column]';
+							}
 						} );
 					} else {
 						$this_section.find( '.et_pb_row' ).each( function() {
@@ -3539,7 +5738,8 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					} ),
 					module_type = typeof module !== 'undefined' ? module.get( 'module_type' ) : 'undefined',
 					module_settings,
-					shortcode;
+					shortcode,
+					template_module_type;
 
 				if ( typeof defined_module_type !== 'undefined' && '' !== defined_module_type ) {
 					module_type = defined_module_type;
@@ -3559,6 +5759,17 @@ var ET_PageBuilder = ET_PageBuilder || {};
 
 							if ( setting_name === 'et_pb_content_new' || setting_name === 'et_pb_raw_content' ) {
 								content = setting_value;
+
+								if ( setting_name === 'et_pb_raw_content' ) {
+									content = _.escape( content );
+								}
+
+								content = $.trim( content );
+
+								if ( setting_name === 'et_pb_content_new' ) {
+									content = "\n\n" + content + "\n\n";
+								}
+
 							} else if ( setting_value !== '' ) {
 								// check if there is a default value for a setting
 								if ( typeof module_settings['module_defaults'] !== 'undefined' && typeof module_settings['module_defaults'][ setting_name ] !== 'undefined' ) {
@@ -3572,13 +5783,21 @@ var ET_PageBuilder = ET_PageBuilder || {};
 
 								setting_name = setting_name.replace( 'et_pb_', '' );
 
+								// Make sure double quotes are encoded, before adding values to shortcode
+								if ( typeof setting_value === 'string' ) {
+									setting_value = setting_value.replace( /\"/g, '%22' );
+								}
+
 								attributes += ' ' + setting_name + '="' + setting_value + '"';
 							}
 						}
 					}
 				}
 
-				if ( typeof layout_type !== 'undefined' && ( layout_type === module_type || ( 'module' === layout_type && 'section' !== module_type && 'row' !== module_type ) ) ) {
+				template_module_type = 'section' !== module_type && 'row' !== module_type ? 'module' : module_type;
+				template_module_type = 'row_inner' === module_type ? 'row' : template_module_type;
+
+				if ( typeof layout_type !== 'undefined' && ( layout_type === template_module_type ) ) {
 					attributes += ' template_type="' + layout_type + '"';
 				}
 
@@ -3602,10 +5821,19 @@ var ET_PageBuilder = ET_PageBuilder || {};
 			},
 
 			makeSectionsSortable : function() {
+				var this_el = this;
+
 				this.$el.sortable( {
-					cancel : '.et-pb-settings, .et-pb-clone, .et-pb-remove, .et-pb-section-add, .et-pb-row-add, .et-pb-insert-module, .et-pb-insert-column, #et_pb_layout_controls',
+					items  : '> *:not(#et_pb_layout_controls, #et_pb_main_container_right_click_overlay, #et-pb-histories-visualizer, #et-pb-histories-visualizer-overlay)',
+					cancel : '.et-pb-settings, .et-pb-clone, .et-pb-remove, .et-pb-section-add, .et-pb-row-add, .et-pb-insert-module, .et-pb-insert-column, .et_pb_locked, .et-pb-disable-sort',
 					update : function( event, ui ) {
+						// Enable history saving and set meta for history
+						this_el.allowHistorySaving( 'moved', 'section' );
+
 						ET_PageBuilder_Events.trigger( 'et-sortable:update' );
+					},
+					start : function( event, ui ) {
+						et_pb_close_all_right_click_options();
 					}
 				} );
 			},
@@ -3645,7 +5873,8 @@ var ET_PageBuilder = ET_PageBuilder || {};
 
 					// don't remove cloned sections
 					if ( typeof this_view !== 'undefined' ) {
-						this_view.removeSection();
+						// Remove sections. Use remove_all flag so it can differ "remove section" and "clear layout"
+						this_view.removeSection( false, true );
 					}
 				} );
 
@@ -3658,14 +5887,25 @@ var ET_PageBuilder = ET_PageBuilder || {};
 			},
 
 			// creates new layout from any content and saves new shortcodes once
-			createNewLayout : function( content ) {
+			createNewLayout : function( content, action ) {
+				var action = action || '';
+
 				this.stopListening( this.collection, 'change reset add', this.saveAsShortcode );
+
+				if ( action === 'load_layout' && typeof window.switchEditors !== 'undefined' ) {
+					content = window.switchEditors.wpautop( content );
+
+					content = content.replace( /<p>\[/g, '[' );
+					content = content.replace( /\]<\/p>/g, ']' );
+					content = content.replace( /\]<br \/>/g, ']' );
+					content = content.replace( /<br \/>\n\[/g, '[' );
+				}
 
 				this.createLayoutFromContent( content );
 
-				this.saveAsShortcode();
+				this.saveAsShortcode( { et_action : action } );
 
-				this.listenTo( this.collection, 'change reset add', this.saveAsShortcode );
+				this.listenTo( this.collection, 'change reset add', _.debounce( this.saveAsShortcode, 128 ) );
 			},
 
 			//replaces the Original element with Replacement element in builder
@@ -3679,9 +5919,48 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				ET_PageBuilder_Layout.removeView( original_cid );
 
 				original_view.remove();
+			},
+
+			showRightClickOptions : function( event ) {
+				event.preventDefault();
+
+				var et_right_click_options_view,
+					view_settings = {
+						model      : {
+							attributes : {
+								type : 'app',
+								module_type : 'app'
+							}
+						},
+						view       : this.$el,
+						view_event : event
+					};
+
+				et_right_click_options_view = new ET_PageBuilder.RightClickOptionsView( view_settings );
+			},
+
+			hideRightClickOptions : function( event ) {
+				event.preventDefault();
+
+				et_pb_close_all_right_click_options();
 			}
 
 		} );
+
+		// Close and remove right click options
+		function et_pb_close_all_right_click_options() {
+			// Remove right click options UI
+			$('#et-builder-right-click-controls').remove();
+
+			// Remove builder overlay (right/left click anywhere outside builder to close right click options UI)
+			$('#et_pb_layout_right_click_overlay').remove();
+		}
+
+		$('body').on( 'click contextmenu', '#et_pb_layout_right_click_overlay', function( event ){
+			event.preventDefault();
+
+			et_pb_close_all_right_click_options();
+		});
 
 		function et_pb_activate_upload( $upload_button ) {
 			$upload_button.click( function( event ) {
@@ -3746,8 +6025,12 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				function remove_unneeded_gallery_settings( $el ) {
 					setTimeout(function(){
 						$el.find( '.gallery-settings' ).find( 'label.setting' ).each(function() {
-							if ( $(this).find( '.link-to, .columns' ).length ) {
+							if ( $(this).find( '.link-to, .columns, .size' ).length ) {
 								$(this).remove();
+							} else {
+								if ( $(this).has( 'input[type=checkbox]' ).length ) {
+									$(this).children( 'input[type=checkbox]' ).css( 'margin', '11px 5px' );
+								}
 							}
 						});
 					}, 10 );
@@ -3834,10 +6117,15 @@ var ET_PageBuilder = ET_PageBuilder || {};
 
 			ET_PageBuilder_Modules = new ET_PageBuilder.Modules,
 
+			ET_PageBuilder_Histories = new ET_PageBuilder.Histories,
+
 			ET_PageBuilder_App = new ET_PageBuilder.AppView( {
 				model : ET_PageBuilder.Module,
-				collection : ET_PageBuilder_Modules
+				collection : ET_PageBuilder_Modules,
+				history : ET_PageBuilder_Histories
 			} ),
+
+			ET_PageBuilder_Visualize_Histories = new ET_PageBuilder.visualizeHistoriesView,
 
 			$et_pb_content = $( '#et_pb_hidden_editor' ),
 
@@ -3846,6 +6134,8 @@ var ET_PageBuilder = ET_PageBuilder || {};
 			et_pb_file_frame,
 
 			$toggle_builder_button = $('#et_pb_toggle_builder'),
+
+			$toggle_builder_button_wrapper = $('.et_pb_toggle_builder_wrapper'),
 
 			$builder = $( '#et_pb_layout' ),
 
@@ -3865,13 +6155,18 @@ var ET_PageBuilder = ET_PageBuilder || {};
 
 			et_pb_globals_requested = 0,
 
-			et_pb_globals_loaded = 0;
+			et_pb_globals_loaded = 0,
+
+			et_pb_initial_editor_mode = et_get_editor_mode(),
+
+			et_pb_wpautop_applied_to_models = false;
 
 		ET_PageBuilder.Events = ET_PageBuilder_Events;
 
 		$et_pb_content.remove();
 
-		if ( $toggle_builder_button.hasClass( 'et_pb_builder_is_used' ) ) {
+		// button can be disabled, therefore use the button wrapper to determine whether to display builder or not
+		if ( $toggle_builder_button_wrapper.hasClass( 'et_pb_builder_is_used' ) ) {
 			$builder.show();
 
 			et_pb_hide_layout_settings();
@@ -3962,6 +6257,16 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				$modal.find('select, input, textarea, radio').filter(':eq(0)').focus();
 			}, 1 );
 
+			if ( 'rename_admin_label' === action ) {
+				var admin_label = $modal.find( 'input#et_pb_new_admin_label' ),
+					current_view = ET_PageBuilder_Layout.getView( cid_or_element ),
+					current_admin_label = current_view.model.get( 'admin_label' ).trim();
+
+				if ( current_admin_label !== '' ) {
+					admin_label.val( current_admin_label );
+				}
+			}
+
 			$( '.et_pb_modal_overlay .et_pb_prompt_proceed' ).click( function( event ) {
 				event.preventDefault();
 
@@ -3973,6 +6278,27 @@ var ET_PageBuilder = ET_PageBuilder || {};
 						break;
 					case 'clear_layout' :
 						ET_PageBuilder_App.removeAllSections( true );
+						break;
+
+					case 'rename_admin_label' :
+						var admin_label = $prompt_modal.find( '#et_pb_new_admin_label' ).val().trim(),
+							current_view = ET_PageBuilder_Layout.getView( cid_or_element );
+
+						// TODO: Decide if we want to allow blank admin labels
+						if ( admin_label == '' ) {
+							$prompt_modal.find( '#et_pb_new_admin_label' ).focus()
+
+							return;
+						}
+
+						current_view.model.set( 'admin_label', admin_label, { silent : true } );
+						current_view.renameModule();
+
+						// Enable history saving and set meta for history
+						ET_PageBuilder_App.allowHistorySaving( 'renamed', 'module', admin_label );
+
+						et_reinitialize_builder_layout();
+
 						break;
 					case 'reset_advanced_settings' :
 						cid_or_element.each( function() {
@@ -4093,7 +6419,10 @@ var ET_PageBuilder = ET_PageBuilder || {};
 
 						template_shortcode = ET_PageBuilder_App.generateCompleteShortcode( module_cid, layout_type, ignore_global, ignore_saved_tabs );
 
-						template_shortcode = 'row_inner' === module_type ? template_shortcode.replace( '[et_pb_row_inner', '[et_pb_row' ) : template_shortcode;
+						if ( 'row_inner' === module_type ) {
+							template_shortcode = template_shortcode.replace( /et_pb_row_inner/g, 'et_pb_row' );
+							template_shortcode = template_shortcode.replace( /et_pb_column_inner/g, 'et_pb_column' );
+						}
 
 						// save all the settings after template was generated.
 						if ( 'all' !== selected_tabs ) {
@@ -4219,9 +6548,11 @@ var ET_PageBuilder = ET_PageBuilder || {};
 			var content,
 				fix_shortcodes = typeof fix_shortcodes !== 'undefined' ? fix_shortcodes : false;
 
-			content = typeof window.tinyMCE !== 'undefined' && window.tinyMCE.get( textarea_id ) && ! window.tinyMCE.get( textarea_id ).isHidden()
-				? window.tinyMCE.get( textarea_id ).getContent()
-				: $( '#' + textarea_id ).val();
+			if ( typeof window.tinyMCE !== 'undefined' && window.tinyMCE.get( textarea_id ) && ! window.tinyMCE.get( textarea_id ).isHidden() ) {
+				content = window.tinyMCE.get( textarea_id ).getContent();
+			} else {
+				content = $( '#' + textarea_id ).val();
+			}
 
 			if ( fix_shortcodes && typeof window.tinyMCE !== 'undefined' ) {
 				content = content.replace( /<p>\[/g, '[' );
@@ -4241,19 +6572,34 @@ var ET_PageBuilder = ET_PageBuilder || {};
 			return et_editor_mode;
 		}
 
-		function et_pb_set_content( textarea_id, content ) {
-			if ( typeof window.tinyMCE !== 'undefined' && window.tinyMCE.get( textarea_id ) && ! window.tinyMCE.get( textarea_id ).isHidden() ) {
+		function et_pb_is_editor_in_visual_mode( id ) {
+			var is_editor_in_visual_mode = !! ( typeof window.tinyMCE !== 'undefined' && window.tinyMCE.get( id ) && ! window.tinyMCE.get( id ).isHidden() );
+
+			return is_editor_in_visual_mode;
+		}
+
+		function et_pb_set_content( textarea_id, content, current_action ) {
+			var current_action                = current_action || '',
+				main_editor_in_visual_mode    = et_pb_is_editor_in_visual_mode( 'content' ),
+				current_editor_in_visual_mode = et_pb_is_editor_in_visual_mode( textarea_id );
+
+			if ( typeof window.tinyMCE !== 'undefined' && window.tinyMCE.get( textarea_id ) && current_editor_in_visual_mode ) {
 				var editor = window.tinyMCE.get( textarea_id );
 
-				// if the content was saved in the Text mode and the Visual mode is currrently activated,
-				// apply wpautop to make sure formatting isn't lost
-				if ( editor.getParam( 'wpautop', true ) && typeof window.switchEditors !== 'undefined' ) {
-					content = window.switchEditors.wpautop( content );
-				}
-
-				editor.setContent( content, { format : 'html'  } );
+				editor.setContent( $.trim( content ), { format : 'html'  } );
 			} else {
-				$( '#' + textarea_id ).val( content );
+				$( '#' + textarea_id ).val( $.trim( content ) );
+			}
+
+			// generate quick tag buttons for the editor in Text mode
+			( typeof tinyMCEPreInit.mceInit[textarea_id] !== "undefined" ) ? quicktags( { id : textarea_id } ) : quicktags( tinyMCEPreInit.qtInit[textarea_id] );
+			QTags._buttonsInit();
+
+			// Enabling publish button + removes disable_publish mark
+			if ( ! wp.heartbeat || ! wp.heartbeat.hasConnectionError() ) {
+				$('#publish').removeClass( 'disabled' );
+
+				delete ET_PageBuilder_App.disable_publish;
 			}
 		}
 
@@ -4316,6 +6662,21 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				$yes_no_select         = $container.find( 'select' ),
 
 				hidden_class = 'et_pb_hidden';
+
+			if ( typeof window.switchEditors !== 'undefined' ) {
+				$container.find( '.wp-switch-editor' ).click( function() {
+					var $this_el = $(this),
+						editor_mode;
+
+					editor_mode = $this_el.hasClass( 'switch-tmce' ) ? 'tinymce' : 'html';
+
+					if ( ! et_pb_wpautop_applied_to_models && et_pb_initial_editor_mode === 'html' && editor_mode === 'tinymce' ) {
+						et_pb_maybe_apply_wpautop_to_models();
+					}
+
+					window.switchEditors.go( 'content', editor_mode );
+				} );
+			}
 
 			$custom_color_picker.each( function() {
 				var $this_color_picker      = $(this),
@@ -4482,7 +6843,7 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					margin      = '';
 
 				$container.find( '.et_custom_margin' ).each( function() {
-					margin += $.trim( $(this).val() ) + '|';
+					margin += $.trim( et_pb_sanitize_input_unit_value( $(this).val(), $(this).hasClass( 'auto_important' ) ) ) + '|';
 				} );
 
 				margin = margin.slice( 0, -1 );
@@ -4756,6 +7117,57 @@ var ET_PageBuilder = ET_PageBuilder || {};
 			}
 		}
 
+		function et_pb_sanitize_input_unit_value( value, auto_important ) {
+			var valid_one_char_units  = [ "%" ],
+				valid_two_chars_units = [ "em", "px", "cm", "mm", "in", "pt", "pc", "ex" ],
+				important             = "!important",
+				important_length      = important.length,
+				has_important         = false,
+				value_length          = value.length,
+				auto_important       = _.isUndefined( auto_important ) ? false : auto_important,
+				unit_value;
+
+			if ( value === '' ) {
+				return '';
+			}
+
+			// check for !important
+			if ( value.substr( ( 0 - important_length ), important_length ) === important ) {
+				has_important = true;
+				value_length = value_length - important_length;
+				value = value.substr( 0, value_length ).trim();
+			}
+
+			if ( $.inArray( value.substr( -1, 1 ), valid_one_char_units ) !== -1 ) {
+				unit_value = parseInt( value ) + "%";
+
+				// Re-add !important tag
+				if ( has_important && ! auto_important ) {
+					unit_value = unit_value + ' ' + important;
+				}
+
+				return unit_value;
+			}
+
+			if ( $.inArray( value.substr( -2, 2 ), valid_two_chars_units ) !== -1 ) {
+				var unit_value = parseInt( value ) + value.substr( -2, 2 );
+
+				// Re-add !important tag
+				if ( has_important && ! auto_important ) {
+					unit_value = unit_value + ' ' + important;
+				}
+
+				return unit_value;
+			}
+
+			if( isNaN( parseInt( value ) ) ) {
+				return '';
+			}
+
+			// Return and automatically append px (default value)
+			return parseInt( value ) + 'px';
+		}
+
 		function et_pb_process_custom_margin_field( $element ) {
 			var $this_field      = $element,
 				this_field_value = $this_field.val(),
@@ -4769,9 +7181,11 @@ var ET_PageBuilder = ET_PageBuilder || {};
 
 				$margin_fields.each( function() {
 					var $this_field = $(this),
-						field_index = $margin_fields.index( $this_field );
+						field_index = $margin_fields.index( $this_field ),
+						auto_important  = $this_field.hasClass( 'auto_important' ),
+						corner_value = et_pb_sanitize_input_unit_value( margins[ field_index ], auto_important );
 
-					$this_field.val( margins[ field_index ] );
+					$this_field.val( corner_value );
 				} );
 			} else {
 				$margin_fields.each( function() {
@@ -4849,7 +7263,7 @@ var ET_PageBuilder = ET_PageBuilder || {};
 
 				$builder_container.css( { 'height' : builder_height } );
 
-				content = et_pb_get_content( 'content' );
+				content = et_pb_get_content( 'content', true );
 
 				ET_PageBuilder_App.removeAllSections();
 
@@ -5011,6 +7425,24 @@ var ET_PageBuilder = ET_PageBuilder || {};
 			}
 		}
 
+		function et_pb_maybe_apply_wpautop_to_models() {
+			if ( et_pb_wpautop_applied_to_models || typeof window.switchEditors === 'undefined' ) {
+				return;
+			}
+
+			_.each( ET_PageBuilder_App.collection.models, function( model ) {
+				var model_content = model.get( 'et_pb_content_new' );
+
+				if ( typeof model_content !== 'undefined' ) {
+					model_content = window.switchEditors.wpautop( model_content.replace( /<p> <\/p>/g, "<p>&nbsp;</p>" ) );
+
+					model.set( 'et_pb_content_new', model_content, { silent : true } );
+				}
+			} );
+
+			et_pb_wpautop_applied_to_models = true;
+		}
+
 		function et_add_template_meta( custom_field_name, value ) {
 			var current_post_id = et_pb_options.template_post_id;
 			$.ajax( {
@@ -5091,6 +7523,11 @@ var ET_PageBuilder = ET_PageBuilder || {};
 					modal_view = new ET_PageBuilder.ModalView( view_settings );
 					$( 'body' ).append( modal_view.render().el );
 
+					// Emulate preview clicking if this is triggered via right click
+					if ( view_settings.triggered_by_right_click === true && view_settings.do_preview === true ) {
+						$('.et-pb-modal-preview-template').trigger( 'click' );
+					}
+
 					var saved_tabs = view_settings.model.get( 'et_pb_saved_tabs' );
 
 					if ( typeof saved_tabs !== 'undefined' ) {
@@ -5161,8 +7598,12 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				post_id                      = global_module_view.model.get( 'et_pb_global_module' ),
 				layout_type                  = global_module_view.model.get( 'type' );
 				layout_type_updated          = 'row_inner' === layout_type ? 'row' : layout_type,
-				template_shortcode           = ET_PageBuilder_App.generateCompleteShortcode( global_module_cid, layout_type_updated, 'ignore_global' ),
-				template_shortcode_processed = 'row_inner' === layout_type ? template_shortcode.replace( 'et_pb_row_inner', 'et_pb_row' ) : template_shortcode;
+				template_shortcode           = ET_PageBuilder_App.generateCompleteShortcode( global_module_cid, layout_type_updated, 'ignore_global' );
+
+				if ( 'row_inner' === layout_type ) {
+					template_shortcode = template_shortcode.replace( /et_pb_row_inner/g, 'et_pb_row' );
+					template_shortcode = template_shortcode.replace( /et_pb_column_inner/g, 'et_pb_column' );
+				}
 
 			$.ajax( {
 				type: "POST",
@@ -5171,7 +7612,7 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				{
 					action : 'et_pb_update_layout',
 					et_load_nonce : et_pb_options.et_load_nonce,
-					et_layout_content : template_shortcode_processed,
+					et_layout_content : template_shortcode,
 					et_template_post_id : post_id,
 				}
 			} );
@@ -5193,13 +7634,108 @@ var ET_PageBuilder = ET_PageBuilder || {};
 				}
 			}
 		}
+
+		/**
+		* Check if current user has permission to lock/unlock content
+		*/
+		function et_pb_user_lock_permissions() {
+			var permissions = $.ajax( {
+				type: "POST",
+				url: et_pb_options.ajaxurl,
+				dataType: 'json',
+				data:
+				{
+					action : 'et_pb_current_user_can_lock',
+					et_load_nonce : et_pb_options.et_load_nonce
+				},
+				beforeSend : function() {
+					ET_PageBuilder_Events.trigger( 'et-pb-loading:started' );
+				},
+				complete : function() {
+					ET_PageBuilder_Events.trigger( 'et-pb-loading:ended' );
+				},
+			} );
+
+			return permissions;
+		}
+
+		/**
+		* Check for localStorage support
+		*/
+		function et_pb_has_storage_support() {
+			try {
+				return 'localStorage' in window && window.localStorage !== null;
+			} catch (e) {
+				return false;
+			}
+		}
+
+		/**
+		* Clipboard mechanism. Clipboard is only capable of handling one copied content at the onetime
+		* @todo add fallback support
+		*/
+		ET_PB_Clipboard = {
+			key : 'et_pb_clipboard_',
+			set : function( type, content ) {
+				if ( et_pb_has_storage_support() ) {
+					// Save the type of copied content
+					localStorage.setItem( this.key + 'type', type );
+
+					// Save the copied content
+					localStorage.setItem( this.key + 'content', content );
+				} else {
+					alert( et_pb_options.localstorage_unavailability_alert );
+				}
+			},
+			get : function( type ) {
+				if ( et_pb_has_storage_support() ) {
+					// Get saved type and content
+					var saved_type =  localStorage.getItem( this.key + 'type' ),
+						saved_content = localStorage.getItem( this.key + 'content' );
+
+					// Check for the compatibility of saved data and paste destination
+					// Return value if the supplied type equal with saved value, or if the getter doesn't care about the content's type
+					if ( typeof type === 'undefined' || type === saved_type ) {
+						return saved_content;
+					} else {
+						return false;
+					}
+				} else {
+					alert( et_pb_options.localstorage_unavailability_alert );
+				}
+			}
+		};
+
+		/**
+		* Builder hotkeys
+		*/
+		$(window).keydown( function( event ){
+			if ( event.keyCode === 90 && event.metaKey && event.shiftKey || event.keyCode === 90 && event.ctrlKey && event.shiftKey ) {
+				// Redo
+				event.preventDefault();
+
+				ET_PageBuilder_App.redo( event );
+
+				return false;
+			} else if ( event.keyCode === 90 && event.metaKey || event.keyCode === 90 && event.ctrlKey ) {
+				// Undo
+				event.preventDefault();
+
+				ET_PageBuilder_App.undo( event );
+
+				return false;
+			}
+		});
 	} );
 
 } )(jQuery);
 
 ( function($) {
 
+	window.et_builder = window.et_builder || {};
+
 	$( document ).ready( function() {
+		var et_builder = {};
 
 		// hook for necessary adv form field logic for tabbed posts module
 		function adv_setting_form_category_select_update_hidden( that ) {
@@ -5217,6 +7753,97 @@ var ET_PageBuilder = ET_PageBuilder || {};
 			}
 		}
 		ET_PageBuilder.Events.on('et-advanced-module-settings:render', adv_setting_form_category_select_update_hidden );
+
+		et_builder = {
+			fonts_template: function() {
+				var template = $('#et-builder-google-fonts-options-items').html();
+
+				return template;
+			},
+			font_icon_list_template: function(){
+				var template = $('#et-builder-font-icon-list-items').html();
+
+				return template;
+			},
+			font_down_icon_list_template: function(){
+				var template = $('#et-builder-font-down-icon-list-items').html();
+
+				return template;
+			}
+		};
+
+		$.extend( window.et_builder, et_builder );
+
+		// Adjust the height of tinymce iframe when fullscreen mode enabled from the Divi builder
+		function et_pb_adjust_fullscreen_mode() {
+			var $modal_container = $( '.et_pb_modal_settings_container' );
+
+			// if fullscreen mode enabled then calculate and apply correct height
+			if ( $modal_container.find( 'div.mce-fullscreen' ).length ) {
+				setTimeout( function() {
+					var modal_height = $modal_container.innerHeight(),
+						toolbar_height = $modal_container.find( '.mce-toolbar-grp' ).innerHeight();
+
+					$modal_container.find( 'iframe' ).height( modal_height - toolbar_height );
+				}, 100 );
+			}
+		}
+
+		// recalculate sizes of tinymce iframe when Fullscreen button clicked
+		$( 'body' ).on( 'click', '.et_pb_module_settings .mce-i-fullscreen', function() {
+			et_pb_adjust_fullscreen_mode();
+		});
+
+		// recalculate sizes of tinymce iframe when window resized
+		$( window ).resize( function() {
+			et_pb_adjust_fullscreen_mode();
+		});
+
+		// handle Escape and Enter buttons in the builder
+		$( document ).keydown( function(e) {
+			var $save_button = $( '.et-pb-modal-save' ),
+				$proceed_button = $( '.et_pb_prompt_proceed' ),
+				$close_button = $( '.et-pb-modal-close' ),
+				$builder_buttons = $( '#et_pb_main_container a, #et_pb_toggle_builder' );
+
+			switch( e.which ) {
+				// Enter button handling
+				case 13 :
+					// do nothing if focus is in the textarea or in the map address field so enter will work as expected
+					if ( $( '.et-pb-option-container textarea, #et_pb_address, #et_pb_pin_address' ).is( ':focus' ) ) {
+						return;
+					}
+					//remove focus from the builder buttons to avoid unexpected behavior
+					$builder_buttons.blur();
+
+					if ( $save_button.length || $proceed_button.length ) {
+						// it's possible that proceed button displayed above the save, we need to click only proceed button in that case
+						if ( $proceed_button.length ) {
+							$proceed_button.click();
+						} else {
+							// it's possible that there are 2 Modals appear on top of each other, save the one which is on top
+							if ( typeof $save_button[1] !== 'undefined' ) {
+								$save_button[1].click();
+							} else {
+								$save_button.click();
+							}
+						}
+					}
+					break;
+				// Escape button handling
+				case 27 :
+					// click close button if it exist on the screen
+					if ( $close_button.length ) {
+						// it's possible that there are 2 Modals appear on top of each other, close the one which is on top
+						if ( typeof $close_button[1] !== 'undefined' ) {
+							$close_button[1].click();
+						} else {
+							$close_button.click();
+						}
+					}
+					break;
+			}
+		});
 
 	});
 

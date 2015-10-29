@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Divi 1.0\n"
-"POT-Creation-Date: 2015-06-17 18:07+0300\n"
-"PO-Revision-Date: 2015-06-17 19:43+0300\n"
+"POT-Creation-Date: 2015-09-02 12:14+0300\n"
+"PO-Revision-Date: 2015-09-02 15:49+0300\n"
 "Last-Translator: \n"
 "Language-Team: Elegant Themes\n"
 "Language: nb\n"
@@ -74,7 +74,7 @@ msgstr "Alternativer lagret."
 msgid "Options"
 msgstr "Alternativer"
 
-#: ../epanel/core_functions.php:73 ../functions.php:8939
+#: ../epanel/core_functions.php:73 ../functions.php:7903
 msgid "Theme Options"
 msgstr "Temaalternativer"
 
@@ -87,7 +87,7 @@ msgid "settings reset."
 msgstr "innstillinger tilbakestilt."
 
 #: ../epanel/core_functions.php:111 ../epanel/options_divi.php:297
-#: ../epanel/options_divi.php:448 ../functions.php:616
+#: ../epanel/options_divi.php:448 ../functions.php:533
 msgid "General Settings"
 msgstr "Generelle innstillinger"
 
@@ -95,7 +95,7 @@ msgstr "Generelle innstillinger"
 msgid "Navigation"
 msgstr "Navigasjon"
 
-#: ../epanel/core_functions.php:117 ../functions.php:621
+#: ../epanel/core_functions.php:117 ../functions.php:543
 msgid "Layout Settings"
 msgstr "Innstillinger for utseende"
 
@@ -148,37 +148,37 @@ msgstr ""
 msgid "Choose an Image"
 msgstr "Velg et bilde"
 
-#: ../epanel/custom_functions.php:192
+#: ../epanel/custom_functions.php:178
 msgid "&hellip;"
 msgstr "&hellip;"
 
-#: ../epanel/custom_functions.php:465 ../header.php:141
+#: ../epanel/custom_functions.php:451 ../header.php:141
 msgid "Home"
 msgstr "Hjem"
 
-#: ../epanel/custom_functions.php:713
+#: ../epanel/custom_functions.php:699
 msgid "Archives"
 msgstr "Arkiv"
 
-#: ../epanel/custom_functions.php:715
+#: ../epanel/custom_functions.php:701
 #, php-format
 msgid "Search results for \"%s\""
 msgstr "Søkeresultater for \"%s\""
 
-#: ../epanel/custom_functions.php:717
+#: ../epanel/custom_functions.php:703
 msgid "404 Not Found"
 msgstr "404 Ikke funnet"
 
-#: ../epanel/custom_functions.php:788
+#: ../epanel/custom_functions.php:774
 #, php-format
 msgid "Currently viewing archives from %1$s"
 msgstr "For øyeblikket visende arkiv fra %1$s"
 
-#: ../epanel/custom_functions.php:1021
+#: ../epanel/custom_functions.php:1007
 msgid "Image doesn't exist"
 msgstr "Bilde eksisterer ikke"
 
-#: ../epanel/custom_functions.php:1217
+#: ../epanel/custom_functions.php:1203
 #, php-format
 msgid ""
 "<div class=\"updated\"><p>This is a fresh installation of %1$s theme. Don't "
@@ -191,7 +191,7 @@ msgstr ""
 "beskjeden vil forsvinne så snart du har klikket knappen Lagre i <a href="
 "\"%2$s\">temaets side for alternativer</a>.</p></div>"
 
-#: ../epanel/custom_functions.php:1229
+#: ../epanel/custom_functions.php:1215
 #, php-format
 msgid ""
 "There is a new version of %1$s available. <a href=\"%2$s\" class=\"thickbox"
@@ -206,7 +206,7 @@ msgstr ""
 "com/members-area/documentation.html#updater\" target=\"_blank\">Elegant "
 "Updater Plugin</a> for å autentisere ditt abonnement.</em>"
 
-#: ../epanel/custom_functions.php:1233
+#: ../epanel/custom_functions.php:1219
 msgid ""
 "Before you can update your Elegant Themes, you must first install the <a "
 "href=\"https://www.elegantthemes.com/members-area/documentation.html#updater"
@@ -306,15 +306,15 @@ msgstr ""
 msgid "Shop Page & Category Page Layout for WooCommerce"
 msgstr "Utseende for butikksiden & kategorisiden WooCommerce"
 
-#: ../epanel/options_divi.php:90 ../functions.php:364
+#: ../epanel/options_divi.php:90 ../functions.php:262
 msgid "Right Sidebar"
 msgstr "Høyre sidebar"
 
-#: ../epanel/options_divi.php:91 ../functions.php:365
+#: ../epanel/options_divi.php:91 ../functions.php:263
 msgid "Left Sidebar"
 msgstr "Venstre sidebar"
 
-#: ../epanel/options_divi.php:92 ../functions.php:366
+#: ../epanel/options_divi.php:92 ../functions.php:264
 msgid "Full Width"
 msgstr "Full bredde"
 
@@ -351,13 +351,13 @@ msgstr "Regenerer MailChimp lister"
 #: ../epanel/options_divi.php:117
 msgid ""
 "By default, MailChimp lists are cached for one day. If you added new list, "
-"but it doesn't appear within the SignUp module settings, activate this "
+"but it doesn't appear within the Email Optin module settings, activate this "
 "option. Don't forget to disable it once the list has been regenerated."
 msgstr ""
-"Opprinnelig er Mailchimp lister lagt i cache i en dag. Hvis du ønsker å "
-"legge til en ny liste, men ikke ønsker at den skal opptre i innstillinger "
-"for påmeldingsmodus, aktiver dette alternativet. Glem ikke å deaktivere det "
-"så snart listen har blitt regenerert."
+"Som standard er MailChimp lister bufret for en dag. Hvis du har lagt ny "
+"liste, men det vises ikke i e-posten OptIn modulinnstillingene, aktivere "
+"dette alternativet. Ikke glem å deaktivere det når listen har blitt "
+"regenerert."
 
 #: ../epanel/options_divi.php:119
 msgid "Regenerate Aweber Lists"
@@ -366,13 +366,12 @@ msgstr "Regenerer Aweber lister"
 #: ../epanel/options_divi.php:123
 msgid ""
 "By default, Aweber lists are cached for one day. If you added new list, but "
-"it doesn't appear within the SignUp module settings, activate this option. "
-"Don't forget to disable it once the list has been regenerated."
+"it doesn't appear within the Email Optin module settings, activate this "
+"option. Don't forget to disable it once the list has been regenerated."
 msgstr ""
-"Opprinnelig er Aweber lister lagt i cache i en dag. Hvis du ønsker å legge "
-"til en ny liste men ikke ønsker at den skal opptre i innstillinger for "
-"påmeldingsmodus, aktiver dette alternativet. Glem ikke å deaktivere det så "
-"snart listen har blitt regenerert."
+"Som standard er Aweber lister bufret for en dag. Hvis du har lagt ny liste, "
+"men det vises ikke i e-posten OptIn modulinnstillingene, aktivere dette "
+"alternativet. Ikke glem å deaktivere det når listen har blitt regenerert."
 
 #: ../epanel/options_divi.php:127
 msgid "Show Facebook Icon"
@@ -566,7 +565,7 @@ msgstr ""
 msgid "Pages"
 msgstr "Sider"
 
-#: ../epanel/options_divi.php:292 ../functions.php:292 ../functions.php:302
+#: ../epanel/options_divi.php:292
 msgid "Categories"
 msgstr "Kategorier"
 
@@ -1237,7 +1236,7 @@ msgstr ""
 msgid "Add code to the bottom of your posts, before the comments"
 msgstr "Legg til kode til bunnen av innleggene dine før kommentarer"
 
-#: ../epanel/options_divi.php:844 ../functions.php:8612
+#: ../epanel/options_divi.php:844
 msgid "Documentation"
 msgstr "Dokumentering"
 
@@ -1284,12 +1283,12 @@ msgid "Place your adsense code here."
 msgstr "Plasser din Google Adsense kode her."
 
 #: ../epanel/shortcodes/shortcodes.php:15
-#: ../epanel/shortcodes/shortcodes.php:518 ../functions.php:160
+#: ../epanel/shortcodes/shortcodes.php:518
 msgid "Previous"
 msgstr "Forrige"
 
 #: ../epanel/shortcodes/shortcodes.php:15
-#: ../epanel/shortcodes/shortcodes.php:519 ../functions.php:161
+#: ../epanel/shortcodes/shortcodes.php:519
 msgid "Next"
 msgstr "Neste"
 
@@ -1309,7 +1308,7 @@ msgstr "Brukernavn: "
 msgid "Password: "
 msgstr "Passord: "
 
-#: ../epanel/shortcodes/shortcodes.php:294 ../functions.php:3522
+#: ../epanel/shortcodes/shortcodes.php:294 ../functions.php:3483
 msgid "Login"
 msgstr "Innlogging"
 
@@ -1390,7 +1389,7 @@ msgid "Content text or html"
 msgstr "Innholdstekst eller HTML"
 
 #: ../epanel/shortcodes/shortcodes.php:999
-#: ../epanel/shortcodes/shortcodes.php:1021 ../functions.php:8610
+#: ../epanel/shortcodes/shortcodes.php:1021
 msgid "Type"
 msgstr "Type"
 
@@ -1499,11 +1498,11 @@ msgstr "Bruk endring av størrelse"
 msgid "+ Add One More Tab"
 msgstr "+ Legg til et nivå til"
 
-#: ../epanel/shortcodes/shortcodes.php:1335 ../functions.php:3165
+#: ../epanel/shortcodes/shortcodes.php:1335 ../functions.php:3126
 msgid "Image Height"
 msgstr "Bildehøyde"
 
-#: ../epanel/shortcodes/shortcodes.php:1336 ../functions.php:3146
+#: ../epanel/shortcodes/shortcodes.php:1336 ../functions.php:3107
 msgid "Image Width"
 msgstr "Bildebredde"
 
@@ -1520,7 +1519,7 @@ msgstr "Primær meny"
 msgid "Secondary Menu"
 msgstr "Sekundær meny"
 
-#: ../functions.php:32 ../functions.php:706
+#: ../functions.php:32 ../functions.php:628
 msgid "Footer Menu"
 msgstr "Bunntekst meny"
 
@@ -1540,866 +1539,737 @@ msgstr ""
 msgid "on"
 msgstr " "
 
-#: ../functions.php:154
-msgid ""
-"Please, check the fields below to make sure you entered the correct "
-"information."
-msgstr "Vennligst sjekk at korrekt informasjon er fylt inn i feltene under."
-
-#: ../functions.php:155
-msgid "Fill"
-msgstr "Fyll inn"
-
-#: ../functions.php:156
-msgid "field"
-msgstr "felt"
-
-#: ../functions.php:157
-msgid "Invalid email"
-msgstr "Ugyldig e-post"
-
-#: ../functions.php:158
-msgid "Captcha"
-msgstr "Captcha"
-
-#: ../functions.php:159
-msgid "Prev"
-msgstr "Forrige"
-
-#: ../functions.php:208
+#: ../functions.php:187
 msgid "Select Page"
 msgstr "Velg en side"
 
-#: ../functions.php:246
+#: ../functions.php:227
 msgid "Divi Page Settings"
 msgstr "Divi Sideinnstillinger"
 
-#: ../functions.php:247
+#: ../functions.php:229
 msgid "Divi Post Settings"
 msgstr "Divi Innleggsinnstillinger"
 
-#: ../functions.php:248
+#: ../functions.php:230
 msgid "Divi Product Settings"
 msgstr "Divi Produktinnstillinger"
 
-#: ../functions.php:249
+#: ../functions.php:231
 msgid "Divi Project Settings"
 msgstr "Divi Prosjektinnstillinger"
 
-#: ../functions.php:255
-msgid "Projects"
-msgstr "Prosjekter"
-
-#: ../functions.php:256
-msgid "Project"
-msgstr "Prosjekt"
-
-#: ../functions.php:257
-msgid "Add New"
-msgstr "Legg til ny"
-
-#: ../functions.php:258
-msgid "Add New Project"
-msgstr "Legg til nytt prosjekt"
-
-#: ../functions.php:259
-msgid "Edit Project"
-msgstr "Rediger prosjekt"
-
-#: ../functions.php:260
-msgid "New Project"
-msgstr "Nytt prosjekt"
-
-#: ../functions.php:261
-msgid "All Projects"
-msgstr "Alle prosjekter"
-
-#: ../functions.php:262
-msgid "View Project"
-msgstr "Se prosjekt"
-
-#: ../functions.php:263
-msgid "Search Projects"
-msgstr "Søk etter prosjekter"
-
-#: ../functions.php:264
-msgid "Nothing found"
-msgstr "Intet funnet"
-
-#: ../functions.php:265
-msgid "Nothing found in Trash"
-msgstr "Intet funnet i søppel"
-
-#: ../functions.php:293
-msgid "Category"
-msgstr "Kategori"
-
-#: ../functions.php:294
-msgid "Search Categories"
-msgstr "Søk kategorier"
-
-#: ../functions.php:295
-msgid "All Categories"
-msgstr "Alle kategorier"
-
-#: ../functions.php:296
-msgid "Parent Category"
-msgstr "Parent kategori"
-
-#: ../functions.php:297
-msgid "Parent Category:"
-msgstr "Parent kategori:"
-
-#: ../functions.php:298
-msgid "Edit Category"
-msgstr "Rediger kategori"
-
-#: ../functions.php:299
-msgid "Update Category"
-msgstr "Oppdater kategori"
-
-#: ../functions.php:300
-msgid "Add New Category"
-msgstr "Legg til ny kategori"
-
-#: ../functions.php:301
-msgid "New Category Name"
-msgstr "Nytt kategorinavn"
-
-#: ../functions.php:314 ../functions.php:324
-msgid "Tags"
-msgstr "Knagger"
-
-#: ../functions.php:315
-msgid "Tag"
-msgstr "Knagg"
-
-#: ../functions.php:316
-msgid "Search Tags"
-msgstr "Søk knagger"
-
-#: ../functions.php:317
-msgid "All Tags"
-msgstr "Alle knagger"
-
-#: ../functions.php:318
-msgid "Parent Tag"
-msgstr "Parent knagg"
-
-#: ../functions.php:319
-msgid "Parent Tag:"
-msgstr "Parent knagg:"
-
-#: ../functions.php:320
-msgid "Edit Tag"
-msgstr "Rediger knagg"
-
-#: ../functions.php:321
-msgid "Update Tag"
-msgstr "Oppdater knagg"
-
-#: ../functions.php:322
-msgid "Add New Tag"
-msgstr "Legg til ny knagg"
-
-#: ../functions.php:323
-msgid "New Tag Name"
-msgstr "Nytt navn på knagg"
-
-#: ../functions.php:340
+#: ../functions.php:238
 msgid "Skills"
 msgstr "Kvalifikasjoner"
 
-#: ../functions.php:343
+#: ../functions.php:241
 msgid "Posted on"
 msgstr "Publisert"
 
-#: ../functions.php:370
+#: ../functions.php:268
 msgid "Light"
 msgstr "Lys"
 
-#: ../functions.php:371
+#: ../functions.php:269
 msgid "Dark"
 msgstr "Mørk"
 
-#: ../functions.php:384
+#: ../functions.php:282
 msgid "Page Layout"
 msgstr "Sidens utseende"
 
-#: ../functions.php:398
+#: ../functions.php:296
 msgid "Dot Navigation"
 msgstr "Punktnavigasjon"
 
-#: ../functions.php:401 ../functions.php:409
+#: ../functions.php:299 ../functions.php:307
 msgid "Off"
 msgstr "Av"
 
-#: ../functions.php:402 ../functions.php:410
+#: ../functions.php:300 ../functions.php:308
 msgid "On"
 msgstr "På"
 
-#: ../functions.php:406
+#: ../functions.php:304
 msgid "Hide Nav Before Scroll"
 msgstr "Skjul navigasjon før rulling"
 
-#: ../functions.php:416
+#: ../functions.php:314
 msgid "Post Title"
 msgstr "Innleggstittel"
 
-#: ../functions.php:419
+#: ../functions.php:317
 msgid "Show"
 msgstr "Vis"
 
-#: ../functions.php:420
+#: ../functions.php:318
 msgid "Hide"
 msgstr "Skjul"
 
-#: ../functions.php:425
+#: ../functions.php:323
 msgid "Use Background Color"
 msgstr "Bruk bakgrunnsfarge"
 
-#: ../functions.php:430 ../functions.php:5510
+#: ../functions.php:328 ../functions.php:5471
 msgid "Hex Value"
 msgstr "Fargeverdi"
 
-#: ../functions.php:434 ../functions.php:1697 ../functions.php:1722
-#: ../functions.php:1845 ../functions.php:2350 ../functions.php:2449
-#: ../functions.php:2655
+#: ../functions.php:332 ../functions.php:1645 ../functions.php:1670
+#: ../functions.php:1793 ../functions.php:2311 ../functions.php:2410
+#: ../functions.php:2616
 msgid "Text Color"
 msgstr "Tekstfarge"
 
-#: ../functions.php:626
+#: ../functions.php:466 ../functions.php:478 ../functions.php:7981
+msgid "you don't have sufficient permissions to access this page"
+msgstr ""
+"du har ikke tilstrekkelige tillatelser til å få tilgang til denne siden"
+
+#: ../functions.php:538
+msgid "Site Identity"
+msgstr "Side Identity"
+
+#: ../functions.php:548
 msgid "Typography"
 msgstr "Typografi"
 
-#: ../functions.php:631
+#: ../functions.php:553
 msgid "Mobile Styles"
 msgstr "Mobile stiler"
 
-#: ../functions.php:636
+#: ../functions.php:558
 msgid "Tablet"
 msgstr "Nettbrett"
 
-#: ../functions.php:641
+#: ../functions.php:563
 msgid "Phone"
 msgstr "Telefon"
 
-#: ../functions.php:646
+#: ../functions.php:568
 msgid "Mobile Menu"
 msgstr "Mobilmeny"
 
-#: ../functions.php:651
+#: ../functions.php:573
 msgid "Background"
 msgstr "Bakgrunn"
 
-#: ../functions.php:656
+#: ../functions.php:578
 msgid "Header & Navigation"
 msgstr "Overskrift og navigasjon"
 
-#: ../functions.php:661
+#: ../functions.php:583
 msgid "Header Format"
 msgstr "Format på overskrift"
 
-#: ../functions.php:666
+#: ../functions.php:588
 msgid "Primary Menu Bar"
 msgstr "Hovedmenylinje"
 
-#: ../functions.php:671
+#: ../functions.php:593
 msgid "Secondary Menu Bar"
 msgstr "Sekundær menylinje"
 
-#: ../functions.php:676
+#: ../functions.php:598
 msgid "Fixed Navigation Settings"
 msgstr "Faste navigasjonsinnstillinger"
 
-#: ../functions.php:681
+#: ../functions.php:603
 msgid "Header Elements"
 msgstr "Overskriftselementer"
 
-#: ../functions.php:686
+#: ../functions.php:608
 msgid "Footer"
 msgstr "Bunntekst"
 
-#: ../functions.php:691
+#: ../functions.php:613
 msgid "Layout"
 msgstr "Nettsideelement"
 
-#: ../functions.php:696
+#: ../functions.php:618
 msgid "Widgets"
 msgstr "Widgeter"
 
-#: ../functions.php:701
+#: ../functions.php:623
 msgid "Footer Elements"
 msgstr "Bunntekstelementer"
 
-#: ../functions.php:711
+#: ../functions.php:633
 msgid "Bottom Bar"
 msgstr "Bunnlinje"
 
-#: ../functions.php:716 ../functions.php:1411
+#: ../functions.php:638 ../functions.php:1337
 msgid "Color Schemes"
 msgstr "Fargevariasjoner"
 
-#: ../functions.php:718
+#: ../functions.php:640
 msgid ""
 "Note: Color settings set above should be applied to the Default color scheme."
 msgstr ""
 "Merk: Fargeinnstillingene valgt ovenfor burde benyttes ved nøytral "
 "fargevariasjon"
 
-#: ../functions.php:722
+#: ../functions.php:644
 msgid "Buttons"
 msgstr "Knapper"
 
-#: ../functions.php:727
+#: ../functions.php:649
 msgid "Buttons Style"
 msgstr "Knappestil"
 
-#: ../functions.php:732
+#: ../functions.php:654
 msgid "Buttons Hover Style"
 msgstr "Knappestil for sveving"
 
-#: ../functions.php:737 ../functions.php:4774
+#: ../functions.php:659 ../functions.php:4735
 msgid "Blog"
 msgstr "Blogg"
 
-#: ../functions.php:742
+#: ../functions.php:664
 msgid "Post"
 msgstr "Innlegg"
 
-#: ../functions.php:754
+#: ../functions.php:680
 msgid "Meta Text Size"
 msgstr "Størrelse på metatekst"
 
-#: ../functions.php:772
+#: ../functions.php:698
 msgid "Meta Line Height"
 msgstr "Linjehøyde meta"
 
-#: ../functions.php:790
+#: ../functions.php:716
 msgid "Meta Letter Spacing"
 msgstr "Bokstavmellomrom meta"
 
-#: ../functions.php:808 ../functions.php:4845 ../functions.php:4931
+#: ../functions.php:734 ../functions.php:4806 ../functions.php:4892
 msgid "Meta Font Style"
 msgstr "Skriftsstil meta"
 
-#: ../functions.php:812 ../functions.php:885 ../functions.php:1276
-#: ../functions.php:1598 ../functions.php:1682 ../functions.php:2119
-#: ../functions.php:2174 ../functions.php:2303 ../functions.php:2367
-#: ../functions.php:2546 ../functions.php:2825 ../functions.php:2864
-#: ../functions.php:2938 ../functions.php:3024 ../functions.php:3063
-#: ../functions.php:3091 ../functions.php:3111 ../functions.php:3215
-#: ../functions.php:3254 ../functions.php:3293 ../functions.php:3340
-#: ../functions.php:3406 ../functions.php:3445 ../functions.php:3492
-#: ../functions.php:3558 ../functions.php:3652 ../functions.php:3691
-#: ../functions.php:3766 ../functions.php:3805 ../functions.php:3844
-#: ../functions.php:3891 ../functions.php:3930 ../functions.php:4014
-#: ../functions.php:4053 ../functions.php:4100 ../functions.php:4139
-#: ../functions.php:4185 ../functions.php:4205 ../functions.php:4291
-#: ../functions.php:4311 ../functions.php:4396 ../functions.php:4435
-#: ../functions.php:4493 ../functions.php:4540 ../functions.php:4705
-#: ../functions.php:4744 ../functions.php:4810 ../functions.php:4849
-#: ../functions.php:4896 ../functions.php:4935 ../functions.php:4982
-#: ../functions.php:5021 ../functions.php:5060 ../functions.php:5099
-#: ../functions.php:5146 ../functions.php:5193 ../functions.php:5259
-#: ../functions.php:5298
+#: ../functions.php:738 ../functions.php:811 ../functions.php:1202
+#: ../functions.php:1546 ../functions.php:1630 ../functions.php:2080
+#: ../functions.php:2135 ../functions.php:2264 ../functions.php:2328
+#: ../functions.php:2507 ../functions.php:2786 ../functions.php:2825
+#: ../functions.php:2899 ../functions.php:2985 ../functions.php:3024
+#: ../functions.php:3052 ../functions.php:3072 ../functions.php:3176
+#: ../functions.php:3215 ../functions.php:3254 ../functions.php:3301
+#: ../functions.php:3367 ../functions.php:3406 ../functions.php:3453
+#: ../functions.php:3519 ../functions.php:3613 ../functions.php:3652
+#: ../functions.php:3727 ../functions.php:3766 ../functions.php:3805
+#: ../functions.php:3852 ../functions.php:3891 ../functions.php:3975
+#: ../functions.php:4014 ../functions.php:4061 ../functions.php:4100
+#: ../functions.php:4146 ../functions.php:4166 ../functions.php:4252
+#: ../functions.php:4272 ../functions.php:4357 ../functions.php:4396
+#: ../functions.php:4454 ../functions.php:4501 ../functions.php:4666
+#: ../functions.php:4705 ../functions.php:4771 ../functions.php:4810
+#: ../functions.php:4857 ../functions.php:4896 ../functions.php:4943
+#: ../functions.php:4982 ../functions.php:5021 ../functions.php:5060
+#: ../functions.php:5107 ../functions.php:5154 ../functions.php:5220
+#: ../functions.php:5259
 msgid "Bold"
 msgstr "Uthevet"
 
-#: ../functions.php:813 ../functions.php:886 ../functions.php:1277
-#: ../functions.php:1599 ../functions.php:1683 ../functions.php:2120
-#: ../functions.php:2175 ../functions.php:2304 ../functions.php:2368
-#: ../functions.php:2547 ../functions.php:2826 ../functions.php:2865
-#: ../functions.php:2939 ../functions.php:3025 ../functions.php:3064
-#: ../functions.php:3092 ../functions.php:3112 ../functions.php:3216
-#: ../functions.php:3255 ../functions.php:3294 ../functions.php:3341
-#: ../functions.php:3407 ../functions.php:3446 ../functions.php:3493
-#: ../functions.php:3559 ../functions.php:3653 ../functions.php:3692
-#: ../functions.php:3767 ../functions.php:3806 ../functions.php:3845
-#: ../functions.php:3892 ../functions.php:3931 ../functions.php:4015
-#: ../functions.php:4054 ../functions.php:4101 ../functions.php:4140
-#: ../functions.php:4186 ../functions.php:4206 ../functions.php:4292
-#: ../functions.php:4312 ../functions.php:4397 ../functions.php:4436
-#: ../functions.php:4494 ../functions.php:4541 ../functions.php:4706
-#: ../functions.php:4745 ../functions.php:4811 ../functions.php:4850
-#: ../functions.php:4897 ../functions.php:4936 ../functions.php:4983
-#: ../functions.php:5022 ../functions.php:5061 ../functions.php:5100
-#: ../functions.php:5147 ../functions.php:5194 ../functions.php:5260
-#: ../functions.php:5299
+#: ../functions.php:739 ../functions.php:812 ../functions.php:1203
+#: ../functions.php:1547 ../functions.php:1631 ../functions.php:2081
+#: ../functions.php:2136 ../functions.php:2265 ../functions.php:2329
+#: ../functions.php:2508 ../functions.php:2787 ../functions.php:2826
+#: ../functions.php:2900 ../functions.php:2986 ../functions.php:3025
+#: ../functions.php:3053 ../functions.php:3073 ../functions.php:3177
+#: ../functions.php:3216 ../functions.php:3255 ../functions.php:3302
+#: ../functions.php:3368 ../functions.php:3407 ../functions.php:3454
+#: ../functions.php:3520 ../functions.php:3614 ../functions.php:3653
+#: ../functions.php:3728 ../functions.php:3767 ../functions.php:3806
+#: ../functions.php:3853 ../functions.php:3892 ../functions.php:3976
+#: ../functions.php:4015 ../functions.php:4062 ../functions.php:4101
+#: ../functions.php:4147 ../functions.php:4167 ../functions.php:4253
+#: ../functions.php:4273 ../functions.php:4358 ../functions.php:4397
+#: ../functions.php:4455 ../functions.php:4502 ../functions.php:4667
+#: ../functions.php:4706 ../functions.php:4772 ../functions.php:4811
+#: ../functions.php:4858 ../functions.php:4897 ../functions.php:4944
+#: ../functions.php:4983 ../functions.php:5022 ../functions.php:5061
+#: ../functions.php:5108 ../functions.php:5155 ../functions.php:5221
+#: ../functions.php:5260
 msgid "Italic"
 msgstr "Kursiv"
 
-#: ../functions.php:814 ../functions.php:887 ../functions.php:1278
-#: ../functions.php:1600 ../functions.php:1684 ../functions.php:2121
-#: ../functions.php:2176 ../functions.php:2305 ../functions.php:2369
-#: ../functions.php:2548 ../functions.php:2827 ../functions.php:2866
-#: ../functions.php:2940 ../functions.php:3026 ../functions.php:3065
-#: ../functions.php:3093 ../functions.php:3113 ../functions.php:3217
-#: ../functions.php:3256 ../functions.php:3295 ../functions.php:3342
-#: ../functions.php:3408 ../functions.php:3447 ../functions.php:3494
-#: ../functions.php:3560 ../functions.php:3654 ../functions.php:3693
-#: ../functions.php:3768 ../functions.php:3807 ../functions.php:3846
-#: ../functions.php:3893 ../functions.php:3932 ../functions.php:4016
-#: ../functions.php:4055 ../functions.php:4102 ../functions.php:4141
-#: ../functions.php:4187 ../functions.php:4207 ../functions.php:4293
-#: ../functions.php:4313 ../functions.php:4398 ../functions.php:4437
-#: ../functions.php:4495 ../functions.php:4542 ../functions.php:4707
-#: ../functions.php:4746 ../functions.php:4812 ../functions.php:4851
-#: ../functions.php:4898 ../functions.php:4937 ../functions.php:4984
-#: ../functions.php:5023 ../functions.php:5062 ../functions.php:5101
-#: ../functions.php:5148 ../functions.php:5195 ../functions.php:5261
-#: ../functions.php:5300
+#: ../functions.php:740 ../functions.php:813 ../functions.php:1204
+#: ../functions.php:1548 ../functions.php:1632 ../functions.php:2082
+#: ../functions.php:2137 ../functions.php:2266 ../functions.php:2330
+#: ../functions.php:2509 ../functions.php:2788 ../functions.php:2827
+#: ../functions.php:2901 ../functions.php:2987 ../functions.php:3026
+#: ../functions.php:3054 ../functions.php:3074 ../functions.php:3178
+#: ../functions.php:3217 ../functions.php:3256 ../functions.php:3303
+#: ../functions.php:3369 ../functions.php:3408 ../functions.php:3455
+#: ../functions.php:3521 ../functions.php:3615 ../functions.php:3654
+#: ../functions.php:3729 ../functions.php:3768 ../functions.php:3807
+#: ../functions.php:3854 ../functions.php:3893 ../functions.php:3977
+#: ../functions.php:4016 ../functions.php:4063 ../functions.php:4102
+#: ../functions.php:4148 ../functions.php:4168 ../functions.php:4254
+#: ../functions.php:4274 ../functions.php:4359 ../functions.php:4398
+#: ../functions.php:4456 ../functions.php:4503 ../functions.php:4668
+#: ../functions.php:4707 ../functions.php:4773 ../functions.php:4812
+#: ../functions.php:4859 ../functions.php:4898 ../functions.php:4945
+#: ../functions.php:4984 ../functions.php:5023 ../functions.php:5062
+#: ../functions.php:5109 ../functions.php:5156 ../functions.php:5222
+#: ../functions.php:5261
 msgid "Uppercase"
 msgstr "Store bokstaver"
 
-#: ../functions.php:815 ../functions.php:888 ../functions.php:1279
-#: ../functions.php:1601 ../functions.php:1685 ../functions.php:2122
-#: ../functions.php:2177 ../functions.php:2306 ../functions.php:2370
-#: ../functions.php:2549 ../functions.php:2828 ../functions.php:2867
-#: ../functions.php:2941 ../functions.php:3027 ../functions.php:3066
-#: ../functions.php:3094 ../functions.php:3114 ../functions.php:3218
-#: ../functions.php:3257 ../functions.php:3296 ../functions.php:3343
-#: ../functions.php:3409 ../functions.php:3448 ../functions.php:3495
-#: ../functions.php:3561 ../functions.php:3655 ../functions.php:3694
-#: ../functions.php:3769 ../functions.php:3808 ../functions.php:3847
-#: ../functions.php:3894 ../functions.php:3933 ../functions.php:4017
-#: ../functions.php:4056 ../functions.php:4103 ../functions.php:4142
-#: ../functions.php:4188 ../functions.php:4208 ../functions.php:4294
-#: ../functions.php:4314 ../functions.php:4399 ../functions.php:4438
-#: ../functions.php:4496 ../functions.php:4543 ../functions.php:4708
-#: ../functions.php:4747 ../functions.php:4813 ../functions.php:4852
-#: ../functions.php:4899 ../functions.php:4938 ../functions.php:4985
-#: ../functions.php:5024 ../functions.php:5063 ../functions.php:5102
-#: ../functions.php:5149 ../functions.php:5196 ../functions.php:5262
-#: ../functions.php:5301
+#: ../functions.php:741 ../functions.php:814 ../functions.php:1205
+#: ../functions.php:1549 ../functions.php:1633 ../functions.php:2083
+#: ../functions.php:2138 ../functions.php:2267 ../functions.php:2331
+#: ../functions.php:2510 ../functions.php:2789 ../functions.php:2828
+#: ../functions.php:2902 ../functions.php:2988 ../functions.php:3027
+#: ../functions.php:3055 ../functions.php:3075 ../functions.php:3179
+#: ../functions.php:3218 ../functions.php:3257 ../functions.php:3304
+#: ../functions.php:3370 ../functions.php:3409 ../functions.php:3456
+#: ../functions.php:3522 ../functions.php:3616 ../functions.php:3655
+#: ../functions.php:3730 ../functions.php:3769 ../functions.php:3808
+#: ../functions.php:3855 ../functions.php:3894 ../functions.php:3978
+#: ../functions.php:4017 ../functions.php:4064 ../functions.php:4103
+#: ../functions.php:4149 ../functions.php:4169 ../functions.php:4255
+#: ../functions.php:4275 ../functions.php:4360 ../functions.php:4399
+#: ../functions.php:4457 ../functions.php:4504 ../functions.php:4669
+#: ../functions.php:4708 ../functions.php:4774 ../functions.php:4813
+#: ../functions.php:4860 ../functions.php:4899 ../functions.php:4946
+#: ../functions.php:4985 ../functions.php:5024 ../functions.php:5063
+#: ../functions.php:5110 ../functions.php:5157 ../functions.php:5223
+#: ../functions.php:5262
 msgid "Underline"
 msgstr "Understreket"
 
-#: ../functions.php:827 ../functions.php:1218 ../functions.php:1291
-#: ../functions.php:1309 ../functions.php:2097
+#: ../functions.php:753 ../functions.php:1144 ../functions.php:1217
+#: ../functions.php:1235 ../functions.php:2058
 msgid "Header Text Size"
 msgstr "Tekststørrelse overskrift"
 
-#: ../functions.php:845 ../functions.php:1254
+#: ../functions.php:771 ../functions.php:1180
 msgid "Header Line Height"
 msgstr "Linjehøyde overskrift"
 
-#: ../functions.php:863 ../functions.php:1236
+#: ../functions.php:789 ../functions.php:1162
 msgid "Header Letter Spacing"
 msgstr "Bokstavmellomrom overskrift"
 
-#: ../functions.php:881 ../functions.php:1272 ../functions.php:2115
-#: ../functions.php:3020 ../functions.php:3211 ../functions.php:3336
-#: ../functions.php:3402 ../functions.php:3488 ../functions.php:3554
-#: ../functions.php:4392 ../functions.php:5142 ../functions.php:5255
+#: ../functions.php:807 ../functions.php:1198 ../functions.php:2076
+#: ../functions.php:2981 ../functions.php:3172 ../functions.php:3297
+#: ../functions.php:3363 ../functions.php:3449 ../functions.php:3515
+#: ../functions.php:4353 ../functions.php:5103 ../functions.php:5216
 msgid "Header Font Style"
 msgstr "Skriftstil overskrivt"
 
-#: ../functions.php:899
+#: ../functions.php:825
 msgid "Enable Boxed Layout"
 msgstr "Aktiver layout i boks"
 
-#: ../functions.php:912
+#: ../functions.php:838
 msgid "Website Content Width"
 msgstr "Bredde på nettsidens innhold"
 
-#: ../functions.php:930
+#: ../functions.php:856
 msgid "Website Gutter Width"
 msgstr "Kolonnemellomrom på nettsiden"
 
-#: ../functions.php:947
+#: ../functions.php:873
 msgid "Use Custom Sidebar Width"
-msgstr ""
+msgstr "Bruk Custom Sidebar Bredde"
 
-#: ../functions.php:960
+#: ../functions.php:886
 msgid "Sidebar Width"
 msgstr "Bredde på sidelinje"
 
-#: ../functions.php:978 ../functions.php:996 ../functions.php:1014
+#: ../functions.php:904 ../functions.php:922 ../functions.php:940
 msgid "Section Height"
 msgstr "Seksjonshøyde"
 
-#: ../functions.php:1032 ../functions.php:1050 ../functions.php:1068
+#: ../functions.php:958 ../functions.php:976 ../functions.php:994
 msgid "Row Height"
 msgstr "Rekkehøyde"
 
-#: ../functions.php:1086
+#: ../functions.php:1012
 msgid "Stretch Background Image"
 msgstr "Strekk bakgrunnsbilde"
 
-#: ../functions.php:1093 ../functions.php:1748 ../functions.php:1819
-#: ../functions.php:1832 ../functions.php:2337 ../functions.php:2462
-#: ../functions.php:2668
+#: ../functions.php:1019 ../functions.php:1696 ../functions.php:1767
+#: ../functions.php:1780 ../functions.php:2298 ../functions.php:2423
+#: ../functions.php:2629
 msgid "Background Color"
 msgstr "Bakgrunnsfarge"
 
-#: ../functions.php:1100
+#: ../functions.php:1026
 msgid "Background Image"
 msgstr "Bakgrunnsbilde"
 
-#: ../functions.php:1106
+#: ../functions.php:1032
 msgid "Background Repeat"
 msgstr "Repetisjon av bakgrunn"
 
-#: ../functions.php:1110
+#: ../functions.php:1036
 msgid "No Repeat"
 msgstr "Ingen repetisjon"
 
-#: ../functions.php:1111
+#: ../functions.php:1037
 msgid "Tile"
 msgstr "Flislegging"
 
-#: ../functions.php:1112
+#: ../functions.php:1038
 msgid "Tile Horizontally"
 msgstr "Horisontal flislegging"
 
-#: ../functions.php:1113
+#: ../functions.php:1039
 msgid "Tile Vertically"
 msgstr "Vertikal flislegging"
 
-#: ../functions.php:1118 ../functions.php:1129
+#: ../functions.php:1044 ../functions.php:1055
 msgid "Background Position"
 msgstr "Bakgrunnsposisjon"
 
-#: ../functions.php:1122 ../functions.php:2626
+#: ../functions.php:1048 ../functions.php:2587
 msgid "Left"
 msgstr "Venstre"
 
-#: ../functions.php:1123
+#: ../functions.php:1049
 msgid "Center"
 msgstr "Midtstilt"
 
-#: ../functions.php:1124 ../functions.php:2625
+#: ../functions.php:1050 ../functions.php:2586
 msgid "Right"
 msgstr "Høyre"
 
-#: ../functions.php:1133
+#: ../functions.php:1059
 msgid "Scroll"
 msgstr "Rull"
 
-#: ../functions.php:1134
+#: ../functions.php:1060
 msgid "Fixed"
 msgstr "Stasjonær"
 
-#: ../functions.php:1146 ../functions.php:1182 ../functions.php:1200
+#: ../functions.php:1072 ../functions.php:1108 ../functions.php:1126
 msgid "Body Text Size"
 msgstr "Tekststørrelse hovedtekst"
 
-#: ../functions.php:1164
+#: ../functions.php:1090
 msgid "Body Line Height"
 msgstr "Linjehøyde i dokument"
 
-#: ../functions.php:1328
+#: ../functions.php:1254
 msgid "Header Font"
 msgstr "Overskriftsfont"
 
-#: ../functions.php:1343
+#: ../functions.php:1269
 msgid "Body Font"
 msgstr "Brødtekstfont"
 
-#: ../functions.php:1359
+#: ../functions.php:1285
 msgid "Body Link Color"
 msgstr "Linkfarge i hovedtekst"
 
-#: ../functions.php:1372
+#: ../functions.php:1298
 msgid "Body Text Color"
 msgstr "Farge på dokumenttekst"
 
-#: ../functions.php:1385
+#: ../functions.php:1311
 msgid "Header Text Color"
 msgstr "Overskrift - tekstfarge"
 
-#: ../functions.php:1398
+#: ../functions.php:1324
 msgid "Theme Accent Color"
 msgstr "Temaets aksentfarge"
 
-#: ../functions.php:1416 ../functions.php:1436 ../functions.php:5474
+#: ../functions.php:1342 ../functions.php:1362 ../functions.php:5435
 msgid "Default"
 msgstr "Nøytral"
 
-#: ../functions.php:1417
+#: ../functions.php:1343
 msgid "Green"
 msgstr "Grønn"
 
-#: ../functions.php:1418
+#: ../functions.php:1344
 msgid "Orange"
 msgstr "Oransje"
 
-#: ../functions.php:1419
+#: ../functions.php:1345
 msgid "Pink"
 msgstr "Rosa"
 
-#: ../functions.php:1420
+#: ../functions.php:1346
 msgid "Red"
 msgstr "Rød"
 
-#: ../functions.php:1432
+#: ../functions.php:1358
 msgid "Header Style"
 msgstr "Overskriftstil"
 
-#: ../functions.php:1437
+#: ../functions.php:1363
 msgid "Centered"
 msgstr "Sentrert"
 
-#: ../functions.php:1438
+#: ../functions.php:1364
 msgid "Centered Inline Logo"
 msgstr "Midtstilt linjebundet logo"
 
-#: ../functions.php:1449
+#: ../functions.php:1375
 msgid "Enable Vertical Navigation"
 msgstr "Aktiver vertikal navigasjon"
 
-#: ../functions.php:1461
+#: ../functions.php:1389
 msgid "Hide Navigation Until Scroll"
 msgstr "Skjul navigasjon til rulling"
 
-#: ../functions.php:1473 ../functions.php:2045
+#: ../functions.php:1403 ../functions.php:2006
 msgid "Show Social Icons"
 msgstr "Vis sosiale ikoner"
 
-#: ../functions.php:1486
+#: ../functions.php:1416
 msgid "Show Search Icon"
 msgstr "Vis søkeikon"
 
-#: ../functions.php:1498 ../functions.php:1619
+#: ../functions.php:1428 ../functions.php:1567
 msgid "Make Full Width"
 msgstr "Gjør til fullbredde"
 
-#: ../functions.php:1510 ../functions.php:1709 ../functions.php:1919
+#: ../functions.php:1440 ../functions.php:1657 ../functions.php:1867
 msgid "Hide Logo Image"
 msgstr "Gjem logobilde"
 
-#: ../functions.php:1523
-msgid "Menu/Logo Height"
-msgstr "Meny-/logohøyde"
+#: ../functions.php:1453
+msgid "Menu Height"
+msgstr "meny Høyde"
 
-#: ../functions.php:1541 ../functions.php:1625 ../functions.php:1950
-#: ../functions.php:2431
+#: ../functions.php:1471
+msgid "Logo Max Height"
+msgstr "Logo Max Høyde"
+
+#: ../functions.php:1489 ../functions.php:1573 ../functions.php:1898
+#: ../functions.php:2392
 msgid "Text Size"
 msgstr "Tekststørrelse"
 
-#: ../functions.php:1559 ../functions.php:1643 ../functions.php:2281
-#: ../functions.php:2524 ../functions.php:2712
+#: ../functions.php:1507 ../functions.php:1591 ../functions.php:2242
+#: ../functions.php:2485 ../functions.php:2673
 msgid "Letter Spacing"
 msgstr "Bokstavmellomrom"
 
-#: ../functions.php:1578 ../functions.php:1662
+#: ../functions.php:1526 ../functions.php:1610
 msgid "Font"
 msgstr "Skrifttype"
 
-#: ../functions.php:1594 ../functions.php:1678 ../functions.php:2299
-#: ../functions.php:2363
+#: ../functions.php:1542 ../functions.php:1626 ../functions.php:2260
+#: ../functions.php:2324
 msgid "Font Style"
 msgstr "Skriftstil"
 
-#: ../functions.php:1735
+#: ../functions.php:1683
 msgid "Active Link Color"
 msgstr "Farge på aktiv link"
 
-#: ../functions.php:1761 ../functions.php:1858
+#: ../functions.php:1709 ../functions.php:1806
 msgid "Dropdown Menu Background Color"
 msgstr "Bakgrunnsfarge på rullegardinmeny"
 
-#: ../functions.php:1774
+#: ../functions.php:1722
 msgid "Dropdown Menu Line Color"
 msgstr "Linjefarge på rullegardinmeny"
 
-#: ../functions.php:1787 ../functions.php:1871
+#: ../functions.php:1735 ../functions.php:1819
 msgid "Dropdown Menu Text Color"
 msgstr "Tekstfarge på rullegardinmeny"
 
-#: ../functions.php:1800 ../functions.php:1884
+#: ../functions.php:1748 ../functions.php:1832
 msgid "Dropdown Menu Animation"
 msgstr "Animasjon på rullegardinmeny"
 
-#: ../functions.php:1804 ../functions.php:1888
+#: ../functions.php:1752 ../functions.php:1836
 msgid "Fade"
 msgstr "Toning"
 
-#: ../functions.php:1805 ../functions.php:1889
+#: ../functions.php:1753 ../functions.php:1837
 msgid "Expand"
 msgstr "Utvid"
 
-#: ../functions.php:1806 ../functions.php:1890
+#: ../functions.php:1754 ../functions.php:1838
 msgid "Slide"
 msgstr "Lysbilde"
 
-#: ../functions.php:1807 ../functions.php:1891
+#: ../functions.php:1755 ../functions.php:1839
 msgid "Flip"
 msgstr "Snu"
 
-#: ../functions.php:1932
-msgid "Fixed Menu/Logo Height"
-msgstr "Fast meny-/logohøyde"
+#: ../functions.php:1880
+msgid "Fixed Menu Height"
+msgstr "Fast Menu Høyde"
 
-#: ../functions.php:1968
+#: ../functions.php:1916
 msgid "Primary Menu Background Color"
 msgstr "Bakgrunnsfarge for primær meny"
 
-#: ../functions.php:1981
+#: ../functions.php:1929
 msgid "Secondary Menu Background Color"
 msgstr "Bakgrunnsfarge for sekundær meny"
 
-#: ../functions.php:1994
-msgid "Menu Link Color"
-msgstr "Linkfarge meny"
+#: ../functions.php:1942
+msgid "Primary Menu Link Color"
+msgstr "Primær Meny Link Color"
 
-#: ../functions.php:2007
-msgid "Active Menu Link Color"
-msgstr "Gjeldende menylinks farge"
+#: ../functions.php:1955
+msgid "Secondary Menu Link Color"
+msgstr "Sekundær Meny Link Color"
 
-#: ../functions.php:2020
+#: ../functions.php:1968
+msgid "Active Primary Menu Link Color"
+msgstr "Aktiv Primary Meny Link Color"
+
+#: ../functions.php:1981
 msgid "Phone Number"
 msgstr "Telefonnummer"
 
-#: ../functions.php:2032
+#: ../functions.php:1993
 msgid "Email"
 msgstr "E-post"
 
-#: ../functions.php:2058
+#: ../functions.php:2019
 msgid "Column Layout"
 msgstr "Kolonnelayout"
 
-#: ../functions.php:2063 ../functions.php:2064 ../functions.php:2065
-#: ../functions.php:2067 ../functions.php:2068 ../functions.php:2069
-#: ../functions.php:2070 ../functions.php:2071 ../functions.php:2072
+#: ../functions.php:2024 ../functions.php:2025 ../functions.php:2026
+#: ../functions.php:2028 ../functions.php:2029 ../functions.php:2030
+#: ../functions.php:2031 ../functions.php:2032 ../functions.php:2033
 #, php-format
 msgid "%1$s Columns"
 msgstr "%1$s kolonner"
 
-#: ../functions.php:2066
+#: ../functions.php:2027
 msgid "1 Column"
 msgstr "1 kolonne"
 
-#: ../functions.php:2084
+#: ../functions.php:2045
 msgid "Footer Background Color"
 msgstr "Bunntekstens bakgrunnsfarge"
 
-#: ../functions.php:2134
+#: ../functions.php:2095
 msgid "Body/Link Text Size"
 msgstr "Tekststørrelse hovedinnhold/lenke"
 
-#: ../functions.php:2152
+#: ../functions.php:2113
 msgid "Body/Link Line Height"
 msgstr "Linjehøyde hovedinnhold/lenke"
 
-#: ../functions.php:2170
+#: ../functions.php:2131
 msgid "Body Font Style"
 msgstr "Skriftstil hovedinnhold"
 
-#: ../functions.php:2189
+#: ../functions.php:2150
 msgid "Widget Text Color"
 msgstr "Widget - tekstfarge"
 
-#: ../functions.php:2202
+#: ../functions.php:2163
 msgid "Widget Link Color"
 msgstr "Widget - lenkefarge"
 
-#: ../functions.php:2215
+#: ../functions.php:2176
 msgid "Widget Header Color"
 msgstr "Widget - overskriftsfarge"
 
-#: ../functions.php:2228
+#: ../functions.php:2189
 msgid "Widget Bullet Color"
 msgstr "Widget - prikkfarge"
 
-#: ../functions.php:2242
+#: ../functions.php:2203
 msgid "Footer Menu Background Color"
 msgstr "Bunntekstmeny - bakgrunnsfarge"
 
-#: ../functions.php:2255
+#: ../functions.php:2216
 msgid "Footer Menu Text Color"
 msgstr "Bunntekstmeny - tekstfarge"
 
-#: ../functions.php:2268
+#: ../functions.php:2229
 msgid "Footer Menu Active Link Color"
 msgstr "Bunntekstmeny - farge på aktiv lenge"
 
-#: ../functions.php:2318 ../functions.php:2382
+#: ../functions.php:2279 ../functions.php:2343
 msgid "Font Size"
 msgstr "Skriftstørrelse"
 
-#: ../functions.php:2400
+#: ../functions.php:2361
 msgid "Social Icon Size"
 msgstr "Størrelse sosiale ikoner"
 
-#: ../functions.php:2418
+#: ../functions.php:2379
 msgid "Social Icon Color"
 msgstr "Farge sosiale ikoner"
 
-#: ../functions.php:2475
+#: ../functions.php:2436
 msgid "Border Width"
 msgstr "Rammebredde"
 
-#: ../functions.php:2493 ../functions.php:2681
+#: ../functions.php:2454 ../functions.php:2642
 msgid "Border Color"
 msgstr "Rammefarge"
 
-#: ../functions.php:2506 ../functions.php:2694
+#: ../functions.php:2467 ../functions.php:2655
 msgid "Border Radius"
 msgstr "Rammeradius"
 
-#: ../functions.php:2542 ../functions.php:5189
+#: ../functions.php:2503 ../functions.php:5150
 msgid "Button Font Style"
 msgstr "Skriftstil - knapper"
 
-#: ../functions.php:2562
+#: ../functions.php:2523
 msgid "Buttons Font"
 msgstr "Skrifttype - knapper"
 
-#: ../functions.php:2578
+#: ../functions.php:2539
 msgid "Add Button Icon"
 msgstr "Legg til knappeikon"
 
-#: ../functions.php:2582 ../functions.php:2642
+#: ../functions.php:2543 ../functions.php:2603
 msgid "Yes"
 msgstr "Ja"
 
-#: ../functions.php:2583 ../functions.php:2643
+#: ../functions.php:2544 ../functions.php:2604
 msgid "No"
 msgstr "Nei"
 
-#: ../functions.php:2595
+#: ../functions.php:2556
 msgid "Select Icon"
 msgstr "Velg ikon"
 
-#: ../functions.php:2608
+#: ../functions.php:2569
 msgid "Icon Color"
 msgstr "Ikonfarge"
 
-#: ../functions.php:2621
+#: ../functions.php:2582
 msgid "Icon Placement"
 msgstr "Ikonplassering"
 
-#: ../functions.php:2638
+#: ../functions.php:2599
 msgid "Only Show Icon on Hover"
 msgstr "Bare vis ikon ved sveving"
 
-#: ../functions.php:2727
+#: ../functions.php:2688
 msgid "Left to Right"
 msgstr "Venstre til høyre"
 
-#: ../functions.php:2728
+#: ../functions.php:2689
 msgid "Right to Left"
 msgstr "Høyre til venstre"
 
-#: ../functions.php:2729
+#: ../functions.php:2690
 msgid "Top to Bottom"
 msgstr "Topp til bunn"
 
-#: ../functions.php:2730
+#: ../functions.php:2691
 msgid "Bottom to Top"
 msgstr "Bunn til topp"
 
-#: ../functions.php:2731
+#: ../functions.php:2692
 msgid "Fade In"
 msgstr "Bli gradvis tydeligere"
 
-#: ../functions.php:2732
+#: ../functions.php:2693
 msgid "No Animation"
 msgstr "Ingen animasjon"
 
-#: ../functions.php:2739 ../includes/widgets/widget-about.php:50
+#: ../functions.php:2700 ../includes/widgets/widget-about.php:50
 #: ../includes/widgets/widget-ads.php:180
 #: ../includes/widgets/widget-ads.php:188
 #: ../includes/widgets/widget-ads.php:196
@@ -2411,563 +2281,454 @@ msgstr "Ingen animasjon"
 msgid "Image"
 msgstr "Bilde"
 
-#: ../functions.php:2740
+#: ../functions.php:2701
 msgid "Image Module Settings"
 msgstr "Innstillinger for bildemodul"
 
-#: ../functions.php:2750
+#: ../functions.php:2711
 msgid "Animation"
 msgstr "Animasjon"
 
-#: ../functions.php:2751
+#: ../functions.php:2712
 msgid "This controls default direction of the lazy-loading animation."
 msgstr ""
 "Dette kontrollerer hvilken retning den sakte-lastende animasjonen lastes i "
 "som standard"
 
-#: ../functions.php:2761
+#: ../functions.php:2722
 msgid "Gallery"
 msgstr "Galleri"
 
-#: ../functions.php:2774 ../functions.php:3601 ../functions.php:3715
+#: ../functions.php:2735 ../functions.php:3562 ../functions.php:3676
 msgid "Zoom Icon Color"
 msgstr "Farge på zoome-ikon"
 
-#: ../functions.php:2788 ../functions.php:3615 ../functions.php:3729
+#: ../functions.php:2749 ../functions.php:3576 ../functions.php:3690
 msgid "Hover Overlay Color"
 msgstr "Farge på sveveoverlegg"
 
-#: ../functions.php:2802 ../functions.php:2915 ../functions.php:3629
-#: ../functions.php:3743 ../functions.php:4030 ../functions.php:4116
-#: ../functions.php:4162 ../functions.php:4268
+#: ../functions.php:2763 ../functions.php:2876 ../functions.php:3590
+#: ../functions.php:3704 ../functions.php:3991 ../functions.php:4077
+#: ../functions.php:4123 ../functions.php:4229
 msgid "Title Font Size"
 msgstr "Størrelse på tittelskrift"
 
-#: ../functions.php:2821 ../functions.php:2934 ../functions.php:3648
-#: ../functions.php:3762 ../functions.php:4049 ../functions.php:4135
-#: ../functions.php:4806 ../functions.php:4892
+#: ../functions.php:2782 ../functions.php:2895 ../functions.php:3609
+#: ../functions.php:3723 ../functions.php:4010 ../functions.php:4096
+#: ../functions.php:4767 ../functions.php:4853
 msgid "Title Font Style"
 msgstr "Skriftstil tittel"
 
-#: ../functions.php:2841 ../functions.php:3668 ../functions.php:3782
+#: ../functions.php:2802 ../functions.php:3629 ../functions.php:3743
 msgid "Caption Font Size"
 msgstr "Skriftstørrelse bildetekst"
 
-#: ../functions.php:2860 ../functions.php:3687 ../functions.php:3801
+#: ../functions.php:2821 ../functions.php:3648 ../functions.php:3762
 msgid "Caption Font Style"
 msgstr "Skriftstil bildetekst"
 
-#: ../functions.php:2875
+#: ../functions.php:2836
 msgid "Blurb"
 msgstr "Reklametekst"
 
-#: ../functions.php:2888 ../functions.php:3001 ../functions.php:3192
-#: ../functions.php:3317 ../functions.php:3383 ../functions.php:3469
-#: ../functions.php:3535 ../functions.php:4373 ../functions.php:5123
-#: ../functions.php:5236
+#: ../functions.php:2849 ../functions.php:2962 ../functions.php:3153
+#: ../functions.php:3278 ../functions.php:3344 ../functions.php:3430
+#: ../functions.php:3496 ../functions.php:4334 ../functions.php:5084
+#: ../functions.php:5197
 msgid "Header Font Size"
 msgstr "Skriftstørrelse overskrift"
 
-#: ../functions.php:2902
+#: ../functions.php:2863
 msgid "Tabs"
 msgstr "Faner"
 
-#: ../functions.php:2955 ../functions.php:3356 ../functions.php:3508
-#: ../functions.php:3574
+#: ../functions.php:2916 ../functions.php:3317 ../functions.php:3469
+#: ../functions.php:3535
 msgid "Padding"
 msgstr "Utfylling"
 
-#: ../functions.php:2969
+#: ../functions.php:2930
 msgid "Slider"
 msgstr "Glider"
 
-#: ../functions.php:2982 ../functions.php:5217
+#: ../functions.php:2943 ../functions.php:5178
 msgid "Top & Bottom Padding"
 msgstr "Tomrom for topp og bunn"
 
-#: ../functions.php:3040 ../functions.php:5275
+#: ../functions.php:3001 ../functions.php:5236
 msgid "Content Font Size"
 msgstr "Størrelse på innholdsskrift"
 
-#: ../functions.php:3059 ../functions.php:5294
+#: ../functions.php:3020 ../functions.php:5255
 msgid "Content Font Style"
 msgstr "Skriftstil for innhold"
 
-#: ../functions.php:3074
+#: ../functions.php:3035
 msgid "Testimonial"
 msgstr "Attest"
 
-#: ../functions.php:3087 ../functions.php:4701
+#: ../functions.php:3048 ../functions.php:4662
 msgid "Name Font Style"
 msgstr "Skriftstil for navn"
 
-#: ../functions.php:3107
+#: ../functions.php:3068
 msgid "Details Font Style"
 msgstr "Skriftstil for detaljer"
 
-#: ../functions.php:3127
+#: ../functions.php:3088
 msgid "Portrait Border Radius"
 msgstr "Portrett - rammeradius"
 
-#: ../functions.php:3179
+#: ../functions.php:3140
 msgid "Pricing Table"
 msgstr "Pristabell"
 
-#: ../functions.php:3231 ../functions.php:3422 ../functions.php:4721
+#: ../functions.php:3192 ../functions.php:3383 ../functions.php:4682
 msgid "Subheader Font Size"
 msgstr "Størrelse på underoverskrift"
 
-#: ../functions.php:3250 ../functions.php:3441 ../functions.php:4740
+#: ../functions.php:3211 ../functions.php:3402 ../functions.php:4701
 msgid "Subheader Font Style"
 msgstr "Skriftstil for underoverskrift"
 
-#: ../functions.php:3270 ../functions.php:5037
+#: ../functions.php:3231 ../functions.php:4998
 msgid "Price Font Size"
 msgstr "Skriftstørrelse for pris"
 
-#: ../functions.php:3289
+#: ../functions.php:3250
 msgid "Pricing Font Style"
 msgstr "Skriftstil for pris"
 
-#: ../functions.php:3304
+#: ../functions.php:3265
 msgid "Call To Action"
 msgstr "Oppfordringslenke"
 
-#: ../functions.php:3370
+#: ../functions.php:3331
 msgid "Audio"
 msgstr "Audio"
 
-#: ../functions.php:3456
-msgid "Subscribe"
-msgstr "Abonner"
+#: ../functions.php:3417
+msgid "Email Optin"
+msgstr "E-post Optin"
 
-#: ../functions.php:3588
+#: ../functions.php:3549
 msgid "Portfolio"
 msgstr "Samlemappe"
 
-#: ../functions.php:3702
+#: ../functions.php:3663
 msgid "Filterable Portfolio"
 msgstr "Filtrerbar samlemappe"
 
-#: ../functions.php:3821
+#: ../functions.php:3782
 msgid "Filters Font Size"
 msgstr "Skriftstørrelse for filtre"
 
-#: ../functions.php:3840
+#: ../functions.php:3801
 msgid "Filters Font Style"
 msgstr "Skriftstil for filtre"
 
-#: ../functions.php:3855
+#: ../functions.php:3816
 msgid "Bar Counter"
 msgstr "Søyleteller"
 
-#: ../functions.php:3868
+#: ../functions.php:3829
 msgid "Label Font Size"
 msgstr "Skriftstørrelse for etiketter"
 
-#: ../functions.php:3887
+#: ../functions.php:3848
 msgid "Label Font Style"
 msgstr "Skriftstil for etiketter"
 
-#: ../functions.php:3907
+#: ../functions.php:3868
 msgid "Percent Font Size"
 msgstr "Skriftstørrelse for prosent"
 
-#: ../functions.php:3926
+#: ../functions.php:3887
 msgid "Percent Font Style"
 msgstr "Skriftstil for prosent"
 
-#: ../functions.php:3946
+#: ../functions.php:3907
 msgid "Bar Padding"
 msgstr "Linjetomrom"
 
-#: ../functions.php:3965
+#: ../functions.php:3926
 msgid "Bar Border Radius"
 msgstr "Rammeradius for linke"
 
-#: ../functions.php:3979
+#: ../functions.php:3940
 msgid "Circle Counter"
 msgstr "Sirkelteller"
 
-#: ../functions.php:3991 ../functions.php:4077
+#: ../functions.php:3952 ../functions.php:4038
 msgid "Number Font Size"
 msgstr "Skriftstørrelse for nummer"
 
-#: ../functions.php:4010 ../functions.php:4096
+#: ../functions.php:3971 ../functions.php:4057
 msgid "Number Font Style"
 msgstr "Skriftstil for nummer"
 
-#: ../functions.php:4064
+#: ../functions.php:4025
 msgid "Number Counter"
 msgstr "Nummerteller"
 
-#: ../functions.php:4150
+#: ../functions.php:4111
 msgid "Accordion"
 msgstr "Akkordeon"
 
-#: ../functions.php:4181 ../functions.php:4287
+#: ../functions.php:4142 ../functions.php:4248
 msgid "Opened Title Font Style"
 msgstr "Skriftstil for åpnet tittel"
 
-#: ../functions.php:4201 ../functions.php:4307
+#: ../functions.php:4162 ../functions.php:4268
 msgid "Closed Title Font Style"
 msgstr "Skriftstil for lukket tittel"
 
-#: ../functions.php:4221 ../functions.php:4327
+#: ../functions.php:4182 ../functions.php:4288
 msgid "Toggle Icon Size"
 msgstr "Størrelse på bryterikon"
 
-#: ../functions.php:4241 ../functions.php:4346
+#: ../functions.php:4202 ../functions.php:4307
 msgid "Toggle Padding"
 msgstr "Tomrom rundt bryterikon"
 
-#: ../functions.php:4255
+#: ../functions.php:4216
 msgid "Toggle"
 msgstr "Vekselbryter"
 
-#: ../functions.php:4360
+#: ../functions.php:4321
 msgid "Contact Form"
 msgstr "Kontaktskjema"
 
-#: ../functions.php:4412
+#: ../functions.php:4373
 msgid "Input Font Size"
 msgstr "Skriftstørrelse for inndata"
 
-#: ../functions.php:4431
+#: ../functions.php:4392
 msgid "Input Font Style"
 msgstr "Skriftstil for inndata"
 
-#: ../functions.php:4451
+#: ../functions.php:4412
 msgid "Input Field Padding"
 msgstr "Tomrom rundt inndatafelt"
 
-#: ../functions.php:4470
+#: ../functions.php:4431
 msgid "Captcha Font Size"
 msgstr "Captcha skriftstørrelse"
 
-#: ../functions.php:4489
+#: ../functions.php:4450
 msgid "Captcha Font Style"
 msgstr "Captcha skriftstil"
 
-#: ../functions.php:4504 ../includes/functions/sidebars.php:4
+#: ../functions.php:4465 ../includes/functions/sidebars.php:4
 msgid "Sidebar"
 msgstr "Sidespalte"
 
-#: ../functions.php:4517
+#: ../functions.php:4478
 msgid "Widget Header Font Size"
 msgstr "Widget - skriftstørrelse for overskrift"
 
-#: ../functions.php:4536
+#: ../functions.php:4497
 msgid "Widget Header Font Style"
 msgstr "Widget - skriftstil for overskrift"
 
-#: ../functions.php:4556
+#: ../functions.php:4517
 msgid "Remove Vertical Divider"
 msgstr "Fjern vertikal skiller"
 
-#: ../functions.php:4565
+#: ../functions.php:4526
 msgid "Divider"
 msgstr "Deler"
 
-#: ../functions.php:4577
+#: ../functions.php:4538
 msgid "Show Divider"
 msgstr "Vis deler"
 
-#: ../functions.php:4591
+#: ../functions.php:4552
 msgid "Divider Style"
 msgstr "Skillerstil"
 
-#: ../functions.php:4596
+#: ../functions.php:4557
 msgid "Solid"
 msgstr "Solid"
 
-#: ../functions.php:4597
+#: ../functions.php:4558
 msgid "Dotted"
 msgstr "Prikket"
 
-#: ../functions.php:4598
+#: ../functions.php:4559
 msgid "Dashed"
 msgstr "Streket"
 
-#: ../functions.php:4599
+#: ../functions.php:4560
 msgid "Double"
 msgstr "Dobbel"
 
-#: ../functions.php:4600
+#: ../functions.php:4561
 msgid "Groove"
 msgstr "Renne"
 
-#: ../functions.php:4601
+#: ../functions.php:4562
 msgid "Ridge"
 msgstr "Kant"
 
-#: ../functions.php:4602
+#: ../functions.php:4563
 msgid "Inset"
 msgstr "Innfelt"
 
-#: ../functions.php:4603
+#: ../functions.php:4564
 msgid "Outset"
 msgstr "Utfelt"
 
-#: ../functions.php:4616
+#: ../functions.php:4577
 msgid "Divider Weight"
 msgstr "Skillervekt"
 
-#: ../functions.php:4635
+#: ../functions.php:4596
 msgid "Divider Height"
 msgstr "Skillerhøyde"
 
-#: ../functions.php:4654
+#: ../functions.php:4615
 msgid "Divider Position"
 msgstr "Skillerposisjon"
 
-#: ../functions.php:4659
+#: ../functions.php:4620
 msgid "Top"
 msgstr "Topp"
 
-#: ../functions.php:4660
+#: ../functions.php:4621
 msgid "Vertically Centered"
 msgstr "Midtstilt vertikalt"
 
-#: ../functions.php:4661
+#: ../functions.php:4622
 msgid "Bottom"
 msgstr "Bunn"
 
-#: ../functions.php:4669
+#: ../functions.php:4630
 msgid "Person"
 msgstr "Person"
 
-#: ../functions.php:4682
+#: ../functions.php:4643
 msgid "Name Font Size"
 msgstr "Skriftstørrelse for navn"
 
-#: ../functions.php:4760
+#: ../functions.php:4721
 msgid "Social Network Icon Size"
 msgstr "Ikonstørrelse for sosiale nettverk"
 
-#: ../functions.php:4787 ../functions.php:4873
+#: ../functions.php:4748 ../functions.php:4834
 msgid "Post Title Font Size"
 msgstr "Skrifttstørrelse for innleggstittel"
 
-#: ../functions.php:4826 ../functions.php:4912
+#: ../functions.php:4787 ../functions.php:4873
 msgid "Meta Font Size"
 msgstr "Skriftstørrelse meta"
 
-#: ../functions.php:4860
-msgid "Masonry Blog"
-msgstr "Mursteinsblogg"
+#: ../functions.php:4821
+msgid "Blog Grid"
+msgstr "bloggen Grid"
 
-#: ../functions.php:4946
+#: ../functions.php:4907
 msgid "Shop"
 msgstr "Butikk"
 
-#: ../functions.php:4959
+#: ../functions.php:4920
 msgid "Product Name Font Size"
 msgstr "Skriftstørrelse produktnavn"
 
-#: ../functions.php:4978
+#: ../functions.php:4939
 msgid "Product Name Font Style"
 msgstr "Skriftstil produktnavn"
 
-#: ../functions.php:4998
+#: ../functions.php:4959
 msgid "Sale Badge Font Size"
 msgstr "Skriftstørrelse salgsskilt"
 
-#: ../functions.php:5017
+#: ../functions.php:4978
 msgid "Sale Badge Font Style"
 msgstr "Skriftstil salgsskilt"
 
-#: ../functions.php:5056
+#: ../functions.php:5017
 msgid "Price Font Style"
 msgstr "Skriftstil pris"
 
-#: ../functions.php:5076
+#: ../functions.php:5037
 msgid "Sale Price Font Size"
 msgstr "Skriftstørrelse salgspris"
 
-#: ../functions.php:5095
+#: ../functions.php:5056
 msgid "Sale Price Font Style"
 msgstr "Skriftstil salgspris"
 
-#: ../functions.php:5110
+#: ../functions.php:5071
 msgid "Countdown"
 msgstr "Nedtelling"
 
-#: ../functions.php:5157
+#: ../functions.php:5118
 msgid "Social Follow"
 msgstr "Følgere på sosialt nettverk"
 
-#: ../functions.php:5170
+#: ../functions.php:5131
 msgid "Follow Font & Icon Size"
 msgstr "Skrift- og ikonstørrelse for følgeikoner"
 
-#: ../functions.php:5204
-msgid "Full Width Slider"
-msgstr "Fullbreddes glider"
+#: ../functions.php:5165
+msgid "Fullwidth Slider"
+msgstr "full bredde Slider"
 
-#: ../functions.php:7875
+#: ../functions.php:7469
 msgid "0 comments"
 msgstr "0 Kommentarer"
 
-#: ../functions.php:7875
+#: ../functions.php:7469
 msgid "1 comment"
 msgstr "1 Kommentar"
 
-#: ../functions.php:7875
+#: ../functions.php:7469
 msgid "comments"
 msgstr "Kommentarer"
 
-#: ../functions.php:8026
-msgid "No Gallery Found"
-msgstr ""
-
-#: ../functions.php:8028
-msgid "No items found"
-msgstr ""
-
-#: ../functions.php:8170
+#: ../functions.php:7542
 msgid "Password Protected"
 msgstr "Passord beskyttet"
 
-#: ../functions.php:8171
+#: ../functions.php:7543
 msgid "To view this protected post, enter the password below"
 msgstr "For å vise dette beskyttede innlegget, skriv inn passordet nedenfor"
 
-#: ../functions.php:8174
+#: ../functions.php:7546
 msgid "Password"
 msgstr "Passord"
 
-#: ../functions.php:8175
+#: ../functions.php:7547
 msgid "Submit"
 msgstr "Send"
 
-#: ../functions.php:8347
+#: ../functions.php:7727
 #, php-format
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
 
-#: ../functions.php:8349
+#: ../functions.php:7729
 msgid "Item"
 msgstr "Element"
 
-#: ../functions.php:8349
+#: ../functions.php:7729
 msgid "Items"
 msgstr "Elementer"
 
-#: ../functions.php:8524
-msgid "Connecting..."
-msgstr "Kobler til..."
-
-#: ../functions.php:8525
-msgid "Connection failed"
-msgstr "Tilkobling mislyktes"
-
-#: ../functions.php:8526
-msgid "Removing connection..."
-msgstr "Fjerner tilkobling"
-
-#: ../functions.php:8527
-msgid "Done"
-msgstr "Fullført"
-
-#: ../functions.php:8556
-#, php-format
-msgid ""
-"Step 1: <a href=\"%1$s\" target=\"_blank\">Generate authorization code</a>"
-msgstr ""
-"Trinn 1: <a href=\"%1$s\" target=\"_blank\">Generer autorisasjonskode</a>"
-
-#: ../functions.php:8557
-msgid ""
-"Step 2: Paste in the authorization code and click \"Make a connection\" "
-"button: "
-msgstr ""
-"Trinn 2: Lim inn autorisasjonskoden og klikk knappen \"Opprett tilkobling\": "
-
-#: ../functions.php:8558
-msgid "Make a connection"
-msgstr "Opprett tilkobling"
-
-#: ../functions.php:8561
-msgid "Aweber is set up properly. You can remove connection here if you wish."
-msgstr ""
-"Aweber er korrekt innstilt. Du kan fjerne tilkobling her hvis du ønsker det."
-
-#: ../functions.php:8562
-msgid "Remove the connection"
-msgstr "Fjern tilkobling"
-
-#: ../functions.php:8570
-msgid "Nonce failed."
-msgstr "Nonce mislyktes."
-
-#: ../functions.php:8576
-msgid "Authorization code is empty."
-msgstr "Autorisasjonskode er tom."
-
-#: ../functions.php:8587
-msgid ""
-"Authorization code is invalid. Try regenerating it and paste in the new code."
-msgstr ""
-"Autorisasjonskode er ugyldig. Prøv å regenerere den og lim inn den nye koden."
-
-#: ../functions.php:8609
-msgid "Aweber API Exception"
-msgstr "Aweber API-unntak"
-
-#: ../functions.php:8611
-msgid "Message"
-msgstr "Melding"
-
-#: ../functions.php:8622
-msgid "Nonce failed"
-msgstr "Nonce mislyktes"
-
-#: ../functions.php:8717
-msgid "Read more"
-msgstr "Les mer"
-
-#: ../functions.php:8845
-msgid "Configuration error"
-msgstr "Konfigurasjonsfeil"
-
-#: ../functions.php:8855
-msgid "Please enter first name"
-msgstr "Vennligst fyll inn fornavn"
-
-#: ../functions.php:8857
-msgid "Incorrect email"
-msgstr "Ugyldig e-post"
-
-#: ../functions.php:8859
-msgid "Configuration error: List is not defined"
-msgstr "Konfigurasjonsfeil: Liste er ikke definert"
-
-#: ../functions.php:8861
-msgid ""
-"<h2 class=\"et_pb_subscribed\">Subscribed - look for the confirmation email!"
-"</h2>"
-msgstr ""
-"<h2 class=\"et_pb_subscribed\">Abonnert - se etter e-post for bekreftelse!</"
-"h2>"
-
-#: ../functions.php:8873
-msgid "Configuration error: api key is not defined"
-msgstr "Feil ved bekreftelse: API nøkkel er ikke definert"
-
-#: ../functions.php:8910
-msgid "Aweber: Wrong configuration data"
-msgstr "Aweber: Feil konfigurasjonsdata"
-
-#: ../functions.php:8940 ../functions.php:8961
+#: ../functions.php:7907 ../functions.php:7942
 msgid "Theme Customizer"
 msgstr "Tematilpasser"
 
-#: ../functions.php:8941 ../functions.php:8971
+#: ../functions.php:7911 ../functions.php:7955
 msgid "Module Customizer"
 msgstr "Modultilpasser"
 
-#: ../functions.php:8942
+#: ../functions.php:7913
+msgid "Role Editor"
+msgstr "rolle Editor"
+
+#: ../functions.php:7916
 msgid "Divi Library"
 msgstr "Divi-bibliotek"
 
@@ -3189,6 +2950,244 @@ msgstr "&larr;"
 #: ../single-project.php:63
 msgid "&rarr;"
 msgstr "&rarr;"
+
+#~ msgid ""
+#~ "By default, MailChimp lists are cached for one day. If you added new "
+#~ "list, but it doesn't appear within the SignUp module settings, activate "
+#~ "this option. Don't forget to disable it once the list has been "
+#~ "regenerated."
+#~ msgstr ""
+#~ "Opprinnelig er Mailchimp lister lagt i cache i en dag. Hvis du ønsker å "
+#~ "legge til en ny liste, men ikke ønsker at den skal opptre i innstillinger "
+#~ "for påmeldingsmodus, aktiver dette alternativet. Glem ikke å deaktivere "
+#~ "det så snart listen har blitt regenerert."
+
+#~ msgid ""
+#~ "By default, Aweber lists are cached for one day. If you added new list, "
+#~ "but it doesn't appear within the SignUp module settings, activate this "
+#~ "option. Don't forget to disable it once the list has been regenerated."
+#~ msgstr ""
+#~ "Opprinnelig er Aweber lister lagt i cache i en dag. Hvis du ønsker å "
+#~ "legge til en ny liste men ikke ønsker at den skal opptre i innstillinger "
+#~ "for påmeldingsmodus, aktiver dette alternativet. Glem ikke å deaktivere "
+#~ "det så snart listen har blitt regenerert."
+
+#~ msgid ""
+#~ "Please, check the fields below to make sure you entered the correct "
+#~ "information."
+#~ msgstr "Vennligst sjekk at korrekt informasjon er fylt inn i feltene under."
+
+#~ msgid "Fill"
+#~ msgstr "Fyll inn"
+
+#~ msgid "field"
+#~ msgstr "felt"
+
+#~ msgid "Invalid email"
+#~ msgstr "Ugyldig e-post"
+
+#~ msgid "Captcha"
+#~ msgstr "Captcha"
+
+#~ msgid "Prev"
+#~ msgstr "Forrige"
+
+#~ msgid "Projects"
+#~ msgstr "Prosjekter"
+
+#~ msgid "Project"
+#~ msgstr "Prosjekt"
+
+#~ msgid "Add New"
+#~ msgstr "Legg til ny"
+
+#~ msgid "Add New Project"
+#~ msgstr "Legg til nytt prosjekt"
+
+#~ msgid "Edit Project"
+#~ msgstr "Rediger prosjekt"
+
+#~ msgid "New Project"
+#~ msgstr "Nytt prosjekt"
+
+#~ msgid "All Projects"
+#~ msgstr "Alle prosjekter"
+
+#~ msgid "View Project"
+#~ msgstr "Se prosjekt"
+
+#~ msgid "Search Projects"
+#~ msgstr "Søk etter prosjekter"
+
+#~ msgid "Nothing found"
+#~ msgstr "Intet funnet"
+
+#~ msgid "Nothing found in Trash"
+#~ msgstr "Intet funnet i søppel"
+
+#~ msgid "Category"
+#~ msgstr "Kategori"
+
+#~ msgid "Search Categories"
+#~ msgstr "Søk kategorier"
+
+#~ msgid "All Categories"
+#~ msgstr "Alle kategorier"
+
+#~ msgid "Parent Category"
+#~ msgstr "Parent kategori"
+
+#~ msgid "Parent Category:"
+#~ msgstr "Parent kategori:"
+
+#~ msgid "Edit Category"
+#~ msgstr "Rediger kategori"
+
+#~ msgid "Update Category"
+#~ msgstr "Oppdater kategori"
+
+#~ msgid "Add New Category"
+#~ msgstr "Legg til ny kategori"
+
+#~ msgid "New Category Name"
+#~ msgstr "Nytt kategorinavn"
+
+#~ msgid "Tags"
+#~ msgstr "Knagger"
+
+#~ msgid "Tag"
+#~ msgstr "Knagg"
+
+#~ msgid "Search Tags"
+#~ msgstr "Søk knagger"
+
+#~ msgid "All Tags"
+#~ msgstr "Alle knagger"
+
+#~ msgid "Parent Tag"
+#~ msgstr "Parent knagg"
+
+#~ msgid "Parent Tag:"
+#~ msgstr "Parent knagg:"
+
+#~ msgid "Edit Tag"
+#~ msgstr "Rediger knagg"
+
+#~ msgid "Update Tag"
+#~ msgstr "Oppdater knagg"
+
+#~ msgid "Add New Tag"
+#~ msgstr "Legg til ny knagg"
+
+#~ msgid "New Tag Name"
+#~ msgstr "Nytt navn på knagg"
+
+#~ msgid "Menu/Logo Height"
+#~ msgstr "Meny-/logohøyde"
+
+#~ msgid "Fixed Menu/Logo Height"
+#~ msgstr "Fast meny-/logohøyde"
+
+#~ msgid "Menu Link Color"
+#~ msgstr "Linkfarge meny"
+
+#~ msgid "Active Menu Link Color"
+#~ msgstr "Gjeldende menylinks farge"
+
+#~ msgid "Subscribe"
+#~ msgstr "Abonner"
+
+#~ msgid "Masonry Blog"
+#~ msgstr "Mursteinsblogg"
+
+#~ msgid "Full Width Slider"
+#~ msgstr "Fullbreddes glider"
+
+#~ msgid "Connecting..."
+#~ msgstr "Kobler til..."
+
+#~ msgid "Connection failed"
+#~ msgstr "Tilkobling mislyktes"
+
+#~ msgid "Removing connection..."
+#~ msgstr "Fjerner tilkobling"
+
+#~ msgid "Done"
+#~ msgstr "Fullført"
+
+#~ msgid ""
+#~ "Step 1: <a href=\"%1$s\" target=\"_blank\">Generate authorization code</a>"
+#~ msgstr ""
+#~ "Trinn 1: <a href=\"%1$s\" target=\"_blank\">Generer autorisasjonskode</a>"
+
+#~ msgid ""
+#~ "Step 2: Paste in the authorization code and click \"Make a connection\" "
+#~ "button: "
+#~ msgstr ""
+#~ "Trinn 2: Lim inn autorisasjonskoden og klikk knappen \"Opprett tilkobling"
+#~ "\": "
+
+#~ msgid "Make a connection"
+#~ msgstr "Opprett tilkobling"
+
+#~ msgid ""
+#~ "Aweber is set up properly. You can remove connection here if you wish."
+#~ msgstr ""
+#~ "Aweber er korrekt innstilt. Du kan fjerne tilkobling her hvis du ønsker "
+#~ "det."
+
+#~ msgid "Remove the connection"
+#~ msgstr "Fjern tilkobling"
+
+#~ msgid "Nonce failed."
+#~ msgstr "Nonce mislyktes."
+
+#~ msgid "Authorization code is empty."
+#~ msgstr "Autorisasjonskode er tom."
+
+#~ msgid ""
+#~ "Authorization code is invalid. Try regenerating it and paste in the new "
+#~ "code."
+#~ msgstr ""
+#~ "Autorisasjonskode er ugyldig. Prøv å regenerere den og lim inn den nye "
+#~ "koden."
+
+#~ msgid "Aweber API Exception"
+#~ msgstr "Aweber API-unntak"
+
+#~ msgid "Message"
+#~ msgstr "Melding"
+
+#~ msgid "Nonce failed"
+#~ msgstr "Nonce mislyktes"
+
+#~ msgid "Read more"
+#~ msgstr "Les mer"
+
+#~ msgid "Configuration error"
+#~ msgstr "Konfigurasjonsfeil"
+
+#~ msgid "Please enter first name"
+#~ msgstr "Vennligst fyll inn fornavn"
+
+#~ msgid "Incorrect email"
+#~ msgstr "Ugyldig e-post"
+
+#~ msgid "Configuration error: List is not defined"
+#~ msgstr "Konfigurasjonsfeil: Liste er ikke definert"
+
+#~ msgid ""
+#~ "<h2 class=\"et_pb_subscribed\">Subscribed - look for the confirmation "
+#~ "email!</h2>"
+#~ msgstr ""
+#~ "<h2 class=\"et_pb_subscribed\">Abonnert - se etter e-post for bekreftelse!"
+#~ "</h2>"
+
+#~ msgid "Configuration error: api key is not defined"
+#~ msgstr "Feil ved bekreftelse: API nøkkel er ikke definert"
+
+#~ msgid "Aweber: Wrong configuration data"
+#~ msgstr "Aweber: Feil konfigurasjonsdata"
 
 #~ msgid ""
 #~ "Welcome to Divi! Before diving in to your new theme, please visit the <a "

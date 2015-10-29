@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Divi 1.0\n"
-"POT-Creation-Date: 2015-06-17 18:06+0300\n"
-"PO-Revision-Date: 2015-06-17 19:34+0300\n"
+"POT-Creation-Date: 2015-09-02 12:09+0300\n"
+"PO-Revision-Date: 2015-09-02 15:06+0300\n"
 "Last-Translator: \n"
 "Language-Team: Elegant Themes\n"
 "Language: el\n"
@@ -74,7 +74,7 @@ msgstr "Αποθήκευση Επιλογών."
 msgid "Options"
 msgstr "Επιλογές"
 
-#: ../epanel/core_functions.php:73 ../functions.php:8939
+#: ../epanel/core_functions.php:73 ../functions.php:7903
 msgid "Theme Options"
 msgstr "Επιλογές Θέματος"
 
@@ -87,7 +87,7 @@ msgid "settings reset."
 msgstr "επαναφορά ρυθμίσεων."
 
 #: ../epanel/core_functions.php:111 ../epanel/options_divi.php:297
-#: ../epanel/options_divi.php:448 ../functions.php:616
+#: ../epanel/options_divi.php:448 ../functions.php:533
 msgid "General Settings"
 msgstr "Γενικές Ρυθμίσεις"
 
@@ -95,7 +95,7 @@ msgstr "Γενικές Ρυθμίσεις"
 msgid "Navigation"
 msgstr "Πλοήγηση"
 
-#: ../epanel/core_functions.php:117 ../functions.php:621
+#: ../epanel/core_functions.php:117 ../functions.php:543
 msgid "Layout Settings"
 msgstr "Ρυθμίσεις Διάταξης"
 
@@ -148,37 +148,37 @@ msgstr ""
 msgid "Choose an Image"
 msgstr "Επιλογή εικόνας"
 
-#: ../epanel/custom_functions.php:192
+#: ../epanel/custom_functions.php:178
 msgid "&hellip;"
 msgstr "&hellip;"
 
-#: ../epanel/custom_functions.php:465 ../header.php:141
+#: ../epanel/custom_functions.php:451 ../header.php:141
 msgid "Home"
 msgstr "Αρχική Σελίδα"
 
-#: ../epanel/custom_functions.php:713
+#: ../epanel/custom_functions.php:699
 msgid "Archives"
 msgstr "Αρχεία"
 
-#: ../epanel/custom_functions.php:715
+#: ../epanel/custom_functions.php:701
 #, php-format
 msgid "Search results for \"%s\""
 msgstr "Αναζήτηση αποτελεσμάτων για \"%s\""
 
-#: ../epanel/custom_functions.php:717
+#: ../epanel/custom_functions.php:703
 msgid "404 Not Found"
 msgstr "404 Δε βρέθηκε"
 
-#: ../epanel/custom_functions.php:788
+#: ../epanel/custom_functions.php:774
 #, php-format
 msgid "Currently viewing archives from %1$s"
 msgstr "Τώρα βλέπετε αρχεία από %1$s"
 
-#: ../epanel/custom_functions.php:1021
+#: ../epanel/custom_functions.php:1007
 msgid "Image doesn't exist"
 msgstr "Η εικόνα δεν υπάρχει"
 
-#: ../epanel/custom_functions.php:1217
+#: ../epanel/custom_functions.php:1203
 #, php-format
 msgid ""
 "<div class=\"updated\"><p>This is a fresh installation of %1$s theme. Don't "
@@ -191,7 +191,7 @@ msgstr ""
 "μήνυμα θα εξαφανιστεί μόλις κάνετε κλικ στο κουμπί Αποθήκευσης στη <a href="
 "\"%2$s\">σελίδα επιλογών του θέματος</a>.</p></div>"
 
-#: ../epanel/custom_functions.php:1229
+#: ../epanel/custom_functions.php:1215
 #, php-format
 msgid ""
 "There is a new version of %1$s available. <a href=\"%2$s\" class=\"thickbox"
@@ -207,7 +207,7 @@ msgstr ""
 "target=\"_blank\">Elegant Updater Plugin</a> για να επιβεβαιώσετε την "
 "εγγραφή σας.</em>"
 
-#: ../epanel/custom_functions.php:1233
+#: ../epanel/custom_functions.php:1219
 msgid ""
 "Before you can update your Elegant Themes, you must first install the <a "
 "href=\"https://www.elegantthemes.com/members-area/documentation.html#updater"
@@ -308,15 +308,15 @@ msgstr ""
 msgid "Shop Page & Category Page Layout for WooCommerce"
 msgstr "Σελίδα Καταστήματος και Διάταξη Σελίδας Κατηγορίας για WooCommerce"
 
-#: ../epanel/options_divi.php:90 ../functions.php:364
+#: ../epanel/options_divi.php:90 ../functions.php:262
 msgid "Right Sidebar"
 msgstr "Δεξιά Στήλη"
 
-#: ../epanel/options_divi.php:91 ../functions.php:365
+#: ../epanel/options_divi.php:91 ../functions.php:263
 msgid "Left Sidebar"
 msgstr "Αριστερή Στήλη"
 
-#: ../epanel/options_divi.php:92 ../functions.php:366
+#: ../epanel/options_divi.php:92 ../functions.php:264
 msgid "Full Width"
 msgstr "Πλήρες Πλάτος"
 
@@ -354,13 +354,13 @@ msgstr "Ανανέωση λιστών MailChimp"
 #: ../epanel/options_divi.php:117
 msgid ""
 "By default, MailChimp lists are cached for one day. If you added new list, "
-"but it doesn't appear within the SignUp module settings, activate this "
+"but it doesn't appear within the Email Optin module settings, activate this "
 "option. Don't forget to disable it once the list has been regenerated."
 msgstr ""
-"Αρχικά, οι λίστες MailChimp μένουν στη μνήμη για μια ημέρα. Αν προσθέσετε "
-"μια νέα λίστα, αλλά δεν εμφανιστεί στις ρυθμίσεις του SignUp πρόσθετου, "
-"ενεργοποιήστε αυτή την επιλογή. Μη ξεχάσετε να την απενεργοποιήσετε μόλις η "
-"λίστα ανανεωθεί."
+"Από προεπιλογή, οι λίστες MailChimp αποθηκεύονται προσωρινά για μία ημέρα. "
+"Εάν έχετε προσθέσει νέα λίστα, αλλά δεν εμφανιστεί μέσα στις ρυθμίσεις της "
+"μονάδας ηλεκτρονικού ταχυδρομείου Optin, ενεργοποιήστε αυτή την επιλογή. Μην "
+"ξεχάσετε να τον απενεργοποιήσετε τη στιγμή η λίστα έχει αναγεννηθεί."
 
 #: ../epanel/options_divi.php:119
 msgid "Regenerate Aweber Lists"
@@ -369,13 +369,13 @@ msgstr "Ανανέωση λιστών Aweber"
 #: ../epanel/options_divi.php:123
 msgid ""
 "By default, Aweber lists are cached for one day. If you added new list, but "
-"it doesn't appear within the SignUp module settings, activate this option. "
-"Don't forget to disable it once the list has been regenerated."
+"it doesn't appear within the Email Optin module settings, activate this "
+"option. Don't forget to disable it once the list has been regenerated."
 msgstr ""
-"Αρχικά, οι λίστες Aweber μένουν στη μνήμη για μια ημέρα. Αν προσθέσετε μια "
-"νέα λίστα, αλλά δεν εμφανιστεί στις ρυθμίσεις του SignUp πρόσθετου, "
-"ενεργοποιήστε αυτή την επιλογή. Μη ξεχάσετε να την απενεργοποιήσετε μόλις η "
-"λίστα ανανεωθεί."
+"Από προεπιλογή, οι λίστες Aweber αποθηκεύονται προσωρινά για μία ημέρα. Εάν "
+"έχετε προσθέσει νέα λίστα, αλλά δεν εμφανιστεί μέσα στις ρυθμίσεις της "
+"μονάδας ηλεκτρονικού ταχυδρομείου Optin, ενεργοποιήστε αυτή την επιλογή. Μην "
+"ξεχάσετε να τον απενεργοποιήσετε τη στιγμή η λίστα έχει αναγεννηθεί."
 
 #: ../epanel/options_divi.php:127
 msgid "Show Facebook Icon"
@@ -576,7 +576,7 @@ msgstr ""
 msgid "Pages"
 msgstr "σελίδων"
 
-#: ../epanel/options_divi.php:292 ../functions.php:292 ../functions.php:302
+#: ../epanel/options_divi.php:292
 msgid "Categories"
 msgstr "Κατηγορίες"
 
@@ -1274,7 +1274,7 @@ msgstr ""
 msgid "Add code to the bottom of your posts, before the comments"
 msgstr "Προσθέστε κώδικα στο τέλος των  αναρτήσεών σας, πριν τα σχόλια"
 
-#: ../epanel/options_divi.php:844 ../functions.php:8612
+#: ../epanel/options_divi.php:844
 msgid "Documentation"
 msgstr "Τεκμηρίωση"
 
@@ -1322,12 +1322,12 @@ msgid "Place your adsense code here."
 msgstr "Εισάγετε τον Google Adsense κωδικό σας εδώ."
 
 #: ../epanel/shortcodes/shortcodes.php:15
-#: ../epanel/shortcodes/shortcodes.php:518 ../functions.php:160
+#: ../epanel/shortcodes/shortcodes.php:518
 msgid "Previous"
 msgstr "Προηγούμενο"
 
 #: ../epanel/shortcodes/shortcodes.php:15
-#: ../epanel/shortcodes/shortcodes.php:519 ../functions.php:161
+#: ../epanel/shortcodes/shortcodes.php:519
 msgid "Next"
 msgstr "Επόμενο"
 
@@ -1347,7 +1347,7 @@ msgstr "Όνομα χρήστη: "
 msgid "Password: "
 msgstr "Κωδικός: "
 
-#: ../epanel/shortcodes/shortcodes.php:294 ../functions.php:3522
+#: ../epanel/shortcodes/shortcodes.php:294 ../functions.php:3483
 msgid "Login"
 msgstr "Συνδεθείτε"
 
@@ -1428,7 +1428,7 @@ msgid "Content text or html"
 msgstr "Κείμενο περιερχομένου ή HTML"
 
 #: ../epanel/shortcodes/shortcodes.php:999
-#: ../epanel/shortcodes/shortcodes.php:1021 ../functions.php:8610
+#: ../epanel/shortcodes/shortcodes.php:1021
 msgid "Type"
 msgstr "Τύπος"
 
@@ -1538,11 +1538,11 @@ msgstr "Αυτόματη αλλαγή μεγέθους"
 msgid "+ Add One More Tab"
 msgstr "+ Προσθήκη Μίας Νέας Καρτέλας"
 
-#: ../epanel/shortcodes/shortcodes.php:1335 ../functions.php:3165
+#: ../epanel/shortcodes/shortcodes.php:1335 ../functions.php:3126
 msgid "Image Height"
 msgstr "Ύψος Εικόνας"
 
-#: ../epanel/shortcodes/shortcodes.php:1336 ../functions.php:3146
+#: ../epanel/shortcodes/shortcodes.php:1336 ../functions.php:3107
 msgid "Image Width"
 msgstr "Πλάτος Εικόνας"
 
@@ -1559,7 +1559,7 @@ msgstr "Αρχικό Μενού"
 msgid "Secondary Menu"
 msgstr "Δευτερεύον Μενού"
 
-#: ../functions.php:32 ../functions.php:706
+#: ../functions.php:32 ../functions.php:628
 msgid "Footer Menu"
 msgstr "Μενού Υποσέλιδου"
 
@@ -1579,868 +1579,737 @@ msgstr ""
 msgid "on"
 msgstr "on"
 
-#: ../functions.php:154
-msgid ""
-"Please, check the fields below to make sure you entered the correct "
-"information."
-msgstr ""
-"Παρακαλούμε, ελέγξτε τα παρακάτω πεδία εισαγωγής για να βεβαιωθείτε ότι "
-"έχετε εισάγει τις σωστές πληροφoρίες."
-
-#: ../functions.php:155
-msgid "Fill"
-msgstr "Συμπληρώστε"
-
-#: ../functions.php:156
-msgid "field"
-msgstr "πεδίο"
-
-#: ../functions.php:157
-msgid "Invalid email"
-msgstr "Άκυρο email"
-
-#: ../functions.php:158
-msgid "Captcha"
-msgstr "Captcha"
-
-#: ../functions.php:159
-msgid "Prev"
-msgstr "Προηγούμενο"
-
-#: ../functions.php:208
+#: ../functions.php:187
 msgid "Select Page"
 msgstr "Επιλογή Σελίδας"
 
-#: ../functions.php:246
+#: ../functions.php:227
 msgid "Divi Page Settings"
 msgstr "Ρυθμίσεις Σελίδας Divi"
 
-#: ../functions.php:247
+#: ../functions.php:229
 msgid "Divi Post Settings"
 msgstr "Ρυθμίσεις Ανάρτησης Divi"
 
-#: ../functions.php:248
+#: ../functions.php:230
 msgid "Divi Product Settings"
 msgstr "Ρυθμίσεις Προϊόντος Divi"
 
-#: ../functions.php:249
+#: ../functions.php:231
 msgid "Divi Project Settings"
 msgstr "Ρυθμίσεις  Πρότζεκτ Divi"
 
-#: ../functions.php:255
-msgid "Projects"
-msgstr "Έργα"
-
-#: ../functions.php:256
-msgid "Project"
-msgstr "Έργο"
-
-#: ../functions.php:257
-msgid "Add New"
-msgstr "Προσθήκη Νέου"
-
-#: ../functions.php:258
-msgid "Add New Project"
-msgstr "Προσθήκη Νέου Έργου"
-
-#: ../functions.php:259
-msgid "Edit Project"
-msgstr "Επεξεργασία Έργου"
-
-#: ../functions.php:260
-msgid "New Project"
-msgstr "Νέο Έργο"
-
-#: ../functions.php:261
-msgid "All Projects"
-msgstr "‘Ολα τα Έργα"
-
-#: ../functions.php:262
-msgid "View Project"
-msgstr "Εμφάνιση Έργου"
-
-#: ../functions.php:263
-msgid "Search Projects"
-msgstr "Αναζήτηση Έργων"
-
-#: ../functions.php:264
-msgid "Nothing found"
-msgstr "Δε βρέθηκαν αποτελέσματα"
-
-#: ../functions.php:265
-msgid "Nothing found in Trash"
-msgstr "Δε βρέθηκαν αποτελέσματα στα Σκουπίδια"
-
-#: ../functions.php:293
-msgid "Category"
-msgstr "Κατηγορία"
-
-#: ../functions.php:294
-msgid "Search Categories"
-msgstr "Αναζήτηση Κατηγοριών"
-
-#: ../functions.php:295
-msgid "All Categories"
-msgstr "Όλες οι Κατηγορίες"
-
-#: ../functions.php:296
-msgid "Parent Category"
-msgstr "Μητρική Κατηγορία"
-
-#: ../functions.php:297
-msgid "Parent Category:"
-msgstr "Μητρική Κατηγορία:"
-
-#: ../functions.php:298
-msgid "Edit Category"
-msgstr "Επεξεργασία Κατηγορίας"
-
-#: ../functions.php:299
-msgid "Update Category"
-msgstr "Ανανέωση Κατηγορίας"
-
-#: ../functions.php:300
-msgid "Add New Category"
-msgstr "Προσθέστε Νέα Κατηγορία"
-
-#: ../functions.php:301
-msgid "New Category Name"
-msgstr "Νέο Όνομα Κατηγορίας"
-
-#: ../functions.php:314 ../functions.php:324
-msgid "Tags"
-msgstr "Ετικέτες"
-
-#: ../functions.php:315
-msgid "Tag"
-msgstr "Ετικέτα"
-
-#: ../functions.php:316
-msgid "Search Tags"
-msgstr "Αναζήτηση Ετικετών"
-
-#: ../functions.php:317
-msgid "All Tags"
-msgstr "Όλες οι Ετικέτες"
-
-#: ../functions.php:318
-msgid "Parent Tag"
-msgstr "Μητρική Ετικέτα"
-
-#: ../functions.php:319
-msgid "Parent Tag:"
-msgstr "Μητρική Ετικέτα:"
-
-#: ../functions.php:320
-msgid "Edit Tag"
-msgstr "Επεξεργασία Ετικέτας"
-
-#: ../functions.php:321
-msgid "Update Tag"
-msgstr "Ανανέωση Ετικέτας"
-
-#: ../functions.php:322
-msgid "Add New Tag"
-msgstr "Προσθήκη Νέας Ετικέτας"
-
-#: ../functions.php:323
-msgid "New Tag Name"
-msgstr "Νέο Όνομα Ετικέτας"
-
-#: ../functions.php:340
+#: ../functions.php:238
 msgid "Skills"
 msgstr "Δεξιότητες"
 
-#: ../functions.php:343
+#: ../functions.php:241
 msgid "Posted on"
 msgstr "Αναρτήθηκε στις"
 
-#: ../functions.php:370
+#: ../functions.php:268
 msgid "Light"
 msgstr "Φωτεινό"
 
-#: ../functions.php:371
+#: ../functions.php:269
 msgid "Dark"
 msgstr "Σκοτεινό"
 
-#: ../functions.php:384
+#: ../functions.php:282
 msgid "Page Layout"
 msgstr "Διάταξη Σελίδας"
 
-#: ../functions.php:398
+#: ../functions.php:296
 msgid "Dot Navigation"
 msgstr "Πλοήγηση Κουκκίδων"
 
-#: ../functions.php:401 ../functions.php:409
+#: ../functions.php:299 ../functions.php:307
 msgid "Off"
 msgstr "Απενεργοποίηση"
 
-#: ../functions.php:402 ../functions.php:410
+#: ../functions.php:300 ../functions.php:308
 msgid "On"
 msgstr "Ενεργοποίηση"
 
-#: ../functions.php:406
+#: ../functions.php:304
 msgid "Hide Nav Before Scroll"
 msgstr "Απόκρυψη Πλοήγησης Πριν την Κύλιση"
 
-#: ../functions.php:416
+#: ../functions.php:314
 msgid "Post Title"
 msgstr "Τίτλος Ανάρτησης"
 
-#: ../functions.php:419
+#: ../functions.php:317
 msgid "Show"
 msgstr "Εμφάνιση"
 
-#: ../functions.php:420
+#: ../functions.php:318
 msgid "Hide"
 msgstr "Απόκρυψη"
 
-#: ../functions.php:425
+#: ../functions.php:323
 msgid "Use Background Color"
 msgstr "Χρήση Χρώματος Φόντου"
 
-#: ../functions.php:430 ../functions.php:5510
+#: ../functions.php:328 ../functions.php:5471
 msgid "Hex Value"
 msgstr "Τιμή Χρώματος"
 
-#: ../functions.php:434 ../functions.php:1697 ../functions.php:1722
-#: ../functions.php:1845 ../functions.php:2350 ../functions.php:2449
-#: ../functions.php:2655
+#: ../functions.php:332 ../functions.php:1645 ../functions.php:1670
+#: ../functions.php:1793 ../functions.php:2311 ../functions.php:2410
+#: ../functions.php:2616
 msgid "Text Color"
 msgstr "Χρώμα Κειμένου"
 
-#: ../functions.php:626
+#: ../functions.php:466 ../functions.php:478 ../functions.php:7981
+msgid "you don't have sufficient permissions to access this page"
+msgstr ""
+"δεν έχετε επαρκή δικαιώματα για να αποκτήσετε πρόσβαση σε αυτήν τη σελίδα"
+
+#: ../functions.php:538
+msgid "Site Identity"
+msgstr "Ταυτότητα Ιστοσελίδας"
+
+#: ../functions.php:548
 msgid "Typography"
 msgstr "Τυπογραφία"
 
-#: ../functions.php:631
+#: ../functions.php:553
 msgid "Mobile Styles"
 msgstr "Στυλ Κινητών"
 
-#: ../functions.php:636
+#: ../functions.php:558
 msgid "Tablet"
 msgstr "Tablet"
 
-#: ../functions.php:641
+#: ../functions.php:563
 msgid "Phone"
 msgstr "Τηλέφωνο"
 
-#: ../functions.php:646
+#: ../functions.php:568
 msgid "Mobile Menu"
 msgstr "Μενού Κινητών"
 
-#: ../functions.php:651
+#: ../functions.php:573
 msgid "Background"
 msgstr "Φόντο"
 
-#: ../functions.php:656
+#: ../functions.php:578
 msgid "Header & Navigation"
 msgstr "Κεφαλίδα & Πλοήγηση"
 
-#: ../functions.php:661
+#: ../functions.php:583
 msgid "Header Format"
 msgstr "Μορφή Κεφαλίδας"
 
-#: ../functions.php:666
+#: ../functions.php:588
 msgid "Primary Menu Bar"
 msgstr "Κύρια Μπάρα Μενού"
 
-#: ../functions.php:671
+#: ../functions.php:593
 msgid "Secondary Menu Bar"
 msgstr "Δευτερεύουσα Μπάρα Μενού"
 
-#: ../functions.php:676
+#: ../functions.php:598
 msgid "Fixed Navigation Settings"
 msgstr "Σταθερές Ρυθμίσεις Πλοήγησης"
 
-#: ../functions.php:681
+#: ../functions.php:603
 msgid "Header Elements"
 msgstr "Στοιχεία Κεφαλίδας"
 
-#: ../functions.php:686
+#: ../functions.php:608
 msgid "Footer"
 msgstr "Υποσέλιδο"
 
-#: ../functions.php:691
+#: ../functions.php:613
 msgid "Layout"
 msgstr "Διάταξη"
 
-#: ../functions.php:696
+#: ../functions.php:618
 msgid "Widgets"
 msgstr "Widgets"
 
-#: ../functions.php:701
+#: ../functions.php:623
 msgid "Footer Elements"
 msgstr "Στοιχεία Υποσέλιδου"
 
-#: ../functions.php:711
+#: ../functions.php:633
 msgid "Bottom Bar"
 msgstr "Κάτω Μπάρα"
 
-#: ../functions.php:716 ../functions.php:1411
+#: ../functions.php:638 ../functions.php:1337
 msgid "Color Schemes"
 msgstr "Σχέδια Χρωμάτων"
 
-#: ../functions.php:718
+#: ../functions.php:640
 msgid ""
 "Note: Color settings set above should be applied to the Default color scheme."
 msgstr ""
 "Σημείωση: Οι παραπάνω ρυθμίσεις χρωμάτων πρέπει να εφαρμοστούν στο "
 "Προκαθορισμένο σχέδιο χρώματος."
 
-#: ../functions.php:722
+#: ../functions.php:644
 msgid "Buttons"
 msgstr "Κουμπιά"
 
-#: ../functions.php:727
+#: ../functions.php:649
 msgid "Buttons Style"
 msgstr "Στυλ Κουμπιών"
 
-#: ../functions.php:732
+#: ../functions.php:654
 msgid "Buttons Hover Style"
 msgstr "Στυλ Κουμπιών Όταν βρίσκεται το Ποντίκι από Πάνω"
 
-#: ../functions.php:737 ../functions.php:4774
+#: ../functions.php:659 ../functions.php:4735
 msgid "Blog"
 msgstr "Ιστολόγιο"
 
-#: ../functions.php:742
+#: ../functions.php:664
 msgid "Post"
 msgstr "Ανάρτηση"
 
-#: ../functions.php:754
+#: ../functions.php:680
 msgid "Meta Text Size"
 msgstr "Μέγεθος Κειμένου Μεταδεδομένων"
 
-#: ../functions.php:772
+#: ../functions.php:698
 msgid "Meta Line Height"
 msgstr "Ύψος Γραμμής Μεταδεδομένων"
 
-#: ../functions.php:790
+#: ../functions.php:716
 msgid "Meta Letter Spacing"
 msgstr "Απόσταση Γραμμάτων Μεταδεδομένων"
 
-#: ../functions.php:808 ../functions.php:4845 ../functions.php:4931
+#: ../functions.php:734 ../functions.php:4806 ../functions.php:4892
 msgid "Meta Font Style"
 msgstr "Στυλ Γραμματοσειράς Μεταδεδομένων"
 
-#: ../functions.php:812 ../functions.php:885 ../functions.php:1276
-#: ../functions.php:1598 ../functions.php:1682 ../functions.php:2119
-#: ../functions.php:2174 ../functions.php:2303 ../functions.php:2367
-#: ../functions.php:2546 ../functions.php:2825 ../functions.php:2864
-#: ../functions.php:2938 ../functions.php:3024 ../functions.php:3063
-#: ../functions.php:3091 ../functions.php:3111 ../functions.php:3215
-#: ../functions.php:3254 ../functions.php:3293 ../functions.php:3340
-#: ../functions.php:3406 ../functions.php:3445 ../functions.php:3492
-#: ../functions.php:3558 ../functions.php:3652 ../functions.php:3691
-#: ../functions.php:3766 ../functions.php:3805 ../functions.php:3844
-#: ../functions.php:3891 ../functions.php:3930 ../functions.php:4014
-#: ../functions.php:4053 ../functions.php:4100 ../functions.php:4139
-#: ../functions.php:4185 ../functions.php:4205 ../functions.php:4291
-#: ../functions.php:4311 ../functions.php:4396 ../functions.php:4435
-#: ../functions.php:4493 ../functions.php:4540 ../functions.php:4705
-#: ../functions.php:4744 ../functions.php:4810 ../functions.php:4849
-#: ../functions.php:4896 ../functions.php:4935 ../functions.php:4982
-#: ../functions.php:5021 ../functions.php:5060 ../functions.php:5099
-#: ../functions.php:5146 ../functions.php:5193 ../functions.php:5259
-#: ../functions.php:5298
+#: ../functions.php:738 ../functions.php:811 ../functions.php:1202
+#: ../functions.php:1546 ../functions.php:1630 ../functions.php:2080
+#: ../functions.php:2135 ../functions.php:2264 ../functions.php:2328
+#: ../functions.php:2507 ../functions.php:2786 ../functions.php:2825
+#: ../functions.php:2899 ../functions.php:2985 ../functions.php:3024
+#: ../functions.php:3052 ../functions.php:3072 ../functions.php:3176
+#: ../functions.php:3215 ../functions.php:3254 ../functions.php:3301
+#: ../functions.php:3367 ../functions.php:3406 ../functions.php:3453
+#: ../functions.php:3519 ../functions.php:3613 ../functions.php:3652
+#: ../functions.php:3727 ../functions.php:3766 ../functions.php:3805
+#: ../functions.php:3852 ../functions.php:3891 ../functions.php:3975
+#: ../functions.php:4014 ../functions.php:4061 ../functions.php:4100
+#: ../functions.php:4146 ../functions.php:4166 ../functions.php:4252
+#: ../functions.php:4272 ../functions.php:4357 ../functions.php:4396
+#: ../functions.php:4454 ../functions.php:4501 ../functions.php:4666
+#: ../functions.php:4705 ../functions.php:4771 ../functions.php:4810
+#: ../functions.php:4857 ../functions.php:4896 ../functions.php:4943
+#: ../functions.php:4982 ../functions.php:5021 ../functions.php:5060
+#: ../functions.php:5107 ../functions.php:5154 ../functions.php:5220
+#: ../functions.php:5259
 msgid "Bold"
 msgstr "Έντονα"
 
-#: ../functions.php:813 ../functions.php:886 ../functions.php:1277
-#: ../functions.php:1599 ../functions.php:1683 ../functions.php:2120
-#: ../functions.php:2175 ../functions.php:2304 ../functions.php:2368
-#: ../functions.php:2547 ../functions.php:2826 ../functions.php:2865
-#: ../functions.php:2939 ../functions.php:3025 ../functions.php:3064
-#: ../functions.php:3092 ../functions.php:3112 ../functions.php:3216
-#: ../functions.php:3255 ../functions.php:3294 ../functions.php:3341
-#: ../functions.php:3407 ../functions.php:3446 ../functions.php:3493
-#: ../functions.php:3559 ../functions.php:3653 ../functions.php:3692
-#: ../functions.php:3767 ../functions.php:3806 ../functions.php:3845
-#: ../functions.php:3892 ../functions.php:3931 ../functions.php:4015
-#: ../functions.php:4054 ../functions.php:4101 ../functions.php:4140
-#: ../functions.php:4186 ../functions.php:4206 ../functions.php:4292
-#: ../functions.php:4312 ../functions.php:4397 ../functions.php:4436
-#: ../functions.php:4494 ../functions.php:4541 ../functions.php:4706
-#: ../functions.php:4745 ../functions.php:4811 ../functions.php:4850
-#: ../functions.php:4897 ../functions.php:4936 ../functions.php:4983
-#: ../functions.php:5022 ../functions.php:5061 ../functions.php:5100
-#: ../functions.php:5147 ../functions.php:5194 ../functions.php:5260
-#: ../functions.php:5299
+#: ../functions.php:739 ../functions.php:812 ../functions.php:1203
+#: ../functions.php:1547 ../functions.php:1631 ../functions.php:2081
+#: ../functions.php:2136 ../functions.php:2265 ../functions.php:2329
+#: ../functions.php:2508 ../functions.php:2787 ../functions.php:2826
+#: ../functions.php:2900 ../functions.php:2986 ../functions.php:3025
+#: ../functions.php:3053 ../functions.php:3073 ../functions.php:3177
+#: ../functions.php:3216 ../functions.php:3255 ../functions.php:3302
+#: ../functions.php:3368 ../functions.php:3407 ../functions.php:3454
+#: ../functions.php:3520 ../functions.php:3614 ../functions.php:3653
+#: ../functions.php:3728 ../functions.php:3767 ../functions.php:3806
+#: ../functions.php:3853 ../functions.php:3892 ../functions.php:3976
+#: ../functions.php:4015 ../functions.php:4062 ../functions.php:4101
+#: ../functions.php:4147 ../functions.php:4167 ../functions.php:4253
+#: ../functions.php:4273 ../functions.php:4358 ../functions.php:4397
+#: ../functions.php:4455 ../functions.php:4502 ../functions.php:4667
+#: ../functions.php:4706 ../functions.php:4772 ../functions.php:4811
+#: ../functions.php:4858 ../functions.php:4897 ../functions.php:4944
+#: ../functions.php:4983 ../functions.php:5022 ../functions.php:5061
+#: ../functions.php:5108 ../functions.php:5155 ../functions.php:5221
+#: ../functions.php:5260
 msgid "Italic"
 msgstr "Πλάγια"
 
-#: ../functions.php:814 ../functions.php:887 ../functions.php:1278
-#: ../functions.php:1600 ../functions.php:1684 ../functions.php:2121
-#: ../functions.php:2176 ../functions.php:2305 ../functions.php:2369
-#: ../functions.php:2548 ../functions.php:2827 ../functions.php:2866
-#: ../functions.php:2940 ../functions.php:3026 ../functions.php:3065
-#: ../functions.php:3093 ../functions.php:3113 ../functions.php:3217
-#: ../functions.php:3256 ../functions.php:3295 ../functions.php:3342
-#: ../functions.php:3408 ../functions.php:3447 ../functions.php:3494
-#: ../functions.php:3560 ../functions.php:3654 ../functions.php:3693
-#: ../functions.php:3768 ../functions.php:3807 ../functions.php:3846
-#: ../functions.php:3893 ../functions.php:3932 ../functions.php:4016
-#: ../functions.php:4055 ../functions.php:4102 ../functions.php:4141
-#: ../functions.php:4187 ../functions.php:4207 ../functions.php:4293
-#: ../functions.php:4313 ../functions.php:4398 ../functions.php:4437
-#: ../functions.php:4495 ../functions.php:4542 ../functions.php:4707
-#: ../functions.php:4746 ../functions.php:4812 ../functions.php:4851
-#: ../functions.php:4898 ../functions.php:4937 ../functions.php:4984
-#: ../functions.php:5023 ../functions.php:5062 ../functions.php:5101
-#: ../functions.php:5148 ../functions.php:5195 ../functions.php:5261
-#: ../functions.php:5300
+#: ../functions.php:740 ../functions.php:813 ../functions.php:1204
+#: ../functions.php:1548 ../functions.php:1632 ../functions.php:2082
+#: ../functions.php:2137 ../functions.php:2266 ../functions.php:2330
+#: ../functions.php:2509 ../functions.php:2788 ../functions.php:2827
+#: ../functions.php:2901 ../functions.php:2987 ../functions.php:3026
+#: ../functions.php:3054 ../functions.php:3074 ../functions.php:3178
+#: ../functions.php:3217 ../functions.php:3256 ../functions.php:3303
+#: ../functions.php:3369 ../functions.php:3408 ../functions.php:3455
+#: ../functions.php:3521 ../functions.php:3615 ../functions.php:3654
+#: ../functions.php:3729 ../functions.php:3768 ../functions.php:3807
+#: ../functions.php:3854 ../functions.php:3893 ../functions.php:3977
+#: ../functions.php:4016 ../functions.php:4063 ../functions.php:4102
+#: ../functions.php:4148 ../functions.php:4168 ../functions.php:4254
+#: ../functions.php:4274 ../functions.php:4359 ../functions.php:4398
+#: ../functions.php:4456 ../functions.php:4503 ../functions.php:4668
+#: ../functions.php:4707 ../functions.php:4773 ../functions.php:4812
+#: ../functions.php:4859 ../functions.php:4898 ../functions.php:4945
+#: ../functions.php:4984 ../functions.php:5023 ../functions.php:5062
+#: ../functions.php:5109 ../functions.php:5156 ../functions.php:5222
+#: ../functions.php:5261
 msgid "Uppercase"
 msgstr "Κεφαλαία"
 
-#: ../functions.php:815 ../functions.php:888 ../functions.php:1279
-#: ../functions.php:1601 ../functions.php:1685 ../functions.php:2122
-#: ../functions.php:2177 ../functions.php:2306 ../functions.php:2370
-#: ../functions.php:2549 ../functions.php:2828 ../functions.php:2867
-#: ../functions.php:2941 ../functions.php:3027 ../functions.php:3066
-#: ../functions.php:3094 ../functions.php:3114 ../functions.php:3218
-#: ../functions.php:3257 ../functions.php:3296 ../functions.php:3343
-#: ../functions.php:3409 ../functions.php:3448 ../functions.php:3495
-#: ../functions.php:3561 ../functions.php:3655 ../functions.php:3694
-#: ../functions.php:3769 ../functions.php:3808 ../functions.php:3847
-#: ../functions.php:3894 ../functions.php:3933 ../functions.php:4017
-#: ../functions.php:4056 ../functions.php:4103 ../functions.php:4142
-#: ../functions.php:4188 ../functions.php:4208 ../functions.php:4294
-#: ../functions.php:4314 ../functions.php:4399 ../functions.php:4438
-#: ../functions.php:4496 ../functions.php:4543 ../functions.php:4708
-#: ../functions.php:4747 ../functions.php:4813 ../functions.php:4852
-#: ../functions.php:4899 ../functions.php:4938 ../functions.php:4985
-#: ../functions.php:5024 ../functions.php:5063 ../functions.php:5102
-#: ../functions.php:5149 ../functions.php:5196 ../functions.php:5262
-#: ../functions.php:5301
+#: ../functions.php:741 ../functions.php:814 ../functions.php:1205
+#: ../functions.php:1549 ../functions.php:1633 ../functions.php:2083
+#: ../functions.php:2138 ../functions.php:2267 ../functions.php:2331
+#: ../functions.php:2510 ../functions.php:2789 ../functions.php:2828
+#: ../functions.php:2902 ../functions.php:2988 ../functions.php:3027
+#: ../functions.php:3055 ../functions.php:3075 ../functions.php:3179
+#: ../functions.php:3218 ../functions.php:3257 ../functions.php:3304
+#: ../functions.php:3370 ../functions.php:3409 ../functions.php:3456
+#: ../functions.php:3522 ../functions.php:3616 ../functions.php:3655
+#: ../functions.php:3730 ../functions.php:3769 ../functions.php:3808
+#: ../functions.php:3855 ../functions.php:3894 ../functions.php:3978
+#: ../functions.php:4017 ../functions.php:4064 ../functions.php:4103
+#: ../functions.php:4149 ../functions.php:4169 ../functions.php:4255
+#: ../functions.php:4275 ../functions.php:4360 ../functions.php:4399
+#: ../functions.php:4457 ../functions.php:4504 ../functions.php:4669
+#: ../functions.php:4708 ../functions.php:4774 ../functions.php:4813
+#: ../functions.php:4860 ../functions.php:4899 ../functions.php:4946
+#: ../functions.php:4985 ../functions.php:5024 ../functions.php:5063
+#: ../functions.php:5110 ../functions.php:5157 ../functions.php:5223
+#: ../functions.php:5262
 msgid "Underline"
 msgstr "Υπογραμμισμένα"
 
-#: ../functions.php:827 ../functions.php:1218 ../functions.php:1291
-#: ../functions.php:1309 ../functions.php:2097
+#: ../functions.php:753 ../functions.php:1144 ../functions.php:1217
+#: ../functions.php:1235 ../functions.php:2058
 msgid "Header Text Size"
 msgstr "Μέγεθος Κειμένου Κεφαλίδας"
 
-#: ../functions.php:845 ../functions.php:1254
+#: ../functions.php:771 ../functions.php:1180
 msgid "Header Line Height"
 msgstr "Ύψος Γραμμής Κεφαλίδας"
 
-#: ../functions.php:863 ../functions.php:1236
+#: ../functions.php:789 ../functions.php:1162
 msgid "Header Letter Spacing"
 msgstr "Απόσταση Γραμμάτων Κεφαλίδας"
 
-#: ../functions.php:881 ../functions.php:1272 ../functions.php:2115
-#: ../functions.php:3020 ../functions.php:3211 ../functions.php:3336
-#: ../functions.php:3402 ../functions.php:3488 ../functions.php:3554
-#: ../functions.php:4392 ../functions.php:5142 ../functions.php:5255
+#: ../functions.php:807 ../functions.php:1198 ../functions.php:2076
+#: ../functions.php:2981 ../functions.php:3172 ../functions.php:3297
+#: ../functions.php:3363 ../functions.php:3449 ../functions.php:3515
+#: ../functions.php:4353 ../functions.php:5103 ../functions.php:5216
 msgid "Header Font Style"
 msgstr "Στυλ Γραμματοσειράς Κεφαλίδας"
 
-#: ../functions.php:899
+#: ../functions.php:825
 msgid "Enable Boxed Layout"
 msgstr "Ενεργοποίηση Εγκιβωτισμένης Διάταξης"
 
-#: ../functions.php:912
+#: ../functions.php:838
 msgid "Website Content Width"
 msgstr "Πλάτος Περιεχομένου Ιστοσελίδας"
 
-#: ../functions.php:930
+#: ../functions.php:856
 msgid "Website Gutter Width"
 msgstr "Απόσταση Στηλών Ιστοσελίδας"
 
-#: ../functions.php:947
+#: ../functions.php:873
 msgid "Use Custom Sidebar Width"
-msgstr ""
+msgstr "Χρησιμοποιήστε Προσαρμοσμένη Sidebar Πλάτος"
 
-#: ../functions.php:960
+#: ../functions.php:886
 msgid "Sidebar Width"
 msgstr "Πλάτος Πλευρικής Μπάρας"
 
-#: ../functions.php:978 ../functions.php:996 ../functions.php:1014
+#: ../functions.php:904 ../functions.php:922 ../functions.php:940
 msgid "Section Height"
 msgstr "Ύψος Τμήματος"
 
-#: ../functions.php:1032 ../functions.php:1050 ../functions.php:1068
+#: ../functions.php:958 ../functions.php:976 ../functions.php:994
 msgid "Row Height"
 msgstr "Ύψος Γραμμής"
 
-#: ../functions.php:1086
+#: ../functions.php:1012
 msgid "Stretch Background Image"
 msgstr "Παραμόρφωση Εικόνας Φόντου"
 
-#: ../functions.php:1093 ../functions.php:1748 ../functions.php:1819
-#: ../functions.php:1832 ../functions.php:2337 ../functions.php:2462
-#: ../functions.php:2668
+#: ../functions.php:1019 ../functions.php:1696 ../functions.php:1767
+#: ../functions.php:1780 ../functions.php:2298 ../functions.php:2423
+#: ../functions.php:2629
 msgid "Background Color"
 msgstr "Χρώμα Φόντου"
 
-#: ../functions.php:1100
+#: ../functions.php:1026
 msgid "Background Image"
 msgstr "Εικόνα φόντου:"
 
-#: ../functions.php:1106
+#: ../functions.php:1032
 msgid "Background Repeat"
 msgstr "Επανάληψη Φόντου"
 
-#: ../functions.php:1110
+#: ../functions.php:1036
 msgid "No Repeat"
 msgstr "Χωρίς Επανάληψη"
 
-#: ../functions.php:1111
+#: ../functions.php:1037
 msgid "Tile"
 msgstr "Πλακίδια"
 
-#: ../functions.php:1112
+#: ../functions.php:1038
 msgid "Tile Horizontally"
 msgstr "Σε Οριζόντια Παράθεση"
 
-#: ../functions.php:1113
+#: ../functions.php:1039
 msgid "Tile Vertically"
 msgstr "Σε Κατακόρυφη Παράθεση"
 
-#: ../functions.php:1118 ../functions.php:1129
+#: ../functions.php:1044 ../functions.php:1055
 msgid "Background Position"
 msgstr "Θέση Φόντου"
 
-#: ../functions.php:1122 ../functions.php:2626
+#: ../functions.php:1048 ../functions.php:2587
 msgid "Left"
 msgstr "Αριστερά "
 
-#: ../functions.php:1123
+#: ../functions.php:1049
 msgid "Center"
 msgstr "Στο κέντρο"
 
-#: ../functions.php:1124 ../functions.php:2625
+#: ../functions.php:1050 ../functions.php:2586
 msgid "Right"
 msgstr "Δεξιά"
 
-#: ../functions.php:1133
+#: ../functions.php:1059
 msgid "Scroll"
 msgstr "Κύλιση"
 
-#: ../functions.php:1134
+#: ../functions.php:1060
 msgid "Fixed"
 msgstr "Σταθερό"
 
-#: ../functions.php:1146 ../functions.php:1182 ../functions.php:1200
+#: ../functions.php:1072 ../functions.php:1108 ../functions.php:1126
 msgid "Body Text Size"
 msgstr "Μέγεθος Κειμένου Κορμού"
 
-#: ../functions.php:1164
+#: ../functions.php:1090
 msgid "Body Line Height"
 msgstr "Ύψος Γραμμής Κορμού"
 
-#: ../functions.php:1328
+#: ../functions.php:1254
 msgid "Header Font"
 msgstr "Γραμματοσειρά Επικεφαλίδας"
 
-#: ../functions.php:1343
+#: ../functions.php:1269
 msgid "Body Font"
 msgstr "Γραμματοσειρά Κεντρικού Κειμένου"
 
-#: ../functions.php:1359
+#: ../functions.php:1285
 msgid "Body Link Color"
 msgstr "Χρώμα Συνδέσμου Κορμού"
 
-#: ../functions.php:1372
+#: ../functions.php:1298
 msgid "Body Text Color"
 msgstr "Χρώμα Γραμματοσειράς Κορμού"
 
-#: ../functions.php:1385
+#: ../functions.php:1311
 msgid "Header Text Color"
 msgstr "Χρώμα Κειμένου Κεφαλίδας"
 
-#: ../functions.php:1398
+#: ../functions.php:1324
 msgid "Theme Accent Color"
 msgstr "Χρώμα Έμφασης Θέματος"
 
-#: ../functions.php:1416 ../functions.php:1436 ../functions.php:5474
+#: ../functions.php:1342 ../functions.php:1362 ../functions.php:5435
 msgid "Default"
 msgstr "Αρχικό"
 
-#: ../functions.php:1417
+#: ../functions.php:1343
 msgid "Green"
 msgstr "Πράσινο"
 
-#: ../functions.php:1418
+#: ../functions.php:1344
 msgid "Orange"
 msgstr "Πορτοκαλί"
 
-#: ../functions.php:1419
+#: ../functions.php:1345
 msgid "Pink"
 msgstr "Ροζ"
 
-#: ../functions.php:1420
+#: ../functions.php:1346
 msgid "Red"
 msgstr "Κόκκινο"
 
-#: ../functions.php:1432
+#: ../functions.php:1358
 msgid "Header Style"
 msgstr "Μορφή Επικεφαλίδας"
 
-#: ../functions.php:1437
+#: ../functions.php:1363
 msgid "Centered"
 msgstr "Στο Κέντρο"
 
-#: ../functions.php:1438
+#: ../functions.php:1364
 msgid "Centered Inline Logo"
 msgstr "Κεντραρισμένο Ενσωματομένο Λογότυπο"
 
-#: ../functions.php:1449
+#: ../functions.php:1375
 msgid "Enable Vertical Navigation"
 msgstr "Ενεργοποίηση Κατακόρυφης Πλοήγησης"
 
-#: ../functions.php:1461
+#: ../functions.php:1389
 msgid "Hide Navigation Until Scroll"
 msgstr "Απόκρυψη Πλοήγησης Μέχρι την Κύλιση"
 
-#: ../functions.php:1473 ../functions.php:2045
+#: ../functions.php:1403 ../functions.php:2006
 msgid "Show Social Icons"
 msgstr "Εμφάνιση Εικονιδίων Κοινωνικών Δικτύων"
 
-#: ../functions.php:1486
+#: ../functions.php:1416
 msgid "Show Search Icon"
 msgstr "Εμφάνιση Εικονιδίου Αναζήτησης"
 
-#: ../functions.php:1498 ../functions.php:1619
+#: ../functions.php:1428 ../functions.php:1567
 msgid "Make Full Width"
 msgstr "Να γίνει Πλήρους Πλάτους"
 
-#: ../functions.php:1510 ../functions.php:1709 ../functions.php:1919
+#: ../functions.php:1440 ../functions.php:1657 ../functions.php:1867
 msgid "Hide Logo Image"
 msgstr "Απόκρυψη Εικόνας Λογότυπου"
 
-#: ../functions.php:1523
-msgid "Menu/Logo Height"
-msgstr "Ύψος Μενού/Λογοτύπου"
+#: ../functions.php:1453
+msgid "Menu Height"
+msgstr "μενού Ύψος"
 
-#: ../functions.php:1541 ../functions.php:1625 ../functions.php:1950
-#: ../functions.php:2431
+#: ../functions.php:1471
+msgid "Logo Max Height"
+msgstr "Logo Max Ύψος"
+
+#: ../functions.php:1489 ../functions.php:1573 ../functions.php:1898
+#: ../functions.php:2392
 msgid "Text Size"
 msgstr "Μέγεθος Κειμένου"
 
-#: ../functions.php:1559 ../functions.php:1643 ../functions.php:2281
-#: ../functions.php:2524 ../functions.php:2712
+#: ../functions.php:1507 ../functions.php:1591 ../functions.php:2242
+#: ../functions.php:2485 ../functions.php:2673
 msgid "Letter Spacing"
 msgstr "Απόσταση Γραμμάτων"
 
-#: ../functions.php:1578 ../functions.php:1662
+#: ../functions.php:1526 ../functions.php:1610
 msgid "Font"
 msgstr "Γραμματοσειρά"
 
-#: ../functions.php:1594 ../functions.php:1678 ../functions.php:2299
-#: ../functions.php:2363
+#: ../functions.php:1542 ../functions.php:1626 ../functions.php:2260
+#: ../functions.php:2324
 msgid "Font Style"
 msgstr "Στυλ Γραμματοσειράς"
 
-#: ../functions.php:1735
+#: ../functions.php:1683
 msgid "Active Link Color"
 msgstr "Χρώμα Ενεργού Συνδέσμου"
 
-#: ../functions.php:1761 ../functions.php:1858
+#: ../functions.php:1709 ../functions.php:1806
 msgid "Dropdown Menu Background Color"
 msgstr "Χρώμα Φόντου Αναπτυσσόμενου Μενού"
 
-#: ../functions.php:1774
+#: ../functions.php:1722
 msgid "Dropdown Menu Line Color"
 msgstr "Χρώμα Γραμμής Αναπτυσσόμενου Μενού"
 
-#: ../functions.php:1787 ../functions.php:1871
+#: ../functions.php:1735 ../functions.php:1819
 msgid "Dropdown Menu Text Color"
 msgstr "Χρώμα Κειμένου Αναπτυσσόμενου Μενού"
 
-#: ../functions.php:1800 ../functions.php:1884
+#: ../functions.php:1748 ../functions.php:1832
 msgid "Dropdown Menu Animation"
 msgstr "Animation Αναπτυσσόμενου μενού"
 
-#: ../functions.php:1804 ../functions.php:1888
+#: ../functions.php:1752 ../functions.php:1836
 msgid "Fade"
 msgstr "Σβήσιμο"
 
-#: ../functions.php:1805 ../functions.php:1889
+#: ../functions.php:1753 ../functions.php:1837
 msgid "Expand"
 msgstr "Επέκταση"
 
-#: ../functions.php:1806 ../functions.php:1890
+#: ../functions.php:1754 ../functions.php:1838
 msgid "Slide"
 msgstr "Διαφάνεια"
 
-#: ../functions.php:1807 ../functions.php:1891
+#: ../functions.php:1755 ../functions.php:1839
 msgid "Flip"
 msgstr "Αναστροφή"
 
-#: ../functions.php:1932
-msgid "Fixed Menu/Logo Height"
-msgstr "Σταθερό Ύψος Μενού/Λογοτύπου"
+#: ../functions.php:1880
+msgid "Fixed Menu Height"
+msgstr "Σταθερή Μενού Ύψος"
 
-#: ../functions.php:1968
+#: ../functions.php:1916
 msgid "Primary Menu Background Color"
 msgstr "Χρώμα Φόντου Κύριου Μενού"
 
-#: ../functions.php:1981
+#: ../functions.php:1929
 msgid "Secondary Menu Background Color"
 msgstr "Χρώμα Φόντου Δευτερεύοντος Μενού"
 
-#: ../functions.php:1994
-msgid "Menu Link Color"
-msgstr "Χρώμα Συνδέσμου Μενού"
+#: ../functions.php:1942
+msgid "Primary Menu Link Color"
+msgstr "Πρωτοβάθμια μενού Χρώμα δεσμού"
 
-#: ../functions.php:2007
-msgid "Active Menu Link Color"
-msgstr "Χρώμα Συνδέσμου Ενεργού Μενού"
+#: ../functions.php:1955
+msgid "Secondary Menu Link Color"
+msgstr "Δευτερεύον μενού Χρώμα δεσμού"
 
-#: ../functions.php:2020
+#: ../functions.php:1968
+msgid "Active Primary Menu Link Color"
+msgstr "Ενεργά Πρωτοβάθμια μενού Χρώμα συνδέσμου"
+
+#: ../functions.php:1981
 msgid "Phone Number"
 msgstr "Νούμερο Τηλεφώνου"
 
-#: ../functions.php:2032
+#: ../functions.php:1993
 msgid "Email"
 msgstr "Email"
 
-#: ../functions.php:2058
+#: ../functions.php:2019
 msgid "Column Layout"
 msgstr "Διάταξη Στήλης"
 
-#: ../functions.php:2063 ../functions.php:2064 ../functions.php:2065
-#: ../functions.php:2067 ../functions.php:2068 ../functions.php:2069
-#: ../functions.php:2070 ../functions.php:2071 ../functions.php:2072
+#: ../functions.php:2024 ../functions.php:2025 ../functions.php:2026
+#: ../functions.php:2028 ../functions.php:2029 ../functions.php:2030
+#: ../functions.php:2031 ../functions.php:2032 ../functions.php:2033
 #, php-format
 msgid "%1$s Columns"
 msgstr "%1$s Στήλες"
 
-#: ../functions.php:2066
+#: ../functions.php:2027
 msgid "1 Column"
 msgstr "1 Στήλη"
 
-#: ../functions.php:2084
+#: ../functions.php:2045
 msgid "Footer Background Color"
 msgstr "Χρώμα Φόντου Υποσέλιδου"
 
-#: ../functions.php:2134
+#: ../functions.php:2095
 msgid "Body/Link Text Size"
 msgstr "Μέγεθος Κειμένου Κορμού/Συνδέσμου"
 
-#: ../functions.php:2152
+#: ../functions.php:2113
 msgid "Body/Link Line Height"
 msgstr "Ύψος Γραμμής Κορμού/Συνδέσμου"
 
-#: ../functions.php:2170
+#: ../functions.php:2131
 msgid "Body Font Style"
 msgstr "Στυλ Γραμματοσειράς Κορμού"
 
-#: ../functions.php:2189
+#: ../functions.php:2150
 msgid "Widget Text Color"
 msgstr "Χρώμα Κειμένου Widget"
 
-#: ../functions.php:2202
+#: ../functions.php:2163
 msgid "Widget Link Color"
 msgstr "Χρώμα Συνδέσμου Widget"
 
-#: ../functions.php:2215
+#: ../functions.php:2176
 msgid "Widget Header Color"
 msgstr "Χρώμα Κεφαλίδας Widget"
 
-#: ../functions.php:2228
+#: ../functions.php:2189
 msgid "Widget Bullet Color"
 msgstr "Χρώμα Κουκκίδας Widget"
 
-#: ../functions.php:2242
+#: ../functions.php:2203
 msgid "Footer Menu Background Color"
 msgstr "Χρώμα Φόντου Μενού Υποσέλιδου"
 
-#: ../functions.php:2255
+#: ../functions.php:2216
 msgid "Footer Menu Text Color"
 msgstr "Χρώμα Κειμένου Μενού Υποσέλιδου"
 
-#: ../functions.php:2268
+#: ../functions.php:2229
 msgid "Footer Menu Active Link Color"
 msgstr "Χρώμα Ενεργού Συνδέσμου Μενού Υποσέλιδου"
 
-#: ../functions.php:2318 ../functions.php:2382
+#: ../functions.php:2279 ../functions.php:2343
 msgid "Font Size"
 msgstr "Μέγεθος Γραμματοσειράς"
 
-#: ../functions.php:2400
+#: ../functions.php:2361
 msgid "Social Icon Size"
 msgstr "Μέγεθος Εικονιδίου Κοινωνικών Δικτύων"
 
-#: ../functions.php:2418
+#: ../functions.php:2379
 msgid "Social Icon Color"
 msgstr "Χρώμα Εικονιδίου Κοινωνικών Δικτύων"
 
-#: ../functions.php:2475
+#: ../functions.php:2436
 msgid "Border Width"
 msgstr "Πλάτος Περιγράμματος"
 
-#: ../functions.php:2493 ../functions.php:2681
+#: ../functions.php:2454 ../functions.php:2642
 msgid "Border Color"
 msgstr "Χρώμα Περιγράμματος"
 
-#: ../functions.php:2506 ../functions.php:2694
+#: ../functions.php:2467 ../functions.php:2655
 msgid "Border Radius"
 msgstr "Ακτίνα Περιγράμματος"
 
-#: ../functions.php:2542 ../functions.php:5189
+#: ../functions.php:2503 ../functions.php:5150
 msgid "Button Font Style"
 msgstr "Στυλ Γραμματοσειράς Κουμπιού"
 
-#: ../functions.php:2562
+#: ../functions.php:2523
 msgid "Buttons Font"
 msgstr "Γραμματοσειρά Κουμπιών"
 
-#: ../functions.php:2578
+#: ../functions.php:2539
 msgid "Add Button Icon"
 msgstr "Προσθήκη Εικονιδίου Κουμπιού"
 
-#: ../functions.php:2582 ../functions.php:2642
+#: ../functions.php:2543 ../functions.php:2603
 msgid "Yes"
 msgstr "Ναι"
 
-#: ../functions.php:2583 ../functions.php:2643
+#: ../functions.php:2544 ../functions.php:2604
 msgid "No"
 msgstr "Όχι"
 
-#: ../functions.php:2595
+#: ../functions.php:2556
 msgid "Select Icon"
 msgstr "Επιλογή Εικονιδίου"
 
-#: ../functions.php:2608
+#: ../functions.php:2569
 msgid "Icon Color"
 msgstr "Χρώμα εικονιδίου "
 
-#: ../functions.php:2621
+#: ../functions.php:2582
 msgid "Icon Placement"
 msgstr "Τοποθέτηση Εικονιδίου"
 
-#: ../functions.php:2638
+#: ../functions.php:2599
 msgid "Only Show Icon on Hover"
 msgstr "Εμφάνιση Εικονιδίου Μόνο Όταν βρίσκεται το Ποντίκι από Πάνω"
 
-#: ../functions.php:2727
+#: ../functions.php:2688
 msgid "Left to Right"
 msgstr "Αριστερά προς δεξιά"
 
-#: ../functions.php:2728
+#: ../functions.php:2689
 msgid "Right to Left"
 msgstr "Δεξιά προς αριστερά"
 
-#: ../functions.php:2729
+#: ../functions.php:2690
 msgid "Top to Bottom"
 msgstr "Από πάνω προς τα κάτω"
 
-#: ../functions.php:2730
+#: ../functions.php:2691
 msgid "Bottom to Top"
 msgstr "Από κάτω προς τα πάνω"
 
-#: ../functions.php:2731
+#: ../functions.php:2692
 msgid "Fade In"
 msgstr "Σταδιακή εμφάνιση"
 
-#: ../functions.php:2732
+#: ../functions.php:2693
 msgid "No Animation"
 msgstr "Χωρίς κινούμενο σχέδιο"
 
-#: ../functions.php:2739 ../includes/widgets/widget-about.php:50
+#: ../functions.php:2700 ../includes/widgets/widget-about.php:50
 #: ../includes/widgets/widget-ads.php:180
 #: ../includes/widgets/widget-ads.php:188
 #: ../includes/widgets/widget-ads.php:196
@@ -2452,569 +2321,456 @@ msgstr "Χωρίς κινούμενο σχέδιο"
 msgid "Image"
 msgstr "Εικόνα"
 
-#: ../functions.php:2740
+#: ../functions.php:2701
 msgid "Image Module Settings"
 msgstr "Ρυθμίσεις λειτουργικής μονάδας για εικόνες"
 
-#: ../functions.php:2750
+#: ../functions.php:2711
 msgid "Animation"
 msgstr "Κινούμενο σχέδιο"
 
-#: ../functions.php:2751
+#: ../functions.php:2712
 msgid "This controls default direction of the lazy-loading animation."
 msgstr ""
 "Αυτό ελέγχει την προεπιλεγμένη κατεύθυνση των animation που αργούν να "
 "φορτώσουν."
 
-#: ../functions.php:2761
+#: ../functions.php:2722
 msgid "Gallery"
 msgstr "Συλλογή"
 
-#: ../functions.php:2774 ../functions.php:3601 ../functions.php:3715
+#: ../functions.php:2735 ../functions.php:3562 ../functions.php:3676
 msgid "Zoom Icon Color"
 msgstr "Χρώμα Εικονιδίου Μεγέθυνσης"
 
-#: ../functions.php:2788 ../functions.php:3615 ../functions.php:3729
+#: ../functions.php:2749 ../functions.php:3576 ../functions.php:3690
 msgid "Hover Overlay Color"
 msgstr "Χρώμα Επικάλυψης Όταν βρίσκεται το Ποντίκι από Πάνω"
 
-#: ../functions.php:2802 ../functions.php:2915 ../functions.php:3629
-#: ../functions.php:3743 ../functions.php:4030 ../functions.php:4116
-#: ../functions.php:4162 ../functions.php:4268
+#: ../functions.php:2763 ../functions.php:2876 ../functions.php:3590
+#: ../functions.php:3704 ../functions.php:3991 ../functions.php:4077
+#: ../functions.php:4123 ../functions.php:4229
 msgid "Title Font Size"
 msgstr "Μέγεθος Γραμματοσειράς Τίτλου"
 
-#: ../functions.php:2821 ../functions.php:2934 ../functions.php:3648
-#: ../functions.php:3762 ../functions.php:4049 ../functions.php:4135
-#: ../functions.php:4806 ../functions.php:4892
+#: ../functions.php:2782 ../functions.php:2895 ../functions.php:3609
+#: ../functions.php:3723 ../functions.php:4010 ../functions.php:4096
+#: ../functions.php:4767 ../functions.php:4853
 msgid "Title Font Style"
 msgstr "Στυλ Γραμματοσειράς Τίτλου"
 
-#: ../functions.php:2841 ../functions.php:3668 ../functions.php:3782
+#: ../functions.php:2802 ../functions.php:3629 ../functions.php:3743
 msgid "Caption Font Size"
 msgstr "Μέγεθος Γραμματοσειράς Λεζάντας"
 
-#: ../functions.php:2860 ../functions.php:3687 ../functions.php:3801
+#: ../functions.php:2821 ../functions.php:3648 ../functions.php:3762
 msgid "Caption Font Style"
 msgstr "Στυλ Γραμματοσειράς Λεζάντας"
 
-#: ../functions.php:2875
+#: ../functions.php:2836
 msgid "Blurb"
 msgstr "Blurb"
 
-#: ../functions.php:2888 ../functions.php:3001 ../functions.php:3192
-#: ../functions.php:3317 ../functions.php:3383 ../functions.php:3469
-#: ../functions.php:3535 ../functions.php:4373 ../functions.php:5123
-#: ../functions.php:5236
+#: ../functions.php:2849 ../functions.php:2962 ../functions.php:3153
+#: ../functions.php:3278 ../functions.php:3344 ../functions.php:3430
+#: ../functions.php:3496 ../functions.php:4334 ../functions.php:5084
+#: ../functions.php:5197
 msgid "Header Font Size"
 msgstr "Μέγεθος Γραμματοσειράς Κεφαλίδας"
 
-#: ../functions.php:2902
+#: ../functions.php:2863
 msgid "Tabs"
 msgstr "Καρτέλες"
 
-#: ../functions.php:2955 ../functions.php:3356 ../functions.php:3508
-#: ../functions.php:3574
+#: ../functions.php:2916 ../functions.php:3317 ../functions.php:3469
+#: ../functions.php:3535
 msgid "Padding"
 msgstr "Γέμισμα"
 
-#: ../functions.php:2969
+#: ../functions.php:2930
 msgid "Slider"
 msgstr "Slider"
 
-#: ../functions.php:2982 ../functions.php:5217
+#: ../functions.php:2943 ../functions.php:5178
 msgid "Top & Bottom Padding"
 msgstr "Πάνω & Κάτω Γέμισμα"
 
-#: ../functions.php:3040 ../functions.php:5275
+#: ../functions.php:3001 ../functions.php:5236
 msgid "Content Font Size"
 msgstr "Μέγεθος Γραμματοσειράς Περιεχομένου"
 
-#: ../functions.php:3059 ../functions.php:5294
+#: ../functions.php:3020 ../functions.php:5255
 msgid "Content Font Style"
 msgstr "Στυλ Γραμματοσειράς Περιεχομένου"
 
-#: ../functions.php:3074
+#: ../functions.php:3035
 msgid "Testimonial"
 msgstr "Συστάσεις"
 
-#: ../functions.php:3087 ../functions.php:4701
+#: ../functions.php:3048 ../functions.php:4662
 msgid "Name Font Style"
 msgstr "Στυλ Γραμματοσειράς Ονόματος"
 
-#: ../functions.php:3107
+#: ../functions.php:3068
 msgid "Details Font Style"
 msgstr "Στυλ Γραμματοσειράς Λεπτομερειών"
 
-#: ../functions.php:3127
+#: ../functions.php:3088
 msgid "Portrait Border Radius"
 msgstr "Ακτίνα Περιγράμματος Πορτραίτου"
 
-#: ../functions.php:3179
+#: ../functions.php:3140
 msgid "Pricing Table"
 msgstr "Πίνακας τιμών"
 
-#: ../functions.php:3231 ../functions.php:3422 ../functions.php:4721
+#: ../functions.php:3192 ../functions.php:3383 ../functions.php:4682
 msgid "Subheader Font Size"
 msgstr "Μέγεθος Γραμματοσειράς Υποκεφαλίδας"
 
-#: ../functions.php:3250 ../functions.php:3441 ../functions.php:4740
+#: ../functions.php:3211 ../functions.php:3402 ../functions.php:4701
 msgid "Subheader Font Style"
 msgstr "Στυλ Γραμματοσειράς Υποκεφαλίδας"
 
-#: ../functions.php:3270 ../functions.php:5037
+#: ../functions.php:3231 ../functions.php:4998
 msgid "Price Font Size"
 msgstr "Μέγεθος Γραμματοσειράς Τιμής"
 
-#: ../functions.php:3289
+#: ../functions.php:3250
 msgid "Pricing Font Style"
 msgstr "Στυλ Γραμματοσειράς Τιμολόγησης"
 
-#: ../functions.php:3304
+#: ../functions.php:3265
 msgid "Call To Action"
 msgstr "Έκκληση για ενέργεια"
 
-#: ../functions.php:3370
+#: ../functions.php:3331
 msgid "Audio"
 msgstr "Αρχεία ήχου"
 
-#: ../functions.php:3456
-msgid "Subscribe"
-msgstr "Εγγραφείτε"
+#: ../functions.php:3417
+msgid "Email Optin"
+msgstr "email Optin"
 
-#: ../functions.php:3588
+#: ../functions.php:3549
 msgid "Portfolio"
 msgstr "Πορτφόλιο"
 
-#: ../functions.php:3702
+#: ../functions.php:3663
 msgid "Filterable Portfolio"
 msgstr "Πορτφόλιο με δυνατότητα φιλτραρίσματος"
 
-#: ../functions.php:3821
+#: ../functions.php:3782
 msgid "Filters Font Size"
 msgstr "Μέγεθος Γραμματοσειράς Φίλτρων"
 
-#: ../functions.php:3840
+#: ../functions.php:3801
 msgid "Filters Font Style"
 msgstr "Στυλ Γραμματοσειράς Φίλτρων"
 
-#: ../functions.php:3855
+#: ../functions.php:3816
 msgid "Bar Counter"
 msgstr "Μετρητής"
 
-#: ../functions.php:3868
+#: ../functions.php:3829
 msgid "Label Font Size"
 msgstr "Μέγεθος Γραμματοσειράς Ετικέτας"
 
-#: ../functions.php:3887
+#: ../functions.php:3848
 msgid "Label Font Style"
 msgstr "Στυλ Γραμματοσειράς Ετικέτας"
 
-#: ../functions.php:3907
+#: ../functions.php:3868
 msgid "Percent Font Size"
 msgstr "Μέγεθος Γραμματοσειράς Ποσοστού"
 
-#: ../functions.php:3926
+#: ../functions.php:3887
 msgid "Percent Font Style"
 msgstr "Στυλ Γραμματοσειράς Ποσοστού"
 
-#: ../functions.php:3946
+#: ../functions.php:3907
 msgid "Bar Padding"
 msgstr "Γέμισμα Μπάρας"
 
-#: ../functions.php:3965
+#: ../functions.php:3926
 msgid "Bar Border Radius"
 msgstr "Ακτίνα Περιγράμματος Μπάρας"
 
-#: ../functions.php:3979
+#: ../functions.php:3940
 msgid "Circle Counter"
 msgstr "Κυκλικός μετρητής"
 
-#: ../functions.php:3991 ../functions.php:4077
+#: ../functions.php:3952 ../functions.php:4038
 msgid "Number Font Size"
 msgstr "Μέγεθος Γραμματοσειράς Αριθμού"
 
-#: ../functions.php:4010 ../functions.php:4096
+#: ../functions.php:3971 ../functions.php:4057
 msgid "Number Font Style"
 msgstr "Στυλ Γραμματοσειράς Αριθμού"
 
-#: ../functions.php:4064
+#: ../functions.php:4025
 msgid "Number Counter"
 msgstr "Αριθμητικός μετρητής"
 
-#: ../functions.php:4150
+#: ../functions.php:4111
 msgid "Accordion"
 msgstr "Accordion"
 
-#: ../functions.php:4181 ../functions.php:4287
+#: ../functions.php:4142 ../functions.php:4248
 msgid "Opened Title Font Style"
 msgstr "Στυλ Γραμματοσειράς Ανοιχτού Τίτλου"
 
-#: ../functions.php:4201 ../functions.php:4307
+#: ../functions.php:4162 ../functions.php:4268
 msgid "Closed Title Font Style"
 msgstr "Στυλ Γραμματοσειράς Κλειστού Τίτλου"
 
-#: ../functions.php:4221 ../functions.php:4327
+#: ../functions.php:4182 ../functions.php:4288
 msgid "Toggle Icon Size"
 msgstr "Μέγεθος Εικονιδίου Εναλλαγής"
 
-#: ../functions.php:4241 ../functions.php:4346
+#: ../functions.php:4202 ../functions.php:4307
 msgid "Toggle Padding"
 msgstr "Εναλλαγή Γεμίσματος"
 
-#: ../functions.php:4255
+#: ../functions.php:4216
 msgid "Toggle"
 msgstr "Εναλλαγή"
 
-#: ../functions.php:4360
+#: ../functions.php:4321
 msgid "Contact Form"
 msgstr "Φόρμα επικοινωνίας"
 
-#: ../functions.php:4412
+#: ../functions.php:4373
 msgid "Input Font Size"
 msgstr "Μέγεθος Γραμματοσειράς Εισαγωγικού Πεδίου"
 
-#: ../functions.php:4431
+#: ../functions.php:4392
 msgid "Input Font Style"
 msgstr "Στυλ Γραμματοσειράς Εισαγωγικού Πεδίου"
 
-#: ../functions.php:4451
+#: ../functions.php:4412
 msgid "Input Field Padding"
 msgstr "Γέμισμα Εισαγωγικού Πεδίου"
 
-#: ../functions.php:4470
+#: ../functions.php:4431
 msgid "Captcha Font Size"
 msgstr "Μέγεθος Γραμματοσειράς Captcha"
 
-#: ../functions.php:4489
+#: ../functions.php:4450
 msgid "Captcha Font Style"
 msgstr "Στυλ Γραμματοσειράς Captcha"
 
-#: ../functions.php:4504 ../includes/functions/sidebars.php:4
+#: ../functions.php:4465 ../includes/functions/sidebars.php:4
 msgid "Sidebar"
 msgstr "Πλαϊνή γραμμή"
 
-#: ../functions.php:4517
+#: ../functions.php:4478
 msgid "Widget Header Font Size"
 msgstr "Μέγεθος Γραμματοσειράς Κεφαλίδας Widget"
 
-#: ../functions.php:4536
+#: ../functions.php:4497
 msgid "Widget Header Font Style"
 msgstr "Στυλ Γραμματοσειράς Κεφαλίδας Widget"
 
-#: ../functions.php:4556
+#: ../functions.php:4517
 msgid "Remove Vertical Divider"
 msgstr "Αφαίρεση Κάθετου Διαχωριστικού"
 
-#: ../functions.php:4565
+#: ../functions.php:4526
 msgid "Divider"
 msgstr "Διαχωριστής"
 
-#: ../functions.php:4577
+#: ../functions.php:4538
 msgid "Show Divider"
 msgstr "Εμφάνιση διαχωριστή"
 
-#: ../functions.php:4591
+#: ../functions.php:4552
 msgid "Divider Style"
 msgstr "Στυλ διαχωριστή"
 
-#: ../functions.php:4596
+#: ../functions.php:4557
 msgid "Solid"
 msgstr "Συμπαγής"
 
-#: ../functions.php:4597
+#: ../functions.php:4558
 msgid "Dotted"
 msgstr "Με Κουκκίδες"
 
-#: ../functions.php:4598
+#: ../functions.php:4559
 msgid "Dashed"
 msgstr "Διακεκομμένη"
 
-#: ../functions.php:4599
+#: ../functions.php:4560
 msgid "Double"
 msgstr "Διπλή"
 
-#: ../functions.php:4600
+#: ../functions.php:4561
 msgid "Groove"
 msgstr "Εγκοπή"
 
-#: ../functions.php:4601
+#: ../functions.php:4562
 msgid "Ridge"
 msgstr "Ακμή"
 
-#: ../functions.php:4602
+#: ../functions.php:4563
 msgid "Inset"
 msgstr "Ορισμός Εσωτερικού Περιγράμματος"
 
-#: ../functions.php:4603
+#: ../functions.php:4564
 msgid "Outset"
 msgstr "Ορισμός Εξωτερικού Περιγράμματος"
 
-#: ../functions.php:4616
+#: ../functions.php:4577
 msgid "Divider Weight"
 msgstr "Ύψος Διαχωριστή"
 
-#: ../functions.php:4635
+#: ../functions.php:4596
 msgid "Divider Height"
 msgstr "Ύψος Διαχωριστικού"
 
-#: ../functions.php:4654
+#: ../functions.php:4615
 msgid "Divider Position"
 msgstr "Θέση Διαχωριστή"
 
-#: ../functions.php:4659
+#: ../functions.php:4620
 msgid "Top"
 msgstr "Πάνω μέρος"
 
-#: ../functions.php:4660
+#: ../functions.php:4621
 msgid "Vertically Centered"
 msgstr "Κεντραρισμένο Κάθετα"
 
-#: ../functions.php:4661
+#: ../functions.php:4622
 msgid "Bottom"
 msgstr "Κάτω μέρος"
 
-#: ../functions.php:4669
+#: ../functions.php:4630
 msgid "Person"
 msgstr "Πρόσωπο"
 
-#: ../functions.php:4682
+#: ../functions.php:4643
 msgid "Name Font Size"
 msgstr "Μέγεθος Γραμματοσειράς Ονόματος"
 
-#: ../functions.php:4760
+#: ../functions.php:4721
 msgid "Social Network Icon Size"
 msgstr "Μέγεθος Εικονιδίου Κοινωνικού Δικτύου"
 
-#: ../functions.php:4787 ../functions.php:4873
+#: ../functions.php:4748 ../functions.php:4834
 msgid "Post Title Font Size"
 msgstr "Μέγεθος Γραμματοσειράς Τίτλου Ανάρτησης"
 
-#: ../functions.php:4826 ../functions.php:4912
+#: ../functions.php:4787 ../functions.php:4873
 msgid "Meta Font Size"
 msgstr "Μέγεθος Γραμματοσειράς Μεταδεδομένων"
 
-#: ../functions.php:4860
-msgid "Masonry Blog"
-msgstr "Blog Τοιχοποιίας"
+#: ../functions.php:4821
+msgid "Blog Grid"
+msgstr "blog Πλέγμα"
 
-#: ../functions.php:4946
+#: ../functions.php:4907
 msgid "Shop"
 msgstr "Κατάστημα"
 
-#: ../functions.php:4959
+#: ../functions.php:4920
 msgid "Product Name Font Size"
 msgstr "Μέγεθος Γραμματοσειράς Ονόματος Προϊόντος"
 
-#: ../functions.php:4978
+#: ../functions.php:4939
 msgid "Product Name Font Style"
 msgstr "Στυλ Γραμματοσειράς Ονόματος Προϊόντος"
 
-#: ../functions.php:4998
+#: ../functions.php:4959
 msgid "Sale Badge Font Size"
 msgstr "Μέγεθος Γραμματοσειράς Σήματος Πώλησης"
 
-#: ../functions.php:5017
+#: ../functions.php:4978
 msgid "Sale Badge Font Style"
 msgstr "Στυλ Γραμματοσειράς Σήματος Πώλησης"
 
-#: ../functions.php:5056
+#: ../functions.php:5017
 msgid "Price Font Style"
 msgstr "Στυλ Γραμματοσειράς Τιμής"
 
-#: ../functions.php:5076
+#: ../functions.php:5037
 msgid "Sale Price Font Size"
 msgstr "Μέγεθος Γραμματοσειράς Τιμής Πώλησης"
 
-#: ../functions.php:5095
+#: ../functions.php:5056
 msgid "Sale Price Font Style"
 msgstr "Στυλ Γραμματοσειράς Τιμής Πώλησης"
 
-#: ../functions.php:5110
+#: ../functions.php:5071
 msgid "Countdown"
 msgstr "Αντίστροφη Μέτρηση"
 
-#: ../functions.php:5157
+#: ../functions.php:5118
 msgid "Social Follow"
 msgstr "Ακολούθησε σε Κοινωνικό Δίκτυο"
 
-#: ../functions.php:5170
+#: ../functions.php:5131
 msgid "Follow Font & Icon Size"
 msgstr "Γραμματοσειρά για το Ακολούθησε & Μέγεθος Εικονιδίου"
 
-#: ../functions.php:5204
-msgid "Full Width Slider"
-msgstr "Ρυθμιστικό Πλήρους Πλάτος"
+#: ../functions.php:5165
+msgid "Fullwidth Slider"
+msgstr "Fullwidth Slider"
 
-#: ../functions.php:7875
+#: ../functions.php:7469
 msgid "0 comments"
 msgstr "0 Σχόλια"
 
-#: ../functions.php:7875
+#: ../functions.php:7469
 msgid "1 comment"
 msgstr "1 Σχόλιο"
 
-#: ../functions.php:7875
+#: ../functions.php:7469
 msgid "comments"
 msgstr "Σχόλια"
 
-#: ../functions.php:8026
-msgid "No Gallery Found"
-msgstr ""
-
-#: ../functions.php:8028
-msgid "No items found"
-msgstr ""
-
-#: ../functions.php:8170
+#: ../functions.php:7542
 msgid "Password Protected"
 msgstr "Προστασία με κωδικό πρόσβασης"
 
-#: ../functions.php:8171
+#: ../functions.php:7543
 msgid "To view this protected post, enter the password below"
 msgstr ""
 "Για να δείτε αυτή τη δημοσίευση, που προστατεύεται κωδικό πρόσβασης, "
 "εισάγετε τον κωδικό παρακάτω."
 
-#: ../functions.php:8174
+#: ../functions.php:7546
 msgid "Password"
 msgstr "Κωδικός"
 
-#: ../functions.php:8175
+#: ../functions.php:7547
 msgid "Submit"
 msgstr "Υποβολή"
 
-#: ../functions.php:8347
+#: ../functions.php:7727
 #, php-format
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
 
-#: ../functions.php:8349
+#: ../functions.php:7729
 msgid "Item"
 msgstr "Αντικείμενο"
 
-#: ../functions.php:8349
+#: ../functions.php:7729
 msgid "Items"
 msgstr "Αντικείμενα"
 
-#: ../functions.php:8524
-msgid "Connecting..."
-msgstr "Σύνδεση..."
-
-#: ../functions.php:8525
-msgid "Connection failed"
-msgstr "Η Σύνδεση απέτυχε"
-
-#: ../functions.php:8526
-msgid "Removing connection..."
-msgstr "Κατάργηση σύνδεσης..."
-
-#: ../functions.php:8527
-msgid "Done"
-msgstr "Ολοκληρώθηκε"
-
-#: ../functions.php:8556
-#, php-format
-msgid ""
-"Step 1: <a href=\"%1$s\" target=\"_blank\">Generate authorization code</a>"
-msgstr ""
-"Βήμα 1: <a href=\"%1$s\" target=\"_blank\">Δημιουργία κωδικού "
-"εξουσιοδότησης</a>"
-
-#: ../functions.php:8557
-msgid ""
-"Step 2: Paste in the authorization code and click \"Make a connection\" "
-"button: "
-msgstr ""
-"Βήμα 2: Επικολλήστε τον κωδικό εξουσιοδότησης και κάντε κλικ στο κουμπί "
-"\"Πραγματοποίηση σύνδεσης\": "
-
-#: ../functions.php:8558
-msgid "Make a connection"
-msgstr "Πραγματοποίηση σύνδεσης"
-
-#: ../functions.php:8561
-msgid "Aweber is set up properly. You can remove connection here if you wish."
-msgstr ""
-"Aweber έχει ρυθμιστεί σωστά. Μπορείτε να καταργήσετε τη σύνδεση εδώ αν "
-"θέλετε."
-
-#: ../functions.php:8562
-msgid "Remove the connection"
-msgstr "Κατάργηση σύνδεσης"
-
-#: ../functions.php:8570
-msgid "Nonce failed."
-msgstr "Nonce απέτυχε."
-
-#: ../functions.php:8576
-msgid "Authorization code is empty."
-msgstr "Ο κωδικός εξουσιοδότησης είναι άδειος."
-
-#: ../functions.php:8587
-msgid ""
-"Authorization code is invalid. Try regenerating it and paste in the new code."
-msgstr ""
-"Ο κωδικός εξουσιοδότησης δεν είναι έγκυρος. Προσπαθήστε να τον δημιουργήσετε "
-"πάλι και να εισάγετε το νέο κωδικό."
-
-#: ../functions.php:8609
-msgid "Aweber API Exception"
-msgstr "Εξαίρεση του Aweber API"
-
-#: ../functions.php:8611
-msgid "Message"
-msgstr "Μήνυμα"
-
-#: ../functions.php:8622
-msgid "Nonce failed"
-msgstr "Nonce απέτυχε"
-
-#: ../functions.php:8717
-msgid "Read more"
-msgstr "Διαβάστε Περισσότερα"
-
-#: ../functions.php:8845
-msgid "Configuration error"
-msgstr "Σφάλμα Ρύθμισης"
-
-#: ../functions.php:8855
-msgid "Please enter first name"
-msgstr "Παρακαλούμε εισάγετε το μικρό όνομα"
-
-#: ../functions.php:8857
-msgid "Incorrect email"
-msgstr "Λανθασμένο email"
-
-#: ../functions.php:8859
-msgid "Configuration error: List is not defined"
-msgstr "Σφάλμα ρύθμισης: Η Λίστα δεν είναι ορισμένη"
-
-#: ../functions.php:8861
-msgid ""
-"<h2 class=\"et_pb_subscribed\">Subscribed - look for the confirmation email!"
-"</h2>"
-msgstr ""
-"<h2 class=\"et_pb_subscribed\">Εγγραφήκατε - αναζητήστε το email "
-"επιβεβαίωσης!</h2>"
-
-#: ../functions.php:8873
-msgid "Configuration error: api key is not defined"
-msgstr "Σφάλμα ρύθμισης: Το API κλειδί δεν είναι ορισμένο"
-
-#: ../functions.php:8910
-msgid "Aweber: Wrong configuration data"
-msgstr "Aweber: Λανθασμένα δεδομένα ρύθμισης"
-
-#: ../functions.php:8940 ../functions.php:8961
+#: ../functions.php:7907 ../functions.php:7942
 msgid "Theme Customizer"
 msgstr "Προσαρμογέας Θεμάτων"
 
-#: ../functions.php:8941 ../functions.php:8971
+#: ../functions.php:7911 ../functions.php:7955
 msgid "Module Customizer"
 msgstr "Προσαρμογέας Module"
 
-#: ../functions.php:8942
+#: ../functions.php:7913
+msgid "Role Editor"
+msgstr "ρόλος Εκδότης"
+
+#: ../functions.php:7916
 msgid "Divi Library"
 msgstr "Βιβλιοθήκη Divi"
 
@@ -3238,6 +2994,247 @@ msgstr "&larr;"
 #: ../single-project.php:63
 msgid "&rarr;"
 msgstr "&rarr;"
+
+#~ msgid ""
+#~ "By default, MailChimp lists are cached for one day. If you added new "
+#~ "list, but it doesn't appear within the SignUp module settings, activate "
+#~ "this option. Don't forget to disable it once the list has been "
+#~ "regenerated."
+#~ msgstr ""
+#~ "Αρχικά, οι λίστες MailChimp μένουν στη μνήμη για μια ημέρα. Αν προσθέσετε "
+#~ "μια νέα λίστα, αλλά δεν εμφανιστεί στις ρυθμίσεις του SignUp πρόσθετου, "
+#~ "ενεργοποιήστε αυτή την επιλογή. Μη ξεχάσετε να την απενεργοποιήσετε μόλις "
+#~ "η λίστα ανανεωθεί."
+
+#~ msgid ""
+#~ "By default, Aweber lists are cached for one day. If you added new list, "
+#~ "but it doesn't appear within the SignUp module settings, activate this "
+#~ "option. Don't forget to disable it once the list has been regenerated."
+#~ msgstr ""
+#~ "Αρχικά, οι λίστες Aweber μένουν στη μνήμη για μια ημέρα. Αν προσθέσετε "
+#~ "μια νέα λίστα, αλλά δεν εμφανιστεί στις ρυθμίσεις του SignUp πρόσθετου, "
+#~ "ενεργοποιήστε αυτή την επιλογή. Μη ξεχάσετε να την απενεργοποιήσετε μόλις "
+#~ "η λίστα ανανεωθεί."
+
+#~ msgid ""
+#~ "Please, check the fields below to make sure you entered the correct "
+#~ "information."
+#~ msgstr ""
+#~ "Παρακαλούμε, ελέγξτε τα παρακάτω πεδία εισαγωγής για να βεβαιωθείτε ότι "
+#~ "έχετε εισάγει τις σωστές πληροφoρίες."
+
+#~ msgid "Fill"
+#~ msgstr "Συμπληρώστε"
+
+#~ msgid "field"
+#~ msgstr "πεδίο"
+
+#~ msgid "Invalid email"
+#~ msgstr "Άκυρο email"
+
+#~ msgid "Captcha"
+#~ msgstr "Captcha"
+
+#~ msgid "Prev"
+#~ msgstr "Προηγούμενο"
+
+#~ msgid "Projects"
+#~ msgstr "Έργα"
+
+#~ msgid "Project"
+#~ msgstr "Έργο"
+
+#~ msgid "Add New"
+#~ msgstr "Προσθήκη Νέου"
+
+#~ msgid "Add New Project"
+#~ msgstr "Προσθήκη Νέου Έργου"
+
+#~ msgid "Edit Project"
+#~ msgstr "Επεξεργασία Έργου"
+
+#~ msgid "New Project"
+#~ msgstr "Νέο Έργο"
+
+#~ msgid "All Projects"
+#~ msgstr "‘Ολα τα Έργα"
+
+#~ msgid "View Project"
+#~ msgstr "Εμφάνιση Έργου"
+
+#~ msgid "Search Projects"
+#~ msgstr "Αναζήτηση Έργων"
+
+#~ msgid "Nothing found"
+#~ msgstr "Δε βρέθηκαν αποτελέσματα"
+
+#~ msgid "Nothing found in Trash"
+#~ msgstr "Δε βρέθηκαν αποτελέσματα στα Σκουπίδια"
+
+#~ msgid "Category"
+#~ msgstr "Κατηγορία"
+
+#~ msgid "Search Categories"
+#~ msgstr "Αναζήτηση Κατηγοριών"
+
+#~ msgid "All Categories"
+#~ msgstr "Όλες οι Κατηγορίες"
+
+#~ msgid "Parent Category"
+#~ msgstr "Μητρική Κατηγορία"
+
+#~ msgid "Parent Category:"
+#~ msgstr "Μητρική Κατηγορία:"
+
+#~ msgid "Edit Category"
+#~ msgstr "Επεξεργασία Κατηγορίας"
+
+#~ msgid "Update Category"
+#~ msgstr "Ανανέωση Κατηγορίας"
+
+#~ msgid "Add New Category"
+#~ msgstr "Προσθέστε Νέα Κατηγορία"
+
+#~ msgid "New Category Name"
+#~ msgstr "Νέο Όνομα Κατηγορίας"
+
+#~ msgid "Tags"
+#~ msgstr "Ετικέτες"
+
+#~ msgid "Tag"
+#~ msgstr "Ετικέτα"
+
+#~ msgid "Search Tags"
+#~ msgstr "Αναζήτηση Ετικετών"
+
+#~ msgid "All Tags"
+#~ msgstr "Όλες οι Ετικέτες"
+
+#~ msgid "Parent Tag"
+#~ msgstr "Μητρική Ετικέτα"
+
+#~ msgid "Parent Tag:"
+#~ msgstr "Μητρική Ετικέτα:"
+
+#~ msgid "Edit Tag"
+#~ msgstr "Επεξεργασία Ετικέτας"
+
+#~ msgid "Update Tag"
+#~ msgstr "Ανανέωση Ετικέτας"
+
+#~ msgid "Add New Tag"
+#~ msgstr "Προσθήκη Νέας Ετικέτας"
+
+#~ msgid "New Tag Name"
+#~ msgstr "Νέο Όνομα Ετικέτας"
+
+#~ msgid "Menu/Logo Height"
+#~ msgstr "Ύψος Μενού/Λογοτύπου"
+
+#~ msgid "Fixed Menu/Logo Height"
+#~ msgstr "Σταθερό Ύψος Μενού/Λογοτύπου"
+
+#~ msgid "Menu Link Color"
+#~ msgstr "Χρώμα Συνδέσμου Μενού"
+
+#~ msgid "Active Menu Link Color"
+#~ msgstr "Χρώμα Συνδέσμου Ενεργού Μενού"
+
+#~ msgid "Subscribe"
+#~ msgstr "Εγγραφείτε"
+
+#~ msgid "Masonry Blog"
+#~ msgstr "Blog Τοιχοποιίας"
+
+#~ msgid "Full Width Slider"
+#~ msgstr "Ρυθμιστικό Πλήρους Πλάτος"
+
+#~ msgid "Connecting..."
+#~ msgstr "Σύνδεση..."
+
+#~ msgid "Connection failed"
+#~ msgstr "Η Σύνδεση απέτυχε"
+
+#~ msgid "Removing connection..."
+#~ msgstr "Κατάργηση σύνδεσης..."
+
+#~ msgid "Done"
+#~ msgstr "Ολοκληρώθηκε"
+
+#~ msgid ""
+#~ "Step 1: <a href=\"%1$s\" target=\"_blank\">Generate authorization code</a>"
+#~ msgstr ""
+#~ "Βήμα 1: <a href=\"%1$s\" target=\"_blank\">Δημιουργία κωδικού "
+#~ "εξουσιοδότησης</a>"
+
+#~ msgid ""
+#~ "Step 2: Paste in the authorization code and click \"Make a connection\" "
+#~ "button: "
+#~ msgstr ""
+#~ "Βήμα 2: Επικολλήστε τον κωδικό εξουσιοδότησης και κάντε κλικ στο κουμπί "
+#~ "\"Πραγματοποίηση σύνδεσης\": "
+
+#~ msgid "Make a connection"
+#~ msgstr "Πραγματοποίηση σύνδεσης"
+
+#~ msgid ""
+#~ "Aweber is set up properly. You can remove connection here if you wish."
+#~ msgstr ""
+#~ "Aweber έχει ρυθμιστεί σωστά. Μπορείτε να καταργήσετε τη σύνδεση εδώ αν "
+#~ "θέλετε."
+
+#~ msgid "Remove the connection"
+#~ msgstr "Κατάργηση σύνδεσης"
+
+#~ msgid "Nonce failed."
+#~ msgstr "Nonce απέτυχε."
+
+#~ msgid "Authorization code is empty."
+#~ msgstr "Ο κωδικός εξουσιοδότησης είναι άδειος."
+
+#~ msgid ""
+#~ "Authorization code is invalid. Try regenerating it and paste in the new "
+#~ "code."
+#~ msgstr ""
+#~ "Ο κωδικός εξουσιοδότησης δεν είναι έγκυρος. Προσπαθήστε να τον "
+#~ "δημιουργήσετε πάλι και να εισάγετε το νέο κωδικό."
+
+#~ msgid "Aweber API Exception"
+#~ msgstr "Εξαίρεση του Aweber API"
+
+#~ msgid "Message"
+#~ msgstr "Μήνυμα"
+
+#~ msgid "Nonce failed"
+#~ msgstr "Nonce απέτυχε"
+
+#~ msgid "Read more"
+#~ msgstr "Διαβάστε Περισσότερα"
+
+#~ msgid "Configuration error"
+#~ msgstr "Σφάλμα Ρύθμισης"
+
+#~ msgid "Please enter first name"
+#~ msgstr "Παρακαλούμε εισάγετε το μικρό όνομα"
+
+#~ msgid "Incorrect email"
+#~ msgstr "Λανθασμένο email"
+
+#~ msgid "Configuration error: List is not defined"
+#~ msgstr "Σφάλμα ρύθμισης: Η Λίστα δεν είναι ορισμένη"
+
+#~ msgid ""
+#~ "<h2 class=\"et_pb_subscribed\">Subscribed - look for the confirmation "
+#~ "email!</h2>"
+#~ msgstr ""
+#~ "<h2 class=\"et_pb_subscribed\">Εγγραφήκατε - αναζητήστε το email "
+#~ "επιβεβαίωσης!</h2>"
+
+#~ msgid "Configuration error: api key is not defined"
+#~ msgstr "Σφάλμα ρύθμισης: Το API κλειδί δεν είναι ορισμένο"
+
+#~ msgid "Aweber: Wrong configuration data"
+#~ msgstr "Aweber: Λανθασμένα δεδομένα ρύθμισης"
 
 #~ msgid ""
 #~ "Welcome to Divi! Before diving in to your new theme, please visit the <a "

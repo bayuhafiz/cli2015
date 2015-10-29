@@ -11,6 +11,12 @@
 			this.create_dropdown();
 		}
 
+		if ( typeof window.location.search !== 'undefined' && window.location.search.search( 'et_customizer_option_set=module' ) !== -1 ) {
+			$( 'body' ).addClass( 'et_modules_customizer_option_set' );
+		} else {
+			$( 'body' ).addClass( 'et_theme_customizer_option_set' );
+		}
+
 		ET_Select_Image.prototype = {
 			defaults: {
 				apply_value_to	: 'body'
@@ -30,9 +36,10 @@
 
 					$et_select_image_main_select.find( 'option' ).each( function() {
 						var $this_option = $(this),
-							selected = $(this).is( ':selected' ) ? ' class="et_select_image_active"' : '';
+							selected = $(this).is( ':selected' ) ? ' class="et_select_image_active"' : '',
+							option_class = 0 === $this_option.attr( 'value' ).indexOf( '_' ) ? $this_option.attr( 'value' ) : '_' + $this_option.attr( 'value' );
 
-						et_filter_options_html += '<li class="' + self.esc_classname( $this_option.text() ) + '" data-value="' + $this_option.attr( 'value' ) + '"' + selected +'>' + $this_option.text() + '</li>';
+						et_filter_options_html += '<li class="et_si' + option_class + '_column" data-value="' + $this_option.attr( 'value' ) + '"' + selected +'>' + $this_option.text() + '</li>';
 					} );
 
 					$et_select_image_main_select.after( '<a href="#" class="et_select_image_custom_select">' + '<span class="et_filter_text"></span>' + '</a>' + '<ul class="et_select_image_options '+ self.esc_classname( $et_select_image_main_select.attr('data-customize-setting-link') ) +'">' + et_filter_options_html + '</ul>' );
@@ -45,7 +52,8 @@
 				$selected_option = $et_select_image_main_select.find( ':selected' );
 
 				if ( $selected_option.length ) {
-					this.custom_select_link.find('.et_filter_text').text( $selected_option.text() ).addClass( self.esc_classname( $selected_option.text() ) );
+					var selected_option_class = 0 === $selected_option.attr( 'value' ).indexOf( '_' ) ? $selected_option.attr( 'value' ) : '_' + $selected_option.attr( 'value' );
+					this.custom_select_link.find('.et_filter_text').text( $selected_option.text() ).addClass( 'et_si' + selected_option_class + '_column' );
 
 					$dropdown_selected_option = ( $selected_option.val() == 'none' ) ? this.custom_dropdown.find('li').eq(0) : this.custom_dropdown.find('li[data-value="' + $selected_option.text() + '"]');
 
@@ -160,12 +168,12 @@
 				$iframe_preview.addClass( 'et_divi_phone' );
 		});
 
-		$( '.control-panel-back' ).click( function () {
+		$( '.control-panel-back, .customize-panel-back' ).click( function () {
 			var $iframe_preview = $( '#customize-preview' );
 				$iframe_preview.removeClass( 'et_divi_phone et_divi_tablet' );
 		});
 
-		$( 'input[type=range]' ).focus( function() {
+		$( 'input[type=range]' ).on( 'mousedown', function() {
 			$( '.et_pb_range_tooltip' ).remove();
 			value = $( this ).attr( 'value' );
 			$( this ).parent().append( '<div class="et_pb_range_tooltip">' + value + '</div> ' );
@@ -233,13 +241,16 @@
 			style_checkbox.change();
 		});
 
-		var $vertical_nav_input = $( '#customize-control-et_divi-vertical_nav input[type=checkbox]' ),
-			$nav_fullwidth_control = $( '#customize-control-et_divi-nav_fullwidth' );
+		var $vertical_nav_input                   = $( '#customize-control-et_divi-vertical_nav input[type=checkbox]' ),
+			$nav_fullwidth_control                = $( '#customize-control-et_divi-nav_fullwidth' ),
+			$hide_navigation_until_scroll_control = $('#customize-control-et_divi-hide_nav');
 
 		if ( $vertical_nav_input.is( ':checked') ) {
 			$nav_fullwidth_control.hide();
+			$hide_navigation_until_scroll_control.hide();
 		} else {
 			$nav_fullwidth_control.show();
+			$hide_navigation_until_scroll_control.show();
 		}
 
 		$('#customize-theme-controls').on( 'change', '#customize-control-et_divi-vertical_nav input[type=checkbox]', function(){
@@ -247,8 +258,10 @@
 
 			if ( $input.is(':checked') ) {
 				$nav_fullwidth_control.hide();
+				$hide_navigation_until_scroll_control.hide();
 			} else {
 				$nav_fullwidth_control.show();
+				$hide_navigation_until_scroll_control.show();
 			}
 		});
 

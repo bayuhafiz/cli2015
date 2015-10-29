@@ -197,10 +197,8 @@ function et_pb_update_predefined_layouts() {
 		return;
 	}
 
-	if ( 'on' === get_theme_mod( 'et_pb_predefined_layouts_added' ) ) {
-		// layouts have been added already, delete default layouts
-		et_pb_delete_predefined_layouts();
-	}
+	// delete default layouts
+	et_pb_delete_predefined_layouts();
 
 	// add predefined layouts
 	et_pb_add_predefined_layouts();

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Divi 1.0\n"
-"POT-Creation-Date: 2015-06-17 18:07+0300\n"
-"PO-Revision-Date: 2015-06-17 19:42+0300\n"
+"POT-Creation-Date: 2015-09-02 12:13+0300\n"
+"PO-Revision-Date: 2015-09-02 15:35+0300\n"
 "Last-Translator: \n"
 "Language-Team: Elegant Themes\n"
 "Language: ko\n"
@@ -73,7 +73,7 @@ msgstr "옵션이 저장되었습니다."
 msgid "Options"
 msgstr "옵션"
 
-#: ../epanel/core_functions.php:73 ../functions.php:8939
+#: ../epanel/core_functions.php:73 ../functions.php:7903
 msgid "Theme Options"
 msgstr "테마 옵션"
 
@@ -86,7 +86,7 @@ msgid "settings reset."
 msgstr "설정이 리셋되었습니다."
 
 #: ../epanel/core_functions.php:111 ../epanel/options_divi.php:297
-#: ../epanel/options_divi.php:448 ../functions.php:616
+#: ../epanel/options_divi.php:448 ../functions.php:533
 msgid "General Settings"
 msgstr "일반 설정"
 
@@ -94,7 +94,7 @@ msgstr "일반 설정"
 msgid "Navigation"
 msgstr "네비게이션"
 
-#: ../epanel/core_functions.php:117 ../functions.php:621
+#: ../epanel/core_functions.php:117 ../functions.php:543
 msgid "Layout Settings"
 msgstr "레이아웃 설정"
 
@@ -146,37 +146,37 @@ msgstr ""
 msgid "Choose an Image"
 msgstr "이미지 선택하기"
 
-#: ../epanel/custom_functions.php:192
+#: ../epanel/custom_functions.php:178
 msgid "&hellip;"
 msgstr "&hellip;"
 
-#: ../epanel/custom_functions.php:465 ../header.php:141
+#: ../epanel/custom_functions.php:451 ../header.php:141
 msgid "Home"
 msgstr "홈"
 
-#: ../epanel/custom_functions.php:713
+#: ../epanel/custom_functions.php:699
 msgid "Archives"
 msgstr "아카이브"
 
-#: ../epanel/custom_functions.php:715
+#: ../epanel/custom_functions.php:701
 #, php-format
 msgid "Search results for \"%s\""
 msgstr "\"%s\" 에 대한 검색 결과"
 
-#: ../epanel/custom_functions.php:717
+#: ../epanel/custom_functions.php:703
 msgid "404 Not Found"
 msgstr "404 을/를 찾지 못했습니다"
 
-#: ../epanel/custom_functions.php:788
+#: ../epanel/custom_functions.php:774
 #, php-format
 msgid "Currently viewing archives from %1$s"
 msgstr "현재 보고 있는 아카이브는 %1$s 에서 온 것입니다"
 
-#: ../epanel/custom_functions.php:1021
+#: ../epanel/custom_functions.php:1007
 msgid "Image doesn't exist"
 msgstr "이미지가 존재하지 않습니다"
 
-#: ../epanel/custom_functions.php:1217
+#: ../epanel/custom_functions.php:1203
 #, php-format
 msgid ""
 "<div class=\"updated\"><p>This is a fresh installation of %1$s theme. Don't "
@@ -189,7 +189,7 @@ msgstr ""
 "\"%2$s\"> 테마 옵션 페이지</a>.</p></div>에서 저장 버튼을 클릭하면 없어집니"
 "다."
 
-#: ../epanel/custom_functions.php:1229
+#: ../epanel/custom_functions.php:1215
 #, php-format
 msgid ""
 "There is a new version of %1$s available. <a href=\"%2$s\" class=\"thickbox"
@@ -204,7 +204,7 @@ msgstr ""
 "elegantthemes.com/members-area/documentation.html#updater\" target=\"_blank"
 "\">Elegant Updater Plugin</a>을/를 인스톨하셔야 합니다.</em>"
 
-#: ../epanel/custom_functions.php:1233
+#: ../epanel/custom_functions.php:1219
 msgid ""
 "Before you can update your Elegant Themes, you must first install the <a "
 "href=\"https://www.elegantthemes.com/members-area/documentation.html#updater"
@@ -301,15 +301,15 @@ msgstr ""
 msgid "Shop Page & Category Page Layout for WooCommerce"
 msgstr "WooCommerce 을/를 위한 쇼핑 페이지 & 카테고리 페이지 레이아웃"
 
-#: ../epanel/options_divi.php:90 ../functions.php:364
+#: ../epanel/options_divi.php:90 ../functions.php:262
 msgid "Right Sidebar"
 msgstr "오른쪽 사이드바"
 
-#: ../epanel/options_divi.php:91 ../functions.php:365
+#: ../epanel/options_divi.php:91 ../functions.php:263
 msgid "Left Sidebar"
 msgstr "왼쪽 사이드바"
 
-#: ../epanel/options_divi.php:92 ../functions.php:366
+#: ../epanel/options_divi.php:92 ../functions.php:264
 msgid "Full Width"
 msgstr "전체 너비"
 
@@ -347,12 +347,12 @@ msgstr "MailChimp 목록 재생성"
 #: ../epanel/options_divi.php:117
 msgid ""
 "By default, MailChimp lists are cached for one day. If you added new list, "
-"but it doesn't appear within the SignUp module settings, activate this "
+"but it doesn't appear within the Email Optin module settings, activate this "
 "option. Don't forget to disable it once the list has been regenerated."
 msgstr ""
-"기본적으로, MailChimp 목록은 하룻동안 캐쉬됩니다. 하지만, 이 옵션을 활성화하"
-"면 새로운 목록을 추가해도 등록 모듈 설정에 나타나지 않습니다. 목록이 재생성 "
-"되면 이 옵션을 비활성화 해주십시오."
+"기본적으로 메일 침프리스트는 하루 동안 캐시됩니다. 새로운 목록을 추가,하지만 "
+"이메일 별 수신 모듈 설정에서 표시되지 않는 경우,이 옵션을 활성화합니다. 목록"
+"이 재생 된 후 사용하지 않도록 설정하는 것을 잊지 마십시오."
 
 #: ../epanel/options_divi.php:119
 msgid "Regenerate Aweber Lists"
@@ -361,12 +361,12 @@ msgstr "Aweber 목록 재생성"
 #: ../epanel/options_divi.php:123
 msgid ""
 "By default, Aweber lists are cached for one day. If you added new list, but "
-"it doesn't appear within the SignUp module settings, activate this option. "
-"Don't forget to disable it once the list has been regenerated."
+"it doesn't appear within the Email Optin module settings, activate this "
+"option. Don't forget to disable it once the list has been regenerated."
 msgstr ""
-"기본적으로, Aweber 목록은 하룻동안 캐쉬됩니다. 하지만, 이 옵션을 활성화하면 "
-"새로운 목록을 추가해도 등록 모듈 설정에 나타나지 않습니다. 목록이 재생성 되"
-"면 이 옵션을 비활성화 해주십시오."
+"기본적으로 Aweber리스트는 하루 동안 캐시됩니다. 새로운 목록을 추가,하지만 이"
+"메일 별 수신 모듈 설정에서 표시되지 않는 경우,이 옵션을 활성화합니다. 목록이 "
+"재생 된 후 사용하지 않도록 설정하는 것을 잊지 마십시오."
 
 #: ../epanel/options_divi.php:127
 msgid "Show Facebook Icon"
@@ -556,7 +556,7 @@ msgstr ""
 msgid "Pages"
 msgstr "페이지"
 
-#: ../epanel/options_divi.php:292 ../functions.php:292 ../functions.php:302
+#: ../epanel/options_divi.php:292
 msgid "Categories"
 msgstr "카테고리"
 
@@ -1201,7 +1201,7 @@ msgstr ""
 msgid "Add code to the bottom of your posts, before the comments"
 msgstr "코멘트 전 당신의 포스트 하단에 코드 추가"
 
-#: ../epanel/options_divi.php:844 ../functions.php:8612
+#: ../epanel/options_divi.php:844
 msgid "Documentation"
 msgstr "문서"
 
@@ -1247,12 +1247,12 @@ msgid "Place your adsense code here."
 msgstr "Google Adsense 코드를 이곳에 넣으십시오."
 
 #: ../epanel/shortcodes/shortcodes.php:15
-#: ../epanel/shortcodes/shortcodes.php:518 ../functions.php:160
+#: ../epanel/shortcodes/shortcodes.php:518
 msgid "Previous"
 msgstr "이전"
 
 #: ../epanel/shortcodes/shortcodes.php:15
-#: ../epanel/shortcodes/shortcodes.php:519 ../functions.php:161
+#: ../epanel/shortcodes/shortcodes.php:519
 msgid "Next"
 msgstr "다음"
 
@@ -1272,7 +1272,7 @@ msgstr "아이디: "
 msgid "Password: "
 msgstr "암호: "
 
-#: ../epanel/shortcodes/shortcodes.php:294 ../functions.php:3522
+#: ../epanel/shortcodes/shortcodes.php:294 ../functions.php:3483
 msgid "Login"
 msgstr "로그인"
 
@@ -1353,7 +1353,7 @@ msgid "Content text or html"
 msgstr "내용 텍스트 혹은 HTML"
 
 #: ../epanel/shortcodes/shortcodes.php:999
-#: ../epanel/shortcodes/shortcodes.php:1021 ../functions.php:8610
+#: ../epanel/shortcodes/shortcodes.php:1021
 msgid "Type"
 msgstr "유형"
 
@@ -1462,11 +1462,11 @@ msgstr "사이즈 조정 사용"
 msgid "+ Add One More Tab"
 msgstr "+ 탭 한 개더 추가"
 
-#: ../epanel/shortcodes/shortcodes.php:1335 ../functions.php:3165
+#: ../epanel/shortcodes/shortcodes.php:1335 ../functions.php:3126
 msgid "Image Height"
 msgstr "이미지 높이"
 
-#: ../epanel/shortcodes/shortcodes.php:1336 ../functions.php:3146
+#: ../epanel/shortcodes/shortcodes.php:1336 ../functions.php:3107
 msgid "Image Width"
 msgstr "이미지 너비"
 
@@ -1483,7 +1483,7 @@ msgstr "기본 메뉴"
 msgid "Secondary Menu"
 msgstr "2차 메뉴"
 
-#: ../functions.php:32 ../functions.php:706
+#: ../functions.php:32 ../functions.php:628
 msgid "Footer Menu"
 msgstr "푸터 메뉴"
 
@@ -1502,865 +1502,734 @@ msgstr ""
 msgid "on"
 msgstr "on"
 
-#: ../functions.php:154
-msgid ""
-"Please, check the fields below to make sure you entered the correct "
-"information."
-msgstr ""
-"정확한 정보를 입력하셨는지 확인하려면 아래의 입력 필드를 확인하시기 바랍니다."
-
-#: ../functions.php:155
-msgid "Fill"
-msgstr "채우기"
-
-#: ../functions.php:156
-msgid "field"
-msgstr "필드"
-
-#: ../functions.php:157
-msgid "Invalid email"
-msgstr "유효하지 않은 이메일"
-
-#: ../functions.php:158
-msgid "Captcha"
-msgstr "캡차"
-
-#: ../functions.php:159
-msgid "Prev"
-msgstr "이전"
-
-#: ../functions.php:208
+#: ../functions.php:187
 msgid "Select Page"
 msgstr "페이지 선택"
 
-#: ../functions.php:246
+#: ../functions.php:227
 msgid "Divi Page Settings"
 msgstr "Divi 페이지 설정"
 
-#: ../functions.php:247
+#: ../functions.php:229
 msgid "Divi Post Settings"
 msgstr "Divi 포스트 설정"
 
-#: ../functions.php:248
+#: ../functions.php:230
 msgid "Divi Product Settings"
 msgstr "Divi 제품 설정"
 
-#: ../functions.php:249
+#: ../functions.php:231
 msgid "Divi Project Settings"
 msgstr "Divi 프로젝트 설정"
 
-#: ../functions.php:255
-msgid "Projects"
-msgstr "프로젝트"
-
-#: ../functions.php:256
-msgid "Project"
-msgstr "프로젝트"
-
-#: ../functions.php:257
-msgid "Add New"
-msgstr "새로운 항목 추가"
-
-#: ../functions.php:258
-msgid "Add New Project"
-msgstr "새로운 프로젝트 추가"
-
-#: ../functions.php:259
-msgid "Edit Project"
-msgstr "프로젝트 편집"
-
-#: ../functions.php:260
-msgid "New Project"
-msgstr "새로운 프로젝트"
-
-#: ../functions.php:261
-msgid "All Projects"
-msgstr "모든 프로젝트"
-
-#: ../functions.php:262
-msgid "View Project"
-msgstr "프로젝트 보기"
-
-#: ../functions.php:263
-msgid "Search Projects"
-msgstr "프로젝트 검색"
-
-#: ../functions.php:264
-msgid "Nothing found"
-msgstr "아무 것도 찾지 못했습니다"
-
-#: ../functions.php:265
-msgid "Nothing found in Trash"
-msgstr "휴지통에서 아무 것도 찾지 못했습니다"
-
-#: ../functions.php:293
-msgid "Category"
-msgstr "카테고리"
-
-#: ../functions.php:294
-msgid "Search Categories"
-msgstr "카테고리 검색"
-
-#: ../functions.php:295
-msgid "All Categories"
-msgstr "모든 카테고리"
-
-#: ../functions.php:296
-msgid "Parent Category"
-msgstr "상위 카테고리"
-
-#: ../functions.php:297
-msgid "Parent Category:"
-msgstr "상위 카테고리:"
-
-#: ../functions.php:298
-msgid "Edit Category"
-msgstr "카테고리 편집"
-
-#: ../functions.php:299
-msgid "Update Category"
-msgstr "카테고리 업데이트"
-
-#: ../functions.php:300
-msgid "Add New Category"
-msgstr "새로운 카테고리 추가"
-
-#: ../functions.php:301
-msgid "New Category Name"
-msgstr "새로운 카테고리 이름"
-
-#: ../functions.php:314 ../functions.php:324
-msgid "Tags"
-msgstr "태그"
-
-#: ../functions.php:315
-msgid "Tag"
-msgstr "태그"
-
-#: ../functions.php:316
-msgid "Search Tags"
-msgstr "태그 검색"
-
-#: ../functions.php:317
-msgid "All Tags"
-msgstr "모든 태그"
-
-#: ../functions.php:318
-msgid "Parent Tag"
-msgstr "상위 태그"
-
-#: ../functions.php:319
-msgid "Parent Tag:"
-msgstr "상위 태그:"
-
-#: ../functions.php:320
-msgid "Edit Tag"
-msgstr "태그 편집"
-
-#: ../functions.php:321
-msgid "Update Tag"
-msgstr "태그 업데이트"
-
-#: ../functions.php:322
-msgid "Add New Tag"
-msgstr "새로운 태그 추가"
-
-#: ../functions.php:323
-msgid "New Tag Name"
-msgstr "새로운 태그 이름"
-
-#: ../functions.php:340
+#: ../functions.php:238
 msgid "Skills"
 msgstr "특기"
 
-#: ../functions.php:343
+#: ../functions.php:241
 msgid "Posted on"
 msgstr "에 포스트 됨"
 
-#: ../functions.php:370
+#: ../functions.php:268
 msgid "Light"
 msgstr "밝은"
 
-#: ../functions.php:371
+#: ../functions.php:269
 msgid "Dark"
 msgstr "어두운"
 
-#: ../functions.php:384
+#: ../functions.php:282
 msgid "Page Layout"
 msgstr "페이지 레이아웃"
 
-#: ../functions.php:398
+#: ../functions.php:296
 msgid "Dot Navigation"
 msgstr "닷 네비게이션"
 
-#: ../functions.php:401 ../functions.php:409
+#: ../functions.php:299 ../functions.php:307
 msgid "Off"
 msgstr "끄기"
 
-#: ../functions.php:402 ../functions.php:410
+#: ../functions.php:300 ../functions.php:308
 msgid "On"
 msgstr "켜기"
 
-#: ../functions.php:406
+#: ../functions.php:304
 msgid "Hide Nav Before Scroll"
 msgstr "스크롤 이전의 네비게이션 숨기기"
 
-#: ../functions.php:416
+#: ../functions.php:314
 msgid "Post Title"
 msgstr "포스트 제목"
 
-#: ../functions.php:419
+#: ../functions.php:317
 msgid "Show"
 msgstr "보여주기"
 
-#: ../functions.php:420
+#: ../functions.php:318
 msgid "Hide"
 msgstr "숨기기"
 
-#: ../functions.php:425
+#: ../functions.php:323
 msgid "Use Background Color"
 msgstr "배경 색상 사용"
 
-#: ../functions.php:430 ../functions.php:5510
+#: ../functions.php:328 ../functions.php:5471
 msgid "Hex Value"
 msgstr "색상 값"
 
-#: ../functions.php:434 ../functions.php:1697 ../functions.php:1722
-#: ../functions.php:1845 ../functions.php:2350 ../functions.php:2449
-#: ../functions.php:2655
+#: ../functions.php:332 ../functions.php:1645 ../functions.php:1670
+#: ../functions.php:1793 ../functions.php:2311 ../functions.php:2410
+#: ../functions.php:2616
 msgid "Text Color"
 msgstr "문자 색상"
 
-#: ../functions.php:626
+#: ../functions.php:466 ../functions.php:478 ../functions.php:7981
+msgid "you don't have sufficient permissions to access this page"
+msgstr "이 페이지에 액세스 할 수있는 권한이 없습니다"
+
+#: ../functions.php:538
+msgid "Site Identity"
+msgstr "사이트 ID"
+
+#: ../functions.php:548
 msgid "Typography"
 msgstr "활판기술"
 
-#: ../functions.php:631
+#: ../functions.php:553
 msgid "Mobile Styles"
 msgstr "모바일 양식"
 
-#: ../functions.php:636
+#: ../functions.php:558
 msgid "Tablet"
 msgstr "타블렛"
 
-#: ../functions.php:641
+#: ../functions.php:563
 msgid "Phone"
 msgstr "폰"
 
-#: ../functions.php:646
+#: ../functions.php:568
 msgid "Mobile Menu"
 msgstr "모바일 메뉴"
 
-#: ../functions.php:651
+#: ../functions.php:573
 msgid "Background"
 msgstr "배경"
 
-#: ../functions.php:656
+#: ../functions.php:578
 msgid "Header & Navigation"
 msgstr "헤더 및 네비게이션"
 
-#: ../functions.php:661
+#: ../functions.php:583
 msgid "Header Format"
 msgstr "헤더 양식"
 
-#: ../functions.php:666
+#: ../functions.php:588
 msgid "Primary Menu Bar"
 msgstr "주요 메뉴바"
 
-#: ../functions.php:671
+#: ../functions.php:593
 msgid "Secondary Menu Bar"
 msgstr "보조 메뉴바"
 
-#: ../functions.php:676
+#: ../functions.php:598
 msgid "Fixed Navigation Settings"
 msgstr "고정 네비게이션 설정"
 
-#: ../functions.php:681
+#: ../functions.php:603
 msgid "Header Elements"
 msgstr "헤더 요소"
 
-#: ../functions.php:686
+#: ../functions.php:608
 msgid "Footer"
 msgstr "푸터"
 
-#: ../functions.php:691
+#: ../functions.php:613
 msgid "Layout"
 msgstr "레이아웃"
 
-#: ../functions.php:696
+#: ../functions.php:618
 msgid "Widgets"
 msgstr "위젯"
 
-#: ../functions.php:701
+#: ../functions.php:623
 msgid "Footer Elements"
 msgstr "푸터 요소"
 
-#: ../functions.php:711
+#: ../functions.php:633
 msgid "Bottom Bar"
 msgstr "하단 바"
 
-#: ../functions.php:716 ../functions.php:1411
+#: ../functions.php:638 ../functions.php:1337
 msgid "Color Schemes"
 msgstr "색 배합"
 
-#: ../functions.php:718
+#: ../functions.php:640
 msgid ""
 "Note: Color settings set above should be applied to the Default color scheme."
 msgstr "알림: 위의 색상 설정 세트는 기본 색 배합에 적용되어야 합니다."
 
-#: ../functions.php:722
+#: ../functions.php:644
 msgid "Buttons"
 msgstr "버튼"
 
-#: ../functions.php:727
+#: ../functions.php:649
 msgid "Buttons Style"
 msgstr "버튼 양식"
 
-#: ../functions.php:732
+#: ../functions.php:654
 msgid "Buttons Hover Style"
 msgstr "버튼 맴돌 때 양식"
 
-#: ../functions.php:737 ../functions.php:4774
+#: ../functions.php:659 ../functions.php:4735
 msgid "Blog"
 msgstr "블로그"
 
-#: ../functions.php:742
+#: ../functions.php:664
 msgid "Post"
 msgstr "포스트"
 
-#: ../functions.php:754
+#: ../functions.php:680
 msgid "Meta Text Size"
 msgstr "메타 문구 사이즈"
 
-#: ../functions.php:772
+#: ../functions.php:698
 msgid "Meta Line Height"
 msgstr "메타 줄 높이"
 
-#: ../functions.php:790
+#: ../functions.php:716
 msgid "Meta Letter Spacing"
 msgstr "메타 글자 간격"
 
-#: ../functions.php:808 ../functions.php:4845 ../functions.php:4931
+#: ../functions.php:734 ../functions.php:4806 ../functions.php:4892
 msgid "Meta Font Style"
 msgstr "메타 폰트 양식"
 
-#: ../functions.php:812 ../functions.php:885 ../functions.php:1276
-#: ../functions.php:1598 ../functions.php:1682 ../functions.php:2119
-#: ../functions.php:2174 ../functions.php:2303 ../functions.php:2367
-#: ../functions.php:2546 ../functions.php:2825 ../functions.php:2864
-#: ../functions.php:2938 ../functions.php:3024 ../functions.php:3063
-#: ../functions.php:3091 ../functions.php:3111 ../functions.php:3215
-#: ../functions.php:3254 ../functions.php:3293 ../functions.php:3340
-#: ../functions.php:3406 ../functions.php:3445 ../functions.php:3492
-#: ../functions.php:3558 ../functions.php:3652 ../functions.php:3691
-#: ../functions.php:3766 ../functions.php:3805 ../functions.php:3844
-#: ../functions.php:3891 ../functions.php:3930 ../functions.php:4014
-#: ../functions.php:4053 ../functions.php:4100 ../functions.php:4139
-#: ../functions.php:4185 ../functions.php:4205 ../functions.php:4291
-#: ../functions.php:4311 ../functions.php:4396 ../functions.php:4435
-#: ../functions.php:4493 ../functions.php:4540 ../functions.php:4705
-#: ../functions.php:4744 ../functions.php:4810 ../functions.php:4849
-#: ../functions.php:4896 ../functions.php:4935 ../functions.php:4982
-#: ../functions.php:5021 ../functions.php:5060 ../functions.php:5099
-#: ../functions.php:5146 ../functions.php:5193 ../functions.php:5259
-#: ../functions.php:5298
+#: ../functions.php:738 ../functions.php:811 ../functions.php:1202
+#: ../functions.php:1546 ../functions.php:1630 ../functions.php:2080
+#: ../functions.php:2135 ../functions.php:2264 ../functions.php:2328
+#: ../functions.php:2507 ../functions.php:2786 ../functions.php:2825
+#: ../functions.php:2899 ../functions.php:2985 ../functions.php:3024
+#: ../functions.php:3052 ../functions.php:3072 ../functions.php:3176
+#: ../functions.php:3215 ../functions.php:3254 ../functions.php:3301
+#: ../functions.php:3367 ../functions.php:3406 ../functions.php:3453
+#: ../functions.php:3519 ../functions.php:3613 ../functions.php:3652
+#: ../functions.php:3727 ../functions.php:3766 ../functions.php:3805
+#: ../functions.php:3852 ../functions.php:3891 ../functions.php:3975
+#: ../functions.php:4014 ../functions.php:4061 ../functions.php:4100
+#: ../functions.php:4146 ../functions.php:4166 ../functions.php:4252
+#: ../functions.php:4272 ../functions.php:4357 ../functions.php:4396
+#: ../functions.php:4454 ../functions.php:4501 ../functions.php:4666
+#: ../functions.php:4705 ../functions.php:4771 ../functions.php:4810
+#: ../functions.php:4857 ../functions.php:4896 ../functions.php:4943
+#: ../functions.php:4982 ../functions.php:5021 ../functions.php:5060
+#: ../functions.php:5107 ../functions.php:5154 ../functions.php:5220
+#: ../functions.php:5259
 msgid "Bold"
 msgstr "굵게"
 
-#: ../functions.php:813 ../functions.php:886 ../functions.php:1277
-#: ../functions.php:1599 ../functions.php:1683 ../functions.php:2120
-#: ../functions.php:2175 ../functions.php:2304 ../functions.php:2368
-#: ../functions.php:2547 ../functions.php:2826 ../functions.php:2865
-#: ../functions.php:2939 ../functions.php:3025 ../functions.php:3064
-#: ../functions.php:3092 ../functions.php:3112 ../functions.php:3216
-#: ../functions.php:3255 ../functions.php:3294 ../functions.php:3341
-#: ../functions.php:3407 ../functions.php:3446 ../functions.php:3493
-#: ../functions.php:3559 ../functions.php:3653 ../functions.php:3692
-#: ../functions.php:3767 ../functions.php:3806 ../functions.php:3845
-#: ../functions.php:3892 ../functions.php:3931 ../functions.php:4015
-#: ../functions.php:4054 ../functions.php:4101 ../functions.php:4140
-#: ../functions.php:4186 ../functions.php:4206 ../functions.php:4292
-#: ../functions.php:4312 ../functions.php:4397 ../functions.php:4436
-#: ../functions.php:4494 ../functions.php:4541 ../functions.php:4706
-#: ../functions.php:4745 ../functions.php:4811 ../functions.php:4850
-#: ../functions.php:4897 ../functions.php:4936 ../functions.php:4983
-#: ../functions.php:5022 ../functions.php:5061 ../functions.php:5100
-#: ../functions.php:5147 ../functions.php:5194 ../functions.php:5260
-#: ../functions.php:5299
+#: ../functions.php:739 ../functions.php:812 ../functions.php:1203
+#: ../functions.php:1547 ../functions.php:1631 ../functions.php:2081
+#: ../functions.php:2136 ../functions.php:2265 ../functions.php:2329
+#: ../functions.php:2508 ../functions.php:2787 ../functions.php:2826
+#: ../functions.php:2900 ../functions.php:2986 ../functions.php:3025
+#: ../functions.php:3053 ../functions.php:3073 ../functions.php:3177
+#: ../functions.php:3216 ../functions.php:3255 ../functions.php:3302
+#: ../functions.php:3368 ../functions.php:3407 ../functions.php:3454
+#: ../functions.php:3520 ../functions.php:3614 ../functions.php:3653
+#: ../functions.php:3728 ../functions.php:3767 ../functions.php:3806
+#: ../functions.php:3853 ../functions.php:3892 ../functions.php:3976
+#: ../functions.php:4015 ../functions.php:4062 ../functions.php:4101
+#: ../functions.php:4147 ../functions.php:4167 ../functions.php:4253
+#: ../functions.php:4273 ../functions.php:4358 ../functions.php:4397
+#: ../functions.php:4455 ../functions.php:4502 ../functions.php:4667
+#: ../functions.php:4706 ../functions.php:4772 ../functions.php:4811
+#: ../functions.php:4858 ../functions.php:4897 ../functions.php:4944
+#: ../functions.php:4983 ../functions.php:5022 ../functions.php:5061
+#: ../functions.php:5108 ../functions.php:5155 ../functions.php:5221
+#: ../functions.php:5260
 msgid "Italic"
 msgstr "기울이기"
 
-#: ../functions.php:814 ../functions.php:887 ../functions.php:1278
-#: ../functions.php:1600 ../functions.php:1684 ../functions.php:2121
-#: ../functions.php:2176 ../functions.php:2305 ../functions.php:2369
-#: ../functions.php:2548 ../functions.php:2827 ../functions.php:2866
-#: ../functions.php:2940 ../functions.php:3026 ../functions.php:3065
-#: ../functions.php:3093 ../functions.php:3113 ../functions.php:3217
-#: ../functions.php:3256 ../functions.php:3295 ../functions.php:3342
-#: ../functions.php:3408 ../functions.php:3447 ../functions.php:3494
-#: ../functions.php:3560 ../functions.php:3654 ../functions.php:3693
-#: ../functions.php:3768 ../functions.php:3807 ../functions.php:3846
-#: ../functions.php:3893 ../functions.php:3932 ../functions.php:4016
-#: ../functions.php:4055 ../functions.php:4102 ../functions.php:4141
-#: ../functions.php:4187 ../functions.php:4207 ../functions.php:4293
-#: ../functions.php:4313 ../functions.php:4398 ../functions.php:4437
-#: ../functions.php:4495 ../functions.php:4542 ../functions.php:4707
-#: ../functions.php:4746 ../functions.php:4812 ../functions.php:4851
-#: ../functions.php:4898 ../functions.php:4937 ../functions.php:4984
-#: ../functions.php:5023 ../functions.php:5062 ../functions.php:5101
-#: ../functions.php:5148 ../functions.php:5195 ../functions.php:5261
-#: ../functions.php:5300
+#: ../functions.php:740 ../functions.php:813 ../functions.php:1204
+#: ../functions.php:1548 ../functions.php:1632 ../functions.php:2082
+#: ../functions.php:2137 ../functions.php:2266 ../functions.php:2330
+#: ../functions.php:2509 ../functions.php:2788 ../functions.php:2827
+#: ../functions.php:2901 ../functions.php:2987 ../functions.php:3026
+#: ../functions.php:3054 ../functions.php:3074 ../functions.php:3178
+#: ../functions.php:3217 ../functions.php:3256 ../functions.php:3303
+#: ../functions.php:3369 ../functions.php:3408 ../functions.php:3455
+#: ../functions.php:3521 ../functions.php:3615 ../functions.php:3654
+#: ../functions.php:3729 ../functions.php:3768 ../functions.php:3807
+#: ../functions.php:3854 ../functions.php:3893 ../functions.php:3977
+#: ../functions.php:4016 ../functions.php:4063 ../functions.php:4102
+#: ../functions.php:4148 ../functions.php:4168 ../functions.php:4254
+#: ../functions.php:4274 ../functions.php:4359 ../functions.php:4398
+#: ../functions.php:4456 ../functions.php:4503 ../functions.php:4668
+#: ../functions.php:4707 ../functions.php:4773 ../functions.php:4812
+#: ../functions.php:4859 ../functions.php:4898 ../functions.php:4945
+#: ../functions.php:4984 ../functions.php:5023 ../functions.php:5062
+#: ../functions.php:5109 ../functions.php:5156 ../functions.php:5222
+#: ../functions.php:5261
 msgid "Uppercase"
 msgstr "대문자"
 
-#: ../functions.php:815 ../functions.php:888 ../functions.php:1279
-#: ../functions.php:1601 ../functions.php:1685 ../functions.php:2122
-#: ../functions.php:2177 ../functions.php:2306 ../functions.php:2370
-#: ../functions.php:2549 ../functions.php:2828 ../functions.php:2867
-#: ../functions.php:2941 ../functions.php:3027 ../functions.php:3066
-#: ../functions.php:3094 ../functions.php:3114 ../functions.php:3218
-#: ../functions.php:3257 ../functions.php:3296 ../functions.php:3343
-#: ../functions.php:3409 ../functions.php:3448 ../functions.php:3495
-#: ../functions.php:3561 ../functions.php:3655 ../functions.php:3694
-#: ../functions.php:3769 ../functions.php:3808 ../functions.php:3847
-#: ../functions.php:3894 ../functions.php:3933 ../functions.php:4017
-#: ../functions.php:4056 ../functions.php:4103 ../functions.php:4142
-#: ../functions.php:4188 ../functions.php:4208 ../functions.php:4294
-#: ../functions.php:4314 ../functions.php:4399 ../functions.php:4438
-#: ../functions.php:4496 ../functions.php:4543 ../functions.php:4708
-#: ../functions.php:4747 ../functions.php:4813 ../functions.php:4852
-#: ../functions.php:4899 ../functions.php:4938 ../functions.php:4985
-#: ../functions.php:5024 ../functions.php:5063 ../functions.php:5102
-#: ../functions.php:5149 ../functions.php:5196 ../functions.php:5262
-#: ../functions.php:5301
+#: ../functions.php:741 ../functions.php:814 ../functions.php:1205
+#: ../functions.php:1549 ../functions.php:1633 ../functions.php:2083
+#: ../functions.php:2138 ../functions.php:2267 ../functions.php:2331
+#: ../functions.php:2510 ../functions.php:2789 ../functions.php:2828
+#: ../functions.php:2902 ../functions.php:2988 ../functions.php:3027
+#: ../functions.php:3055 ../functions.php:3075 ../functions.php:3179
+#: ../functions.php:3218 ../functions.php:3257 ../functions.php:3304
+#: ../functions.php:3370 ../functions.php:3409 ../functions.php:3456
+#: ../functions.php:3522 ../functions.php:3616 ../functions.php:3655
+#: ../functions.php:3730 ../functions.php:3769 ../functions.php:3808
+#: ../functions.php:3855 ../functions.php:3894 ../functions.php:3978
+#: ../functions.php:4017 ../functions.php:4064 ../functions.php:4103
+#: ../functions.php:4149 ../functions.php:4169 ../functions.php:4255
+#: ../functions.php:4275 ../functions.php:4360 ../functions.php:4399
+#: ../functions.php:4457 ../functions.php:4504 ../functions.php:4669
+#: ../functions.php:4708 ../functions.php:4774 ../functions.php:4813
+#: ../functions.php:4860 ../functions.php:4899 ../functions.php:4946
+#: ../functions.php:4985 ../functions.php:5024 ../functions.php:5063
+#: ../functions.php:5110 ../functions.php:5157 ../functions.php:5223
+#: ../functions.php:5262
 msgid "Underline"
 msgstr "밑줄"
 
-#: ../functions.php:827 ../functions.php:1218 ../functions.php:1291
-#: ../functions.php:1309 ../functions.php:2097
+#: ../functions.php:753 ../functions.php:1144 ../functions.php:1217
+#: ../functions.php:1235 ../functions.php:2058
 msgid "Header Text Size"
 msgstr "헤더 문구 사이즈"
 
-#: ../functions.php:845 ../functions.php:1254
+#: ../functions.php:771 ../functions.php:1180
 msgid "Header Line Height"
 msgstr "헤더 줄 높이"
 
-#: ../functions.php:863 ../functions.php:1236
+#: ../functions.php:789 ../functions.php:1162
 msgid "Header Letter Spacing"
 msgstr "헤더 글자 간격"
 
-#: ../functions.php:881 ../functions.php:1272 ../functions.php:2115
-#: ../functions.php:3020 ../functions.php:3211 ../functions.php:3336
-#: ../functions.php:3402 ../functions.php:3488 ../functions.php:3554
-#: ../functions.php:4392 ../functions.php:5142 ../functions.php:5255
+#: ../functions.php:807 ../functions.php:1198 ../functions.php:2076
+#: ../functions.php:2981 ../functions.php:3172 ../functions.php:3297
+#: ../functions.php:3363 ../functions.php:3449 ../functions.php:3515
+#: ../functions.php:4353 ../functions.php:5103 ../functions.php:5216
 msgid "Header Font Style"
 msgstr "헤드 폰트 양식"
 
-#: ../functions.php:899
+#: ../functions.php:825
 msgid "Enable Boxed Layout"
 msgstr "박스 레이아웃 활성화"
 
-#: ../functions.php:912
+#: ../functions.php:838
 msgid "Website Content Width"
 msgstr "웹사이트 내용 너비"
 
-#: ../functions.php:930
+#: ../functions.php:856
 msgid "Website Gutter Width"
 msgstr "웹사이트 열 간격"
 
-#: ../functions.php:947
+#: ../functions.php:873
 msgid "Use Custom Sidebar Width"
-msgstr ""
+msgstr "사용자 정의 사이드 바 너비를 사용하여"
 
-#: ../functions.php:960
+#: ../functions.php:886
 msgid "Sidebar Width"
 msgstr "사이드바 너비"
 
-#: ../functions.php:978 ../functions.php:996 ../functions.php:1014
+#: ../functions.php:904 ../functions.php:922 ../functions.php:940
 msgid "Section Height"
 msgstr "절 높이"
 
-#: ../functions.php:1032 ../functions.php:1050 ../functions.php:1068
+#: ../functions.php:958 ../functions.php:976 ../functions.php:994
 msgid "Row Height"
 msgstr "행 높이"
 
-#: ../functions.php:1086
+#: ../functions.php:1012
 msgid "Stretch Background Image"
 msgstr "배경 이미지 늘리기"
 
-#: ../functions.php:1093 ../functions.php:1748 ../functions.php:1819
-#: ../functions.php:1832 ../functions.php:2337 ../functions.php:2462
-#: ../functions.php:2668
+#: ../functions.php:1019 ../functions.php:1696 ../functions.php:1767
+#: ../functions.php:1780 ../functions.php:2298 ../functions.php:2423
+#: ../functions.php:2629
 msgid "Background Color"
 msgstr "배경 색상"
 
-#: ../functions.php:1100
+#: ../functions.php:1026
 msgid "Background Image"
 msgstr "배경 이미지:"
 
-#: ../functions.php:1106
+#: ../functions.php:1032
 msgid "Background Repeat"
 msgstr "배경 반복"
 
-#: ../functions.php:1110
+#: ../functions.php:1036
 msgid "No Repeat"
 msgstr "반복 없음"
 
-#: ../functions.php:1111
+#: ../functions.php:1037
 msgid "Tile"
 msgstr "타일"
 
-#: ../functions.php:1112
+#: ../functions.php:1038
 msgid "Tile Horizontally"
 msgstr "수평 타일"
 
-#: ../functions.php:1113
+#: ../functions.php:1039
 msgid "Tile Vertically"
 msgstr "수직 타일"
 
-#: ../functions.php:1118 ../functions.php:1129
+#: ../functions.php:1044 ../functions.php:1055
 msgid "Background Position"
 msgstr "배경 위치"
 
-#: ../functions.php:1122 ../functions.php:2626
+#: ../functions.php:1048 ../functions.php:2587
 msgid "Left"
 msgstr "왼쪽"
 
-#: ../functions.php:1123
+#: ../functions.php:1049
 msgid "Center"
 msgstr "가운데"
 
-#: ../functions.php:1124 ../functions.php:2625
+#: ../functions.php:1050 ../functions.php:2586
 msgid "Right"
 msgstr "오른쪽"
 
-#: ../functions.php:1133
+#: ../functions.php:1059
 msgid "Scroll"
 msgstr "스크롤"
 
-#: ../functions.php:1134
+#: ../functions.php:1060
 msgid "Fixed"
 msgstr "고정"
 
-#: ../functions.php:1146 ../functions.php:1182 ../functions.php:1200
+#: ../functions.php:1072 ../functions.php:1108 ../functions.php:1126
 msgid "Body Text Size"
 msgstr "본문 문구 사이즈"
 
-#: ../functions.php:1164
+#: ../functions.php:1090
 msgid "Body Line Height"
 msgstr "본문 줄 높이"
 
-#: ../functions.php:1328
+#: ../functions.php:1254
 msgid "Header Font"
 msgstr "헤더 폰트"
 
-#: ../functions.php:1343
+#: ../functions.php:1269
 msgid "Body Font"
 msgstr "바디 폰트"
 
-#: ../functions.php:1359
+#: ../functions.php:1285
 msgid "Body Link Color"
 msgstr "본문 링크 색"
 
-#: ../functions.php:1372
+#: ../functions.php:1298
 msgid "Body Text Color"
 msgstr "본문 문구 색"
 
-#: ../functions.php:1385
+#: ../functions.php:1311
 msgid "Header Text Color"
 msgstr "헤더 문구 색"
 
-#: ../functions.php:1398
+#: ../functions.php:1324
 msgid "Theme Accent Color"
 msgstr "테마 강조 색"
 
-#: ../functions.php:1416 ../functions.php:1436 ../functions.php:5474
+#: ../functions.php:1342 ../functions.php:1362 ../functions.php:5435
 msgid "Default"
 msgstr "기본"
 
-#: ../functions.php:1417
+#: ../functions.php:1343
 msgid "Green"
 msgstr "초록"
 
-#: ../functions.php:1418
+#: ../functions.php:1344
 msgid "Orange"
 msgstr "주황"
 
-#: ../functions.php:1419
+#: ../functions.php:1345
 msgid "Pink"
 msgstr "분홍"
 
-#: ../functions.php:1420
+#: ../functions.php:1346
 msgid "Red"
 msgstr "빨강"
 
-#: ../functions.php:1432
+#: ../functions.php:1358
 msgid "Header Style"
 msgstr "헤더 스타일"
 
-#: ../functions.php:1437
+#: ../functions.php:1363
 msgid "Centered"
 msgstr "가운데 정렬"
 
-#: ../functions.php:1438
+#: ../functions.php:1364
 msgid "Centered Inline Logo"
 msgstr "중앙 일렬 로고"
 
-#: ../functions.php:1449
+#: ../functions.php:1375
 msgid "Enable Vertical Navigation"
 msgstr "수직 네비게이션 활성화"
 
-#: ../functions.php:1461
+#: ../functions.php:1389
 msgid "Hide Navigation Until Scroll"
 msgstr "스크롤까지 네비게이션 숨기기"
 
-#: ../functions.php:1473 ../functions.php:2045
+#: ../functions.php:1403 ../functions.php:2006
 msgid "Show Social Icons"
 msgstr "소셜 아이콘 보이기"
 
-#: ../functions.php:1486
+#: ../functions.php:1416
 msgid "Show Search Icon"
 msgstr "검색 아이콘 보여주기"
 
-#: ../functions.php:1498 ../functions.php:1619
+#: ../functions.php:1428 ../functions.php:1567
 msgid "Make Full Width"
 msgstr "전체 너비 만들기"
 
-#: ../functions.php:1510 ../functions.php:1709 ../functions.php:1919
+#: ../functions.php:1440 ../functions.php:1657 ../functions.php:1867
 msgid "Hide Logo Image"
 msgstr "로고 이미지 숨기기"
 
-#: ../functions.php:1523
-msgid "Menu/Logo Height"
-msgstr "메뉴/로고 높이"
+#: ../functions.php:1453
+msgid "Menu Height"
+msgstr "메뉴 높이"
 
-#: ../functions.php:1541 ../functions.php:1625 ../functions.php:1950
-#: ../functions.php:2431
+#: ../functions.php:1471
+msgid "Logo Max Height"
+msgstr "로고 최대 높이"
+
+#: ../functions.php:1489 ../functions.php:1573 ../functions.php:1898
+#: ../functions.php:2392
 msgid "Text Size"
 msgstr "문구 사이즈"
 
-#: ../functions.php:1559 ../functions.php:1643 ../functions.php:2281
-#: ../functions.php:2524 ../functions.php:2712
+#: ../functions.php:1507 ../functions.php:1591 ../functions.php:2242
+#: ../functions.php:2485 ../functions.php:2673
 msgid "Letter Spacing"
 msgstr "글자 간격"
 
-#: ../functions.php:1578 ../functions.php:1662
+#: ../functions.php:1526 ../functions.php:1610
 msgid "Font"
 msgstr "폰트"
 
-#: ../functions.php:1594 ../functions.php:1678 ../functions.php:2299
-#: ../functions.php:2363
+#: ../functions.php:1542 ../functions.php:1626 ../functions.php:2260
+#: ../functions.php:2324
 msgid "Font Style"
 msgstr "폰트 양식"
 
-#: ../functions.php:1735
+#: ../functions.php:1683
 msgid "Active Link Color"
 msgstr "활성 링크 색"
 
-#: ../functions.php:1761 ../functions.php:1858
+#: ../functions.php:1709 ../functions.php:1806
 msgid "Dropdown Menu Background Color"
 msgstr "드랍다운 메뉴 배경 색"
 
-#: ../functions.php:1774
+#: ../functions.php:1722
 msgid "Dropdown Menu Line Color"
 msgstr "드랍다운 메뉴 줄 색"
 
-#: ../functions.php:1787 ../functions.php:1871
+#: ../functions.php:1735 ../functions.php:1819
 msgid "Dropdown Menu Text Color"
 msgstr "드랍다운 메뉴 문구 색"
 
-#: ../functions.php:1800 ../functions.php:1884
+#: ../functions.php:1748 ../functions.php:1832
 msgid "Dropdown Menu Animation"
 msgstr "드랍다운 메뉴 애니메이션"
 
-#: ../functions.php:1804 ../functions.php:1888
+#: ../functions.php:1752 ../functions.php:1836
 msgid "Fade"
 msgstr "페이드"
 
-#: ../functions.php:1805 ../functions.php:1889
+#: ../functions.php:1753 ../functions.php:1837
 msgid "Expand"
 msgstr "확장"
 
-#: ../functions.php:1806 ../functions.php:1890
+#: ../functions.php:1754 ../functions.php:1838
 msgid "Slide"
 msgstr "슬라이드"
 
-#: ../functions.php:1807 ../functions.php:1891
+#: ../functions.php:1755 ../functions.php:1839
 msgid "Flip"
 msgstr "반전"
 
-#: ../functions.php:1932
-msgid "Fixed Menu/Logo Height"
-msgstr "고정 메뉴/로고 높이"
+#: ../functions.php:1880
+msgid "Fixed Menu Height"
+msgstr "고정 메뉴 높이"
 
-#: ../functions.php:1968
+#: ../functions.php:1916
 msgid "Primary Menu Background Color"
 msgstr "주요 메뉴 배경 색"
 
-#: ../functions.php:1981
+#: ../functions.php:1929
 msgid "Secondary Menu Background Color"
 msgstr "보조 메뉴 배경 색"
 
-#: ../functions.php:1994
-msgid "Menu Link Color"
-msgstr "메뉴 링크 색"
+#: ../functions.php:1942
+msgid "Primary Menu Link Color"
+msgstr "주 메뉴 링크 색상"
 
-#: ../functions.php:2007
-msgid "Active Menu Link Color"
-msgstr "메뉴 링크 색상 활성화"
+#: ../functions.php:1955
+msgid "Secondary Menu Link Color"
+msgstr "보조 메뉴 링크 색상"
 
-#: ../functions.php:2020
+#: ../functions.php:1968
+msgid "Active Primary Menu Link Color"
+msgstr "활성 기본 메뉴 링크 색상"
+
+#: ../functions.php:1981
 msgid "Phone Number"
 msgstr "전화 번호"
 
-#: ../functions.php:2032
+#: ../functions.php:1993
 msgid "Email"
 msgstr "이메일"
 
-#: ../functions.php:2058
+#: ../functions.php:2019
 msgid "Column Layout"
 msgstr "열 레이아웃"
 
-#: ../functions.php:2063 ../functions.php:2064 ../functions.php:2065
-#: ../functions.php:2067 ../functions.php:2068 ../functions.php:2069
-#: ../functions.php:2070 ../functions.php:2071 ../functions.php:2072
+#: ../functions.php:2024 ../functions.php:2025 ../functions.php:2026
+#: ../functions.php:2028 ../functions.php:2029 ../functions.php:2030
+#: ../functions.php:2031 ../functions.php:2032 ../functions.php:2033
 #, php-format
 msgid "%1$s Columns"
 msgstr "%1$s 열"
 
-#: ../functions.php:2066
+#: ../functions.php:2027
 msgid "1 Column"
 msgstr "1열"
 
-#: ../functions.php:2084
+#: ../functions.php:2045
 msgid "Footer Background Color"
 msgstr "푸터 배경 색상"
 
-#: ../functions.php:2134
+#: ../functions.php:2095
 msgid "Body/Link Text Size"
 msgstr "본문/링크 문구 사이즈"
 
-#: ../functions.php:2152
+#: ../functions.php:2113
 msgid "Body/Link Line Height"
 msgstr "본문/링크 줄 높이"
 
-#: ../functions.php:2170
+#: ../functions.php:2131
 msgid "Body Font Style"
 msgstr "본문 폰트 양식"
 
-#: ../functions.php:2189
+#: ../functions.php:2150
 msgid "Widget Text Color"
 msgstr "위젯 문구 색"
 
-#: ../functions.php:2202
+#: ../functions.php:2163
 msgid "Widget Link Color"
 msgstr "위젯 링크 색"
 
-#: ../functions.php:2215
+#: ../functions.php:2176
 msgid "Widget Header Color"
 msgstr "위젯 헤더 색"
 
-#: ../functions.php:2228
+#: ../functions.php:2189
 msgid "Widget Bullet Color"
 msgstr "위젯 점 색"
 
-#: ../functions.php:2242
+#: ../functions.php:2203
 msgid "Footer Menu Background Color"
 msgstr "푸터 메뉴 배경 색"
 
-#: ../functions.php:2255
+#: ../functions.php:2216
 msgid "Footer Menu Text Color"
 msgstr "푸터 메뉴 문구 색"
 
-#: ../functions.php:2268
+#: ../functions.php:2229
 msgid "Footer Menu Active Link Color"
 msgstr "푸터 메뉴 활성 링크 색"
 
-#: ../functions.php:2318 ../functions.php:2382
+#: ../functions.php:2279 ../functions.php:2343
 msgid "Font Size"
 msgstr "폰트 사이즈"
 
-#: ../functions.php:2400
+#: ../functions.php:2361
 msgid "Social Icon Size"
 msgstr "소셜 아이콘 사이즈"
 
-#: ../functions.php:2418
+#: ../functions.php:2379
 msgid "Social Icon Color"
 msgstr "소셜 아이콘 색"
 
-#: ../functions.php:2475
+#: ../functions.php:2436
 msgid "Border Width"
 msgstr "테두리 너비"
 
-#: ../functions.php:2493 ../functions.php:2681
+#: ../functions.php:2454 ../functions.php:2642
 msgid "Border Color"
 msgstr "테두리 색"
 
-#: ../functions.php:2506 ../functions.php:2694
+#: ../functions.php:2467 ../functions.php:2655
 msgid "Border Radius"
 msgstr "테두리 반경"
 
-#: ../functions.php:2542 ../functions.php:5189
+#: ../functions.php:2503 ../functions.php:5150
 msgid "Button Font Style"
 msgstr "버튼 폰트 양식"
 
-#: ../functions.php:2562
+#: ../functions.php:2523
 msgid "Buttons Font"
 msgstr "버튼 폰트"
 
-#: ../functions.php:2578
+#: ../functions.php:2539
 msgid "Add Button Icon"
 msgstr "버튼 아이콘 추가"
 
-#: ../functions.php:2582 ../functions.php:2642
+#: ../functions.php:2543 ../functions.php:2603
 msgid "Yes"
 msgstr "네"
 
-#: ../functions.php:2583 ../functions.php:2643
+#: ../functions.php:2544 ../functions.php:2604
 msgid "No"
 msgstr "아니요"
 
-#: ../functions.php:2595
+#: ../functions.php:2556
 msgid "Select Icon"
 msgstr "아이콘 선택"
 
-#: ../functions.php:2608
+#: ../functions.php:2569
 msgid "Icon Color"
 msgstr "아이콘 색상"
 
-#: ../functions.php:2621
+#: ../functions.php:2582
 msgid "Icon Placement"
 msgstr "아이콘 배치"
 
-#: ../functions.php:2638
+#: ../functions.php:2599
 msgid "Only Show Icon on Hover"
 msgstr "맴돌 때만 아이콘 보이기"
 
-#: ../functions.php:2727
+#: ../functions.php:2688
 msgid "Left to Right"
 msgstr "왼쪽에서 오른쪽"
 
-#: ../functions.php:2728
+#: ../functions.php:2689
 msgid "Right to Left"
 msgstr "오른쪽에서 왼쪽"
 
-#: ../functions.php:2729
+#: ../functions.php:2690
 msgid "Top to Bottom"
 msgstr "위에서 아래로"
 
-#: ../functions.php:2730
+#: ../functions.php:2691
 msgid "Bottom to Top"
 msgstr "아래에서 위로"
 
-#: ../functions.php:2731
+#: ../functions.php:2692
 msgid "Fade In"
 msgstr "페이드인"
 
-#: ../functions.php:2732
+#: ../functions.php:2693
 msgid "No Animation"
 msgstr "애니메이션 없음"
 
-#: ../functions.php:2739 ../includes/widgets/widget-about.php:50
+#: ../functions.php:2700 ../includes/widgets/widget-about.php:50
 #: ../includes/widgets/widget-ads.php:180
 #: ../includes/widgets/widget-ads.php:188
 #: ../includes/widgets/widget-ads.php:196
@@ -2372,559 +2241,452 @@ msgstr "애니메이션 없음"
 msgid "Image"
 msgstr "이미지"
 
-#: ../functions.php:2740
+#: ../functions.php:2701
 msgid "Image Module Settings"
 msgstr "이미지 모듈 성정"
 
-#: ../functions.php:2750
+#: ../functions.php:2711
 msgid "Animation"
 msgstr "애니메이션"
 
-#: ../functions.php:2751
+#: ../functions.php:2712
 msgid "This controls default direction of the lazy-loading animation."
 msgstr "이것은 느린 로딩 애니메이션의 기본방향을 제어합니다."
 
-#: ../functions.php:2761
+#: ../functions.php:2722
 msgid "Gallery"
 msgstr "갤러리"
 
-#: ../functions.php:2774 ../functions.php:3601 ../functions.php:3715
+#: ../functions.php:2735 ../functions.php:3562 ../functions.php:3676
 msgid "Zoom Icon Color"
 msgstr "아이콘 색 확대"
 
-#: ../functions.php:2788 ../functions.php:3615 ../functions.php:3729
+#: ../functions.php:2749 ../functions.php:3576 ../functions.php:3690
 msgid "Hover Overlay Color"
 msgstr "맴돌 때 오버레이 색"
 
-#: ../functions.php:2802 ../functions.php:2915 ../functions.php:3629
-#: ../functions.php:3743 ../functions.php:4030 ../functions.php:4116
-#: ../functions.php:4162 ../functions.php:4268
+#: ../functions.php:2763 ../functions.php:2876 ../functions.php:3590
+#: ../functions.php:3704 ../functions.php:3991 ../functions.php:4077
+#: ../functions.php:4123 ../functions.php:4229
 msgid "Title Font Size"
 msgstr "제목 폰트 사이즈"
 
-#: ../functions.php:2821 ../functions.php:2934 ../functions.php:3648
-#: ../functions.php:3762 ../functions.php:4049 ../functions.php:4135
-#: ../functions.php:4806 ../functions.php:4892
+#: ../functions.php:2782 ../functions.php:2895 ../functions.php:3609
+#: ../functions.php:3723 ../functions.php:4010 ../functions.php:4096
+#: ../functions.php:4767 ../functions.php:4853
 msgid "Title Font Style"
 msgstr "제목 폰트 양식"
 
-#: ../functions.php:2841 ../functions.php:3668 ../functions.php:3782
+#: ../functions.php:2802 ../functions.php:3629 ../functions.php:3743
 msgid "Caption Font Size"
 msgstr "자막 폰트 사이즈"
 
-#: ../functions.php:2860 ../functions.php:3687 ../functions.php:3801
+#: ../functions.php:2821 ../functions.php:3648 ../functions.php:3762
 msgid "Caption Font Style"
 msgstr "자막 폰트 양식"
 
-#: ../functions.php:2875
+#: ../functions.php:2836
 msgid "Blurb"
 msgstr "안내문"
 
-#: ../functions.php:2888 ../functions.php:3001 ../functions.php:3192
-#: ../functions.php:3317 ../functions.php:3383 ../functions.php:3469
-#: ../functions.php:3535 ../functions.php:4373 ../functions.php:5123
-#: ../functions.php:5236
+#: ../functions.php:2849 ../functions.php:2962 ../functions.php:3153
+#: ../functions.php:3278 ../functions.php:3344 ../functions.php:3430
+#: ../functions.php:3496 ../functions.php:4334 ../functions.php:5084
+#: ../functions.php:5197
 msgid "Header Font Size"
 msgstr "헤더 폰트 사이즈"
 
-#: ../functions.php:2902
+#: ../functions.php:2863
 msgid "Tabs"
 msgstr "탭"
 
-#: ../functions.php:2955 ../functions.php:3356 ../functions.php:3508
-#: ../functions.php:3574
+#: ../functions.php:2916 ../functions.php:3317 ../functions.php:3469
+#: ../functions.php:3535
 msgid "Padding"
 msgstr "내부여백"
 
-#: ../functions.php:2969
+#: ../functions.php:2930
 msgid "Slider"
 msgstr "슬라이더"
 
-#: ../functions.php:2982 ../functions.php:5217
+#: ../functions.php:2943 ../functions.php:5178
 msgid "Top & Bottom Padding"
 msgstr "상단 및 하단 내부여백"
 
-#: ../functions.php:3040 ../functions.php:5275
+#: ../functions.php:3001 ../functions.php:5236
 msgid "Content Font Size"
 msgstr "내용 폰트 사이즈"
 
-#: ../functions.php:3059 ../functions.php:5294
+#: ../functions.php:3020 ../functions.php:5255
 msgid "Content Font Style"
 msgstr "내용 폰트 양식"
 
-#: ../functions.php:3074
+#: ../functions.php:3035
 msgid "Testimonial"
 msgstr "추천글"
 
-#: ../functions.php:3087 ../functions.php:4701
+#: ../functions.php:3048 ../functions.php:4662
 msgid "Name Font Style"
 msgstr "이름 폰트 양식"
 
-#: ../functions.php:3107
+#: ../functions.php:3068
 msgid "Details Font Style"
 msgstr "상세 폰트 양식"
 
-#: ../functions.php:3127
+#: ../functions.php:3088
 msgid "Portrait Border Radius"
 msgstr "인물사진 반지름"
 
-#: ../functions.php:3179
+#: ../functions.php:3140
 msgid "Pricing Table"
 msgstr "가격 테이블"
 
-#: ../functions.php:3231 ../functions.php:3422 ../functions.php:4721
+#: ../functions.php:3192 ../functions.php:3383 ../functions.php:4682
 msgid "Subheader Font Size"
 msgstr "소제목 폰트 사이즈"
 
-#: ../functions.php:3250 ../functions.php:3441 ../functions.php:4740
+#: ../functions.php:3211 ../functions.php:3402 ../functions.php:4701
 msgid "Subheader Font Style"
 msgstr "소제목 폰트 양식"
 
-#: ../functions.php:3270 ../functions.php:5037
+#: ../functions.php:3231 ../functions.php:4998
 msgid "Price Font Size"
 msgstr "가격 폰트 사이즈"
 
-#: ../functions.php:3289
+#: ../functions.php:3250
 msgid "Pricing Font Style"
 msgstr "가격 폰트 양식"
 
-#: ../functions.php:3304
+#: ../functions.php:3265
 msgid "Call To Action"
 msgstr "행동개시"
 
-#: ../functions.php:3370
+#: ../functions.php:3331
 msgid "Audio"
 msgstr "오디오"
 
-#: ../functions.php:3456
-msgid "Subscribe"
-msgstr "구독"
+#: ../functions.php:3417
+msgid "Email Optin"
+msgstr "이메일 수신 선택"
 
-#: ../functions.php:3588
+#: ../functions.php:3549
 msgid "Portfolio"
 msgstr "포트폴리오"
 
-#: ../functions.php:3702
+#: ../functions.php:3663
 msgid "Filterable Portfolio"
 msgstr "필터 가능한 포트폴리오"
 
-#: ../functions.php:3821
+#: ../functions.php:3782
 msgid "Filters Font Size"
 msgstr "필터 폰트 사이즈"
 
-#: ../functions.php:3840
+#: ../functions.php:3801
 msgid "Filters Font Style"
 msgstr "필터 폰트 양식"
 
-#: ../functions.php:3855
+#: ../functions.php:3816
 msgid "Bar Counter"
 msgstr "바 카운터"
 
-#: ../functions.php:3868
+#: ../functions.php:3829
 msgid "Label Font Size"
 msgstr "라벨 폰트 사이즈"
 
-#: ../functions.php:3887
+#: ../functions.php:3848
 msgid "Label Font Style"
 msgstr "라벨 폰트 양식"
 
-#: ../functions.php:3907
+#: ../functions.php:3868
 msgid "Percent Font Size"
 msgstr "퍼센트 폰트 사이즈"
 
-#: ../functions.php:3926
+#: ../functions.php:3887
 msgid "Percent Font Style"
 msgstr "퍼센트 폰트 양식"
 
-#: ../functions.php:3946
+#: ../functions.php:3907
 msgid "Bar Padding"
 msgstr "바 내부여백"
 
-#: ../functions.php:3965
+#: ../functions.php:3926
 msgid "Bar Border Radius"
 msgstr "바 테두리 반지름"
 
-#: ../functions.php:3979
+#: ../functions.php:3940
 msgid "Circle Counter"
 msgstr "원형 카운터"
 
-#: ../functions.php:3991 ../functions.php:4077
+#: ../functions.php:3952 ../functions.php:4038
 msgid "Number Font Size"
 msgstr "숫자 폰트 사이즈"
 
-#: ../functions.php:4010 ../functions.php:4096
+#: ../functions.php:3971 ../functions.php:4057
 msgid "Number Font Style"
 msgstr "숫자 폰트 양식"
 
-#: ../functions.php:4064
+#: ../functions.php:4025
 msgid "Number Counter"
 msgstr "숫자 카운터"
 
-#: ../functions.php:4150
+#: ../functions.php:4111
 msgid "Accordion"
 msgstr "아코디언"
 
-#: ../functions.php:4181 ../functions.php:4287
+#: ../functions.php:4142 ../functions.php:4248
 msgid "Opened Title Font Style"
 msgstr "열린 제목 폰트 양식"
 
-#: ../functions.php:4201 ../functions.php:4307
+#: ../functions.php:4162 ../functions.php:4268
 msgid "Closed Title Font Style"
 msgstr "닫힌 제목 폰트 양식"
 
-#: ../functions.php:4221 ../functions.php:4327
+#: ../functions.php:4182 ../functions.php:4288
 msgid "Toggle Icon Size"
 msgstr "토글 아이콘 사이즈"
 
-#: ../functions.php:4241 ../functions.php:4346
+#: ../functions.php:4202 ../functions.php:4307
 msgid "Toggle Padding"
 msgstr "토글 내부여백"
 
-#: ../functions.php:4255
+#: ../functions.php:4216
 msgid "Toggle"
 msgstr "토글"
 
-#: ../functions.php:4360
+#: ../functions.php:4321
 msgid "Contact Form"
 msgstr "연락처 양식"
 
-#: ../functions.php:4412
+#: ../functions.php:4373
 msgid "Input Font Size"
 msgstr "입력 폰트 사이즈"
 
-#: ../functions.php:4431
+#: ../functions.php:4392
 msgid "Input Font Style"
 msgstr "입력 폰트 양식"
 
-#: ../functions.php:4451
+#: ../functions.php:4412
 msgid "Input Field Padding"
 msgstr "입력 칸 내부여백"
 
-#: ../functions.php:4470
+#: ../functions.php:4431
 msgid "Captcha Font Size"
 msgstr "캡챠 폰트 사이즈"
 
-#: ../functions.php:4489
+#: ../functions.php:4450
 msgid "Captcha Font Style"
 msgstr "캡챠 폰트 양식"
 
-#: ../functions.php:4504 ../includes/functions/sidebars.php:4
+#: ../functions.php:4465 ../includes/functions/sidebars.php:4
 msgid "Sidebar"
 msgstr "사이드바"
 
-#: ../functions.php:4517
+#: ../functions.php:4478
 msgid "Widget Header Font Size"
 msgstr "위젯 헤더 폰트 사이즈"
 
-#: ../functions.php:4536
+#: ../functions.php:4497
 msgid "Widget Header Font Style"
 msgstr "위젯 헤더 폰트 양식"
 
-#: ../functions.php:4556
+#: ../functions.php:4517
 msgid "Remove Vertical Divider"
 msgstr "수직 분리기호 제거"
 
-#: ../functions.php:4565
+#: ../functions.php:4526
 msgid "Divider"
 msgstr "디바이더"
 
-#: ../functions.php:4577
+#: ../functions.php:4538
 msgid "Show Divider"
 msgstr "디바이더 보여주기"
 
-#: ../functions.php:4591
+#: ../functions.php:4552
 msgid "Divider Style"
 msgstr "분리기호 양식"
 
-#: ../functions.php:4596
+#: ../functions.php:4557
 msgid "Solid"
 msgstr "순"
 
-#: ../functions.php:4597
+#: ../functions.php:4558
 msgid "Dotted"
 msgstr "점"
 
-#: ../functions.php:4598
+#: ../functions.php:4559
 msgid "Dashed"
 msgstr "대시"
 
-#: ../functions.php:4599
+#: ../functions.php:4560
 msgid "Double"
 msgstr "이중"
 
-#: ../functions.php:4600
+#: ../functions.php:4561
 msgid "Groove"
 msgstr "홈"
 
-#: ../functions.php:4601
+#: ../functions.php:4562
 msgid "Ridge"
 msgstr "곡선"
 
-#: ../functions.php:4602
+#: ../functions.php:4563
 msgid "Inset"
 msgstr "삽화"
 
-#: ../functions.php:4603
+#: ../functions.php:4564
 msgid "Outset"
 msgstr "시작"
 
-#: ../functions.php:4616
+#: ../functions.php:4577
 msgid "Divider Weight"
 msgstr "분리기호 무게"
 
-#: ../functions.php:4635
+#: ../functions.php:4596
 msgid "Divider Height"
 msgstr "분리기호 높이"
 
-#: ../functions.php:4654
+#: ../functions.php:4615
 msgid "Divider Position"
 msgstr "분리기호 위치"
 
-#: ../functions.php:4659
+#: ../functions.php:4620
 msgid "Top"
 msgstr "상단"
 
-#: ../functions.php:4660
+#: ../functions.php:4621
 msgid "Vertically Centered"
 msgstr "수직 중앙배치"
 
-#: ../functions.php:4661
+#: ../functions.php:4622
 msgid "Bottom"
 msgstr "아래"
 
-#: ../functions.php:4669
+#: ../functions.php:4630
 msgid "Person"
 msgstr "인물"
 
-#: ../functions.php:4682
+#: ../functions.php:4643
 msgid "Name Font Size"
 msgstr "이름 폰트 사이즈"
 
-#: ../functions.php:4760
+#: ../functions.php:4721
 msgid "Social Network Icon Size"
 msgstr "소셜 네트워크 아이콘 사이즈"
 
-#: ../functions.php:4787 ../functions.php:4873
+#: ../functions.php:4748 ../functions.php:4834
 msgid "Post Title Font Size"
 msgstr "포스트 제목 폰트 사이즈"
 
-#: ../functions.php:4826 ../functions.php:4912
+#: ../functions.php:4787 ../functions.php:4873
 msgid "Meta Font Size"
 msgstr "메타 폰트 사이즈"
 
-#: ../functions.php:4860
-msgid "Masonry Blog"
-msgstr "메이슨리 블로그"
+#: ../functions.php:4821
+msgid "Blog Grid"
+msgstr "블로그 그리드"
 
-#: ../functions.php:4946
+#: ../functions.php:4907
 msgid "Shop"
 msgstr "상점"
 
-#: ../functions.php:4959
+#: ../functions.php:4920
 msgid "Product Name Font Size"
 msgstr "제품명 폰트 사이즈"
 
-#: ../functions.php:4978
+#: ../functions.php:4939
 msgid "Product Name Font Style"
 msgstr "제품명 폰트 사이즈"
 
-#: ../functions.php:4998
+#: ../functions.php:4959
 msgid "Sale Badge Font Size"
 msgstr "판매 뱃지"
 
-#: ../functions.php:5017
+#: ../functions.php:4978
 msgid "Sale Badge Font Style"
 msgstr "판매 뱃지 폰트 양식"
 
-#: ../functions.php:5056
+#: ../functions.php:5017
 msgid "Price Font Style"
 msgstr "가격 폰트 양식"
 
-#: ../functions.php:5076
+#: ../functions.php:5037
 msgid "Sale Price Font Size"
 msgstr "판매가격 폰트 사이즈"
 
-#: ../functions.php:5095
+#: ../functions.php:5056
 msgid "Sale Price Font Style"
 msgstr "판매가격 폰트 양식"
 
-#: ../functions.php:5110
+#: ../functions.php:5071
 msgid "Countdown"
 msgstr "카운트다운"
 
-#: ../functions.php:5157
+#: ../functions.php:5118
 msgid "Social Follow"
 msgstr "소셜 팔로우"
 
-#: ../functions.php:5170
+#: ../functions.php:5131
 msgid "Follow Font & Icon Size"
 msgstr "폰트 및 아이콘 사이즈 따라가기"
 
-#: ../functions.php:5204
-msgid "Full Width Slider"
-msgstr "전체 너비 슬라이더"
+#: ../functions.php:5165
+msgid "Fullwidth Slider"
+msgstr "전각 슬라이더"
 
-#: ../functions.php:7875
+#: ../functions.php:7469
 msgid "0 comments"
 msgstr "코멘트 0개"
 
-#: ../functions.php:7875
+#: ../functions.php:7469
 msgid "1 comment"
 msgstr "코멘트 1개"
 
-#: ../functions.php:7875
+#: ../functions.php:7469
 msgid "comments"
 msgstr "코멘트"
 
-#: ../functions.php:8026
-msgid "No Gallery Found"
-msgstr ""
-
-#: ../functions.php:8028
-msgid "No items found"
-msgstr ""
-
-#: ../functions.php:8170
+#: ../functions.php:7542
 msgid "Password Protected"
 msgstr "암호로 보호됨"
 
-#: ../functions.php:8171
+#: ../functions.php:7543
 msgid "To view this protected post, enter the password below"
 msgstr "이 보호된 포스트를 보시려면 아래에 암호를 입력하세요"
 
-#: ../functions.php:8174
+#: ../functions.php:7546
 msgid "Password"
 msgstr "암호"
 
-#: ../functions.php:8175
+#: ../functions.php:7547
 msgid "Submit"
 msgstr "제출"
 
-#: ../functions.php:8347
+#: ../functions.php:7727
 #, php-format
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
 
-#: ../functions.php:8349
+#: ../functions.php:7729
 msgid "Item"
 msgstr "항목"
 
-#: ../functions.php:8349
+#: ../functions.php:7729
 msgid "Items"
 msgstr "항목"
 
-#: ../functions.php:8524
-msgid "Connecting..."
-msgstr "연결 중…"
-
-#: ../functions.php:8525
-msgid "Connection failed"
-msgstr "연결 실패"
-
-#: ../functions.php:8526
-msgid "Removing connection..."
-msgstr "커넥션 제거 중…"
-
-#: ../functions.php:8527
-msgid "Done"
-msgstr "완료"
-
-#: ../functions.php:8556
-#, php-format
-msgid ""
-"Step 1: <a href=\"%1$s\" target=\"_blank\">Generate authorization code</a>"
-msgstr "1단계: <a href=\"%1$s\" target=\"_blank\">인증 코드 생성</a>"
-
-#: ../functions.php:8557
-msgid ""
-"Step 2: Paste in the authorization code and click \"Make a connection\" "
-"button: "
-msgstr "2단계: 인증 코드를 붙여 넣고 “연결하기” 버튼을 클릭하세요: "
-
-#: ../functions.php:8558
-msgid "Make a connection"
-msgstr "연결하기"
-
-#: ../functions.php:8561
-msgid "Aweber is set up properly. You can remove connection here if you wish."
-msgstr ""
-"Aweber 이/가 적절하게 설치되었습니다. 원하시면 여기서 연결을 삭제할 수 있습니"
-"다."
-
-#: ../functions.php:8562
-msgid "Remove the connection"
-msgstr "연결 삭제"
-
-#: ../functions.php:8570
-msgid "Nonce failed."
-msgstr "Nonce 을/를 실패했습니다."
-
-#: ../functions.php:8576
-msgid "Authorization code is empty."
-msgstr "인증 코드가 비어 있습니다."
-
-#: ../functions.php:8587
-msgid ""
-"Authorization code is invalid. Try regenerating it and paste in the new code."
-msgstr ""
-"유효하지 않은 인증 코드입니다. 다시 코드를 생성해서 새로운 코드를 붙여 넣으십"
-"시오."
-
-#: ../functions.php:8609
-msgid "Aweber API Exception"
-msgstr "Aweber API 예외"
-
-#: ../functions.php:8611
-msgid "Message"
-msgstr "메시지"
-
-#: ../functions.php:8622
-msgid "Nonce failed"
-msgstr "Nonce 을/를 실패했습니다"
-
-#: ../functions.php:8717
-msgid "Read more"
-msgstr "더 읽기"
-
-#: ../functions.php:8845
-msgid "Configuration error"
-msgstr "설정 오류"
-
-#: ../functions.php:8855
-msgid "Please enter first name"
-msgstr "이름을 입력하시기 바랍니다"
-
-#: ../functions.php:8857
-msgid "Incorrect email"
-msgstr "정확하지 않은 이메일"
-
-#: ../functions.php:8859
-msgid "Configuration error: List is not defined"
-msgstr "설정 오류: 목록이 정의되지 않았습니다"
-
-#: ../functions.php:8861
-msgid ""
-"<h2 class=\"et_pb_subscribed\">Subscribed - look for the confirmation email!"
-"</h2>"
-msgstr "<h2 class=\"et_pb_subscribed\">구독 - 확인 이메일을 기다리세요!</h2>"
-
-#: ../functions.php:8873
-msgid "Configuration error: api key is not defined"
-msgstr "설정 오류: API 키가 정의되지 않았습니다"
-
-#: ../functions.php:8910
-msgid "Aweber: Wrong configuration data"
-msgstr "Aweber: 잘못된 설정 데이터"
-
-#: ../functions.php:8940 ../functions.php:8961
+#: ../functions.php:7907 ../functions.php:7942
 msgid "Theme Customizer"
 msgstr "테마 커스터마이저"
 
-#: ../functions.php:8941 ../functions.php:8971
+#: ../functions.php:7911 ../functions.php:7955
 msgid "Module Customizer"
 msgstr "모듈 커스터마이저"
 
-#: ../functions.php:8942
+#: ../functions.php:7913
+msgid "Role Editor"
+msgstr "역할 편집기"
+
+#: ../functions.php:7916
 msgid "Divi Library"
 msgstr "Divi 라이브러리"
 
@@ -3146,6 +2908,240 @@ msgstr "&larr;"
 #: ../single-project.php:63
 msgid "&rarr;"
 msgstr "&rarr;"
+
+#~ msgid ""
+#~ "By default, MailChimp lists are cached for one day. If you added new "
+#~ "list, but it doesn't appear within the SignUp module settings, activate "
+#~ "this option. Don't forget to disable it once the list has been "
+#~ "regenerated."
+#~ msgstr ""
+#~ "기본적으로, MailChimp 목록은 하룻동안 캐쉬됩니다. 하지만, 이 옵션을 활성화"
+#~ "하면 새로운 목록을 추가해도 등록 모듈 설정에 나타나지 않습니다. 목록이 재"
+#~ "생성 되면 이 옵션을 비활성화 해주십시오."
+
+#~ msgid ""
+#~ "By default, Aweber lists are cached for one day. If you added new list, "
+#~ "but it doesn't appear within the SignUp module settings, activate this "
+#~ "option. Don't forget to disable it once the list has been regenerated."
+#~ msgstr ""
+#~ "기본적으로, Aweber 목록은 하룻동안 캐쉬됩니다. 하지만, 이 옵션을 활성화하"
+#~ "면 새로운 목록을 추가해도 등록 모듈 설정에 나타나지 않습니다. 목록이 재생"
+#~ "성 되면 이 옵션을 비활성화 해주십시오."
+
+#~ msgid ""
+#~ "Please, check the fields below to make sure you entered the correct "
+#~ "information."
+#~ msgstr ""
+#~ "정확한 정보를 입력하셨는지 확인하려면 아래의 입력 필드를 확인하시기 바랍니"
+#~ "다."
+
+#~ msgid "Fill"
+#~ msgstr "채우기"
+
+#~ msgid "field"
+#~ msgstr "필드"
+
+#~ msgid "Invalid email"
+#~ msgstr "유효하지 않은 이메일"
+
+#~ msgid "Captcha"
+#~ msgstr "캡차"
+
+#~ msgid "Prev"
+#~ msgstr "이전"
+
+#~ msgid "Projects"
+#~ msgstr "프로젝트"
+
+#~ msgid "Project"
+#~ msgstr "프로젝트"
+
+#~ msgid "Add New"
+#~ msgstr "새로운 항목 추가"
+
+#~ msgid "Add New Project"
+#~ msgstr "새로운 프로젝트 추가"
+
+#~ msgid "Edit Project"
+#~ msgstr "프로젝트 편집"
+
+#~ msgid "New Project"
+#~ msgstr "새로운 프로젝트"
+
+#~ msgid "All Projects"
+#~ msgstr "모든 프로젝트"
+
+#~ msgid "View Project"
+#~ msgstr "프로젝트 보기"
+
+#~ msgid "Search Projects"
+#~ msgstr "프로젝트 검색"
+
+#~ msgid "Nothing found"
+#~ msgstr "아무 것도 찾지 못했습니다"
+
+#~ msgid "Nothing found in Trash"
+#~ msgstr "휴지통에서 아무 것도 찾지 못했습니다"
+
+#~ msgid "Category"
+#~ msgstr "카테고리"
+
+#~ msgid "Search Categories"
+#~ msgstr "카테고리 검색"
+
+#~ msgid "All Categories"
+#~ msgstr "모든 카테고리"
+
+#~ msgid "Parent Category"
+#~ msgstr "상위 카테고리"
+
+#~ msgid "Parent Category:"
+#~ msgstr "상위 카테고리:"
+
+#~ msgid "Edit Category"
+#~ msgstr "카테고리 편집"
+
+#~ msgid "Update Category"
+#~ msgstr "카테고리 업데이트"
+
+#~ msgid "Add New Category"
+#~ msgstr "새로운 카테고리 추가"
+
+#~ msgid "New Category Name"
+#~ msgstr "새로운 카테고리 이름"
+
+#~ msgid "Tags"
+#~ msgstr "태그"
+
+#~ msgid "Tag"
+#~ msgstr "태그"
+
+#~ msgid "Search Tags"
+#~ msgstr "태그 검색"
+
+#~ msgid "All Tags"
+#~ msgstr "모든 태그"
+
+#~ msgid "Parent Tag"
+#~ msgstr "상위 태그"
+
+#~ msgid "Parent Tag:"
+#~ msgstr "상위 태그:"
+
+#~ msgid "Edit Tag"
+#~ msgstr "태그 편집"
+
+#~ msgid "Update Tag"
+#~ msgstr "태그 업데이트"
+
+#~ msgid "Add New Tag"
+#~ msgstr "새로운 태그 추가"
+
+#~ msgid "New Tag Name"
+#~ msgstr "새로운 태그 이름"
+
+#~ msgid "Menu/Logo Height"
+#~ msgstr "메뉴/로고 높이"
+
+#~ msgid "Fixed Menu/Logo Height"
+#~ msgstr "고정 메뉴/로고 높이"
+
+#~ msgid "Menu Link Color"
+#~ msgstr "메뉴 링크 색"
+
+#~ msgid "Active Menu Link Color"
+#~ msgstr "메뉴 링크 색상 활성화"
+
+#~ msgid "Subscribe"
+#~ msgstr "구독"
+
+#~ msgid "Masonry Blog"
+#~ msgstr "메이슨리 블로그"
+
+#~ msgid "Full Width Slider"
+#~ msgstr "전체 너비 슬라이더"
+
+#~ msgid "Connecting..."
+#~ msgstr "연결 중…"
+
+#~ msgid "Connection failed"
+#~ msgstr "연결 실패"
+
+#~ msgid "Removing connection..."
+#~ msgstr "커넥션 제거 중…"
+
+#~ msgid "Done"
+#~ msgstr "완료"
+
+#~ msgid ""
+#~ "Step 1: <a href=\"%1$s\" target=\"_blank\">Generate authorization code</a>"
+#~ msgstr "1단계: <a href=\"%1$s\" target=\"_blank\">인증 코드 생성</a>"
+
+#~ msgid ""
+#~ "Step 2: Paste in the authorization code and click \"Make a connection\" "
+#~ "button: "
+#~ msgstr "2단계: 인증 코드를 붙여 넣고 “연결하기” 버튼을 클릭하세요: "
+
+#~ msgid "Make a connection"
+#~ msgstr "연결하기"
+
+#~ msgid ""
+#~ "Aweber is set up properly. You can remove connection here if you wish."
+#~ msgstr ""
+#~ "Aweber 이/가 적절하게 설치되었습니다. 원하시면 여기서 연결을 삭제할 수 있"
+#~ "습니다."
+
+#~ msgid "Remove the connection"
+#~ msgstr "연결 삭제"
+
+#~ msgid "Nonce failed."
+#~ msgstr "Nonce 을/를 실패했습니다."
+
+#~ msgid "Authorization code is empty."
+#~ msgstr "인증 코드가 비어 있습니다."
+
+#~ msgid ""
+#~ "Authorization code is invalid. Try regenerating it and paste in the new "
+#~ "code."
+#~ msgstr ""
+#~ "유효하지 않은 인증 코드입니다. 다시 코드를 생성해서 새로운 코드를 붙여 넣"
+#~ "으십시오."
+
+#~ msgid "Aweber API Exception"
+#~ msgstr "Aweber API 예외"
+
+#~ msgid "Message"
+#~ msgstr "메시지"
+
+#~ msgid "Nonce failed"
+#~ msgstr "Nonce 을/를 실패했습니다"
+
+#~ msgid "Read more"
+#~ msgstr "더 읽기"
+
+#~ msgid "Configuration error"
+#~ msgstr "설정 오류"
+
+#~ msgid "Please enter first name"
+#~ msgstr "이름을 입력하시기 바랍니다"
+
+#~ msgid "Incorrect email"
+#~ msgstr "정확하지 않은 이메일"
+
+#~ msgid "Configuration error: List is not defined"
+#~ msgstr "설정 오류: 목록이 정의되지 않았습니다"
+
+#~ msgid ""
+#~ "<h2 class=\"et_pb_subscribed\">Subscribed - look for the confirmation "
+#~ "email!</h2>"
+#~ msgstr ""
+#~ "<h2 class=\"et_pb_subscribed\">구독 - 확인 이메일을 기다리세요!</h2>"
+
+#~ msgid "Configuration error: api key is not defined"
+#~ msgstr "설정 오류: API 키가 정의되지 않았습니다"
+
+#~ msgid "Aweber: Wrong configuration data"
+#~ msgstr "Aweber: 잘못된 설정 데이터"
 
 #~ msgid ""
 #~ "Welcome to Divi! Before diving in to your new theme, please visit the <a "

@@ -18,7 +18,7 @@
 			$( 'a.toplevel_page_et_divi_library' ).removeClass( 'wp-not-current-submenu' ).addClass( 'wp-has-current-submenu wp-menu-open' );
 		}
 
-		$( 'body' ).on( 'click', '.add-new-h2', function() {
+		$( 'body' ).on( 'click', '.add-new-h2, a.page-title-action', function() {
 			var all_cats      = $.parseJSON( et_pb_new_template_options.layout_cats ),
 				$modal        = '',
 				cats_selector = '<label>' + et_pb_new_template_options.cats_label + '</label>';
